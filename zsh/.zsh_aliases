@@ -1,0 +1,16 @@
+# Ls aliases
+alias lv='ls -1'                                                          # Vertically list non-hidden files
+alias la='ls -la'                                                         # Vertically list all files (with access rights)
+alias lsl='ls -l'                                                         # Vertically list all non-hidden files (with access rights)
+
+# Navigation aliases
+alias hd='cd ~'                                                           # Home directory
+
+# Dotfiles
+alias dotfiles='cd ~/dotfiles'
+
+# Neovim aliases
+alias f='nvim'                                                            # Initialise nvim
+alias nc='cd ~/dotfiles/nvim/.config/nvim/'                               # Neovim main directory
+alias ncp='cd ~/dotfiles/nvim/.config/nvim/lua/plugins'                   # Neovim plugin directory
+

@@ -1,5 +1,11 @@
 # Ignore packer plugin folder
-nvim/plugin/
+nvim/.config/nvim/plugin/
 
 # Ignore java nvim tools
-tools/nvim/java/
+nvim/.config/tools-nvim/java/
+
+# Ignore files in .config except nvim
+nvim/.config/spotify-tui/
+nvim/.config/packer/
+
+

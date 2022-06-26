@@ -1,0 +1,5 @@
+# Ignore packer plugin folder
+nvim/plugin/
+
+# Ignore java nvim tools
+tools/nvim/java/

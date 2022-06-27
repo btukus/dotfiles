@@ -9,7 +9,9 @@ alias hd='cd ~'                                                           # Home
 # Dotfiles
 alias dotfiles='cd ~/dotfiles'
 
-# Neovim aliases
+alias su='source ~/.zshrc'
+alias shell='cd ~/dotfiles/zsh'
+
 alias f='nvim'                                                            # Initialise nvim
 alias nc='cd ~/dotfiles/nvim/.config/nvim/'                               # Neovim main directory
 alias ncp='cd ~/dotfiles/nvim/.config/nvim/lua/plugins'                   # Neovim plugin directory

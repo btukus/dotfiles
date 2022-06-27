@@ -2,6 +2,31 @@ function cb() {
   git_current_branch
 }
 
+function git_main_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}; do
+    if command git show-ref -q --verify $ref; then
+      echo ${ref:t}
+      return
+    fi
+  done
+  echo master
+}
+
+# Check for develop and similarly named branches
+function git_develop_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local branch
+  for branch in dev devel development; do
+    if command git show-ref -q --verify refs/heads/$branch; then
+      echo $branch
+      return
+    fi
+  done
+  echo develop
+}
+
 # alias gcbr=
 # Git aliases
 
@@ -11,14 +36,15 @@ alias gaa='git add --all'                                                 # Stag
 
 # Git branch
 alias gb='git branch'                                                     # Show local branches
-alias gcb='git checkout -b'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 
 # Git checkout 
 alias gcf='git checkout'                                                # Remove changes
+alias gcb='git checkout -b'
 
 # Git commit
+alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 
 # Git clone 
@@ -30,7 +56,14 @@ alias gd='git diff'
 
 # Git merge
 alias gm='git merge'
+alias gmm='git merge origin/$(git_main_branch)'
+alias gmom='git merge origin/$(git_develop_branch)'
 alias gma='git merge --abort'
+
+# Git rebase
+alias grb='git rebase'
+alias grbm='git rebase $(git_main_branch)'
+alias grbom='git rebase origin/$(git_main_branch)'
 
 # Git pull and push
 alias gl='git pull'

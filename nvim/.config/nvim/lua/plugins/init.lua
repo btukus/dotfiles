@@ -79,9 +79,10 @@ return packer.startup(function(use)
 
   -- Buffer Plugins
   use { "moll/vim-bbye", opt = true, cmd = { 'Bdelete' } }                                                           -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-  use { "akinsho/bufferline.nvim",
-        event = 'BufWinEnter',
-        config = get_setup("bufferline") }               -- Adds open files as tabs
+  use { "matbme/JABS.nvim", 
+        opt = true, cmd = { 'JABSOpen'},
+        config = get_setup("jabs")
+      }
 
   -- UI
   use { "kyazdani42/nvim-web-devicons" }                                            -- Icons

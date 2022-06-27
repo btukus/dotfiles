@@ -8,14 +8,6 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
-
 -- Normal --
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -60,16 +52,20 @@ keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
   
-  -- Git-worktree
-  keymap("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
-  
-  -- Harpoon
-  keymap("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
-  keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-  keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
-  keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
-  
+-- Git-worktree
+keymap("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
 
+-- Harpoon
+keymap("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
+keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
+keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
+keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
+
+-- JABS
+keymap("n", "<leader>jj", ":JABSOpen<CR>", opts)
+
+-- ToggleTerm
+keymap("n", '<leader>t', ":ToggleTerm<CR>", opts)
 
 -- Git-conflict
 keymap('n', 'co', '<Plug>(git-conflict-ours)')
@@ -78,9 +74,6 @@ keymap('n', 'cb', '<Plug>(git-conflict-both)')
 keymap('n', 'c0', '<Plug>(git-conflict-none)')
 keymap('n', ']x', '<Plug>(git-conflict-prev-conflict)')
 keymap('n', '[x', '<Plug>(git-conflict-next-conflict)')
-
--- ToggleTerm
-keymap("n", '<leader>t', ":ToggleTerm<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)

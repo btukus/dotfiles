@@ -59,8 +59,10 @@ keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
 
--- Git
+
+-- Git-conflict
 keymap('n', 'co', '<Plug>(git-conflict-ours)')
 keymap('n', 'ct', '<Plug>(git-conflict-theirs)')
 keymap('n', 'cb', '<Plug>(git-conflict-both)')

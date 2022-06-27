@@ -112,8 +112,8 @@ if [[ -f ~/.zsh_aliases ]]; then
 source ~/.zsh_aliases
 fi
 
-if [[ -f ~/.git_aliases ]]; then
-source ~/.git_aliases
+if [[ -f ~/.zsh_git_aliases ]]; then
+source ~/.zsh_git_aliases
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

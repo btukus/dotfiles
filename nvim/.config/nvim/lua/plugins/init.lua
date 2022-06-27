@@ -136,7 +136,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim",
-        afeter = 'BufWinEnter',
+        opt =true, cmd = { 'Telescope' },
         config = get_setup("telescope") }          -- Fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }                  -- It is a c port of the fzf algorithm
   use { "ahmedkhalf/project.nvim", 

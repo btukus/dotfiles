@@ -15,4 +15,3 @@ alias shell='cd ~/dotfiles/zsh'
 alias f='nvim'                                                            # Initialise nvim
 alias nc='cd ~/dotfiles/nvim/.config/nvim/'                               # Neovim main directory
 alias ncp='cd ~/dotfiles/nvim/.config/nvim/lua/plugins'                   # Neovim plugin directory
-

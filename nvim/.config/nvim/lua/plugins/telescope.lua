@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 telescope.load_extension('fzf')
+telescope.load_extension("git_worktree")
 
 local actions = require "telescope.actions"
 

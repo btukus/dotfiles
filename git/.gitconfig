@@ -1,0 +1,4 @@
+[pager]
+	branch = false
+[core]
+	excludesfile = /home/btukus/.gitignore_global

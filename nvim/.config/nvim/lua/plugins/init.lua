@@ -58,10 +58,15 @@ return packer.startup(function(use)
   use { "wbthomason/packer.nvim" }                                                  -- Have packer manage itself
   use { "nvim-lua/plenary.nvim" }                                                   -- Useful lua functions used by lots of plugins
   use { "lewis6991/impatient.nvim", config = get_setup("impatient") }               -- Improves startup time by implementing a cache
+  -- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }                 -- Reloads/restarts nvim configuration
+
+  -- Window and session managment 
+  use { "ThePrimeagen/harpoon", }
   use { "akinsho/toggleterm.nvim",
         opt = true, cmd = { 'ToggleTerm' },
-        config = get_setup("toggleterm") }               -- A neovim plugin to persist and toggle multiple terminals during an editing session
-  -- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }                 -- Reloads/restarts nvim configuration
+        config = get_setup("toggleterm") 
+      }               -- A neovim plugin to persist and toggle multiple terminals during an editing session
+
 
   -- Text Editing
   use { "numToStr/Comment.nvim",

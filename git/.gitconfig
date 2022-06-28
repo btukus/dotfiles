@@ -2,3 +2,6 @@
 	branch = false
 [core]
 	excludesfile = /home/btukus/.gitignore_global
+[user]
+	email = berkhantukus@outlook.com
+	user = btukus

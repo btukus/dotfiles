@@ -7,5 +7,6 @@ nvim/.config/tools-nvim/java/
 # Ignore files in .config except nvim
 nvim/.config/spotify-tui/
 nvim/.config/packer/
+nvim/.config/TabNine/
 
 

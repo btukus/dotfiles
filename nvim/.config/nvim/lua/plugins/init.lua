@@ -101,6 +101,7 @@ return packer.startup(function(use)
   use { "akinsho/git-conflict.nvim", config = get_setup("git-conflict") }            -- A plugin to visualise and resolve conflicts in neovim
   use { "ThePrimeagen/git-worktree.nvim", after = 'telescope.nvim',
         config = get_setup("git-worktree") }
+  use { 'sindrets/diffview.nvim', opt = true, cmd = { 'DiffviewOpen'} } 
 
   -- Cmp Plugins
   use { "hrsh7th/nvim-cmp", event = 'InsertEnter', config = get_setup("cmp")}                              -- The completion plugin

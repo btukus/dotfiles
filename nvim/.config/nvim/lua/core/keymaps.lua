@@ -35,11 +35,6 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
 
--- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
-
 -- Plugins --
 
 -- NvimTree
@@ -53,6 +48,10 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
   
+-- Diffview
+keymap("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
+keymap("n", "<leader>gc", ":DiffviewClose<CR>", opts)
+
 -- Git-worktree
 keymap("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
 

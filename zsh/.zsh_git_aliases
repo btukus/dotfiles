@@ -45,7 +45,7 @@ alias gbd='git branch -d'
 alias gbD='git branch -D'
 
 # Git checkout 
-alias gcf='git checkout'                                                # Remove changes
+alias gc='git checkout'                                                # Remove changes
 alias gcb='git checkout -b'
 
 # Git commit
@@ -53,7 +53,7 @@ alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 
 # Git clone 
-alias gc='git clone'
+alias gcr='git clone'
 alias gbare='git clone --bare'
 
 # Git diff

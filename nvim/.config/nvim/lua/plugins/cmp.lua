@@ -9,6 +9,7 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
+local compare = require('cmp.config.compare')
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -19,7 +20,6 @@ local icons = require("core.icons")
 local kind_icons = icons.kind
 
 
-local compare = require('cmp.config.compare')
 
 cmp.setup({
 	snippet = {

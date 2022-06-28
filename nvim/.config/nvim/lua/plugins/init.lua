@@ -153,6 +153,9 @@ return packer.startup(function(use)
         -- opt = true, cmd = { 'Telescope projects<CR>'},
         after = 'telescope.nvim',
         config = get_setup("project") }                  -- Manages projects by allowing to search for them
+  use { 'nvim-telescope/telescope-media-files.nvim',
+        -- after = 'telescope.nvim',
+      }
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", 

@@ -7,7 +7,7 @@ alias lsl='ls -l'                                                         # Vert
 alias hd='cd ~'                                                           # Home directory
 
 # Dotfiles
-alias dotfiles='cd ~/dotfiles'
+alias dot='cd ~/dotfiles'
 
 alias su='source ~/.zshrc'
 alias shell='cd ~/dotfiles/zsh'

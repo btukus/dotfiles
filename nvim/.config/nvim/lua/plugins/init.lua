@@ -15,14 +15,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
-  augroup end
-]]
-
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -45,7 +37,7 @@ packer.init {
 require("plugins.autocommands")
 require("plugins.colorscheme")
 
-local currentTheme = 'onedark.nvim'
+local currentTheme = 'darkplus.nvim'
 
 function get_setup(name)
   return string.format('require("plugins/%s")', name)
@@ -59,6 +51,7 @@ return packer.startup(function(use)
   use { "nvim-lua/plenary.nvim" }                                                   -- Useful lua functions used by lots of plugins
   use { "lewis6991/impatient.nvim", config = get_setup("impatient") }               -- Improves startup time by implementing a cache
   -- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }                 -- Reloads/restarts nvim configuration
+  use { 'Pocco81/AutoSave.nvim', config = get_setup('autosave') }
 
   -- Window and session managment 
   use { "ThePrimeagen/harpoon" }
@@ -92,8 +85,8 @@ return packer.startup(function(use)
       }                                                                                 -- Spotify-tui integration
 
   -- Colorschemes
-  use { "ful1e5/onedark.nvim" }                                                     -- Current default
-  -- use { "lunarvim/darkplus.nvim" }                                                  -- VScode theme
+  -- use { "ful1e5/onedark.nvim" }                                                     -- Current default
+  use { "lunarvim/darkplus.nvim" }                                                  -- VScode theme
   -- use { "arcticicestudio/nord-vim" }
   -- use { "jacoborus/tender.vim" }
 

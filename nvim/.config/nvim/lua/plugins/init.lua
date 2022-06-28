@@ -128,6 +128,7 @@ return packer.startup(function(use)
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") }       -- A parsing library that allows syntax highlighting, code nav, etc.
+  use { 'lewis6991/spellsitter.nvim', config = get_setup('spellsitter') }
 
   -- Debugger
   use { "mfussenegger/nvim-dap",

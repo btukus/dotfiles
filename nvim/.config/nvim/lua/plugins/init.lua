@@ -61,47 +61,35 @@ return packer.startup(function(use)
   -- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }                 -- Reloads/restarts nvim configuration
 
   -- Window and session managment 
-  use { "ThePrimeagen/harpoon", }
-  use { "akinsho/toggleterm.nvim",
-        opt = true, cmd = { 'ToggleTerm' },
+  use { "ThePrimeagen/harpoon" }
+  use { "akinsho/toggleterm.nvim", opt = true, cmd = { 'ToggleTerm' },
         config = get_setup("toggleterm") 
-      }               -- A neovim plugin to persist and toggle multiple terminals during an editing session
-
+      }                                                                             -- A neovim plugin to persist and toggle multiple terminals during an editing session
+  use { 'anuvyklack/hydra.nvim', config = get_setup('hydra') }
 
   -- Text Editing
-  use { "numToStr/Comment.nvim",
-        event = "CursorMoved",
+  use { "numToStr/Comment.nvim", event = "CursorMoved",
         config = get_setup("comment") }
   use { "JoosepAlviste/nvim-ts-context-commentstring", after = 'Comment.nvim' }                             -- A Neovim plugin for setting the commentstring option based on the cursor location in the file. The location is checked via treesitter queries.
-  use { "windwp/nvim-autopairs",
-        after = 'nvim-cmp',
+  use { "windwp/nvim-autopairs", after = 'nvim-cmp',
         config = get_setup("autopairs") }                  -- Autopairs, integrates with both cmp and treesitter
 
   -- Buffer Plugins
   use { "moll/vim-bbye", opt = true, cmd = { 'Bdelete' } }                                                           -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-  use { "matbme/JABS.nvim", 
-        opt = true, cmd = { 'JABSOpen'},
-        config = get_setup("jabs")
-      }
+  use { "matbme/JABS.nvim", opt = true, cmd = { 'JABSOpen'},config = get_setup("jabs") }
 
   -- UI
   use { "kyazdani42/nvim-web-devicons" }                                            -- Icons
-  use { "lukas-reineke/indent-blankline.nvim",
-        event = 'BufRead',
+  use { "lukas-reineke/indent-blankline.nvim", event = 'BufRead',
         config = get_setup("indentline") }   -- Adds indentation lines on blank lines
   use { "goolord/alpha-nvim", config = get_setup("alpha") }
   use { "kyazdani42/nvim-tree.lua", 
         opt = true, cmd = { 'NvimTreeToggle', 'NvimTreeFocus'},
         config = get_setup("nvim-tree") }               -- File explorer tree written in lua
-  use { "nvim-lualine/lualine.nvim",
-        after = currentTheme,
-        event = 'BufWinEnter',
-        config = get_setup("lualine") }                -- Statusline plugin
-  use { 'KadoBOT/nvim-spotify', 
-        opt = true, cmd = { 'Spotify' },
-        config = get_setup("nvim-spotify"),
-        run = 'make'
-  }                                                                                 -- Spotify-tui integration
+  use { "nvim-lualine/lualine.nvim", after = currentTheme, event = 'BufWinEnter', config = get_setup("lualine") }                -- Statusline plugin
+  use { 'KadoBOT/nvim-spotify', opt = true, cmd = { 'Spotify' },
+        config = get_setup("nvim-spotify"), run = 'make'
+      }                                                                                 -- Spotify-tui integration
 
   -- Colorschemes
   use { "ful1e5/onedark.nvim" }                                                     -- Current default
@@ -111,57 +99,41 @@ return packer.startup(function(use)
 
   -- Git 
   use { "akinsho/git-conflict.nvim", config = get_setup("git-conflict") }            -- A plugin to visualise and resolve conflicts in neovim
-  use { "ThePrimeagen/git-worktree.nvim",
-        after = 'telescope.nvim',
-        config = get_setup("git-worktree")
-      }
+  use { "ThePrimeagen/git-worktree.nvim", after = 'telescope.nvim',
+        config = get_setup("git-worktree") }
 
   -- Cmp Plugins
-  use { "hrsh7th/nvim-cmp",
-        event = 'InsertEnter',
-        config = get_setup("cmp")}                              -- The completion plugin
+  use { "hrsh7th/nvim-cmp", event = 'InsertEnter', config = get_setup("cmp")}                              -- The completion plugin
   use { "hrsh7th/cmp-buffer", after = 'nvim-cmp' }                                                      -- buffer completions
   use { "hrsh7th/cmp-path", after = 'nvim-cmp' }                                                        -- path completions
   use { "saadparwaiz1/cmp_luasnip", after = 'nvim-cmp'}                                                -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp", after = 'nvim-cmp' }
   use { "hrsh7th/cmp-nvim-lua", after = 'nvim-cmp' }
-  use { "tzachar/cmp-tabnine", 
-        after = 'nvim-cmp',
-        run='./install.sh',
-        config = get_setup("tabnine")}
-
-  -- Snippets
+  use { "tzachar/cmp-tabnine", after = 'nvim-cmp',run='./install.sh', config = get_setup("tabnine")}
   use { "L3MON4D3/LuaSnip", event = 'InsertEnter' }                                                        -- snippet engine
   use { "rafamadriz/friendly-snippets", event = 'InsertEnter' }                                            -- a bunch of snippets to use
-  -- use { "L3MON4D3/LuaSnip", after = 'nvim-cmp' }                                                        -- snippet engine
-  -- use { "rafamadriz/friendly-snippets", aftere = 'nvim-cmp' }                                            -- a bunch of snippets to use
 
   -- LSP
-  use { "neovim/nvim-lspconfig",
-        -- after = 'BufWinEnter',
-        config = get_setup("lsp") }                        -- enable LSP
+  use { "neovim/nvim-lspconfig",config = get_setup("lsp") }                        -- enable LSP
   use { "williamboman/nvim-lsp-installer" }                                         -- simple to use language server installer
   use { "jose-elias-alvarez/null-ls.nvim" }                                         -- for formatters and linters
-  use { "RRethy/vim-illuminate",
-        config = get_setup("illuminate") }
-
-  -- Java 
+  use { "RRethy/vim-illuminate", config = get_setup("illuminate") }
   use { "mfussenegger/nvim-jdtls", event = 'BufWinEnter' }
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim",
-        opt =true, cmd = { 'Telescope' },
-        config = get_setup("telescope") }          -- Fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
+  use { "nvim-telescope/telescope.nvim", opt =true, cmd = { 'Telescope' }, 
+        config = get_setup("telescope") 
+      }          -- Fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }                  -- It is a c port of the fzf algorithm
-  use { "ahmedkhalf/project.nvim", 
-        -- opt = true, cmd = { 'Telescope projects<CR>'},
-        after = 'telescope.nvim',
-        config = get_setup("project") }                  -- Manages projects by allowing to search for them
+  use { 'nvim-telescope/telescope-file-browser.nvim' }
+  use { 'nvim-telescope/telescope-project.nvim' }
+  -- use { "ahmedkhalf/project.nvim", opt = true, cmd = { 'Telescope projects<CR>'},
+  --       after = 'telescope.nvim',
+  --       config = get_setup("project") 
+  --     }                                                                             -- Manages projects by allowing to search for them
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter", 
-        -- event = 'BufEnter',
-        config = get_setup("treesitter") }       -- A parsing library that allows syntax highlighting, code nav, etc.
+  use { "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") }       -- A parsing library that allows syntax highlighting, code nav, etc.
 
   -- Debugger
   use { "mfussenegger/nvim-dap",

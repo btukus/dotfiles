@@ -61,10 +61,11 @@ return packer.startup(function(use)
   -- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }                 -- Reloads/restarts nvim configuration
 
   -- Window and session managment 
-  use { "ThePrimeagen/harpoon", }
+  use { "ThePrimeagen/harpoon" }
   use { "akinsho/toggleterm.nvim", opt = true, cmd = { 'ToggleTerm' },
         config = get_setup("toggleterm") 
-      }               -- A neovim plugin to persist and toggle multiple terminals during an editing session
+      }                                                                             -- A neovim plugin to persist and toggle multiple terminals during an editing session
+  use { 'anuvyklack/hydra.nvim', config = get_setup('hydra') }
 
   -- Text Editing
   use { "numToStr/Comment.nvim", event = "CursorMoved",
@@ -75,14 +76,11 @@ return packer.startup(function(use)
 
   -- Buffer Plugins
   use { "moll/vim-bbye", opt = true, cmd = { 'Bdelete' } }                                                           -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout.
-  use { "matbme/JABS.nvim", opt = true, cmd = { 'JABSOpen'},
-        config = get_setup("jabs")
-      }
+  use { "matbme/JABS.nvim", opt = true, cmd = { 'JABSOpen'},config = get_setup("jabs") }
 
   -- UI
   use { "kyazdani42/nvim-web-devicons" }                                            -- Icons
-  use { "lukas-reineke/indent-blankline.nvim",
-        event = 'BufRead',
+  use { "lukas-reineke/indent-blankline.nvim", event = 'BufRead',
         config = get_setup("indentline") }   -- Adds indentation lines on blank lines
   use { "goolord/alpha-nvim", config = get_setup("alpha") }
   use { "kyazdani42/nvim-tree.lua", 
@@ -112,11 +110,9 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-nvim-lsp", after = 'nvim-cmp' }
   use { "hrsh7th/cmp-nvim-lua", after = 'nvim-cmp' }
   use { "tzachar/cmp-tabnine", after = 'nvim-cmp',run='./install.sh', config = get_setup("tabnine")}
-
-  -- Snippets
   use { "L3MON4D3/LuaSnip", event = 'InsertEnter' }                                                        -- snippet engine
   use { "rafamadriz/friendly-snippets", event = 'InsertEnter' }                                            -- a bunch of snippets to use
-  
+
   -- LSP
   use { "neovim/nvim-lspconfig",config = get_setup("lsp") }                        -- enable LSP
   use { "williamboman/nvim-lsp-installer" }                                         -- simple to use language server installer
@@ -125,11 +121,16 @@ return packer.startup(function(use)
   use { "mfussenegger/nvim-jdtls", event = 'BufWinEnter' }
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim", opt =true, cmd = { 'Telescope' }, config = get_setup("telescope") }          -- Fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
+  use { "nvim-telescope/telescope.nvim", opt =true, cmd = { 'Telescope' }, 
+        config = get_setup("telescope") 
+      }          -- Fuzzy finder over lists. Items are shown in a popup with a prompt to search over.
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }                  -- It is a c port of the fzf algorithm
-  use { "ahmedkhalf/project.nvim", opt = true, cmd = { 'Telescope projects<CR>'},
-        after = 'telescope.nvim',
-        config = get_setup("project") }                  -- Manages projects by allowing to search for them
+  use { 'nvim-telescope/telescope-file-browser.nvim' }
+  use { 'nvim-telescope/telescope-project.nvim' }
+  -- use { "ahmedkhalf/project.nvim", opt = true, cmd = { 'Telescope projects<CR>'},
+  --       after = 'telescope.nvim',
+  --       config = get_setup("project") 
+  --     }                                                                             -- Manages projects by allowing to search for them
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") }       -- A parsing library that allows syntax highlighting, code nav, etc.

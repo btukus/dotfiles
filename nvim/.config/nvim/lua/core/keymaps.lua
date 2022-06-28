@@ -37,6 +37,9 @@ keymap("i", "jk", "<ESC>", opts)
 
 -- Plugins --
 
+-- Packer
+keymap("n", "<leader>ss", ":PackerSync<CR>", opts)
+
 -- NvimTree
 keymap("n", "<C-N>", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<C-F>", ":NvimTreeFocus<CR>", opts)

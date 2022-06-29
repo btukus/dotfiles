@@ -29,7 +29,6 @@ local options = {
   undofile = true,                         -- enable persistent undo
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
-  spell = true,
 
   -- Key mapping configuration
   timeoutlen = 1000,                       -- time to wait for a mapped sequence to complete (in milliseconds)

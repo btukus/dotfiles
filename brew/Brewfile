@@ -1,15 +1,31 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
-brew packer
+brew "zsh"
+brew "packer"
 brew "go"
 brew "google-java-format"
 brew "julia"
 brew "luarocks"
-brew "neovim"
-brew "nvm"
-brew "php"
+brew "xsel"
+brew "stylua"
+brew "ruby"
 brew "ripgrep"
 brew "rust"
+brew "php"
+brew "flake8"
+brew "black"
+brew "curl"
+brew "gcc"
+brew "bat"
+brew "neovim"
+
+brew "openjdk"
+
 brew "stow"
-brew "stylua"
-brew "zsh"
+
+brew "antibody"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+
+
+brew "nvm"

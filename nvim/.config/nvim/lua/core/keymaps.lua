@@ -40,15 +40,15 @@ keymap("i", "jk", "<ESC>", opts)
 -- Packer
 keymap("n", "<leader>ss", ":PackerSync<CR>", opts)
 
--- NvimTree
-keymap("n", "<C-N>", ":NvimTreeToggle<CR>", opts)
-keymap("n", "<C-F>", ":NvimTreeFocus<CR>", opts)
+-- -- NvimTree
+-- keymap("n", "<C-N>", ":NvimTreeToggle<CR>", opts)
+-- keymap("n", "<C-F>", ":NvimTreeFocus<CR>", opts)
+
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope project<CR>", opts)
--- keymap('n','<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
   
@@ -65,11 +65,11 @@ keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR
 keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
 keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
 
--- JABS
-keymap("n", "<leader>jj", ":JABSOpen<CR>", opts)
-
 -- ToggleTerm
 keymap("n", '<leader>t', ":ToggleTerm<CR>", opts)
+
+-- TroubleToggle
+keymap("n", "<leader>dd", ":TroubleToggle<CR>", opts)
 
 -- Git-conflict
 keymap('n', 'co', '<Plug>(git-conflict-ours)')

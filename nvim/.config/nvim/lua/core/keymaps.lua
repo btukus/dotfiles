@@ -47,7 +47,8 @@ keymap("n", "<C-F>", ":NvimTreeFocus<CR>", opts)
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>fp", ":Telescope project<CR>", opts)
+-- keymap('n','<leader>fp', ":lua require'telescope'.extensions.project.project{}<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
   

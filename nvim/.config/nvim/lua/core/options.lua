@@ -56,3 +56,7 @@ vim.opt.fillchars.eob=" "
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
+
+
+vim.g.transparent_background = true
+vim.g.italic_comments = false

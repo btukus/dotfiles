@@ -11,6 +11,13 @@ git clone https://github.com/mattmc3/antidote.git ~/.antidote
 # Install packages in Brewfile
 brew bundle ~/dofiles/brew/Brewfile
 
+# Stow dotfiles
+stow git
+stow bash
+stow zsh 
+stow nvim
+# stow tmux
+
 # Install Oh-My-ZSH
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

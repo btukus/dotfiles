@@ -61,6 +61,7 @@ return packer.startup(function(use)
 		config = get_setup("toggleterm"),
 	})
 	use({ "anuvyklack/hydra.nvim", config = get_setup("hydra") })
+  use { 'folke/trouble.nvim', opt = true, cmd = { 'TroubleToggle'} }
 
 	-- Text Editing
 	use({ "numToStr/Comment.nvim", event = "CursorMoved", config = get_setup("comment") })
@@ -121,22 +122,23 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use({
-		"nvim-telescope/telescope.nvim",
+		'nvim-telescope/telescope.nvim',
 		opt = true,
-		cmd = { "Telescope" },
-		config = get_setup("telescope"),
+		cmd = { 'Telescope' },
+		config = get_setup('telescope'),
 	})
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({ "nvim-telescope/telescope-file-browser.nvim" })
-	use({ "nvim-telescope/telescope-project.nvim" })
+	use({ 'nvim-telescope/telescope-fzf-native.nvim', run = "make" })
+	use({ 'nvim-telescope/telescope-file-browser.nvim' })
+	use({ 'nvim-telescope/telescope-project.nvim' })
+  use { 'nvim-telescope/telescope-ui-select.nvim' }
 
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })
-	use({ "lewis6991/spellsitter.nvim", config = get_setup("spellsitter") })
+	use({ 'nvim-treesitter/nvim-treesitter', config = get_setup('treesitter') })
+	use({ 'lewis6991/spellsitter.nvim', config = get_setup('spellsitter') })
 
 	-- Debugger
 	use({
-		"mfussenegger/nvim-dap",
+		'mfussenegger/nvim-dap',
 		opt = true,
 		cmd = { "DapToggleBreakpoint" },
 		config = get_setup("dap"),

@@ -4,6 +4,7 @@ brew "zsh"
 brew "packer"
 brew "go"
 brew "google-java-format"
+brew "pyenv"
 brew "julia"
 brew "luarocks"
 brew "xsel"
@@ -18,12 +19,5 @@ brew "curl"
 brew "gcc"
 brew "bat"
 brew "neovim"
-
 brew "openjdk"
-
 brew "stow"
-
-brew "antibody"
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
-

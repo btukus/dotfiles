@@ -6,17 +6,18 @@ fi
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"
 
-source ~/.antidote/antidote.zsh
-antidote load
-
 # Export nvm completion settings for lukechilds/zsh-nvm plugin
 # Note: This must be exported before the plugin is bundled
 export NVM_DIR=${HOME}/.nvm
 export NVM_COMPLETION=true
 
-#source ${HOME}/.zsh_plugins.sh
+# source antidote
+source ~/.antidote/antidote.zsh
+antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh
+source ~/.zsh_plugins.zsh
 
-# Source zsh aliases
+
+# Source aliases
 if [[ -f ~/.zsh_aliases ]]; then
   source ~/.zsh_aliases
 fi

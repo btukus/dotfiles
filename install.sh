@@ -34,4 +34,4 @@ sudo pip install pynvim
 sudo npm i -g neovim
 
 # Install Oh-My-ZSH
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+zsh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

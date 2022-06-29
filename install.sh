@@ -29,9 +29,13 @@ antidote load
 # Change shell to zsh 
 sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 
+# Install node 
+nvm install --lts
+sudo npm i -g neovim
+npm install --save-dev --save-exact prettier
+
 # Install dependencies
 sudo pip install pynvim
-sudo npm i -g neovim
 
 # Install Oh-My-ZSH
 zsh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

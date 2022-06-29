@@ -1,6 +1,9 @@
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Install Antidote
+git clone https://github.com/mattmc3/antidote.git ~/.antidote
+
 # Add brew to the shell
 # echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.profile
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

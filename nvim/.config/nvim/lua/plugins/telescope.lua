@@ -6,8 +6,10 @@ end
 telescope.load_extension("fzf")
 telescope.load_extension("project")
 telescope.load_extension("file_browser")
+telescope.load_extension("ui-select")
 telescope.load_extension("git_worktree")
 telescope.load_extension("harpoon")
+
 
 local actions = require("telescope.actions")
 
@@ -69,5 +71,8 @@ telescope.setup({
 			theme = "ivy",
 			hijack_netrw = true,
 		},
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {}
+    }
 	},
 })

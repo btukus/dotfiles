@@ -39,7 +39,7 @@ packer.init({
   profile = { enable = true, threshold = 1 },
 })
 
-local currentTheme = "darkplus.nvim"
+-- local currentTheme = "darkplus.nvim"
 
 function get_setup(name)
   return string.format('require("plugins/%s")', name)
@@ -82,7 +82,7 @@ return packer.startup(function(use)
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     config = get_setup("nvim-tree"),
   })
-  use({ "nvim-lualine/lualine.nvim", after = currentTheme, event = "BufWinEnter", config = get_setup("lualine") }) -- Statusline plugin
+  use({ "nvim-lualine/lualine.nvim", --[[ event = "BufWinEnter",  ]]config = get_setup("lualine") }) -- Statusline plugin
   -- use({
   -- 	"KadoBOT/nvim-spotify",
   -- 	opt = true,
@@ -93,9 +93,7 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use({ "lunarvim/darkplus.nvim" })
-  -- use({ "ful1e5/onedark.nvim" })
-  -- use { "arcticicestudio/nord-vim" }
-  -- use { "jacoborus/tender.vim" }
+  -- use({ 'elvessousa/sobrio' })
 
   -- Git
   use({ "akinsho/git-conflict.nvim", config = get_setup("git-conflict") })

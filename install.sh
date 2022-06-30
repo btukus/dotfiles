@@ -1,5 +1,5 @@
 # Brew dependencies
-sudo apt-get install build-essential
+sudo apt-get install build-essential python3-pip -y
 
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -23,16 +23,13 @@ git clone https://github.com/mattmc3/antidote.git ~/.antidote
 . ~/.antidote/antidote.zsh
 antidote load
 
-# Install zsh plugins with antidote
-# antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.sh
-
 # Change shell to zsh 
 sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 
 # Install node 
 nvm install --lts
 sudo npm i -g neovim
-npm install --save-dev --save-exact prettier
+npm install -g prettier
 
 # Install dependencies
 sudo pip install pynvim

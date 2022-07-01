@@ -50,6 +50,14 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
+
+  -- Regex 
+	use({ "MunifTanjim/nui.nvim", opt = true, cmd = { "RegexplainerToggle" } })
+	use({
+		"bennypowers/nvim-regexplainer",
+    after = 'nui.nvim',
+		config = get_setup("regexplainer"),
+	})
 	-- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }
 
 	-- Window and session management

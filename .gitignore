@@ -1,3 +1,6 @@
+# Ignore brew lock file
+brew/Brewfile.lock.json
+
 # Ignore packer plugin folder
 nvim/.config/nvim/plugin/
 

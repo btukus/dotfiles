@@ -30,7 +30,9 @@ sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 nvm install --lts
 sudo npm i -g neovim
 npm install -g prettier
+# gem install neovim
 
+# pyenv install 3.10.4
 # Install dependencies
 sudo pip install pynvim
 

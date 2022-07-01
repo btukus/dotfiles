@@ -79,6 +79,9 @@ keymap('n', 'c0', '<Plug>(git-conflict-none)')
 keymap('n', ']x', '<Plug>(git-conflict-prev-conflict)')
 keymap('n', '[x', '<Plug>(git-conflict-next-conflict)')
 
+--Rexgexplainer
+keymap('n', 'rg', ':RegexplainerToggle<CR>')
+
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')

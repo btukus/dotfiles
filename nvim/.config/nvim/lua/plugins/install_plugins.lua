@@ -39,7 +39,7 @@ packer.init({
 	profile = { enable = true, threshold = 1 },
 })
 
--- local currentTheme = "darkplus.nvim"
+local currentTheme = "darkplus.nvim"
 
 function get_setup(name)
 	return string.format('require("plugins/%s")', name)
@@ -50,15 +50,15 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
+	-- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }
 
-  -- Regex 
+	-- Regex
 	use({ "MunifTanjim/nui.nvim", opt = true, cmd = { "RegexplainerToggle" } })
 	use({
 		"bennypowers/nvim-regexplainer",
-    after = 'nui.nvim',
+		after = "nui.nvim",
 		config = get_setup("regexplainer"),
 	})
-	-- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }
 
 	-- Window and session management
 	use({ "ThePrimeagen/harpoon" })
@@ -83,7 +83,7 @@ return packer.startup(function(use)
 
 	-- UI
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = get_setup("indentline") }) -- Adds indentation lines on blank lines
+	use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = get_setup("indentline") })
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })
 	use({
 		"kyazdani42/nvim-tree.lua",
@@ -93,8 +93,9 @@ return packer.startup(function(use)
 	})
 	use({
 		"nvim-lualine/lualine.nvim", --[[ event = "BufWinEnter",  ]]
+    after = CurrentTheme,
 		config = get_setup("lualine"),
-	}) -- Statusline plugin
+	})
 	-- use({
 	-- 	"KadoBOT/nvim-spotify",
 	-- 	opt = true,

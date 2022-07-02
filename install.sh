@@ -13,9 +13,9 @@ brew bundle --file=~/dotfiles/brew/Brewfile
 
 # Stow dotfiles
 stow git
-#stow bash
 stow zsh 
 stow nvim
+#stow bash
 # stow tmux
 
 # Install Antidote
@@ -35,6 +35,17 @@ npm install -g prettier
 # pyenv install 3.10.4
 # Install dependencies
 sudo pip install pynvim
+
+# Create tools-nvim directory
+mkdir  ~/dotfiles/nvim/.config/tools-nvim/
+
+# Clone java-debug
+git clone git@github.com:microsoft/java-debug.git ~/dotfiles/nvim/.config/tools-nvim/java/
+current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java/java-debug; ./mvnw clean install;cd $current_dir;
+
+# Clone vscde-java-debug
+git clone git@github.com:microsoft/vscode-java-test.git ~/dotfiles/nvim/.config
+current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java/vscode-java-test; npm i && npm run build-plugin; cd $current_dir;
 
 # Install Oh-My-ZSH
 zsh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

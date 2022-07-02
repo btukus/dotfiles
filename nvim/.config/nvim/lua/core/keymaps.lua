@@ -40,11 +40,6 @@ keymap("i", "jk", "<ESC>", opts)
 -- Packer
 keymap("n", "<leader>ss", ":PackerSync<CR>", opts)
 
--- -- NvimTree
--- keymap("n", "<C-N>", ":NvimTreeToggle<CR>", opts)
--- keymap("n", "<C-F>", ":NvimTreeFocus<CR>", opts)
-
-
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)

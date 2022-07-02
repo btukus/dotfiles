@@ -86,12 +86,6 @@ return packer.startup(function(use)
 	use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = get_setup("indentline") })
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })
 	use({
-		"kyazdani42/nvim-tree.lua",
-		opt = true,
-		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-		config = get_setup("nvim-tree"),
-	})
-	use({
 		"nvim-lualine/lualine.nvim", --[[ event = "BufWinEnter",  ]]
     after = CurrentTheme,
 		config = get_setup("lualine"),

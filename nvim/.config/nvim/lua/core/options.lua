@@ -31,7 +31,7 @@ local options = {
 	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 
 	-- Key mapping configuration
-	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
+	timeoutlen = 750, -- time to wait for a mapped sequence to complete (in milliseconds)
 	updatetime = 300, -- faster completion (4000ms default)
 
 	-- Space and Tab configuration
@@ -59,4 +59,5 @@ vim.opt.iskeyword:append("-")
 -- vim.g.transparent_background = true
 vim.g.italic_comments = false
 
-vim.cmd([[ command! Clip execute ':set clipboard=unnamedplus' ]])
+-- vim.cmd([[ command! Clip execute ':set clipboard=unnamedplus' ]])
+vim.api.nvim_command("autocmd CursorHold * :set clipboard=unnamedplus")

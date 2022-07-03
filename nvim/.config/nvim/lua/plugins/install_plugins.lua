@@ -50,6 +50,7 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
+	use({ "henriquehbr/nvim-startup.lua", config = get_setup("nvim-startup") })
 	-- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }
 
 	-- Regex
@@ -124,7 +125,11 @@ return packer.startup(function(use)
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 	use({ "RRethy/vim-illuminate", config = get_setup("illuminate") })
 	use({ "b0o/SchemaStore.nvim" })
-	use({ "mfussenegger/nvim-jdtls", event = "BufWinEnter" })
+	use({
+		"mfussenegger/nvim-jdtls",
+		ft = { "java" },
+		event = "BufWinEnter",
+	})
 
 	-- Telescope
 	use({

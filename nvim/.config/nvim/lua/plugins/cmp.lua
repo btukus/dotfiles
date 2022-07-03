@@ -9,7 +9,6 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
-local compare = require("cmp.config.compare")
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -75,7 +74,7 @@ cmp.setup({
 
 			if entry.source.name == "cmp_tabnine" then
 				vim_item.kind = icons.misc.Copilot
-				return vim_item
+				vim_item.kind_hl_group = "CmpItemKindTabnine"
 			end
 
 			vim_item.menu = ({
@@ -83,8 +82,8 @@ cmp.setup({
 				nvim_lua = "[lua]",
 				luasnip = "[snip]",
 				buffer = "[buf]",
-				cmp_tabnine = "[tn]",
 				path = "[path]",
+				cmp_tabnine = "[tn]",
 				emoji = "[emoji]",
 			})[entry.source.name]
 			return vim_item
@@ -108,19 +107,5 @@ cmp.setup({
 	},
 	experimental = {
 		ghost_text = true,
-	},
-	sorting = {
-		priority_weight = 2,
-		comparators = {
-			require("cmp_tabnine.compare"),
-			compare.offset,
-			compare.exact,
-			compare.score,
-			compare.recently_used,
-			compare.kind,
-			compare.sort_text,
-			compare.length,
-			compare.order,
-		},
 	},
 })

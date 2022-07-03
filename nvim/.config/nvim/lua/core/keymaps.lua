@@ -15,6 +15,12 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
+-- Split window
+keymap("n", "<leader>sh", "<C-w>s", opts)
+keymap("n", "<leader>sv", "<C-w>v", opts)
+keymap("n", "<leader>sq", "<C-w>q", opts)
+keymap("n", "<leader>so", "<C-w>o", opts)
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -38,7 +44,7 @@ keymap("i", "jk", "<ESC>", opts)
 -- Plugins --
 
 -- Packer
-keymap("n", "<leader>ss", ":PackerSync<CR>", opts)
+keymap("n", "<leader>ps", ":PackerSync<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
@@ -46,7 +52,7 @@ keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope project<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-  
+
 -- Diffview
 keymap("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
 keymap("n", "<leader>gc", ":DiffviewClose<CR>", opts)
@@ -61,21 +67,21 @@ keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
 keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
 
 -- ToggleTerm
-keymap("n", '<leader>t', ":ToggleTerm<CR>", opts)
+keymap("n", "<leader>t", ":ToggleTerm<CR>", opts)
 
 -- TroubleToggle
 keymap("n", "<leader>dd", ":TroubleToggle<CR>", opts)
 
 -- Git-conflict
-keymap('n', 'co', '<Plug>(git-conflict-ours)')
-keymap('n', 'ct', '<Plug>(git-conflict-theirs)')
-keymap('n', 'cb', '<Plug>(git-conflict-both)')
-keymap('n', 'c0', '<Plug>(git-conflict-none)')
-keymap('n', ']x', '<Plug>(git-conflict-prev-conflict)')
-keymap('n', '[x', '<Plug>(git-conflict-next-conflict)')
+keymap("n", "co", "<Plug>(git-conflict-ours)")
+keymap("n", "ct", "<Plug>(git-conflict-theirs)")
+keymap("n", "cb", "<Plug>(git-conflict-both)")
+keymap("n", "c0", "<Plug>(git-conflict-none)")
+keymap("n", "]x", "<Plug>(git-conflict-prev-conflict)")
+keymap("n", "[x", "<Plug>(git-conflict-next-conflict)")
 
 --Rexgexplainer
-keymap('n', 'rg', ':RegexplainerToggle<CR>')
+keymap("n", "rg", ":RegexplainerToggle<CR>")
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)

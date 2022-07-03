@@ -69,11 +69,16 @@ return packer.startup(function(use)
 		cmd = { "ToggleTerm" },
 		config = get_setup("toggleterm"),
 	})
-	use({ "anuvyklack/hydra.nvim", config = get_setup("hydra") })
+	use({ "anuvyklack/hydra.nvim", opt = true, keys = { "<C-w>" }, config = get_setup("hydra") })
 	use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
 
 	-- Text Editing
-	use({ "numToStr/Comment.nvim", event = "CursorMoved", config = get_setup("comment") })
+	use({
+		"numToStr/Comment.nvim",
+		opt = true,
+		keys = { "gc", "gcc", "gbc" },
+		config = get_setup("comment"),
+	})
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
 	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_setup("autopairs") })
 	use({ "windwp/nvim-ts-autotag" })
@@ -84,7 +89,7 @@ return packer.startup(function(use)
 
 	-- UI
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "lukas-reineke/indent-blankline.nvim", event = "BufRead", config = get_setup("indentline") })
+	use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })
 	use({
 		"nvim-lualine/lualine.nvim", --[[ event = "BufWinEnter",  ]]
@@ -128,7 +133,7 @@ return packer.startup(function(use)
 	use({
 		"mfussenegger/nvim-jdtls",
 		ft = { "java" },
-		event = "BufWinEnter",
+		-- event = "BufWinEnter",
 	})
 
 	-- Telescope
@@ -141,7 +146,7 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use({ "nvim-telescope/telescope-project.nvim" })
-	use({ "nvim-telescope/telescope-ui-select.nvim" })
+	-- use({ "nvim-telescope/telescope-ui-select.nvim", opt = true, cmd = { "Telescope " } })
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })

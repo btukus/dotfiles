@@ -1,7 +1,7 @@
 local options = {
 
 	-- Nvim configuration
-	-- clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
+	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns

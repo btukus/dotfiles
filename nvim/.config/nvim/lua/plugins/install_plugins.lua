@@ -50,7 +50,7 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
-	use({ "henriquehbr/nvim-startup.lua", config = get_setup("nvim-startup") })
+	-- use({ "henriquehbr/nvim-startup.lua", config = get_setup("nvim-startup") })
 	-- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }
 
 	-- Regex

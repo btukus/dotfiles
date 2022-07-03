@@ -1,7 +1,7 @@
 local options = {
 
 	-- Nvim configuration
-	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+	-- clipboard = "unnamedplus", -- allows neovim to access the system clipboard
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
@@ -58,3 +58,5 @@ vim.opt.iskeyword:append("-")
 
 -- vim.g.transparent_background = true
 vim.g.italic_comments = false
+
+vim.cmd([[ command! Clip execute ':set clipboard=unnamedplus' ]])

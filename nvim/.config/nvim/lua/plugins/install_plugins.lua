@@ -51,7 +51,6 @@ return packer.startup(function(use)
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
 	-- use({ "henriquehbr/nvim-startup.lua", config = get_setup("nvim-startup") })
-	-- use { "famiu/nvim-reload", config = get_setup("nvim-reload") }
 
 	-- Regex
 	use({ "MunifTanjim/nui.nvim", opt = true, cmd = { "RegexplainerToggle" } })

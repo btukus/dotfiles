@@ -19,7 +19,7 @@ local diagnostics = {
 	sources = { "nvim_diagnostic" },
 	sections = { "error", "warn" },
 	symbols = { error = icons.lualine.Error, warn = icons.lualine.Warning },
-	colored = false,
+	colored = true,
 	always_visible = true,
 }
 
@@ -59,9 +59,7 @@ lualine.setup({
 	options = {
 		globalstatus = true,
 		icons_enabled = true,
-		-- theme = require("core.lualine-colors").theme(),
-    theme = colorscheme,
-    -- theme = "horizon",
+		theme = colorscheme,
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard" },
@@ -83,6 +81,6 @@ lualine.setup({
 		lualine_c = { filename },
 		lualine_x = {},
 		lualine_y = {},
-		lualine_z = { "tabs" },
+		lualine_z = {},
 	},
 })

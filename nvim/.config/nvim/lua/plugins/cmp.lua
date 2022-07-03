@@ -9,7 +9,7 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
-local compare = require('cmp.config.compare')
+local compare = require("cmp.config.compare")
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -18,8 +18,6 @@ end
 
 local icons = require("core.icons")
 local kind_icons = icons.kind
-
-
 
 cmp.setup({
 	snippet = {
@@ -71,17 +69,21 @@ cmp.setup({
 		}),
 	}),
 	formatting = {
-		fields = {"kind", "abbr", "menu" }, format = function(entry, vim_item)
+		fields = { "kind", "abbr", "menu" },
+		format = function(entry, vim_item)
 			vim_item.kind = kind_icons[vim_item.kind]
 
-      if entry.source.name == 'cmp_tabnine' then vim_item.kind = icons.misc.Copilot return vim_item end
+			if entry.source.name == "cmp_tabnine" then
+				vim_item.kind = icons.misc.Copilot
+				return vim_item
+			end
 
 			vim_item.menu = ({
 				nvim_lsp = "[lsp]",
 				nvim_lua = "[lua]",
 				luasnip = "[snip]",
 				buffer = "[buf]",
-        cmp_tabnine = "[tn]",
+				cmp_tabnine = "[tn]",
 				path = "[path]",
 				emoji = "[emoji]",
 			})[entry.source.name]
@@ -93,7 +95,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
-    { name = "cmp_tabnine" },
+		{ name = "cmp_tabnine" },
 		{ name = "path" },
 	},
 	confirm_opts = {
@@ -107,18 +109,18 @@ cmp.setup({
 	experimental = {
 		ghost_text = true,
 	},
-  sorting = {
-    priority_weight = 2,
-    comparators = {
-      require('cmp_tabnine.compare'),
-      compare.offset,
-      compare.exact,
-      compare.score,
-      compare.recently_used,
-      compare.kind,
-      compare.sort_text,
-      compare.length,
-      compare.order,
-    },
-  },
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			require("cmp_tabnine.compare"),
+			compare.offset,
+			compare.exact,
+			compare.score,
+			compare.recently_used,
+			compare.kind,
+			compare.sort_text,
+			compare.length,
+			compare.order,
+		},
+	},
 })

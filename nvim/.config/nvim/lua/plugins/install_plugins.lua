@@ -87,7 +87,7 @@ return packer.startup(function(use)
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })
 	use({
 		"nvim-lualine/lualine.nvim", --[[ event = "BufWinEnter",  ]]
-    after = CurrentTheme,
+		after = CurrentTheme,
 		config = get_setup("lualine"),
 	})
 	-- use({

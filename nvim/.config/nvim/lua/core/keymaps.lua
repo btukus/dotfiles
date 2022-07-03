@@ -50,7 +50,7 @@ keymap("n", "<leader>ps", ":PackerSync<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope project<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
+keymap("n", "<leader>ft", ":Telescope file_browser<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- Diffview

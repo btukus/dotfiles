@@ -6,10 +6,9 @@ end
 telescope.load_extension("fzf")
 telescope.load_extension("project")
 telescope.load_extension("file_browser")
-telescope.load_extension("ui-select")
+-- telescope.load_extension("ui-select")
 telescope.load_extension("git_worktree")
 telescope.load_extension("harpoon")
-
 
 local actions = require("telescope.actions")
 
@@ -55,24 +54,24 @@ telescope.setup({
 			case_mode = "smart_case",
 		},
 		project = {
-      initial_mode = "normal",
-      base_dirs = {
-        '~/dev/src',
-        {'~/dev/src2'},
-        {'~/dev/src3', max_depth = 4},
-        {path = '~/dev/src4'},
-        {path = '~/dev/src5', max_depth = 2},
-      },
-      hidden_files = true,
-      theme = "dropdown"
+			initial_mode = "normal",
+			base_dirs = {
+				"~/dev/src",
+				{ "~/dev/src2" },
+				{ "~/dev/src3", max_depth = 4 },
+				{ path = "~/dev/src4" },
+				{ path = "~/dev/src5", max_depth = 2 },
+			},
+			hidden_files = true,
+			theme = "dropdown",
 		},
 		file_browser = {
-      initial_mode = "normal",
+			initial_mode = "normal",
 			theme = "ivy",
 			hijack_netrw = true,
 		},
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {}
-    }
+		-- ["ui-select"] = {
+		--   require("telescope.themes").get_dropdown {}
+		-- }
 	},
 })

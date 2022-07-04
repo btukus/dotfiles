@@ -7,16 +7,11 @@ local options = {
 	ignorecase = true, -- ignore case in search patterns
 	conceallevel = 0, -- so that `` is visible in markdown files
 	mouse = "a", -- allow the mouse to be used in neovim
-	showtabline = 0, -- always show tabs
 	splitbelow = true, -- force all horizontal splits to go below current window
 	splitright = true, -- force all vertical splits to go to the right of current window
 	termguicolors = true, -- set term gui colors (most terminals support this)
-	cursorline = true, -- highlight the current line
-	numberwidth = 4, -- set number column width to 2 {default 4}
-	number = true, -- set numbered lines
-	ruler = false,
-	laststatus = 3,
-	showcmd = false,
+	numberwidth = 2, -- set number column width to 2 {default 4}
+	relativenumber = true, -- set numbered lines
 
 	-- File configuration options
 	backup = false, -- creates a backup file
@@ -27,7 +22,6 @@ local options = {
 	swapfile = false, -- creates a swapfile
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	undofile = true, -- enable persistent undo
-	-- guifont = "monospace:h17",               -- the font used in graphical neovim applications
 	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 
 	-- Key mapping configuration
@@ -59,9 +53,9 @@ vim.opt.iskeyword:append("-")
 -- vim.g.transparent_background = true
 vim.g.italic_comments = false
 
--- vim.cmd([[ command! Clip execute ':set clipboard=unnamedplus' ]])
-vim.api.nvim_command("autocmd CursorHold * :set clipboard=unnamedplus")
+vim.api.nvim_command("autocmd TextYankPost * :set clipboard=unnamedplus")
 
+-- Update Tabline_timer
 if _G.Tabline_timer == nil then
 	_G.Tabline_timer = vim.loop.new_timer()
 else

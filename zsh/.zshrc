@@ -11,6 +11,10 @@ CASE_SENSITIVE="false"
 # Export nvm completion settings for lukechilds/zsh-nvm plugin
 # Note: This must be exported before the plugin is bundled
 export NVM_DIR=${HOME}/.nvm
+# Source aliases
+if [[ -f ~/.nvm/nvm.sh ]]; then
+  source ~/.nvm/nvm.sh
+fi
 export NVM_COMPLETION=true
 
 # source antidote

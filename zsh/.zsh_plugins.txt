@@ -1,4 +1,4 @@
-lukechilds/zsh-nvm
+# lukechilds/zsh-nvm
 
 #robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 #robbyrussell/oh-my-zsh path:plugins/command-not-found

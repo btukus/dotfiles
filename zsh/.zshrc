@@ -18,6 +18,10 @@ source ~/.antidote/antidote.zsh
 antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh
 source ~/.zsh_plugins.zsh
 
+# Source nix package manager
+if [[ -f ~/.nix-profile/etc/profile.d/nix.sh ]]; then
+  source ~/.nix-profile/etc/profile.d/nix.sh
+fi
 
 # Source aliases
 if [[ -f ~/.zsh_aliases ]]; then
@@ -34,3 +38,5 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+if [ -e /home/btukus/.nix-profile/etc/profile.d/nix.sh ]; then . /home/btukus/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

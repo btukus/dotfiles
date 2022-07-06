@@ -1,15 +1,33 @@
 # Brew dependencies
 sudo apt-get install build-essential python3-pip -y
 
+
 # Install Brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Add brew to the shell
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.profile
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    # Add brew to the shell
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Install packages in Brewfile
-brew bundle --file=~/dotfiles/brew/Brewfile
+    # Install packages in Brewfile
+    brew bundle --file=~/dotfiles/brew/Brewfile
+
+# Install Nix package manager
+  curl -L https://nixos.org/nix/install | sh
+
+    # Source nix
+    . ~/.nix-profile/etc/profile.d/nix.sh
+
+    # Enable Nix cache
+    nix-env -iA cachix -f https://cachix.org/api/v1/install
+
+    # Use cache for neuron
+    cachix use srid
+
+    # Install Neuron
+    nix-env -if https://github.com/srid/neuron/archive/master.tar.gz
+
+
 
 # Stow dotfiles
 stow git

@@ -49,6 +49,7 @@ return packer.startup(function(use)
 	-- Neovim Config
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
+	use({ "nvim-lua/popup.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
 	-- use({ "henriquehbr/nvim-startup.lua", config = get_setup("nvim-startup") })
 
@@ -81,6 +82,9 @@ return packer.startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
 	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_setup("autopairs") })
 	use({ "windwp/nvim-ts-autotag" })
+
+	-- Note Taking
+	use({ "oberblastmeister/neuron.nvim", config = get_setup("neuron") })
 
 	-- Buffer Plugins
 	use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })

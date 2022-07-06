@@ -45,6 +45,8 @@ keymap("i", "jk", "<ESC>", opts)
 
 -- Packer
 keymap("n", "<leader>ps", ":PackerSync<CR>", opts)
+keymap("n", "<leader>pp", ":PackerProfile<CR>", opts)
+keymap("n", "<leader>pS", ":PackerStatus<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
@@ -81,14 +83,10 @@ keymap("n", "]x", "<Plug>(git-conflict-prev-conflict)")
 keymap("n", "[x", "<Plug>(git-conflict-next-conflict)")
 
 --Rexgexplainer
-keymap("n", "rg", ":RegexplainerToggle<CR>")
-
--- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
-keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+keymap("n", "<leader>rg", ":RegexplainerToggle<CR>")
 
 -- DAP
-keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
+keymap("n", "<leader>db", ":DapToggleBreakpoint<CR>", opts)
 keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
 keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
 keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)

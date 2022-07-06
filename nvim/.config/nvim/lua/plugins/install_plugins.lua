@@ -81,12 +81,12 @@ return packer.startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
 	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_setup("autopairs") })
 	use({ "windwp/nvim-ts-autotag" })
+	use({ "kylechui/nvim-surround", config = get_setup("nvim-surround") })
 
 	-- Buffer Plugins
 	use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })
 	use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
 
-	-- UI
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })

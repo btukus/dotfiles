@@ -5,6 +5,8 @@ alias lsl='ls -l'                                                         # Vert
 
 # Navigation aliases
 alias hd='cd ~'                                                           # Home directory
+alias win='cd /mnt/c/Users/BTUKUS/Desktop'
+
 
 # Dotfiles
 alias dot='cd ~/dotfiles'

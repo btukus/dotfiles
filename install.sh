@@ -16,7 +16,7 @@ stow git
 stow zsh 
 stow nvim
 #stow bash
-# stow tmux
+stow tmux
 
 # Install Antidote
 git clone https://github.com/mattmc3/antidote.git ~/.antidote

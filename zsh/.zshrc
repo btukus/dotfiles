@@ -6,7 +6,10 @@ fi
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
+
 # setxkbmap -option caps:swapescape
+
+# bindkey -x '"\C-m": clear; ls'
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"

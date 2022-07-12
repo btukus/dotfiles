@@ -1,2 +1,5 @@
 require("core.keymaps")
 require("core.options")
+require("core.winbar")
+require("core.autocommands")
+require("core.colorscheme")

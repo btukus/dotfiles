@@ -5,7 +5,8 @@ alias lsl='ls -l'                                                         # Vert
 
 # Navigation aliases
 alias hd='cd ~'                                                           # Home directory
-alias win='cd /mnt/c/Users/BTUKUS/Desktop'
+alias win='cd /mnt/c/Users/BTUKUS/Desktop'                                # Windows directory
+alias cl='clear'
 
 
 # Dotfiles
@@ -17,5 +18,5 @@ alias shell='cd ~/dotfiles/zsh'
 alias f='nvim'                                                            # Initialise nvim
 alias fs='nvim --startuptime /tmp/nvim-startuptime'                       # Measures Startup nvim
 alias nc='cd ~/dotfiles/nvim/.config/nvim/'                               # Neovim main directory
-alias ncc='cd ~/dotfiles/nvim/.config/nvim/lua/core'                   # Neovim core directory
+alias ncc='cd ~/dotfiles/nvim/.config/nvim/lua/core'                      # Neovim core directory
 alias ncp='cd ~/dotfiles/nvim/.config/nvim/lua/plugins'                   # Neovim plugin directory

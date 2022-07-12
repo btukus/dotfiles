@@ -4,6 +4,7 @@ M.winbar_filetype_exclude = {
 	"help",
 	"startify",
 	"dashboard",
+	"DiffviewFiles",
 	"packer",
 	"neogitstatus",
 	"NvimTree",

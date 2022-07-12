@@ -13,7 +13,7 @@ local options = {
 	numberwidth = 2, -- set number column width to 2 {default 4}
 	relativenumber = true, -- set numbered lines
 	laststatus = 0,
-	showtabline = 2,
+	-- winbar = "%f",
 
 	-- File configuration options
 	backup = false, -- creates a backup file

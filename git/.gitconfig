@@ -5,3 +5,5 @@
 [user]
 	name = btukus
 	email = berkhantukus@outlook.com
+[http]
+	sslVerify = false

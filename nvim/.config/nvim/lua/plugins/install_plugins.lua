@@ -39,7 +39,7 @@ packer.init({
 	profile = { enable = true, threshold = 1 },
 })
 
-local currentTheme = "darkplus.nvim"
+local currentTheme = "github-nvim-theme"
 
 function get_setup(name)
 	return string.format('require("plugins/%s")', name)
@@ -50,6 +50,7 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
+	use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
 	-- use({ "henriquehbr/nvim-startup.lua", config = get_setup("nvim-startup") })
 
 	-- Regex
@@ -81,30 +82,29 @@ return packer.startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
 	use({ "windwp/nvim-autopairs", after = "nvim-cmp", config = get_setup("autopairs") })
 	use({ "windwp/nvim-ts-autotag" })
+	use({ "kylechui/nvim-surround", config = get_setup("nvim-surround") })
 
 	-- Buffer Plugins
 	use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })
 	use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
 
-	-- UI
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })
-	use({
-		"nvim-lualine/lualine.nvim", --[[ event = "BufWinEnter",  ]]
-		after = currentTheme,
-		config = get_setup("lualine"),
-	})
 	-- use({
-	-- 	"KadoBOT/nvim-spotify",
-	-- 	opt = true,
-	-- 	cmd = { "Spotify" },
-	-- 	config = get_setup("nvim-spotify"),
-	-- 	run = "make",
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	after = currentTheme,
+	-- 	config = get_setup("lualine"),
 	-- })
+	use({
+		"KadoBOT/nvim-spotify",
+		config = get_setup("nvim-spotify"),
+		run = "make",
+	})
 
 	-- Colorschemes
-	use({ "lunarvim/darkplus.nvim" })
+	-- use({ "lunarvim/darkplus.nvim" })
+	use({ "projekt0n/github-nvim-theme" })
 	-- use({ 'elvessousa/sobrio' })
 
 	-- Git
@@ -116,15 +116,15 @@ return packer.startup(function(use)
 	use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
 
 	-- Cmp Plugins
-	use({ "hrsh7th/nvim-cmp", event = "InsertEnter *", config = get_setup("cmp") })
+	use({ "hrsh7th/nvim-cmp", event = "InsertEnter", config = get_setup("cmp") })
 	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 	use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
 	use({ "tzachar/cmp-tabnine", after = "nvim-cmp", run = "./install.sh", config = get_setup("tabnine") })
-	use({ "L3MON4D3/LuaSnip", event = "InsertEnter" })
-	use({ "rafamadriz/friendly-snippets", event = "InsertEnter" })
+	use({ "L3MON4D3/LuaSnip", after = "nvim-cmp" })
+	use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
 
 	-- LSP
 	use({ "neovim/nvim-lspconfig", config = get_setup("lsp") })
@@ -147,8 +147,9 @@ return packer.startup(function(use)
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
-	use({ "nvim-telescope/telescope-project.nvim" })
-	-- use({ "nvim-telescope/telescope-ui-select.nvim", opt = true, cmd = { "Telescope " } })
+	use({ "ahmedkhalf/project.nvim", config = get_setup("project") })
+	-- use({ "nvim-telescope/telescope-project.nvim" })
+	-- use({ "lalitmee/browse.nvim" })
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })

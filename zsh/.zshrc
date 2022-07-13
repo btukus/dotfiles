@@ -3,7 +3,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-setxkbmap -option caps:swapescape
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
+# setxkbmap -option caps:swapescape
+
+# bindkey -x '"\C-m": clear; ls'
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"

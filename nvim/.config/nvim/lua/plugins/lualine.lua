@@ -8,6 +8,14 @@ if not status then
 	return
 end
 
+local status_ok, spotify = pcall(require, "nvim-spotify")
+if not status_ok then
+	return
+end
+
+local spotify_status = spotify.status
+spotify_status:start()
+
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
@@ -65,14 +73,14 @@ lualine.setup({
 		disabled_filetypes = { "alpha", "dashboard" },
 		always_divide_middle = true,
 	},
-	sections = {
-		lualine_a = { "mode" },
-		lualine_b = { "branch" },
-		lualine_c = { diagnostics },
-		lualine_x = { spaces, "encoding", filetype },
-		lualine_y = { location },
-		lualine_z = { "progress" },
-	},
+	-- sections = {
+	-- 	lualine_a = { "mode" },
+	-- 	lualine_b = { "branch" },
+	-- 	lualine_c = { diagnostics },
+	-- 	lualine_x = { spotify_status.listen },
+	-- 	lualine_y = { location },
+	-- 	lualine_z = { "progress" },
+	-- },
 	tabline = {
 		lualine_a = {
 			"mode",

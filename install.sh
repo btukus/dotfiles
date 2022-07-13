@@ -1,6 +1,7 @@
 # Brew dependencies
 sudo apt-get install build-essential python3-pip -y
 
+
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -25,6 +26,9 @@ antidote load
 
 # Change shell to zsh 
 sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+
+# Install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install node 
 nvm install --lts

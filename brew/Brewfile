@@ -19,7 +19,7 @@ brew "black"
 brew "curl"
 brew "gcc"
 brew "bat"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "openjdk"
 brew "stow"
 brew "spotify-tui"

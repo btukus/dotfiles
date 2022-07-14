@@ -34,11 +34,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 nvm install --lts
 sudo npm i -g neovim
 npm install -g prettier
+npm i -g neovim
 # gem install neovim
 
 # pyenv install 3.10.4
 # Install dependencies
-sudo pip install pynvim
+sudo pip3 install pynvim
 
 # Create tools-nvim directory
 mkdir  ~/dotfiles/nvim/.config/tools-nvim/
@@ -50,6 +51,3 @@ current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java/java-debug; ./
 # Clone vscde-java-debug
 git clone git@github.com:microsoft/vscode-java-test.git ~/dotfiles/nvim/.config
 current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java/vscode-java-test; npm i && npm run build-plugin; cd $current_dir;
-
-# Install Oh-My-ZSH
-zsh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

@@ -37,8 +37,8 @@ npm install -g prettier
 npm i -g neovim
 # gem install neovim
 
-# pyenv install 3.10.4
-# Install dependencies
+pyenv install 3.10.4
+pyenv global 3.10.4
 sudo pip3 install pynvim
 
 # Create tools-nvim directory

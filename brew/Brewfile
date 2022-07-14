@@ -1,7 +1,9 @@
+tap "caskroom/cask"
 tap "homebrew/bundle"
 tap "homebrew/core"
 brew "zsh"
 brew "tmux"
+brew "git"
 brew "packer"
 brew "go"
 brew "google-java-format"
@@ -19,11 +21,18 @@ brew "black"
 brew "curl"
 brew "gcc"
 brew "bat"
-<<<<<<< HEAD
-brew "neovim"
-=======
 brew "neovim", args: ["HEAD"]
->>>>>>> master
 brew "openjdk"
 brew "stow"
 brew "spotify-tui"
+brew "terraform"
+brew "azure-cli"
+brew "kubernetes-cli"
+
+cask "notion"
+cask "whatsapp"
+cask "spotify"
+cask "microsoft-edge"
+cask "google-drive"
+cask "lens"
+cask "powershell"

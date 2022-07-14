@@ -1,13 +1,24 @@
-# Brew dependencies
-sudo apt-get install build-essential python3-pip -y
+systemtype=$(uname -s)
+if [[ "$systemtype" == "Darwin" ]]; then
+  echo $systemtype
+else
+  echo "Not working"
+fi
 
+if [[ "$systemtype" == "Linux" ]]; then
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.profile
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  sudo apt-get install build-essential python3-pip -y
+fi
 
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Add brew to the shell
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.profile
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ "$systemtype" == "Darwin" ]]; then
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/btukus/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Install packages in Brewfile
 brew bundle --file=~/dotfiles/brew/Brewfile
@@ -45,9 +56,9 @@ sudo pip3 install pynvim
 mkdir  ~/dotfiles/nvim/.config/tools-nvim/
 
 # Clone java-debug
-git clone git@github.com:microsoft/java-debug.git ~/dotfiles/nvim/.config/tools-nvim/java/
-current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java/java-debug; ./mvnw clean install;cd $current_dir;
+git clone git@github.com:microsoft/java-debug.git ~/dotfiles/nvim/.config/tools-nvim/java-debug/
+current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java-debug; ./mvnw clean install;cd $current_dir;
 
 # Clone vscde-java-debug
-git clone git@github.com:microsoft/vscode-java-test.git ~/dotfiles/nvim/.config
-current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java/vscode-java-test; npm i && npm run build-plugin; cd $current_dir;
+git clone git@github.com:microsoft/vscode-java-test.git ~/dotfiles/nvim/.config/tools-nvim/vscode-java-test/
+current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/vscode-java-test; npm i && npm run build-plugin; cd $current_dir;

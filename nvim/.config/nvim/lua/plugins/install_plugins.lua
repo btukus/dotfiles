@@ -109,7 +109,7 @@ return packer.startup(function(use)
 
 	-- Git
 	use({ "akinsho/git-conflict.nvim", config = get_setup("git-conflict") })
-	use({ "ThePrimeagen/git-worktree.nvim", after = "telescope.nvim", config = get_setup("git-worktree") })
+	use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
 	use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
 
 	-- Cmp Plugins

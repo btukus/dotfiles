@@ -5,7 +5,7 @@ end
 
 local servers = {
 	-- "csharp_ls",
-	-- "jdtls",
+	"jdtls",
 	"kotlin_language_server",
 	"pyright",
 	-- "dartls",

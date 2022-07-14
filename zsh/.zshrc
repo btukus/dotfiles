@@ -62,3 +62,4 @@ jenv() {
     command jenv "$command" "$@";;
   esac
 }
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

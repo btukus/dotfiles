@@ -63,3 +63,7 @@ jenv() {
   esac
 }
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

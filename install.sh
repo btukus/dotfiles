@@ -21,7 +21,12 @@ if [[ "$systemtype" == "Darwin" ]]; then
 fi
 
 # Install packages in Brewfile
-brew bundle --file=~/dotfiles/brew/Brewfile
+if [[ "$systemtype" == "Darwin" ]]; then
+  brew bundle --file=~/dotfiles/brew/mac_brewfile
+else 
+  brew bundle --file=~/dotfiles/brew/Brewfile
+fi
+
 
 # Stow dotfiles
 stow git

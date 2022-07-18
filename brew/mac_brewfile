@@ -25,13 +25,14 @@ brew "stow"
 brew "xsel"
 brew "flake8"
 brew "black"
- 
 brew "neovim", args: ["HEAD"]
+
 brew "spotify-tui"
 /* brew "terraform" */
 /* brew "azure-cli" */
 /* brew "kubernetes-cli" */
 
+cask "alfred"
 cask "notion"
 cask "whatsapp"
 cask "spotify"

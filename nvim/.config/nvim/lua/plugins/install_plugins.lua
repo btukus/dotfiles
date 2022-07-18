@@ -91,11 +91,6 @@ return packer.startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })
-	-- use({
-	-- 	"nvim-lualine/lualine.nvim",
-	-- 	after = currentTheme,
-	-- 	config = get_setup("lualine"),
-	-- })
 	use({
 		"KadoBOT/nvim-spotify",
 		config = get_setup("nvim-spotify"),

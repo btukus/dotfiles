@@ -141,7 +141,6 @@ return packer.startup(function(use)
 	use({ "nvim-telescope/telescope-file-browser.nvim" })
 	use({ "ahmedkhalf/project.nvim", config = get_setup("project") })
 	-- use({ "nvim-telescope/telescope-project.nvim" })
-	-- use({ "lalitmee/browse.nvim" })
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })

@@ -11,6 +11,7 @@ local options = {
 	splitright = true, -- force all vertical splits to go to the right of current window
 	termguicolors = true, -- set term gui colors (most terminals support this)
 	numberwidth = 2, -- set number column width to 2 {default 4}
+	number = true,
 	relativenumber = true, -- set numbered lines
 	laststatus = 0,
 	-- winbar = "%f",

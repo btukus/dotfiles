@@ -1,8 +1,8 @@
 # Ls aliases
-alias ls='ls -G'
-alias lv='ls -1 -G'                                                          # Vertically list non-hidden files
-alias la='ls -la -G'                                                         # Vertically list all files (with access rights)
-alias lsl='ls -l -G'                                                         # Vertically list all non-hidden files (with access rights)
+alias ls='ls --color=auto'
+alias lv='ls -1 --color=auto'                                                          # Vertically list non-hidden files
+alias la='ls -la --color=auto'                                                         # Vertically list all files (with access rights)
+alias lsl='ls -l --color=auto'                                                         # Vertically list all non-hidden files (with access rights)
 
 # Navigation aliases
 alias hd='cd ~'                                                           # Home directory

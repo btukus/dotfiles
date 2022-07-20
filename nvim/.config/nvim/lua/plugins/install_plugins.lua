@@ -72,6 +72,16 @@ return packer.startup(function(use)
 	use({ "anuvyklack/hydra.nvim", opt = true, keys = { "<C-w>" }, config = get_setup("hydra") })
 	use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
 
+	-- Note Taking
+	-- use({ "chrsm/impulse.nvim", config = get_setup("impulse") })
+	-- use({
+	-- 	"chrsm/impulse.nvim",
+	-- 	config = function()
+	-- 		require("impulse").setup({})
+	-- 	end,
+	-- 	requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+	-- })
+
 	-- Text Editing
 	use({
 		"numToStr/Comment.nvim",

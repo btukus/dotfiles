@@ -1,7 +1,8 @@
 # Ls aliases
-alias lv='ls -1'                                                          # Vertically list non-hidden files
-alias la='ls -la'                                                         # Vertically list all files (with access rights)
-alias lsl='ls -l'                                                         # Vertically list all non-hidden files (with access rights)
+alias ls='ls -G'
+alias lv='ls -1 -G'                                                          # Vertically list non-hidden files
+alias la='ls -la -G'                                                         # Vertically list all files (with access rights)
+alias lsl='ls -l -G'                                                         # Vertically list all non-hidden files (with access rights)
 
 # Navigation aliases
 alias hd='cd ~'                                                           # Home directory
@@ -9,6 +10,8 @@ alias win='cd /mnt/c/Users/BTUKUS/Desktop'                                # Wind
 
 # Dotfiles
 alias dot='cd ~/dotfiles'
+alias bw='cd ~/dotfiles/brew'
+alias tm='cd ~/dotfiles/tmux'
 
 alias su='source ~/.zshrc'
 alias shell='cd ~/dotfiles/zsh'

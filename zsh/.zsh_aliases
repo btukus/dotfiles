@@ -24,4 +24,5 @@ alias ncp='cd ~/dotfiles/nvim/.config/nvim/lua/plugins'
 
 alias RM='sudo rm -r'
 
+alias cdb='cd -'
 alias GD='temp=$(pwd)'

@@ -1,6 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+checkzsh=$(which zsh)
+if [[ -n "$checkzsh" ]]; then
+  exec zsh
+fi
 
 # If not running interactively, don't do anything
 case $- in
@@ -121,4 +125,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-

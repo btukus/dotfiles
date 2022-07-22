@@ -7,13 +7,14 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux
 fi
 
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+autoload -Uz compinit && compinit
+
 # setxkbmap -option caps:swapescape
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Export nvm completion settings for lukechilds/zsh-nvm plugin
-# Note: This must be exported before the plugin is bundled
 export NVM_DIR=${HOME}/.nvm
 export NVM_COMPLETION=true
 
@@ -41,7 +42,6 @@ eval "$(pyenv init -)"
 
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)

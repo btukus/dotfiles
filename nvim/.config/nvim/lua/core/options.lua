@@ -3,7 +3,7 @@ local options = {
 	-- Nvim configuration
 	-- clipboard = "unnamedplus", -- allows neovim to access the system clipboard
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-	hlsearch = true, -- highlight all matches on previous search pattern
+	hlsearch = false, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
 	conceallevel = 0, -- so that `` is visible in markdown files
 	mouse = "a", -- allow the mouse to be used in neovim
@@ -48,6 +48,7 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
+-- vim.api.nvim_set_hl(0, 'FoldColumn', {guibg = 'transparent'})
 vim.opt.fillchars.eob = " "
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")

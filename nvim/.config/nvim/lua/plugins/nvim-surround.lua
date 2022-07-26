@@ -5,7 +5,7 @@ end
 
 nvim_surround.setup({
 	keymaps = { -- vim-surround style keymaps
-		insert = "ys",
+		-- insert = "ys",
 		visual = "S",
 		delete = "ds",
 		change = "cs",

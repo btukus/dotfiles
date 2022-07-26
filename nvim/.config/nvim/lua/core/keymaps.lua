@@ -43,7 +43,8 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+keymap("i", "kl", "<ESC>", opts)
+keymap("n", "<leader>yy", ":%y+<cr>")
 
 -- Plugins --
 

@@ -1,7 +1,7 @@
 local options = {
 
 	-- Nvim configuration
-	-- clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	hlsearch = false, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
@@ -57,7 +57,7 @@ vim.opt.iskeyword:append("-")
 -- vim.g.transparent_background = true
 vim.g.italic_comments = false
 
-vim.api.nvim_command("autocmd TextYankPost * :set clipboard=unnamedplus")
+-- vim.api.nvim_command("autocmd TextYankPost * :set clipboard=unnamedplus")
 
 -- Update Tabline_timer
 if _G.Tabline_timer == nil then

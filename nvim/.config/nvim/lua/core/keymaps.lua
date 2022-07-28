@@ -20,10 +20,10 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Split window
-keymap("n", "<leader>sh", "<C-w>s", opts)
-keymap("n", "<leader>sv", "<C-w>v", opts)
-keymap("n", "<leader>sq", "<C-w>q", opts)
-keymap("n", "<leader>so", "<C-w>o", opts)
+keymap("n", "<leader>sj", "<C-w>s", opts)
+keymap("n", "<leader>sk", "<C-w>v", opts)
+keymap("n", "<leader>sh", "<C-w>q", opts)
+keymap("n", "<leader>sl", "<C-w>o", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -78,6 +78,9 @@ keymap("n", "<leader>t", ":ToggleTerm<CR>", opts)
 
 -- TroubleToggle
 keymap("n", "<leader>dd", ":TroubleToggle<CR>", opts)
+
+-- SymbolOutline
+keymap("n", "<leader>so", ":SymbolsOutline<CR>", opts)
 
 -- Git-conflict
 keymap("n", "co", "<Plug>(git-conflict-ours)")

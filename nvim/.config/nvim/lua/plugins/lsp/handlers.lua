@@ -69,7 +69,7 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", opts)
 	keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-	keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
+	keymap(bufnr, "n", "<leader>lm", "<cmd>Mason<cr>", opts)
 	keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 	keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
 	keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
@@ -83,6 +83,10 @@ M.on_attach = function(client, bufnr)
 	lsp_highlight_document(client)
 
 	client.server_capabilities.document_formatting = false
+
+	if client.name == "tsserver" then
+		require("lsp-inlayhints").on_attach(bufnr, client)
+	end
 
 	if client.name == "jdt.ls" then
 		if JAVA_DAP_ACTIVE then
@@ -98,7 +102,6 @@ M.on_attach = function(client, bufnr)
 		end
 
 		M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 		M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 	end
 end

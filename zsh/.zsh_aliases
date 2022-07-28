@@ -28,3 +28,6 @@ alias cdb='cd -'
 alias GD='temp=$(pwd)'
 
 alias path="sed 's/:/\n/g' <<< "$PATH""
+
+alias bm='brew bundle dump --file=~/dotfiles/brew/mac_brewfile --force'
+alias bb='brew bundle dump --file=~/dotfiles/brew/Brewfile --force'

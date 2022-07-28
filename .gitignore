@@ -6,6 +6,7 @@ nvim/.config/nvim/plugin/
 
 # Ignore java nvim tools
 nvim/.config/tools-nvim/
+nvim/.config/thefuck/
 
 # Ignore files in .config except nvim
 nvim/.config/spotify-tui/

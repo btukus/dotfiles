@@ -1,10 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-checkzsh=$(which zsh)
-if [[ -n "$checkzsh" ]]; then
-  exec zsh
-fi
+#checkzsh=$(which zsh)
+#if [[ -n "$checkzsh" ]]; then
+#  exec zsh
+#fi
 
 # If not running interactively, don't do anything
 case $- in
@@ -113,6 +113,14 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+if [ -f ~/.zsh_aliases ]; then
+    . ~/.zsh_aliases
+fi
+
+if [ -f ~/.zsh_git_aliases ]; then
+    . ~/.zsh_git_aliases
 fi
 
 # enable programmable completion features (you don't need to enable

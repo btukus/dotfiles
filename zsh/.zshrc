@@ -9,6 +9,7 @@ fi
 
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
+autoload -U colors && colors
 
 # setxkbmap -option caps:swapescape
 
@@ -47,3 +48,8 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 source <(ng completion script)
 
 eval $(thefuck --alias)
+
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"

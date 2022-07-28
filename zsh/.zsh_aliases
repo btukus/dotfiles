@@ -1,8 +1,7 @@
 # Ls aliases
-alias ls='ls --color=auto'
-alias lv='ls -1 --color=auto'
-alias la='ls -la --color=auto'
-alias lsl='ls -l --color=auto'
+alias lv='ls -1'
+alias la='ls -la'
+alias lsl='ls -l'
 
 # Navigation aliases
 alias hd='cd ~'

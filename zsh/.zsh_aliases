@@ -1,7 +1,8 @@
 # Ls aliases
-alias lv='ls -1'
-alias la='ls -la'
-alias lsl='ls -l'
+alias ls='ls --color=auto'
+alias lv='ls -1 --color=auto'
+alias la='ls -la --color=auto'
+alias lsl='ls -l --color=auto'
 
 # Navigation aliases
 alias hd='cd ~'
@@ -25,3 +26,5 @@ alias RM='sudo rm -r'
 
 alias cdb='cd -'
 alias GD='temp=$(pwd)'
+
+alias path="sed 's/:/\n/g' <<< "$PATH""

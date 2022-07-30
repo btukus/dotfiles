@@ -61,6 +61,9 @@ return packer.startup(function(use)
 		config = get_setup("regexplainer"),
 	})
 
+	-- Motion
+	use({ "ggandor/leap.nvim", config = get_setup("leap") })
+
 	-- Window and session management
 	use({ "ThePrimeagen/harpoon" })
 	use({

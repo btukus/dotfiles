@@ -11,16 +11,16 @@ alias win='cd /mnt/c/Users/BTUKUS/Desktop'
 # Dotfiles
 alias dot='cd ~/dotfiles'
 alias bw='cd ~/dotfiles/brew'
-alias tm='cd ~/dotfiles/tmux'
+alias tm='cd ~/dotfiles/config/.config/tmux'
 
 alias su='source $ZDOTDIR/.zshrc'
 alias shell='cd ~/dotfiles/zsh'
 
 alias f='nvim'
 alias fs='nvim --startuptime /tmp/nvim-startuptime'
-alias nc='cd ~/dotfiles/nvim/.config/nvim/'
-alias ncc='cd ~/dotfiles/nvim/.config/nvim/lua/core'
-alias ncp='cd ~/dotfiles/nvim/.config/nvim/lua/plugins'
+alias nc='cd ~/dotfiles/config/.config/nvim/'
+alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'
+alias ncp='cd ~/dotfiles/config/.config/nvim/lua/plugins'
 
 alias RM='sudo rm -r'
 
@@ -31,3 +31,5 @@ alias path="sed 's/:/\n/g' <<< "$PATH""
 
 alias bm='brew bundle dump --file=~/dotfiles/brew/mac_brewfile --force'
 alias bb='brew bundle dump --file=~/dotfiles/brew/Brewfile '
+
+alias vim='vim -u ~/.config/vim/vimrc'

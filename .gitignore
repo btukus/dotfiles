@@ -14,7 +14,8 @@ config/.config/packer/
 config/.config/TabNine/
 config/.config/wslu/
 config/.config/configstore/
+config/.config/tmux/plugins/
 
 zsh/.antidote/
 zsh/.zsh_history
-
+zsh/.zsh_sessions

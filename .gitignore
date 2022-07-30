@@ -2,15 +2,19 @@
 brew/Brewfile.lock.json
 
 # Ignore packer plugin folder
-nvim/.config/nvim/plugin/
+config/.config/nvim/pLugin/
 
-# Ignore java nvim tools
-nvim/.config/tools-nvim/
-nvim/.config/thefuck/
+# Ignore java config tools
+config/.config/tools-nvim/
+config/.config/thefuck/
 
-# Ignore files in .config except nvim
-nvim/.config/spotify-tui/
-nvim/.config/packer/
-nvim/.config/TabNine/
-nvim/.config/wslu/
-nvim/.config/configstore/
+# Ignore files in .config except config
+config/.config/spotify-tui/
+config/.config/packer/
+config/.config/TabNine/
+config/.config/wslu/
+config/.config/configstore/
+
+zsh/.antidote/
+zsh/.zsh_history
+

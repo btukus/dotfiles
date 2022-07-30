@@ -13,7 +13,7 @@ alias dot='cd ~/dotfiles'
 alias bw='cd ~/dotfiles/brew'
 alias tm='cd ~/dotfiles/tmux'
 
-alias su='source ~/.zshrc'
+alias su='source $ZDOTDIR/.zshrc'
 alias shell='cd ~/dotfiles/zsh'
 
 alias f='nvim'
@@ -30,4 +30,4 @@ alias GD='temp=$(pwd)'
 alias path="sed 's/:/\n/g' <<< "$PATH""
 
 alias bm='brew bundle dump --file=~/dotfiles/brew/mac_brewfile --force'
-alias bb='brew bundle dump --file=~/dotfiles/brew/Brewfile --force'
+alias bb='brew bundle dump --file=~/dotfiles/brew/Brewfile '

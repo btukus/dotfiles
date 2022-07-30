@@ -20,27 +20,27 @@ export NVM_DIR=${HOME}/.nvm
 export NVM_COMPLETION=true
 
 # source antidote
-source ~/.antidote/antidote.zsh
-antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh
-source ~/.zsh_plugins.zsh
+source $ZDOTDIR/.antidote/antidote.zsh
+antidote bundle <$ZDOTDIR/.zsh_plugins.txt >$ZDOTDIR/.zsh_plugins.zsh
+source $ZDOTDIR/.zsh_plugins.zsh
+
 
 
 # Source aliases
-if [[ -f ~/.zsh_aliases ]]; then
-  source ~/.zsh_aliases
+if [[ -f $ZDOTDIR/.zsh_aliases ]]; then
+  source $ZDOTDIR/.zsh_aliases
 fi
 
-if [[ -f ~/.zsh_git_aliases ]]; then
-  source ~/.zsh_git_aliases
+if [[ -f $ZDOTDIR/.zsh_git_aliases ]]; then
+  source $ZDOTDIR/.zsh_git_aliases
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
@@ -48,6 +48,7 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 source <(ng completion script)
 
 eval $(thefuck --alias)
+
 
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 

@@ -11,6 +11,7 @@ if [[ "$systemtype" == "Linux" ]]; then
   sudo apt-get install build-essential python3-pip -y
 fi
 
+
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -27,17 +28,25 @@ else
   brew bundle --file=~/dotfiles/brew/Brewfile
 fi
 
+# set the amazing ZDOTDIR variable
+export ZDOTDIR=~/dotfiles/zsh
+
+# change the root .zshenv file to use ZDOTDIR
+cat << 'EOF' >| ~/.zshenv
+export ZDOTDIR=~/dotfiles/zsh
+[[ -f $ZDOTDIR/.zshenv ]] && . $ZDOTDIR/.zshenv
+EOF
 
 # Stow dotfiles
 stow git
-stow zsh 
-stow nvim
+# stow zsh 
+stow config
 #stow bash
 stow tmux
 
 # Install Antidote
-git clone https://github.com/mattmc3/antidote.git ~/.antidote
-. ~/.antidote/antidote.zsh
+git clone https://github.com/mattmc3/antidote.git $ZDOTDIR/.antidote
+. $ZDOTDIR/.antidote/antidote.zsh
 antidote load
 
 # Change shell to zsh 
@@ -58,12 +67,12 @@ pyenv global 3.10.4
 sudo pip3 install pynvim
 
 # Create tools-nvim directory
-mkdir  ~/dotfiles/nvim/.config/tools-nvim/
+mkdir  ~/dotfiles/config/.config/tools-nvim/
 
 # Clone java-debug
 git clone git@github.com:microsoft/java-debug.git ~/dotfiles/nvim/.config/tools-nvim/java-debug/
-current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/java-debug; ./mvnw clean install;cd $current_dir;
+current_dir=~/dotfiles;cd ~/dotfiles/config/.config/tools-nvim/java-debug; ./mvnw clean install;cd $current_dir;
 
 # Clone vscde-java-debug
 git clone git@github.com:microsoft/vscode-java-test.git ~/dotfiles/nvim/.config/tools-nvim/vscode-java-test/
-current_dir=~/dotfiles;cd ~/dotfiles/nvim/.config/tools-nvim/vscode-java-test; npm i && npm run build-plugin; cd $current_dir;
+current_dir=~/dotfiles;cd ~/dotfiles/config/.config/tools-nvim/vscode-java-test; npm i && npm run build-plugin; cd $current_dir;

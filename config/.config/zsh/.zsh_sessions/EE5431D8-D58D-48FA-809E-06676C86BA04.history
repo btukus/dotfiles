@@ -1,0 +1,9 @@
+la
+shell
+cd dotfiles/zsh
+la
+ls -la
+nvim .zshrc
+vim .zshrc
+vim .zshenv
+vim .zshenv

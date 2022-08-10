@@ -10,22 +10,7 @@ nvim_surround.setup({
 		delete = "ds",
 		change = "cs",
 	},
-	delimiters = {
-		pairs = {
-			["("] = { "( ", " )" },
-			[")"] = { "(", ")" },
-			["{"] = { "{ ", " }" },
-			["}"] = { "{", "}" },
-			["<"] = { "< ", " >" },
-			[">"] = { "<", ">" },
-			["["] = { "[ ", " ]" },
-			["]"] = { "[", "]" },
-		},
-		separators = {
-			["'"] = { "'", "'" },
-			['"'] = { '"', '"' },
-			["`"] = { "`", "`" },
-		},
+	surrounds = {
 		HTML = {
 			["t"] = true, -- Use "t" for HTML-style mappings
 		},
@@ -33,7 +18,7 @@ nvim_surround.setup({
 			["a"] = ">", -- Single character aliases apply everywhere
 			["b"] = ")",
 			["B"] = "}",
-			["r"] = "]",
+			["s"] = "]",
 			["q"] = { '"', "'", "`" }, -- Table aliases only apply for changes/deletions
 		},
 	},

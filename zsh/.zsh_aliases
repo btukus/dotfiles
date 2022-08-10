@@ -21,11 +21,13 @@ alias fs='nvim --startuptime /tmp/nvim-startuptime'
 alias nc='cd ~/dotfiles/config/.config/nvim/'
 alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'
 alias ncp='cd ~/dotfiles/config/.config/nvim/lua/plugins'
+alias lsp='cd ~/dotfiles/config/.config/nvim/lua/plugins/lsp'
 
 alias RM='sudo rm -r'
 
 alias cdb='cd -'
 alias GD='temp=$(pwd)'
+alias cdt='cd $TEMP'
 
 alias path="sed 's/:/\n/g' <<< "$PATH""
 
@@ -33,3 +35,7 @@ alias bm='brew bundle dump --file=~/dotfiles/brew/mac_brewfile --force'
 alias bb='brew bundle dump --file=~/dotfiles/brew/Brewfile '
 
 alias vim='vim -u ~/.config/vim/vimrc'
+
+
+
+alias dcub='docker-compose up --build'

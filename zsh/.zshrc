@@ -7,6 +7,11 @@ fi
    exec tmux
  fi
 
+systemtype="$(uname -s)"
+
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
 autoload -U colors && colors
@@ -19,8 +24,6 @@ source $ZDOTDIR/.antidote/antidote.zsh
 antidote bundle <$ZDOTDIR/.zsh_plugins.txt >$ZDOTDIR/.zsh_plugins.zsh
 source $ZDOTDIR/.zsh_plugins.zsh
 
-
-
 # Source aliases
 if [[ -f $ZDOTDIR/.zsh_aliases ]]; then
   source $ZDOTDIR/.zsh_aliases
@@ -30,6 +33,9 @@ if [[ -f $ZDOTDIR/.zsh_git_aliases ]]; then
   source $ZDOTDIR/.zsh_git_aliases
 fi
 
+if [[ -f $ZDOTDIR/.zsh_k8s_aliases ]]; then
+  source $ZDOTDIR/.zsh_k8s_aliases
+fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
@@ -37,7 +43,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+if [ "$systemtype" = "Darwin" ] ; then
+  export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+fi
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)

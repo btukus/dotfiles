@@ -84,10 +84,6 @@ M.on_attach = function(client, bufnr)
 
 	client.server_capabilities.document_formatting = false
 
-	if client.name == "tsserver" then
-		require("lsp-inlayhints").on_attach(bufnr, client)
-	end
-
 	if client.name == "jdt.ls" then
 		if JAVA_DAP_ACTIVE then
 			require("jdtls").setup_dap({ hotcodereplace = "auto" })

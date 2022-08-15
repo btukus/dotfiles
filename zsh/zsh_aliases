@@ -18,7 +18,7 @@ alias shell='cd ~/dotfiles/zsh'
 
 alias f='nvim'
 alias fs='nvim --startuptime /tmp/nvim-startuptime'
-alias nc='cd ~/dotfiles/config/.config/nvim/'
+alias nc='cd ~/jotfiles/config/.config/nvim/'
 alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'
 alias ncp='cd ~/dotfiles/config/.config/nvim/lua/plugins'
 alias lsp='cd ~/dotfiles/config/.config/nvim/lua/plugins/lsp'
@@ -36,6 +36,5 @@ alias bb='brew bundle dump --file=~/dotfiles/brew/Brewfile '
 
 alias vim='vim -u ~/.config/vim/vimrc'
 
-
-
+# Docker aliases
 alias dcub='docker-compose up --build'

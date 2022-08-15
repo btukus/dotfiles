@@ -12,9 +12,10 @@ systemtype="$(uname -s)"
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-autoload -Uz compinit && compinit
-autoload -U colors && colors
+# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+# autoload -Uz compinit && compinit
+# autoload -U colors && colors
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 export NVM_DIR=${HOME}/.nvm
 export NVM_COMPLETION=true
@@ -24,18 +25,13 @@ source $ZDOTDIR/.antidote/antidote.zsh
 antidote bundle <$ZDOTDIR/.zsh_plugins.txt >$ZDOTDIR/.zsh_plugins.zsh
 source $ZDOTDIR/.zsh_plugins.zsh
 
-# Source aliases
-if [[ -f $ZDOTDIR/.zsh_aliases ]]; then
-  source $ZDOTDIR/.zsh_aliases
-fi
+loadFiles=(zsh_aliases zsh_git_aliases zsh_k8s_aliases zsh_functions)
+for t in ${loadFiles[@]}; do
+  if [[ -f $ZDOTDIR/$t ]]; then
+    source $ZDOTDIR/$t
+  fi
+done
 
-if [[ -f $ZDOTDIR/.zsh_git_aliases ]]; then
-  source $ZDOTDIR/.zsh_git_aliases
-fi
-
-if [[ -f $ZDOTDIR/.zsh_k8s_aliases ]]; then
-  source $ZDOTDIR/.zsh_k8s_aliases
-fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 

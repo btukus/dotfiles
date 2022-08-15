@@ -39,6 +39,8 @@ packer.init({
 	profile = { enable = true, threshold = 1 },
 })
 
+local currentTheme = "github-nvim-theme"
+
 function get_setup(name)
 	return string.format('require("plugins/%s")', name)
 end
@@ -48,7 +50,7 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
-	--[[ use({ "aserowy/tmux.nvim", config = get_setup("tmux") }) ]]
+	use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
 
 	-- Regex
 	use({ "MunifTanjim/nui.nvim", opt = true, cmd = { "RegexplainerToggle" } })
@@ -62,7 +64,6 @@ return packer.startup(function(use)
 	use({ "ggandor/leap.nvim", config = get_setup("leap") })
 
 	-- Window and session management
-  use({ "nikvdp/neomux"})
 	use({ "ThePrimeagen/harpoon" })
 	use({
 		"akinsho/toggleterm.nvim",
@@ -78,6 +79,16 @@ return packer.startup(function(use)
 	})
 	use({ "anuvyklack/hydra.nvim", opt = true, keys = { "<C-w>" }, config = get_setup("hydra") })
 	use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
+
+	-- Note Taking
+	-- use({ "chrsm/impulse.nvim", config = get_setup("impulse") })
+	-- use({
+	-- 	"chrsm/impulse.nvim",
+	-- 	config = function()
+	-- 		require("impulse").setup({})
+	-- 	end,
+	-- 	requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+	-- })
 
 	-- Text Editing
 	use({
@@ -106,8 +117,8 @@ return packer.startup(function(use)
 	})
 
 	-- Colorschemes
-	use({ "lunarvim/darkplus.nvim" })
-	--[[ use({ "projekt0n/github-nvim-theme" }) ]]
+	-- use({ "lunarvim/darkplus.nvim" })
+	use({ "projekt0n/github-nvim-theme" })
 	-- use({ 'elvessousa/sobrio' })
 
 	-- Git

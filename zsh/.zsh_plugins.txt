@@ -4,12 +4,12 @@ romkatv/powerlevel10k
 # deferred plugins
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
-laggardkernel/zsh-thefuck
 lukechilds/zsh-nvm
-ptavares/zsh-sdkman
-davidparsson/zsh-pyenv-lazy
+
+rupa/z
 
 jeffreytse/zsh-vi-mode
+
 # final
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-autosuggestions

@@ -13,8 +13,8 @@ local languages = { -- Object Oriented
 	"python",
 	"dart",
 	"go",
-  "ruby",
-  "rust",
+  -- "ruby",
+  -- "rust",
 
 	-- Front-end
 	"css",
@@ -33,11 +33,11 @@ local languages = { -- Object Oriented
 	"json",
 	"hcl",
 	"dockerfile",
-  "ql",
+  -- "ql",
 
 	-- Request languages
 	"graphql",
-  "sql",
+  -- "sql",
 
 	-- Misc
 	"http",

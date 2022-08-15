@@ -13,6 +13,8 @@ local languages = { -- Object Oriented
 	"python",
 	"dart",
 	"go",
+  "ruby",
+  "rust",
 
 	-- Front-end
 	"css",
@@ -31,14 +33,16 @@ local languages = { -- Object Oriented
 	"json",
 	"hcl",
 	"dockerfile",
+  "ql",
 
 	-- Request languages
 	"graphql",
+  "sql",
 
 	-- Misc
 	"http",
 	"regex",
-	"markdown",
+	-- "markdown",
 	"latex",
 }
 configs.setup({

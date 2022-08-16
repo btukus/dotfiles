@@ -1,5 +1,6 @@
 function current_branch() {
-  git_current_branch
+  branch=$( git branch | grep \* | awk '{print $2}' )
+  echo $branch;
 }
 
 function git_main_branch() {

@@ -1,8 +1,14 @@
-# Ls aliases
+# ls aliases
 alias ls='ls --color=auto'
 alias lv='ls -1 --color=auto'
 alias la='ls -la --color=auto'
 alias lsl='ls -l --color=auto'
+
+# Directory changes
+alias cdb='cd -'
+alias GD='temp=$(pwd)'
+alias cdt='cd $TEMP'
+alias path="sed 's/:/\n/g' <<< "$PATH""
 
 # Navigation aliases
 alias hd='cd ~'
@@ -13,9 +19,11 @@ alias dot='cd ~/dotfiles'
 alias bw='cd ~/dotfiles/brew'
 alias tm='cd ~/dotfiles/config/.config/tmux'
 
+# Shell aliases
 alias su='source $ZDOTDIR/.zshrc'
 alias shell='cd ~/dotfiles/zsh'
 
+# Neovim aliases
 alias f='nvim'
 alias fs='nvim --startuptime /tmp/nvim-startuptime'
 alias nc='cd ~/jotfiles/config/.config/nvim/'
@@ -23,18 +31,15 @@ alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'
 alias ncp='cd ~/dotfiles/config/.config/nvim/lua/plugins'
 alias lsp='cd ~/dotfiles/config/.config/nvim/lua/plugins/lsp'
 
-alias RM='sudo rm -r'
-
-alias cdb='cd -'
-alias GD='temp=$(pwd)'
-alias cdt='cd $TEMP'
-
-alias path="sed 's/:/\n/g' <<< "$PATH""
-
+# Brew aliases
 alias bm='brew bundle dump --file=~/dotfiles/brew/mac_brewfile --force'
-alias bb='brew bundle dump --file=~/dotfiles/brew/Brewfile '
-
-alias vim='vim -u ~/.config/vim/vimrc'
+alias bl='brew bundle dump --file=~/dotfiles/brew/Brewfile '
 
 # Docker aliases
 alias dcub='docker-compose up --build'
+
+# Vim aliases
+alias vim='vim -u ~/.config/vim/vimrc'
+
+# Misc
+alias RM='sudo rm -r'

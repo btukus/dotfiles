@@ -20,4 +20,5 @@ zsh/.antidote/
 zsh/.zsh_history
 zsh/.zsh_sessions
 zsh/.zcompdump
-zsh/.zsh_plugins.zsh
+zsh/antidote/mac_plugins.zsh
+zsh/antidote/shared_plugins.zsh

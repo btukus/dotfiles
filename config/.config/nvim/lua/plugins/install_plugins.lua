@@ -66,12 +66,6 @@ return packer.startup(function(use)
 	-- Window and session management
 	use({ "ThePrimeagen/harpoon" })
 	use({
-		"akinsho/toggleterm.nvim",
-		opt = true,
-		cmd = { "ToggleTerm" },
-		config = get_setup("toggleterm"),
-	})
-	use({
 		"simrat39/symbols-outline.nvim",
 		opt = true,
 		cmd = { "SymbolsOutline" },
@@ -79,16 +73,6 @@ return packer.startup(function(use)
 	})
 	use({ "anuvyklack/hydra.nvim", opt = true, keys = { "<C-w>" }, config = get_setup("hydra") })
 	use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
-
-	-- Note Taking
-	-- use({ "chrsm/impulse.nvim", config = get_setup("impulse") })
-	-- use({
-	-- 	"chrsm/impulse.nvim",
-	-- 	config = function()
-	-- 		require("impulse").setup({})
-	-- 	end,
-	-- 	requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
-	-- })
 
 	-- Text Editing
 	use({
@@ -110,11 +94,6 @@ return packer.startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
 	use({ "goolord/alpha-nvim", config = get_setup("alpha") })
-	use({
-		"KadoBOT/nvim-spotify",
-		config = get_setup("nvim-spotify"),
-		run = "make",
-	})
 
 	-- Colorschemes
 	-- use({ "lunarvim/darkplus.nvim" })
@@ -122,7 +101,13 @@ return packer.startup(function(use)
 	-- use({ 'elvessousa/sobrio' })
 
 	-- Git
-	use({ "akinsho/git-conflict.nvim", config = get_setup("git-conflict") })
+	use({
+		"akinsho/git-conflict.nvim",
+		--[[ opt = true, ]]
+		--[[ keys = { "co", "ct", "cb", "c0", "]x", "[x" }, ]]
+    tag = "*",
+		config = get_setup("git-conflict"),
+	})
 	use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
 	use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
 

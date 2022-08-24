@@ -11,4 +11,3 @@ git_conflict.setup {
     current = 'DiffAdd',
   }
 }
-

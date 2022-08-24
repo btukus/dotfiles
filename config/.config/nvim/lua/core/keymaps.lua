@@ -60,7 +60,10 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
--- Diffview
+-- Git Conflict
+keymap("n", "<leader>gl", "GitConflictListQf<CR>", opts)
+
+-- Git Diffview
 keymap("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
 keymap("n", "<leader>gc", ":DiffviewClose<CR>", opts)
 

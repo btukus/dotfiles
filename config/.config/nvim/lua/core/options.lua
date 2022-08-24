@@ -14,7 +14,6 @@ local options = {
 	number = true,
 	relativenumber = true, -- set numbered lines
 	laststatus = 0,
-	-- winbar = "%f",
 
 	-- File configuration options
 	backup = false, -- creates a backup file
@@ -38,7 +37,7 @@ local options = {
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
 
-	-- Overflowing text
+	-- Overflowing jext
 	wrap = false, -- display lines as one long line
 	scrolloff = 8, -- is one of my fav
 	sidescrolloff = 8,
@@ -48,27 +47,9 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
--- vim.api.nvim_set_hl(0, 'FoldColumn', {guibg = 'transparent'})
 vim.opt.fillchars.eob = " "
 vim.opt.shortmess:append("c")
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
 
--- vim.g.transparent_background = true
 vim.g.italic_comments = false
-
--- vim.api.nvim_command("autocmd TextYankPost * :set clipboard=unnamedplus")
-
--- Update Tabline_timer
-if _G.Tabline_timer == nil then
-	_G.Tabline_timer = vim.loop.new_timer()
-else
-	_G.Tabline_timer:stop()
-end
-_G.Tabline_timer:start(
-	0, -- never timeout
-	100, -- repeat every 1000 ms
-	vim.schedule_wrap(function() -- updater function
-		vim.api.nvim_command("redrawtabline")
-	end)
-)

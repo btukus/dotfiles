@@ -26,8 +26,13 @@ export NVM_COMPLETION=true
 
 # source antidote
 source $ZDOTDIR/.antidote/antidote.zsh
-antidote bundle <$ZDOTDIR/.zsh_plugins.txt >$ZDOTDIR/.zsh_plugins.zsh
-source $ZDOTDIR/.zsh_plugins.zsh
+antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
+source $ZDOTDIR/antidote/shared_plugins.zsh
+
+if [ "$systemtype" = "Darwin" ]; then
+  antidote bundle <$ZDOTDIR/antidote/mac_plugins.txt >$ZDOTDIR/antidote/mac_plugins.zsh
+  source $ZDOTDIR/antidote/mac_plugins.zsh
+fi
 
 loadFiles=(zsh_aliases zsh_git_aliases zsh_k8s_aliases zsh_functions)
 for t in ${loadFiles[@]}; do
@@ -40,7 +45,7 @@ done
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# source <(ng completion script)
 
 eval $(thefuck --alias)
 

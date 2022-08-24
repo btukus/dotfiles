@@ -1,0 +1,16 @@
+# prompts
+romkatv/powerlevel10k
+
+# deferred plugins
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+laggardkernel/zsh-thefuck
+
+lukechilds/zsh-nvm
+davidparsson/zsh-pyenv-lazy
+
+jeffreytse/zsh-vi-mode
+
+# final
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions

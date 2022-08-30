@@ -1,16 +1,10 @@
 systemtype=$(uname -s)
-if [[ "$systemtype" == "Darwin" ]]; then
-  echo $systemtype
-else
-  echo "Not working"
-fi
 
 if [[ "$systemtype" == "Linux" ]]; then
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.profile
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   sudo apt-get install build-essential python3-pip -y
 fi
-
 
 # Install Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

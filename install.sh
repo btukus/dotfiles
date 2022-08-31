@@ -39,8 +39,8 @@ stow config
 stow tmux
 
 # Install Antidote
-git clone https://github.com/mattmc3/antidote.git $ZDOTDIR/.antidote
-. $ZDOTDIR/.antidote/antidote.zsh
+git clone https://github.com/mattmc3/antidote.git $ZDOTDIR/antidote/.antidote
+. $ZDOTDIR/antidote/.antidote/antidote.zsh
 antidote load
 
 # Change shell to zsh 

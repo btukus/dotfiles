@@ -21,7 +21,7 @@ alias tm='cd ~/dotfiles/config/.config/tmux'
 
 # Shell aliases
 alias su='source $ZDOTDIR/.zshrc'
-alias shell='cd ~/dotfiles/zsh'
+alias sl='cd ~/dotfiles/zsh'
 
 # Neovim aliases
 alias f='nvim'

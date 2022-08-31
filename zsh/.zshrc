@@ -25,7 +25,7 @@ export NVM_DIR=${HOME}/.nvm
 export NVM_COMPLETION=true
 
 # source antidote
-source $ZDOTDIR/.antidote/antidote.zsh
+source $ZDOTDIR/antidote/.antidote/antidote.zsh
 antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
 source $ZDOTDIR/antidote/shared_plugins.zsh
 

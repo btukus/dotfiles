@@ -84,3 +84,5 @@ alias grhh='git reset --hard'
 alias gs='git status'
 alias grm='git rm'
 
+# Git stash
+alias gS='git stash'

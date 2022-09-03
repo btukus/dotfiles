@@ -34,7 +34,7 @@ if [ "$systemtype" = "Darwin" ]; then
   source $ZDOTDIR/antidote/mac_plugins.zsh
 fi
 
-loadFiles=(zsh_aliases zsh_git_aliases zsh_k8s_aliases zsh_functions)
+loadFiles=(aliases git_aliases k8s_aliases functions)
 for t in ${loadFiles[@]}; do
   if [[ -f $ZDOTDIR/$t ]]; then
     source $ZDOTDIR/$t

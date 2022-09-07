@@ -4,6 +4,8 @@ romkatv/powerlevel10k
 # deferred plugins
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
+agkozak/zsh-z
+
 laggardkernel/zsh-thefuck
 
 lukechilds/zsh-nvm

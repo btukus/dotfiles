@@ -1,0 +1,3 @@
+# Docker aliases
+alias dcub='docker-compose up --build'
+

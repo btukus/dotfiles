@@ -49,6 +49,8 @@ done
 
 eval $(thefuck --alias)
 
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 

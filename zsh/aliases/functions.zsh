@@ -1,3 +1,5 @@
+#!/bin/sh
+
 b () {
   cmd="" 
   for i in $(seq $1); do
@@ -7,3 +9,9 @@ b () {
   cd $cmd;
 }
 
+zns () {
+    
+  z dash;
+  ns;
+
+}

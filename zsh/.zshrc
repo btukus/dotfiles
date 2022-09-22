@@ -34,10 +34,10 @@ if [ "$systemtype" = "Darwin" ]; then
   source $ZDOTDIR/antidote/mac_plugins.zsh
 fi
 
-loadFiles=(system git k8s docker functions)
+loadFiles=(system git k8s docker node tmux functions)
 for t in ${loadFiles[@]}; do
-  if [[ -f $ZDOTDIR/aliases/$t ]]; then
-    source $ZDOTDIR/aliases/$t
+  if [[ -f $ZDOTDIR/aliases/$t.zsh ]]; then
+    source $ZDOTDIR/aliases/$t.zsh
   fi
 done
 

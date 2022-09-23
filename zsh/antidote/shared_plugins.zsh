@@ -15,6 +15,8 @@ fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH
 source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-lukechilds-SLASH-zsh-nvm/zsh-nvm.plugin.zsh
 fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-davidparsson-SLASH-zsh-pyenv-lazy )
 source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-davidparsson-SLASH-zsh-pyenv-lazy/pyenv-lazy.plugin.zsh
+fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-ptavares-SLASH-zsh-sdkman )
+source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-ptavares-SLASH-zsh-sdkman/zsh-sdkman.plugin.zsh
 fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-jeffreytse-SLASH-zsh-vi-mode )
 source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-jeffreytse-SLASH-zsh-vi-mode/zsh-vi-mode.plugin.zsh
 fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-history-substring-search )

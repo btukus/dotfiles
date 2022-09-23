@@ -43,7 +43,7 @@ local languages = { -- Object Oriented
 	"http",
 	"regex",
 	-- "markdown",
-	"latex",
+	-- "latex",
 }
 configs.setup({
 	ensure_installed = languages,

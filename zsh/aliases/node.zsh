@@ -1,3 +1,6 @@
+alias n='npm'
 alias nr='npm run'
 alias ns='npm start'
 alias nt='npm test'
+alias nb='npm run-script build'
+alias nrs='run-script'

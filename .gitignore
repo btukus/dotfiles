@@ -15,6 +15,7 @@ config/.config/TabNine/
 config/.config/wslu/
 config/.config/configstore/
 config/.config/tmux/plugins/
+config/.config/zsh/
 
 zsh/antidote/.antidote/
 zsh/.zsh_history

@@ -57,6 +57,9 @@ alias gcam='git commit -a -m'
 alias gcr='git clone'
 alias gbare='git clone --bare'
 
+# Git fetch
+alias gf='git fetch' 
+
 # Git diff
 alias gd='git diff'
 

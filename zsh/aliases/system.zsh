@@ -3,6 +3,7 @@ alias ls='ls --color=auto'
 alias lv='ls -1 --color=auto'
 alias la='ls -la --color=auto'
 alias lsl='ls -l --color=auto'
+alias lg='la | grep'
 
 # Directory changes
 alias cdb='cd -'
@@ -40,3 +41,7 @@ alias vim='vim -u ~/.config/vim/vimrc'
 
 # Misc
 alias RM='sudo rm -r'
+
+# Find
+alias ffn='find . -name'
+alias ffd='find . -d'

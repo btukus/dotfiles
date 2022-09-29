@@ -11,6 +11,8 @@ fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH
 source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-agkozak-SLASH-zsh-z/zsh-z.plugin.zsh
 fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-laggardkernel-SLASH-zsh-thefuck )
 source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-laggardkernel-SLASH-zsh-thefuck/zsh-thefuck.plugin.zsh
+fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-MichaelAquilina-SLASH-zsh-you-should-use )
+source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-MichaelAquilina-SLASH-zsh-you-should-use/you-should-use.plugin.zsh
 fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-lukechilds-SLASH-zsh-nvm )
 source /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-lukechilds-SLASH-zsh-nvm/zsh-nvm.plugin.zsh
 fpath+=( /home/btukus/.cache/antidote/https-COLON--SLASH--SLASH-github.com-SLASH-davidparsson-SLASH-zsh-pyenv-lazy )

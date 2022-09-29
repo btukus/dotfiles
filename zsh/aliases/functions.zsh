@@ -11,7 +11,7 @@ b () {
 
 zns () {
     
-  z dash;
+  z conn;
   ns;
 
 }

@@ -25,4 +25,5 @@ zsh/antidote/mac_plugins.zsh
 zsh/antidote/shared_plugins.zsh
 zsh/.zsh_plugins.txt
 zsh/.zsh_plugins.zsh
-zsh/.zcompcache/
+zsh/.zcompcache
+zsh/aliases/envspecific.zsh

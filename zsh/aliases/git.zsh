@@ -28,6 +28,12 @@ function git_develop_branch() {
   echo develop
 }
 
+function gcp() {
+  git add --all;
+  git commit -m $1;
+  git push || gpu
+}
+
 # Git worktree
 alias gwa='git worktree add --checkout'                                   # Track remote worktree
 alias gwab='git worktree add --checkout -b'                               # Create new local worktree

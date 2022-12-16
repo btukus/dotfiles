@@ -52,3 +52,14 @@ if vim.fn.has("nvim-0.8") == 1 then
 		end,
 	})
 end
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function ()
+    vim.cmd([[ 
+      :set cmdheight=2
+      let a = expand('%:p') .. " | " .. strftime('%c')
+      echo a
+      :set cmdheight=1
+    ]])
+  end
+})

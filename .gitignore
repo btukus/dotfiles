@@ -27,3 +27,4 @@ zsh/.zsh_plugins.txt
 zsh/.zsh_plugins.zsh
 zsh/.zcompcache
 zsh/aliases/envspecific.zsh
+zsh/aliases/temp.zsh

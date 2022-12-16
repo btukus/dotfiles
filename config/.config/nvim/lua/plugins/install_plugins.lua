@@ -111,25 +111,29 @@ return packer.startup(function(use)
 	use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
 	use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
 
-	-- Cmp Plugins
-	use({ "hrsh7th/nvim-cmp", event = "InsertEnter", config = get_setup("cmp") })
-	use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
-	use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
-	use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
-	use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
-	use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
-	use({ "tzachar/cmp-tabnine", after = "nvim-cmp", run = "./install.sh", config = get_setup("tabnine") })
-	use({ "L3MON4D3/LuaSnip", after = "nvim-cmp" })
-	use({ "rafamadriz/friendly-snippets", after = "nvim-cmp" })
+  use {
+	  'VonHeikemen/lsp-zero.nvim',
+    config = get_setup("lsp-zero"),
+	  requires = {
+		  -- LSP Support
+		  {'neovim/nvim-lspconfig'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
 
-	-- LSP
-	use({ "neovim/nvim-lspconfig", config = get_setup("lsp") })
-	use({ "williamboman/mason.nvim" })
-	use({ "williamboman/mason-lspconfig.nvim" })
-	use({ "jose-elias-alvarez/null-ls.nvim" })
-	use({ "RRethy/vim-illuminate", config = get_setup("illuminate") })
-	use({ "b0o/SchemaStore.nvim" })
-	use({
+		  -- Autocompletion
+		  {'hrsh7th/nvim-cmp'},
+		  {'hrsh7th/cmp-buffer'},
+		  {'hrsh7th/cmp-path'},
+		  {'saadparwaiz1/cmp_luasnip'},
+		  {'hrsh7th/cmp-nvim-lsp'},
+		  {'hrsh7th/cmp-nvim-lua'},
+
+		  -- Snippets
+		  {'L3MON4D3/LuaSnip'},
+		  {'rafamadriz/friendly-snippets'},
+	  }
+  }
+  use({
 		"mfussenegger/nvim-jdtls",
 		ft = { "java" },
 		-- event = "BufWinEnter",
@@ -150,16 +154,6 @@ return packer.startup(function(use)
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })
-
-	-- Debugger
-	use({
-		"mfussenegger/nvim-dap",
-		opt = true,
-		cmd = { "DapToggleBreakpoint" },
-		config = get_setup("dap"),
-	})
-	use({ "rcarriga/nvim-dap-ui", after = "nvim-dap" })
-	use({ "ravenxrz/DAPInstall.nvim", after = "nvim-dap" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

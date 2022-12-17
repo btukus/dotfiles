@@ -34,7 +34,7 @@ alias lsp='cd ~/dotfiles/config/.config/nvim/lua/plugins/lsp'
 
 # Brew aliases
 alias bm='brew bundle dump --file=~/dotfiles/brew/mac_brewfile --force'
-alias bl='brew bundle dump --file=~/dotfiles/brew/Brewfile '
+alias bl='brew bundle dump --file=~/dotfiles/brew/Brewfile --force'
 
 # Vim aliases
 alias vim='vim -u ~/.config/vim/vimrc'

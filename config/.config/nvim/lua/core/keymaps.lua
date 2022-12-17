@@ -70,6 +70,9 @@ keymap("n", "<leader>gc", ":DiffviewClose<CR>", opts)
 -- Git-worktree
 keymap("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
 
+-- Lazygit
+keymap("n", "<leader>gg", ":LazyGit<CR>", opts)
+
 -- Harpoon
 keymap("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
 keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)

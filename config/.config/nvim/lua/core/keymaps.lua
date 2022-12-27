@@ -102,4 +102,6 @@ keymap("n", "<leader>rg", ":RegexplainerToggle<CR>")
 -- ThePrimeagen
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("x", "L", ">gv", opts)
+keymap("x", "H", "<gv", opts)
 keymap("x", "<leader>p", "\"_dP")

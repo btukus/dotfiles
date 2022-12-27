@@ -5,6 +5,7 @@ end
 
 configs.setup({
 	ensure_installed = "all",
+  ignore_install = {},
 	highlight = {
 		enable = true,
 	},

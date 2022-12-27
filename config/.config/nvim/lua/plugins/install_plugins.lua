@@ -55,7 +55,7 @@ return packer.startup(function(use)
   use({ "numToStr/Comment.nvim", opt = true, keys = { "gc", "gcc", "gbc" }, config = get_setup("comment"), })
   use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
   use({ "windwp/nvim-autopairs", config = get_setup("autopairs") })
-  use({ "windwp/nvim-ts-autotag" })
+  use({ "windwp/nvim-ts-autotag", })
   use({ "kylechui/nvim-surround", config = get_setup("nvim-surround") })
 
   -- Buffer Plugins
@@ -72,13 +72,12 @@ return packer.startup(function(use)
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
   use({ "kdheepak/lazygit.nvim" })
 
+  -- LSP
   use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"), requires = {
     { 'neovim/nvim-lspconfig' }, { 'williamboman/mason.nvim' }, { 'williamboman/mason-lspconfig.nvim' },
-    { 'hrsh7th/nvim-cmp' }, { 'hrsh7th/cmp-buffer' }, { 'hrsh7th/cmp-path' }, { 'saadparwaiz1/cmp_luasnip' },
-    { 'hrsh7th/cmp-nvim-lsp' }, { 'hrsh7th/cmp-nvim-lua' },
-    { 'L3MON4D3/LuaSnip' }, { 'rafamadriz/friendly-snippets' },
-  }
-  }
+    { 'hrsh7th/nvim-cmp' }, { 'hrsh7th/cmp-buffer', after = "nvim-cmp" }, { 'hrsh7th/cmp-path', after = "nvim-cmp"},
+    { 'saadparwaiz1/cmp_luasnip', after = "nvim-cmp" }, { 'hrsh7th/cmp-nvim-lsp', after = "nvim-cmp" }, { 'hrsh7th/cmp-nvim-lua', after = "nvim-cmp" },
+    { 'L3MON4D3/LuaSnip' }, { 'rafamadriz/friendly-snippets', after = "LuaSnip"}}}
   use({ "mfussenegger/nvim-jdtls", ft = { "java" } })
 
   -- Telescope

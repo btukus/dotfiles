@@ -7,8 +7,6 @@ telescope.load_extension("fzf")
 telescope.load_extension("projects")
 telescope.load_extension("file_browser")
 telescope.load_extension("git_worktree")
-telescope.load_extension("harpoon")
-telescope.load_extension('media_files')
 telescope.load_extension('lazygit')
 
 local actions = require("telescope.actions")
@@ -59,11 +57,5 @@ telescope.setup({
 			theme = "ivy",
 			hijack_netrw = true,
 		},
-     media_files = {
-      -- filetypes whitelist
-      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      filetypes = {"png", "webp", "jpg", "jpeg", "svg", "mp4", "pdf"},
-      find_cmd = "rg" -- find command (defaults to `fd`)
-    },
 	},
 })

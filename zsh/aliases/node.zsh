@@ -11,6 +11,7 @@ alias nrs='npm run-script'
 # Yarn aliases
 alias y='yarn'
 alias yi='yarn install'
+alias ya='yarn add'
 # alias nil='npm install --legacy-peer-deps'
 alias yr='yarn run'
 alias ys='yarn run start'

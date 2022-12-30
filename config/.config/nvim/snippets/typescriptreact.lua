@@ -27,7 +27,7 @@ end
 
 cs(
 	"cn",
-	fmt([[classname={{`{}`}}]], {
+	fmt([[className={{`{}`}}]], {
 		i(1, ""),
 	})
 )

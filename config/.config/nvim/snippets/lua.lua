@@ -1,3 +1,5 @@
+-- Instructional video https://www.youtube.com/watch?v=ub0REXjhpmk&t=681s
+
 local ls = require("luasnip") --{{{
 local s = ls.s --> snippet
 local i = ls.i --> insert node

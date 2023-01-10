@@ -97,3 +97,5 @@ alias grm='git rm'
 
 # Git stash
 alias gS='git stash'
+
+alias gg='lazygit'

@@ -1,13 +1,18 @@
-brew bundle --file=~/dotfiles/brew/Brewfile
+#!/bin/bash
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  brew bundle --file=Brewfile.macos
+else
+  brew bundle --file=Brewfile.linux
+fi
 
 # set the amazing ZDOTDIR variable
 export ZDOTDIR=~/dotfiles/zsh
-
-# change the root .zshenv file to use ZDOTDIR
 cat << 'EOF' >| ~/.zshenv
 export ZDOTDIR=~/dotfiles/zsh
 [[ -f $ZDOTDIR/.zshenv ]] && . $ZDOTDIR/.zshenv
 EOF
+
 
 # Stow dotfiles
 stow git

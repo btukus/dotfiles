@@ -5,6 +5,7 @@ systemtype=$(uname -s)
 
 if [[ "$systemtype" == "Linux" ]]; then
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.profile
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.bashrc
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   source ~/.profile
   source ~/.bashrc

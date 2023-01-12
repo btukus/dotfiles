@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  brew bundle --file=Brewfile.macos
+  brew bundle --file=~/dotfiles/brew/Brewfile.macos
 else
-  brew bundle --file=Brewfile.linux
+  brew bundle --file=~/dotfiles/brew/Brewfile.linux
 fi
 
 # set the amazing ZDOTDIR variable

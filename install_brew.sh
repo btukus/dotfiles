@@ -6,6 +6,8 @@ systemtype=$(uname -s)
 if [[ "$systemtype" == "Linux" ]]; then
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$(whoami)/.profile
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  source ~/.profile
+  source ~/.bashrc
   sudo apt-get install build-essential python3-pip -y
 fi
 

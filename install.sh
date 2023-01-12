@@ -23,7 +23,6 @@ git clone https://github.com/mattmc3/antidote.git $ZDOTDIR/antidote/.antidote
 antidote load
 
 # Change shell to zsh 
-
 if [[ "$SHELL" != "$(which zsh)" ]]; then
   sudo sh -c "echo $(which zsh) >> /etc/shells" && "chsh -s $(which zsh)"
 fi

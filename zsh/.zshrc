@@ -44,9 +44,6 @@ done
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
-# Load Angular CLI autocompletion.
-# source <(ng completion script)
-
 eval $(thefuck --alias)
 
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"

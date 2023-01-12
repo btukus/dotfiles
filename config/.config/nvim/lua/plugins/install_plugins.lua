@@ -3,7 +3,8 @@ local fn = vim.fn
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path, })
+  PACKER_BOOTSTRAP = fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim",
+    install_path, })
   print("Installing packer close and reopen Neovim...")
   vim.cmd([[packadd packer.nvim]])
 end
@@ -71,13 +72,24 @@ return packer.startup(function(use)
   use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
   use({ "kdheepak/lazygit.nvim" })
-
+  --[[ use({ ]]
+  --[[   "jackMort/ChatGPT.nvim", ]]
+  --[[   config = function() ]]
+  --[[     require("chatgpt").setup({ ]]
+  --[[     }) ]]
+  --[[   end, ]]
+  --[[   requires = { ]]
+  --[[     "MunifTanjim/nui.nvim", ]]
+  --[[   } ]]
+  --[[ }) ]]
   -- LSP
   use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"), requires = {
     { 'neovim/nvim-lspconfig' }, { 'williamboman/mason.nvim' }, { 'williamboman/mason-lspconfig.nvim' },
-    { 'hrsh7th/nvim-cmp' }, { 'hrsh7th/cmp-buffer', after = "nvim-cmp" }, { 'hrsh7th/cmp-path', after = "nvim-cmp"},
-    { 'saadparwaiz1/cmp_luasnip', after = "nvim-cmp" }, { 'hrsh7th/cmp-nvim-lsp', after = "nvim-cmp" }, { 'hrsh7th/cmp-nvim-lua', after = "nvim-cmp" },
-    { 'L3MON4D3/LuaSnip' }, { 'rafamadriz/friendly-snippets', after = "LuaSnip"}}}
+    { 'hrsh7th/nvim-cmp' }, { 'hrsh7th/cmp-buffer', after = "nvim-cmp" }, { 'hrsh7th/cmp-path', after = "nvim-cmp" },
+    { 'saadparwaiz1/cmp_luasnip', after = "nvim-cmp" }, { 'hrsh7th/cmp-nvim-lsp', after = "nvim-cmp" },
+    { 'hrsh7th/cmp-nvim-lua', after = "nvim-cmp" },
+    { 'L3MON4D3/LuaSnip' }, { 'rafamadriz/friendly-snippets', after = "LuaSnip" }
+  } }
   use({ "mfussenegger/nvim-jdtls", ft = { "java" } })
 
   -- Telescope

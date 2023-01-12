@@ -1,4 +1,3 @@
-/bin/sh ./install_brew.sh
 brew bundle --file=~/dotfiles/brew/Brewfile
 
 # set the amazing ZDOTDIR variable

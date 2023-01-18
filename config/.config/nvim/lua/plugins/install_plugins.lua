@@ -47,6 +47,7 @@ return packer.startup(function(use)
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap") })
+  use({ "chaoren/vim-wordmotion" })
 
   -- Window and session management
   use({ "simrat39/symbols-outline.nvim", opt = true, cmd = { "SymbolsOutline" }, config = get_setup("symbols_outline"), })

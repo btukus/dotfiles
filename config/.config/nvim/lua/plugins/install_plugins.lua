@@ -44,6 +44,7 @@ return packer.startup(function(use)
   use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
   use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
+  use({ "nvim-tree/nvim-tree.lua", config = get_setup("nvim-tree") })
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap") })
@@ -73,16 +74,7 @@ return packer.startup(function(use)
   use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
   use({ "kdheepak/lazygit.nvim" })
-  --[[ use({ ]]
-  --[[   "jackMort/ChatGPT.nvim", ]]
-  --[[   config = function() ]]
-  --[[     require("chatgpt").setup({ ]]
-  --[[     }) ]]
-  --[[   end, ]]
-  --[[   requires = { ]]
-  --[[     "MunifTanjim/nui.nvim", ]]
-  --[[   } ]]
-  --[[ }) ]]
+
   -- LSP
   use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"), requires = {
     { 'neovim/nvim-lspconfig' }, { 'williamboman/mason.nvim' }, { 'williamboman/mason-lspconfig.nvim' },

@@ -43,7 +43,7 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "kl", "<ESC>", opts)
+--[[ keymap("i", "kl", "<ESC>", opts) ]]
 keymap("n", "<leader>yy", ":%y+<cr>")
 
 -- Plugins --
@@ -59,6 +59,9 @@ keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+
+-- Nvim-Tree
+keymap("n", "<leader>nn", ":NvimTreeToggle<CR>", opts)
 
 -- Git Conflict
 keymap("n", "<leader>gl", "GitConflictListQf<CR>", opts)

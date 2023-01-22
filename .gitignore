@@ -18,6 +18,7 @@ config/.config/tmux/plugins/
 config/.config/zsh/
 config/.config/grammarly-languageserver/
 config/.config/lazygit/
+config/.config/raycast/
 
 zsh/antidote/.antidote/
 zsh/.zsh_history

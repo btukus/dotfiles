@@ -15,3 +15,7 @@ zns () {
   ns;
 
 }
+
+ip () {
+  ipconfig getifaddr en0 | pbcopy; 
+}

@@ -17,5 +17,5 @@ zns () {
 }
 
 ip () {
-  ipconfig getifaddr en0 | pbcopy; 
+  ipconfig getifaddr en0 | pbcopy;
 }

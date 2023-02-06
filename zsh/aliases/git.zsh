@@ -31,7 +31,7 @@ function git_develop_branch() {
 function gcp() {
   git add --all;
   git commit -m $1;
-  git push || gpu
+  git push;
 }
 
 alias gg='lazygit'

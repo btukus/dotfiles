@@ -44,7 +44,43 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 -- Insert --
 keymap("n", "<leader>yy", ":%y+<cr>")
 
--- Plugins --
+--[[ -- Visual mode, better yanking ]]
+--[[ keymap("v", "y", "ygv", opts) ]]
+
+-- Make visual mode consistent with other settings
+keymap("v", "v", "<esc>V", opts)
+keymap("n", "V", "v$h", opts)
+keymap("n", "Y", "v$hy", opts)
+
+-- Use backspace key for matching parens
+keymap("n", "<BS>", "%", opts)
+keymap("x", "<BS>", "%", opts)
+
+-- Don't open command history
+keymap("n", "q:", "<nop>", opts)
+
+-- Don't copy when pasted
+keymap("v", "p", '"_dP`[v`]o', opts)
+
+-- Don't yank when x
+keymap("n", "x", '"_x', opts)
+
+-- but blank line below
+keymap("n", "<cr>", "o<esc>k", opts)
+
+-- Auto indentation on empty lines
+function autoIndent(key)
+	return function()
+		return string.match(vim.api.nvim_get_current_line(), "%g") == nil and "_cc" or key
+	end
+end
+
+vim.keymap.set("n", "i", autoIndent("i"), { expr = true, noremap = true })
+vim.keymap.set("n", "I", autoIndent("I"), { expr = true, noremap = true })
+vim.keymap.set("n", "a", autoIndent("a"), { expr = true, noremap = true })
+vim.keymap.set("n", "A", autoIndent("A"), { expr = true, noremap = true })
+
+------------------------------- Plugins ------------------------------------
 
 -- Packer
 keymap("n", "<leader>ps", ":PackerSync<CR>", opts)
@@ -106,3 +142,4 @@ keymap("v", "K", ":m '<-2<CR>gv=gv")
 keymap("x", "L", ">gv", opts)
 keymap("x", "H", "<gv", opts)
 keymap("x", "<leader>p", "\"_dP")
+

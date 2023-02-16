@@ -21,6 +21,7 @@ config/.config/grammarly-languageserver/
 config/.config/lazygit/
 config/.config/raycast/
 config/.config/iterm2/
+config/.config/github-copilot/
 
 zsh/antidote/.antidote/
 zsh/.zsh_history

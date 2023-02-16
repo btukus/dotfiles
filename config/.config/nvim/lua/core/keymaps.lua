@@ -68,7 +68,7 @@ keymap("n", "<cr>", "o<esc>k", opts)
 -- Auto indentation on empty lines
 function autoIndent(key)
 	return function()
-		return string.match(vim.api.nvim_get_current_line(), "%g") == nil and "_cc" or key
+		return string.match(vim.api.nvim_get_current_line(), "%g") == nil and '"_cc' or key
 	end
 end
 

@@ -17,7 +17,7 @@ lsp.ensure_installed({
   "html",
   "tsserver",
   "angularls",
-  "sumneko_lua",
+  "lua_ls",
   "bashls",
   "jsonls",
   "yamlls",
@@ -31,12 +31,12 @@ lsp.ensure_installed({
 
 lsp.setup_nvim_cmp({
   sources = {
-    { name = "nvim_lsp" },
-    { name = "nvim_lua" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "cmp_tabnine" },
-    { name = "path" },
+    { name = "copilot",  group_index = 2 },
+    { name = "nvim_lsp", group_index = 2 },
+    { name = "nvim_lua", group_index = 2 },
+    { name = "luasnip",  group_index = 2 },
+    { name = "buffer",   group_index = 2 },
+    { name = "path",     group_index = 2 },
   },
 })
 
@@ -44,9 +44,18 @@ local cmp = require('cmp')
 local cmp_config = lsp.defaults.cmp_config({
   window = {
     completion = cmp.config.window.bordered()
-  }
+  },
+  experimental = {
+    ghost_text = false,
+  },
 })
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 cmp.setup(cmp_config)
+
+require("copilot_cmp").setup {
+  method = "getCompletionsCycling",
+}
+
 
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
@@ -75,32 +84,32 @@ end)
 
 lsp.configure('tsserver', {
   handlers = {
-      ["textDocument/definition"] = function(_, result, params)
-        if result == nil or vim.tbl_isempty(result) then
-          --[[ local _ = vim.lsp.log.info() and vim.lsp.log.info(params.method, 'No location found') ]]
-          return nil
-        end
+    ["textDocument/definition"] = function(_, result, params)
+      if result == nil or vim.tbl_isempty(result) then
+        --[[ local _ = vim.lsp.log.info() and vim.lsp.log.info(params.method, 'No location found') ]]
+        return nil
+      end
 
-        if vim.tbl_islist(result) then
-          vim.lsp.util.jump_to_location(result[1])
-          if #result > 1 then
-            local isReactDTs = false
-            for key, value in pairs(result) do
-              if string.match(value.targetUri, '%.d.ts') then
-                isReactDTs = true
-                break
-              end
-            end
-            if not isReactDTs then
-              vim.fn.setqflist(vim.lsp.util.locations_to_items(result))
-              vim.api.nvim_command("copen")
+      if vim.tbl_islist(result) then
+        vim.lsp.util.jump_to_location(result[1])
+        if #result > 1 then
+          local isReactDTs = false
+          for key, value in pairs(result) do
+            if string.match(value.targetUri, '%.d.ts') then
+              isReactDTs = true
+              break
             end
           end
-        else
-          vim.lsp.util.jump_to_location(result)
+          if not isReactDTs then
+            vim.fn.setqflist(vim.lsp.util.locations_to_items(result))
+            vim.api.nvim_command("copen")
+          end
         end
+      else
+        vim.lsp.util.jump_to_location(result)
+      end
     end
-  };
+  },
 })
 
 lsp.nvim_workspace()

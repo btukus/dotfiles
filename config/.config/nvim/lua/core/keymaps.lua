@@ -44,9 +44,6 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 -- Insert --
 keymap("n", "<leader>yy", ":%y+<cr>")
 
---[[ -- Visual mode, better yanking ]]
---[[ keymap("v", "y", "ygv", opts) ]]
-
 -- Make visual mode consistent with other settings
 keymap("v", "v", "<esc>V", opts)
 keymap("n", "V", "v$h", opts)
@@ -60,7 +57,7 @@ keymap("x", "<BS>", "%", opts)
 keymap("n", "q:", "<nop>", opts)
 
 -- Don't copy when pasted
-keymap("v", "p", '"_dP`[v`]o', opts)
+keymap("v", "p", '"_dP`]', opts)
 
 -- Don't yank when x
 keymap("n", "x", '"_x', opts)
@@ -142,4 +139,3 @@ keymap("v", "K", ":m '<-2<CR>gv=gv")
 keymap("x", "L", ">gv", opts)
 keymap("x", "H", "<gv", opts)
 keymap("x", "<leader>p", "\"_dP")
-

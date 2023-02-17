@@ -141,3 +141,5 @@ keymap("x", "H", "<gv", opts)
 keymap("x", "<leader>p", "\"_dP")
 
 keymap("n", "<leader>tt", ":TSJToggle<CR>", opts)
+
+vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true, silent = true})

@@ -8,11 +8,9 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippets" } })
 
 lsp.ensure_installed({
-  -- "csharp_ls",
   "jdtls",
   "kotlin_language_server",
   "pyright",
-  -- "dartls",
   "cssls",
   "html",
   "tsserver",
@@ -24,9 +22,6 @@ lsp.ensure_installed({
   "dockerls",
   "terraformls",
   "ansiblels",
-  -- "ltex",
-  "grammarly",
-  "marksman",
 })
 
 lsp.setup_nvim_cmp({

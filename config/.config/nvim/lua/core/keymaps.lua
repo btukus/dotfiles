@@ -139,3 +139,5 @@ keymap("v", "K", ":m '<-2<CR>gv=gv")
 keymap("x", "L", ">gv", opts)
 keymap("x", "H", "<gv", opts)
 keymap("x", "<leader>p", "\"_dP")
+
+keymap("n", "<leader>tt", ":TSJToggle<CR>", opts)

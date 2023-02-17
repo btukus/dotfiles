@@ -60,6 +60,8 @@ return packer.startup(function(use)
   use({ "windwp/nvim-autopairs", config = get_setup("autopairs") })
   use({ "windwp/nvim-ts-autotag", })
   use({ "kylechui/nvim-surround", config = get_setup("nvim-surround") })
+  use({ 'Wansmer/sibling-swap.nvim', requires = { 'nvim-treesitter' }, config = function() require('sibling-swap').setup({}) end, })
+  use({ 'Wansmer/treesj', requires = { 'nvim-treesitter' }, config = function() require('treesj').setup({}) end, })
 
   -- Buffer Plugins
   use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })
@@ -95,7 +97,6 @@ return packer.startup(function(use)
     { 'rafamadriz/friendly-snippets' },
   } }
   use { "zbirenbaum/copilot.lua", config = get_setup("copilot") }
-  use { "zbirenbaum/copilot-cmp", after = { "copilot.lua" }, config = function() require("copilot_cmp").setup() end }
   use({ "mfussenegger/nvim-jdtls", ft = { "java" } })
 
   -- Telescope

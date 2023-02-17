@@ -31,7 +31,6 @@ lsp.ensure_installed({
 
 lsp.setup_nvim_cmp({
   sources = {
-    { name = "copilot",  group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "nvim_lua", group_index = 2 },
     { name = "luasnip",  group_index = 2 },
@@ -49,12 +48,7 @@ local cmp_config = lsp.defaults.cmp_config({
     ghost_text = false,
   },
 })
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 cmp.setup(cmp_config)
-
-require("copilot_cmp").setup {
-  method = "getCompletionsCycling",
-}
 
 
 local function lsp_keymaps(bufnr)

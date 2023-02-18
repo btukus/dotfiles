@@ -26,7 +26,6 @@ lsp.ensure_installed({
   "bashls",
   "bicep",
   "graphql",
-  "marksman",
   "vimls",
 })
 

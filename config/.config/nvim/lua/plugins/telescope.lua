@@ -38,11 +38,9 @@ telescope.setup({
 			height = 0.80,
 			preview_cutoff = 120,
 		},
-
-		file_ignore_patterns = { "node_modules", ".git" },
+		--[[ file_ignore_patterns = { "node_modules", ".git" }, ]]
 		path_display = { "smart" },
 	},
-	pickers = {},
 	extensions = {
 		fzf = {
 			fuzzy = true,

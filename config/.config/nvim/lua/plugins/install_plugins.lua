@@ -44,7 +44,6 @@ return packer.startup(function(use)
   use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
   use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "nvim-tree/nvim-tree.lua", config = get_setup("nvim-tree") })
   use({ "folke/noice.nvim", config = function() require("noice").setup({ }) end, requires = { "MunifTanjim/nui.nvim", } })
 
   -- Motion
@@ -102,7 +101,6 @@ return packer.startup(function(use)
     { 'rafamadriz/friendly-snippets' },
   } }
   use { "zbirenbaum/copilot.lua", config = get_setup("copilot") }
-  use({ "mfussenegger/nvim-jdtls", ft = { "java" } })
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", opt = true, cmd = { "Telescope" }, config = get_setup("telescope") })

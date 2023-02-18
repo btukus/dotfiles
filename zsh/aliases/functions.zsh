@@ -17,5 +17,10 @@ zns () {
 }
 
 ip () {
-  ipconfig getifaddr en0 | pbcopy;
+  if [[ -z "$1" ]] then
+    ipconfig getifaddr en0 | pbcopy;
+  else
+    ipconfig getifaddr "en$1" | pbcopy;
+  fi
+
 }

@@ -9,8 +9,6 @@ telescope.load_extension("file_browser")
 telescope.load_extension("git_worktree")
 telescope.load_extension('lazygit')
 
-local actions = require("telescope.actions")
-
 telescope.setup({
 	defaults = {
 		vimgrep_arguments = {
@@ -22,8 +20,8 @@ telescope.setup({
 			"--column",
 			"--smart-case",
 		},
-		prompt_prefix = " ",
-		selection_caret = " ",
+		prompt_prefix = "  ",
+		selection_caret = "  ",
 		initial_mode = "insert",
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",

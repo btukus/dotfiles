@@ -45,7 +45,7 @@ return packer.startup(function(use)
   use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "nvim-tree/nvim-tree.lua", config = get_setup("nvim-tree") })
-  use { 'VonHeikemen/fine-cmdline.nvim', config = get_setup('finecmdline'), requires = { { 'MunifTanjim/nui.nvim' } } }
+  use({ "folke/noice.nvim", config = function() require("noice").setup({ }) end, requires = { "MunifTanjim/nui.nvim", } })
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap") })
@@ -61,8 +61,11 @@ return packer.startup(function(use)
   use({ "windwp/nvim-autopairs", config = get_setup("autopairs") })
   use({ "windwp/nvim-ts-autotag", })
   use({ "kylechui/nvim-surround", config = get_setup("nvim-surround") })
-  use({ 'Wansmer/sibling-swap.nvim', requires = { 'nvim-treesitter' },
-    config = function() require('sibling-swap').setup({}) end, })
+  use({
+    'Wansmer/sibling-swap.nvim',
+    requires = { 'nvim-treesitter' },
+    config = function() require('sibling-swap').setup({}) end,
+  })
   use({ 'Wansmer/treesj', requires = { 'nvim-treesitter' }, config = function() require('treesj').setup({}) end, })
 
   -- Buffer Plugins

@@ -9,6 +9,7 @@ require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippe
 
 lsp.ensure_installed({
   "jdtls",
+  "robotframework_ls",
   "kotlin_language_server",
   "pyright",
   "cssls",
@@ -22,6 +23,11 @@ lsp.ensure_installed({
   "dockerls",
   "terraformls",
   "ansiblels",
+  "bashls",
+  "bicep",
+  "graphql",
+  "marksman",
+  "vimls",
 })
 
 lsp.setup_nvim_cmp({

@@ -62,9 +62,6 @@ keymap("v", "p", '"_dP`]', opts)
 -- Don't yank when x
 keymap("n", "x", '"_x', opts)
 
--- but blank line below
-keymap("n", "<cr>", "o<esc>k", opts)
-
 -- Auto indentation on empty lines
 function autoIndent(key)
 	return function()
@@ -88,7 +85,7 @@ keymap("n", "<leader>pS", ":PackerStatus<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope file_browser hidden=true<CR> ", opts)
+keymap("n", "<leader>ft", ":Telescope file_browser<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- Nvim-Tree
@@ -113,9 +110,6 @@ keymap("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR
 keymap("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
 keymap("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
 
--- ToggleTerm
-keymap("n", "<leader>t", ":ToggleTerm<CR>", opts)
-
 -- TroubleToggle
 keymap("n", "<leader>dd", ":TroubleToggle<CR>", opts)
 
@@ -130,9 +124,6 @@ keymap("n", "c0", "<Plug>(git-conflict-none)")
 keymap("n", "]x", "<Plug>(git-conflict-prev-conflict)")
 keymap("n", "[x", "<Plug>(git-conflict-next-conflict)")
 
---Rexgexplainer
-keymap("n", "<leader>rg", ":RegexplainerToggle<CR>")
-
 -- ThePrimeagen
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("v", "K", ":m '<-2<CR>gv=gv")
@@ -141,5 +132,3 @@ keymap("x", "H", "<gv", opts)
 keymap("x", "<leader>p", "\"_dP")
 
 keymap("n", "<leader>tt", ":TSJToggle<CR>", opts)
-
-vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true, silent = true})

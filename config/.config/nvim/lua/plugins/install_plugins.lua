@@ -31,8 +31,6 @@ packer.init({
   profile = { enable = true, threshold = 1 },
 })
 
-local currentTheme = "github-nvim-theme"
-
 function get_setup(name)
   return string.format('require("plugins/%s")', name)
 end
@@ -45,6 +43,7 @@ return packer.startup(function(use)
   use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "folke/noice.nvim", config = function() require("noice").setup({}) end, requires = { "MunifTanjim/nui.nvim", } })
+  use({ 'fgheng/winbar.nvim', config = get_setup("winbar") })
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap") })

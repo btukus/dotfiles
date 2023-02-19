@@ -16,14 +16,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	end,
 })
 
---[[ if vim.fn.has("nvim-0.8") == 1 then ]]
---[[ 	vim.api.nvim_create_autocmd({ "BufWinEnter", "BufFilePost", "BufWritePost", "TabClosed" }, { ]]
---[[ 		callback = function() ]]
---[[ 			require("core.winbar").get_winbar() ]]
---[[ 		end, ]]
---[[ 	}) ]]
---[[ end ]]
-
 vim.api.nvim_create_autocmd({ "BufEnter"}, {
   callback = function () 
     require('lazygit.utils').project_root_dir()

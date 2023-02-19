@@ -85,7 +85,8 @@ keymap("n", "<leader>pS", ":PackerStatus<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope file_browser<CR> ", opts)
+keymap("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
+keymap("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- Nvim-Tree

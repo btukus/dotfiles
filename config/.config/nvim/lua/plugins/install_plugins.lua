@@ -44,7 +44,7 @@ return packer.startup(function(use)
   use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
   use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "folke/noice.nvim", config = function() require("noice").setup({ }) end, requires = { "MunifTanjim/nui.nvim", } })
+  use({ "folke/noice.nvim", config = function() require("noice").setup({}) end, requires = { "MunifTanjim/nui.nvim", } })
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap") })
@@ -107,6 +107,8 @@ return packer.startup(function(use)
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
   use({ "ahmedkhalf/project.nvim", config = get_setup("project") })
+  use({ 'nvim-telescope/telescope-media-files.nvim' })
+  use({ "nvim-telescope/telescope-terraform-doc.nvim" })
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })

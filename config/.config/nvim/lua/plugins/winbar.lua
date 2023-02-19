@@ -33,5 +33,6 @@ winbar.setup({
         'spectre_panel',
         'toggleterm',
         'qf',
+        'lazygit',
     }
 })

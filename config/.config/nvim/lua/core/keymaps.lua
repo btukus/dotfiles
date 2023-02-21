@@ -88,6 +88,8 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
 keymap("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fa", ":Telescope terraform_doc full_name=hashicorp/azurerm<CR>", opts)
+
 
 -- Nvim-Tree
 keymap("n", "<leader>nn", ":NvimTreeToggle<CR>", opts)
@@ -132,4 +134,7 @@ keymap("x", "L", ">gv", opts)
 keymap("x", "H", "<gv", opts)
 keymap("x", "<leader>p", "\"_dP")
 
+-- TreeSJ
 keymap("n", "<leader>tt", ":TSJToggle<CR>", opts)
+
+

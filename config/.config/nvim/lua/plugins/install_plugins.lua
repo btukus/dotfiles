@@ -70,6 +70,7 @@ return packer.startup(function(use)
   use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })
   use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
   use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
+  use({ "alvarosevilla95/luatab.nvim", config = function() require("luatab").setup({}) end, requires = { "kyazdani42/nvim-web-devicons", } })
 
   -- Colorschemes
   use({ "projekt0n/github-nvim-theme" })
@@ -107,7 +108,7 @@ return packer.startup(function(use)
   use({ "nvim-telescope/telescope-file-browser.nvim" })
   use({ "ahmedkhalf/project.nvim", config = get_setup("project") })
   use({ 'nvim-telescope/telescope-media-files.nvim' })
-  use({ "nvim-telescope/telescope-terraform-doc.nvim" })
+  use({ "ANGkeith/telescope-terraform-doc.nvim" })
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })

@@ -24,7 +24,6 @@ lsp.ensure_installed({
   "terraformls",
   "ansiblels",
   "bashls",
-  "bicep",
   "graphql",
   "vimls",
 })

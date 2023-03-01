@@ -48,6 +48,7 @@ keymap("n", "<leader>yy", ":%y+<cr>", opts)
 keymap("v", "v", "<esc>V", opts)
 keymap("n", "V", "v$h", opts)
 keymap("n", "Y", "v$hy", opts)
+keymap("n", "<leader>vg", "ggVG", opts)
 
 -- Use backspace key for matching parens
 keymap("n", "<BS>", "%", opts)

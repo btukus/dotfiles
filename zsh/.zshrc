@@ -16,10 +16,12 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   exec tmux
 fi
 
-export HISTSIZE=10000
-export HISTFILESIZE=10000
+ZSHZ_DATA=$ZDOTDIR/.zshz
+ZSHZ_TILDE=1
+export HISTSIZE=999999999
+export HISTFILESIZE=9999999999
 
-zstyle ':completion:*' menu select
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # source antidote

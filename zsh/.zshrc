@@ -21,18 +21,10 @@ export HISTFILESIZE=10000
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-export NVM_DIR=${HOME}/.nvm
-export NVM_COMPLETION=true
-
 # source antidote
 source $ZDOTDIR/antidote/.antidote/antidote.zsh
 antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
 source $ZDOTDIR/antidote/shared_plugins.zsh
-
-if [ "$systemtype" = "Darwin" ]; then
-  antidote bundle <$ZDOTDIR/antidote/mac_plugins.txt >$ZDOTDIR/antidote/mac_plugins.zsh
-  source $ZDOTDIR/antidote/mac_plugins.zsh
-fi
 
 loadFiles=(system git k8s docker node tmux functions envspecific temp)
 for t in ${loadFiles[@]}; do
@@ -46,11 +38,6 @@ done
 
 eval $(thefuck --alias)
 
-export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

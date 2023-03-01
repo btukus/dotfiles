@@ -5,12 +5,6 @@ romkatv/powerlevel10k
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
 agkozak/zsh-z
-laggardkernel/zsh-thefuck
-MichaelAquilina/zsh-you-should-use
-lukechilds/zsh-nvm
-davidparsson/zsh-pyenv-lazy
-
-ptavares/zsh-sdkman
 jeffreytse/zsh-vi-mode
 
 # final

@@ -42,7 +42,7 @@ keymap("n", "<leader>c", "<cmd>nohlsearch<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Insert --
-keymap("n", "<leader>yy", ":%y+<cr>")
+keymap("n", "<leader>yy", ":%y+<cr>", opts)
 
 -- Make visual mode consistent with other settings
 keymap("v", "v", "<esc>V", opts)
@@ -121,6 +121,7 @@ keymap("n", "<leader>so", ":SymbolsOutline<CR>", opts)
 
 -- Git-conflict
 keymap("n", "co", "<Plug>(git-conflict-ours)")
+keymap("n", "<leader>ll", ":GitConflictListQf<CR>")
 keymap("n", "ct", "<Plug>(git-conflict-theirs)")
 keymap("n", "cb", "<Plug>(git-conflict-both)")
 keymap("n", "c0", "<Plug>(git-conflict-none)")
@@ -136,5 +137,3 @@ keymap("x", "<leader>p", "\"_dP")
 
 -- TreeSJ
 keymap("n", "<leader>tt", ":TSJToggle<CR>", opts)
-
-

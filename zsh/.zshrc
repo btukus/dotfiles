@@ -19,11 +19,12 @@ fi
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
+zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # source antidote
 source $ZDOTDIR/antidote/.antidote/antidote.zsh
-antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
+# antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
 source $ZDOTDIR/antidote/shared_plugins.zsh
 
 loadFiles=(system git k8s docker node tmux functions envspecific temp)
@@ -36,8 +37,4 @@ done
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
-eval $(thefuck --alias)
-
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-# #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
+autoload -U compinit && compinit

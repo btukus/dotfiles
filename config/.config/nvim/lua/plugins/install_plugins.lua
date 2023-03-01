@@ -40,13 +40,14 @@ return packer.startup(function(use)
   use({ "wbthomason/packer.nvim" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
-  use({ "aserowy/tmux.nvim", config = get_setup("tmux") })
+  use({ "aserowy/tmux.nvim", event= "BufWinEnter", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "folke/noice.nvim", config = function() require("noice").setup({}) end, requires = { "MunifTanjim/nui.nvim", } })
-  use({ 'fgheng/winbar.nvim', config = get_setup("winbar") })
+  use({ "MunifTanjim/nui.nvim"})
+  use({ "folke/noice.nvim", event = "BufWinEnter", config = function() require("noice").setup({}) end})
+  use({ 'fgheng/winbar.nvim', event = "BufWinEnter", config = get_setup("winbar")})
 
   -- Motion
-  use({ "ggandor/leap.nvim", config = get_setup("leap") })
+  use({ "ggandor/leap.nvim", config = get_setup("leap"), opt = true, keys= {"s"} })
   use({ "chaoren/vim-wordmotion" })
 
   -- Window and session management
@@ -56,21 +57,15 @@ return packer.startup(function(use)
   -- Text Editing
   use({ "numToStr/Comment.nvim", opt = true, keys = { "gc", "gcc", "gbc" }, config = get_setup("comment"), })
   use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
-  use({ "windwp/nvim-autopairs", config = get_setup("autopairs") })
-  use({ "windwp/nvim-ts-autotag", })
-  use({ "kylechui/nvim-surround", config = get_setup("nvim-surround") })
-  use({
-    'Wansmer/sibling-swap.nvim',
-    requires = { 'nvim-treesitter' },
-    config = function() require('sibling-swap').setup({}) end,
-  })
-  use({ 'Wansmer/treesj', requires = { 'nvim-treesitter' }, config = function() require('treesj').setup({}) end, })
+  use({ "windwp/nvim-autopairs", event = "BufWinEnter" ,config = get_setup("autopairs") })
+  use({ "windwp/nvim-ts-autotag", event = "BufWinEnter" })
+  use({ "kylechui/nvim-surround", event = "BufWinEnter", config = get_setup("nvim-surround") })
+  use({ 'Wansmer/treesj', opt = true, cmd = { "TSJToggle" }, config = function() require('treesj').setup({}) end, })
 
   -- Buffer Plugins
   use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })
   use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
   use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
-  use({ "alvarosevilla95/luatab.nvim", config = function() require("luatab").setup({}) end, requires = { "kyazdani42/nvim-web-devicons", } })
 
   -- Colorschemes
   use({ "projekt0n/github-nvim-theme" })
@@ -83,6 +78,7 @@ return packer.startup(function(use)
 
   -- LSP
   use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"), requires = {
+    --
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
     { 'williamboman/mason.nvim' },
@@ -100,7 +96,7 @@ return packer.startup(function(use)
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },
   } }
-  use { "zbirenbaum/copilot.lua", config = get_setup("copilot") }
+  use { "zbirenbaum/copilot.lua", event = "BufWinEnter", config = get_setup("copilot") }
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", opt = true, cmd = { "Telescope" }, config = get_setup("telescope") })
@@ -119,3 +115,4 @@ return packer.startup(function(use)
     require("packer").sync()
   end
 end)
+

@@ -4,8 +4,9 @@ RUN brew install git
 
 RUN git clone https://github.com/btukus/dotfiles ~/dotfiles
 
-RUN cd ~/dotfiles && brew_install.sh
-RUN cd ~/dotfiles && ./install.sh
+# RUN ls -la ~/dotfiles/zsh
+RUN bash ~/dotfiles/brew_install.sh
+RUN bash ~/dotfiles/install.sh
 
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]

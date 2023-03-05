@@ -17,8 +17,10 @@ EOF
 # Stow dotfiles
 stow git
 stow config
-stow tmux
+
 if [[ "$SHELL" == "$(which bash)" ]]; then
+  rm ~/.bashrc
+  rm ~/.profile
   stow bash
 fi
 
@@ -36,16 +38,17 @@ fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install node 
-if command -v nvm > /dev/null; then
-  nvm install --lts
+if command -v asdf > /dev/null; then
+  asdf add plugin nodejs
+  asdf install nodejs lts
+  asdf global nodejs lts
   sudo npm i -g neovim
   npm install -g prettier
   npm i -g neovim
-# gem install neovim
-fi
 
-if command -v pyenv > /dev/null; then
-  pyenv install 3.10.4
-  pyenv global 3.10.4
+  # Python
+  asdf plugin-add python
+  asdf install python 3.11.0
+  asdf global python 3.11.0
   sudo pip3 install pynvim
 fi

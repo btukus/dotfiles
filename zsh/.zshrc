@@ -15,7 +15,7 @@ else
 fi 
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux
+  tmux a -t dev || exec tmux new -s default && exit;
 fi
 
 ZSHZ_DATA=$ZDOTDIR/.zshz

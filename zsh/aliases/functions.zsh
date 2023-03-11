@@ -9,13 +9,6 @@ b () {
   cd $cmd;
 }
 
-zns () {
-    
-  z conn;
-  ns;
-
-}
-
 ip () {
   if [[ -z "$1" ]] then
     ipconfig getifaddr en0 | pbcopy;
@@ -26,15 +19,8 @@ ip () {
 }
 
 # Git
-function gcp() {
-  git add --all;
-  git commit -m $1;
-  git push;
-}
-
-function gwag() {
-  git worktree add --checkout $1 && cd $1;
-}
+function gcp() { git add --all; git commit -m $1; git push; }
+function gwag() { git worktree add --checkout $1 && cd $1; }
 
 function git_main_branch() {
   command git rev-parse --git-dir &>/dev/null || return

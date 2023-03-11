@@ -45,6 +45,14 @@ done
 
 . $(brew --prefix asdf)/libexec/asdf.sh
 
-autoload -U compinit && compinit
+autoload -Uz compinit
+
+() {
+  if [[ $# -gt 0 ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+} ${ZDOTDIR}/.zcompdump(N.mh+24)
 
 # zprof

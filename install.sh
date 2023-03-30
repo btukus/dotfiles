@@ -26,8 +26,9 @@ fi
 
 # Install Antidote
 git clone https://github.com/mattmc3/antidote.git $ZDOTDIR/antidote/.antidote
-. $ZDOTDIR/antidote/.antidote/antidote.zsh
-antidote load
+source $ZDOTDIR/antidote/.antidote/antidote.zsh
+antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
+source $ZDOTDIR/antidote/shared_plugins.zsh
 
 # Change shell to zsh 
 if [[ "$SHELL" != "$(which zsh)" ]]; then
@@ -37,14 +38,16 @@ fi
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+tmux start-server && \ tmux new-session -d && \ sleep 1 && \ ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+
 # Install node 
 if command -v asdf > /dev/null; then
-  asdf add plugin nodejs
+  asdf plugin-add nodejs
+  asdf install nodejs lts
   asdf install nodejs lts
   asdf global nodejs lts
-  sudo npm i -g neovim
-  npm install -g prettier
   npm i -g neovim
+  npm install -g prettier
 
   # Python
   asdf plugin-add python

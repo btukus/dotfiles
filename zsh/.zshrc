@@ -14,9 +14,10 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi 
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  tmux a -t dev || exec tmux new -s default && exit;
-fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   #tmux a -t dev || exec tmux new -s default && exit;
+#   exec tmux
+# fi
 
 ZSHZ_DATA=$ZDOTDIR/.zshz
 ZSHZ_TILDE=1
@@ -27,8 +28,8 @@ export HISTFILESIZE=9999999999
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # source antidote
-# source $ZDOTDIR/antidote/.antidote/antidote.zsh
-# antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
+source $ZDOTDIR/antidote/.antidote/antidote.zsh
+antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
 source $ZDOTDIR/antidote/shared_plugins.zsh
 
 loadFiles=(system git k8s docker node tmux functions envspecific temp)

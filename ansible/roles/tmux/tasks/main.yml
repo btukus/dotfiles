@@ -1,0 +1,6 @@
+---
+- name: Clone TPM repository
+  include_tasks: "clone_repo.yml"
+
+- name: Install TPM repository
+  include_tasks: "install_plugins.yml"

@@ -1,0 +1,3 @@
+---
+- name: Install Stow  
+  include_tasks: "stow_configs.yml"

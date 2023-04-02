@@ -1,0 +1,7 @@
+- name: Clone Antidote repository
+  git:
+    repo: https://github.com/mattmc3/antidote.git 
+    dest: $ZDOTDIR/antidote/.antidote 
+
+- name: Source Antidote
+  shell: source $ZDOTDIR/antidote/.antidote/antidote.zsh

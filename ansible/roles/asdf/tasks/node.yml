@@ -1,0 +1,13 @@
+- name: Install and configure Node.js development tools
+  block:
+    - name: Add nodejs plugin to asdf
+      command: asdf plugin-add nodejs
+    - name: Install nodejs lts with asdf
+      command: asdf install nodejs lts
+    - name: Set nodejs lts as the global version with asdf
+      command: asdf global nodejs lts
+    - name: Install neovim with npm
+      command: npm i -g neovim
+    - name: Install prettier with npm
+      command: npm install -g prettier
+

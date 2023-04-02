@@ -1,0 +1,5 @@
+- name: Create the directory
+  file:
+    path: "{{ item.location }}"
+    state: directory
+  loop: "{{ ssh_origins }}"

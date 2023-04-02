@@ -1,0 +1,16 @@
+- name: Set ZDOTDIR variable in shell environment
+  ansible.builtin.shell: "export ZDOTDIR={{ zdotdir }}"
+  register: zdotdir_output
+
+- name: Check if .zshenv file exists
+  stat:
+    path: ~/.zshenv
+  register: zshenv_file
+  
+- name: Update .zshenv file with ZDOTDIR variable
+  copy:
+    dest: ~/.zshenv
+    content: |
+      export ZDOTDIR=~/dotfiles/zsh
+      [[ -f $ZDOTDIR/.zshenv ]] && . $ZDOTDIR/.zshenv
+  when: not zshenv_file.stat.exists

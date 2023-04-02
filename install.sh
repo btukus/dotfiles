@@ -38,7 +38,7 @@ fi
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-tmux start-server && \ tmux new-session -d && \ sleep 1 && \ ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Install node 
 if command -v asdf > /dev/null; then

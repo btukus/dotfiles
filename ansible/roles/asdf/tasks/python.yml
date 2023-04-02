@@ -1,0 +1,11 @@
+- name: Install and configure Python development tools
+  block:
+    - name: Add python plugin to asdf
+      command: asdf plugin-add python
+    - name: Install python 3.11.0 with asdf
+      command: asdf install python 3.11.0
+    - name: Set python 3.11.0 as the global version with asdf
+      command: asdf global python 3.11.0
+    - name: Install pynvim with pip
+      become: yes
+      command: pip3 install pynvim

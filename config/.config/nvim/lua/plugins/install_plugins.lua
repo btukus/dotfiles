@@ -96,7 +96,7 @@ return packer.startup(function(use)
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },
   } }
-  use { "zbirenbaum/copilot.lua", event = "BufWinEnter", config = get_setup("copilot") }
+  --[[ use { "zbirenbaum/copilot.lua", event = "BufWinEnter", config = get_setup("copilot") } ]]
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", opt = true, cmd = { "Telescope" }, config = get_setup("telescope") })

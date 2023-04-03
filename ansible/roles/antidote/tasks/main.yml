@@ -2,5 +2,5 @@
 - name: Install Antidote  
   include_tasks: "clone_repo.yml"
 
-- name: Install plugins 
-  include_tasks: "install_plugins.yml"
+# - name: Install plugins 
+#   include_tasks: "install_plugins.yml"

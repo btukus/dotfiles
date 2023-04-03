@@ -7,3 +7,7 @@ ssh_origins:
 - {name: "Github", hostname: "github.com", user: "git" ,host: "github.com", identityfile: "~/.ssh/github/github", location: "~/.ssh/github",}
 - {name: "Gitlab", hostname: "gitlab.com", user: "git" ,host: "gitlab.com", identityfile: "~/.ssh/gitlab/gitlab", location: "~/.ssh/gitlab",}
 - {name: "Bitbucket", hostname: "bitbucket.com", user: "git" ,host: "bitbucket.com", identityfile: "~/.ssh/bitbucket/bitbucket", location: "~/.ssh/bitbucket",}
+
+stow_directories:
+- git
+- config

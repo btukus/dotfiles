@@ -1,6 +1,10 @@
-- name: Clone TPM repository 
+- name: Clone TPM repository
+  stat:
+    path: "~/.tmux/plugins/tpm"
+  register: dest_dir
+
+- name: Run Git Clone command if destination directory does not exist
   git: 
     repo: https://github.com/tmux-plugins/tpm 
     dest: ~/.tmux/plugins/tpm
-
-
+  when: not dest_dir.stat.exists

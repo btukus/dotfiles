@@ -32,10 +32,6 @@ alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'
 alias ncp='cd ~/dotfiles/config/.config/nvim/lua/plugins'
 alias lsp='cd ~/dotfiles/config/.config/nvim/lua/plugins/lsp'
 
-# Brew aliases
-alias brew-export-mac='brew bundle dump --file=~/dotfiles/brew/Brewfile.macos --force'
-alias brew-export-linux='brew bundle dump --file=~/dotfiles/brew/Brewfile.linux --force'
-
 # Vim aliases
 alias vim='vim -u ~/.config/vim/vimrc'
 

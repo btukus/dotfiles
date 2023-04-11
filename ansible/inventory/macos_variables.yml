@@ -11,3 +11,4 @@ ssh_origins:
 stow_directories:
 - git
 - config
+- hammerspoon

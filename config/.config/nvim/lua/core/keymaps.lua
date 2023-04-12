@@ -58,7 +58,7 @@ keymap("x", "<BS>", "%", opts)
 keymap("n", "q:", "<nop>", opts)
 
 -- Don't copy when pasted
-keymap("v", "p", '"_dP`]', opts)
+--[[ keymap("v", "p", '"_dP`]', opts) ]]
 
 -- Don't yank when x
 keymap("n", "x", '"_x', opts)

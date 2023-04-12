@@ -14,9 +14,8 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi 
 
-if [ -z "$TMUX" ] 
-then
-    tmux attach -t default || tmux new -s default;
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
 fi
 
 ZSHZ_DATA=$ZDOTDIR/.zshz

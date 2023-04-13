@@ -5,8 +5,11 @@
 - name: Create SSH config file
   include_tasks: "ssh_config.yml"
 
-- name: Create ssh directories 
+- name: Create SSH directories 
   include_tasks: "create_ssh_directories.yml"
 
 - name: Create SSH keys
   include_tasks: "ssh_keys.yml"
+
+- name: Add SSH keys to env 
+  include_tasks: "ssh_add.yml"

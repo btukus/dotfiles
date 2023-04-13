@@ -1,0 +1,4 @@
+- name: Add SSH keys
+  ansible.builtin.shell: ssh-add {{ item.identityfile}} 
+  loop: "{{ ssh_origins }}"
+

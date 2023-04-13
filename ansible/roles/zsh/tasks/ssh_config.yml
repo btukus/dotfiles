@@ -4,7 +4,7 @@
     block: |
       {% for host in ssh_origins %}
       Host {{ host.name }}
-        Hostname {{ host.hostname }}
+        HostName {{ host.hostname }}
         User {{ host.user }}
         IdentityFile {{ host.identityfile }}
       {% endfor %}

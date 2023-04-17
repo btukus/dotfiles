@@ -43,6 +43,10 @@ done
 
 # . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
+# Set neovim as default editor
+export VISUAL=nvim
+export EDITOR=nvim
+
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 autoload -Uz compinit

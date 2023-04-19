@@ -68,13 +68,13 @@ fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -115,14 +115,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f ~/.zsh_aliases ]; then
-    . ~/.zsh_aliases
-fi
-
-if [ -f ~/.zsh_git_aliases ]; then
-    . ~/.zsh_git_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -134,6 +126,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/btukus/.sdkman"
-[[ -s "/home/btukus/.sdkman/bin/sdkman-init.sh" ]] && source "/home/btukus/.sdkman/bin/sdkman-init.sh"
+loadFiles=(system brew git k8s docker node tmux functions envspecific temp)
+for t in ${loadFiles[@]}; do
+  if [[ -f ~/dotfiles/zsh/aliases/$t.zsh ]]; then
+    source ~/dotfiles/zsh/aliases/$t.zsh
+  fi
+done

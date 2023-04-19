@@ -1,67 +1,67 @@
 -- Shorten function name
---[[ local vim.keymap.set = vim.keymap.set ]]
--- Silent vim.keymap.set option
+local map = vim.keymap.set
+-- Silent map option
 local opts = { silent = true }
 
 --Remap space as leader key
-vim.keymap.set("", "<Space>", "<Nop>", opts)
+map("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
 -- Close Neovim
-vim.keymap.set("n", "<leader>qq", ":q!<CR>", opts)
-vim.keymap.set("n", "<leader>wq", ":wq<CR>", opts)
+map("n", "<leader>qq", ":q!<CR>", opts)
+map("n", "<leader>wq", ":wq<CR>", opts)
 
 -- Better window navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+map("n", "<C-h>", "<C-w>h", opts)
+map("n", "<C-j>", "<C-w>j", opts)
+map("n", "<C-k>", "<C-w>k", opts)
+map("n", "<C-l>", "<C-w>l", opts)
 
 -- Split window
-vim.keymap.set("n", "<leader>sj", "<C-w>s", opts)
-vim.keymap.set("n", "<leader>sk", "<C-w>v", opts)
-vim.keymap.set("n", "<leader>sh", "<C-w>q", opts)
-vim.keymap.set("n", "<leader>sl", "<C-w>o", opts)
+map("n", "<leader>sj", "<C-w>s", opts)
+map("n", "<leader>sk", "<C-w>v", opts)
+map("n", "<leader>sh", "<C-w>q", opts)
+map("n", "<leader>sl", "<C-w>o", opts)
 
 -- Resize with arrows
-vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
-vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
-vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+map("n", "<C-Up>", ":resize -2<CR>", opts)
+map("n", "<C-Down>", ":resize +2<CR>", opts)
+map("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", opts)
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", opts)
+map("n", "<S-l>", ":bnext<CR>", opts)
+map("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Clear highlights
-vim.keymap.set("n", "<leader>c", "<cmd>nohlsearch<CR>", opts)
+map("n", "<leader>c", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-vim.keymap.set("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+map("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Insert --
-vim.keymap.set("n", "<leader>yy", ":%y+<cr>", opts)
+map("n", "<leader>yy", ":%y+<cr>", opts)
 
 -- Make visual mode consistent with other settings
-vim.keymap.set("v", "v", "<esc>V", opts)
-vim.keymap.set("n", "V", "v$h", opts)
-vim.keymap.set("n", "Y", "v$hy", opts)
-vim.keymap.set("n", "<leader>vg", "ggVG", opts)
+map("v", "v", "<esc>V", opts)
+map("n", "V", "v$h", opts)
+map("n", "Y", "v$hy", opts)
+map("n", "<leader>vg", "ggVG", opts)
 
 -- Use backspace key for matching parens
-vim.keymap.set("n", "<BS>", "%", opts)
-vim.keymap.set("x", "<BS>", "%", opts)
+map("n", "<BS>", "%", opts)
+map("x", "<BS>", "%", opts)
 
 -- Don't open command history
-vim.keymap.set("n", "q:", "<nop>", opts)
+map("n", "q:", "<nop>", opts)
 
 -- Don't copy when pasted
---[[ vim.keymap.set("v", "p", '"_dP`]', opts) ]]
+--[[ map("v", "p", '"_dP`]', opts) ]]
 
 -- Don't yank when x
-vim.keymap.set("n", "x", '"_x', opts)
+map("n", "x", '"_x', opts)
 
 -- Auto indentation on empty lines
 function autoIndent(key)
@@ -70,71 +70,71 @@ function autoIndent(key)
 	end
 end
 
-vim.vim.keymap.set.set("n", "i", autoIndent("i"), { expr = true, noremap = true })
-vim.vim.keymap.set.set("n", "I", autoIndent("I"), { expr = true, noremap = true })
-vim.vim.keymap.set.set("n", "a", autoIndent("a"), { expr = true, noremap = true })
-vim.vim.keymap.set.set("n", "A", autoIndent("A"), { expr = true, noremap = true })
+map("n", "i", autoIndent("i"), { expr = true, noremap = true })
+map("n", "I", autoIndent("I"), { expr = true, noremap = true })
+map("n", "a", autoIndent("a"), { expr = true, noremap = true })
+map("n", "A", autoIndent("A"), { expr = true, noremap = true })
 
 ------------------------------- Plugins ------------------------------------
 
 -- Packer
-vim.keymap.set("n", "<leader>ps", ":PackerSync<CR>", opts)
-vim.keymap.set("n", "<leader>pp", ":PackerProfile<CR>", opts)
-vim.keymap.set("n", "<leader>pS", ":PackerStatus<CR>", opts)
+map("n", "<leader>ps", ":PackerSync<CR>", opts)
+map("n", "<leader>pp", ":PackerProfile<CR>", opts)
+map("n", "<leader>pS", ":PackerStatus<CR>", opts)
 
 -- Telescope
-vim.keymap.set("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
-vim.keymap.set("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
-vim.keymap.set("n", "<leader>fp", ":Telescope projects<CR>", opts)
-vim.keymap.set("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
-vim.keymap.set("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
-vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-vim.keymap.set("n", "<leader>fa", ":Telescope terraform_doc full_name=hashicorp/azurerm<CR>", opts)
+map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
+map("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
+map("n", "<leader>fp", ":Telescope projects<CR>", opts)
+map("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
+map("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
+map("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+map("n", "<leader>fa", ":Telescope terraform_doc full_name=hashicorp/azurerm<CR>", opts)
 
 
 -- Nvim-Tree
-vim.keymap.set("n", "<leader>nn", ":NvimTreeToggle<CR>", opts)
+map("n", "<leader>nn", ":NvimTreeToggle<CR>", opts)
 
 -- Git Conflict
-vim.keymap.set("n", "<leader>gl", "GitConflictListQf<CR>", opts)
+map("n", "<leader>gl", "GitConflictListQf<CR>", opts)
 
 -- Git Diffview
-vim.keymap.set("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
-vim.keymap.set("n", "<leader>gc", ":DiffviewClose<CR>", opts)
+map("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
+map("n", "<leader>gc", ":DiffviewClose<CR>", opts)
 
 -- Git-worktree
-vim.keymap.set("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
+map("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
 
 -- Lazygit
-vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", opts)
+map("n", "<leader>gg", ":LazyGit<CR>", opts)
 
 -- Harpoon
-vim.keymap.set("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
-vim.keymap.set("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-vim.keymap.set("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
-vim.keymap.set("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
+map("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
+map("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
+map("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
+map("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
 
 -- TroubleToggle
-vim.keymap.set("n", "<leader>dd", ":TroubleToggle<CR>", opts)
+map("n", "<leader>dd", ":TroubleToggle<CR>", opts)
 
 -- SymbolOutline
-vim.keymap.set("n", "<leader>so", ":SymbolsOutline<CR>", opts)
+map("n", "<leader>so", ":SymbolsOutline<CR>", opts)
 
 -- Git-conflict
-vim.keymap.set("n", "co", "<Plug>(git-conflict-ours)")
-vim.keymap.set("n", "<leader>ll", ":GitConflictListQf<CR>")
-vim.keymap.set("n", "ct", "<Plug>(git-conflict-theirs)")
-vim.keymap.set("n", "cb", "<Plug>(git-conflict-both)")
-vim.keymap.set("n", "c0", "<Plug>(git-conflict-none)")
-vim.keymap.set("n", "]x", "<Plug>(git-conflict-prev-conflict)")
-vim.keymap.set("n", "[x", "<Plug>(git-conflict-next-conflict)")
+map("n", "co", "<Plug>(git-conflict-ours)")
+map("n", "<leader>ll", ":GitConflictListQf<CR>")
+map("n", "ct", "<Plug>(git-conflict-theirs)")
+map("n", "cb", "<Plug>(git-conflict-both)")
+map("n", "c0", "<Plug>(git-conflict-none)")
+map("n", "]x", "<Plug>(git-conflict-prev-conflict)")
+map("n", "[x", "<Plug>(git-conflict-next-conflict)")
 
 -- ThePrimeagen
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("x", "L", ">gv", opts)
-vim.keymap.set("x", "H", "<gv", opts)
-vim.keymap.set("x", "<leader>p", "\"_dP")
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+map("x", "L", ">gv", opts)
+map("x", "H", "<gv", opts)
+map("x", "<leader>p", "\"_dP")
 
 -- TreeSJ
-vim.keymap.set("n", "<leader>tt", ":TSJToggle<CR>", opts)
+map("n", "<leader>tt", ":TSJToggle<CR>", opts)

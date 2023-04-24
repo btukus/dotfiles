@@ -10,12 +10,19 @@ b () {
 }
 
 ip () {
-  if [[ -z "$1" ]] then
-    ipconfig getifaddr en0 | pbcopy;
+  if [ -z "$1" ]; then
+    if command -v ipconfig &> /dev/null; then
+      ipconfig getifaddr en0 | pbcopy;
+    else
+      ifconfig en0 | grep "inet " | awk '{print $2}' | pbcopy;
+    fi
   else
-    ipconfig getifaddr "en$1" | pbcopy;
+    if command -v ipconfig &> /dev/null; then
+      ipconfig getifaddr "en$1" | pbcopy;
+    else
+      ifconfig "en$1" | grep "inet " | awk '{print $2}' | pbcopy;
+    fi
   fi
-
 }
 
 # Git

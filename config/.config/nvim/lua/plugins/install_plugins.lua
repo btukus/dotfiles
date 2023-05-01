@@ -68,6 +68,7 @@ return packer.startup(function(use)
   use({ "lukas-reineke/indent-blankline.nvim", event = "BufReadPre", config = get_setup("indentline") })
 
   -- Colorschemes
+  use { "ful1e5/onedark.nvim" }
   use({ "projekt0n/github-nvim-theme" })
 
   -- Git

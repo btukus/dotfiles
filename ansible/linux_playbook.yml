@@ -1,0 +1,12 @@
+- hosts: localhost
+
+  roles:
+    # - brew
+    - zsh
+    - antidote
+    - stow
+    - tmux
+    - asdf
+
+  vars_files:
+    - "./inventory/linux_variables.yml"

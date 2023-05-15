@@ -26,7 +26,7 @@ config/.config/github-copilot/
 zsh/antidote/.antidote/
 zsh/.zsh_history
 zsh/.zsh_sessions
-zsh/.zshz
+zsh/.zshz*
 zsh/.zcompdump
 zsh/antidote/mac_plugins.zsh
 zsh/antidote/shared_plugins.zsh

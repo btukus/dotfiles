@@ -45,10 +45,13 @@ return packer.startup(function(use)
   use({ "MunifTanjim/nui.nvim"})
   use({ "folke/noice.nvim", event = "BufWinEnter", config = function() require("noice").setup({}) end})
   use({ 'fgheng/winbar.nvim', event = "BufWinEnter", config = get_setup("winbar")})
+  --[[ use({ "nanozuki/tabby.nvim", event = "BufWinEnter", config = function() require("tabby").setup({}) end}) ]]
+  use({'romgrk/barbar.nvim', requires = { 'lewis6991/gitsigns.nvim'}, config = function() require("barbar").setup({}) end})
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap"), opt = true, keys= {"s"} })
   use({ "chaoren/vim-wordmotion" })
+  use({ "karb94/neoscroll.nvim", event = "BufWinEnter", config = function() require("neoscroll").setup({}) end})
 
   -- Window and session management
   use({ "simrat39/symbols-outline.nvim", opt = true, cmd = { "SymbolsOutline" }, config = get_setup("symbols_outline"), })
@@ -61,6 +64,7 @@ return packer.startup(function(use)
   use({ "windwp/nvim-ts-autotag", event = "BufWinEnter" })
   use({ "kylechui/nvim-surround", event = "BufWinEnter", config = get_setup("nvim-surround") })
   use({ 'Wansmer/treesj', opt = true, cmd = { "TSJToggle" }, config = function() require('treesj').setup({}) end, })
+  use({ "nguyenvukhang/nvim-toggler", config = get_setup("nvim-toggler") })
 
   -- Buffer Plugins
   use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })

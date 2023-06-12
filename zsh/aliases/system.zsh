@@ -1,7 +1,8 @@
 # ls aliases
 alias ls='ls --color=auto'
 alias lv='ls -1 --color=auto'
-alias la='ls -la --color=auto'
+# alias la='ls -la --color=auto'
+alias la='ls -l --color=always -A | sort -k 1.1,1.1r -k 9 | awk '\''{print $0}'\'''
 alias lsl='ls -l --color=auto'
 alias lg='la | grep'
 

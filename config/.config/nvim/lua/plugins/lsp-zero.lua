@@ -75,7 +75,6 @@ lsp.on_attach(function(client, bufnr)
   lsp_keymaps(bufnr)
 end)
 
-
 lsp.configure('tsserver', {
   handlers = {
     ["textDocument/definition"] = function(_, result, params)

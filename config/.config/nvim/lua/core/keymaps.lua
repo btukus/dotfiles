@@ -65,9 +65,9 @@ map("n", "x", '"_x', opts)
 
 -- Auto indentation on empty lines
 function autoIndent(key)
-	return function()
-		return string.match(vim.api.nvim_get_current_line(), "%g") == nil and '"_cc' or key
-	end
+  return function()
+    return string.match(vim.api.nvim_get_current_line(), "%g") == nil and '"_cc' or key
+  end
 end
 
 map("n", "i", autoIndent("i"), { expr = true, noremap = true })
@@ -138,3 +138,20 @@ map("x", "<leader>p", "\"_dP")
 
 -- TreeSJ
 map("n", "<leader>tt", ":TSJToggle<CR>", opts)
+
+
+-- LSP
+map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+map('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+map('n', 'gL', '<cmd>lua vim.diagnostic.setqflist()<cr>', opts)
+map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
+map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)

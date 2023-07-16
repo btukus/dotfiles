@@ -102,6 +102,8 @@ return packer.startup(function(use)
     { 'rafamadriz/friendly-snippets' },
   } }
   use { "zbirenbaum/copilot.lua", event = "BufWinEnter", config = get_setup("copilot") }
+  use { 'akinsho/flutter-tools.nvim', config = function() require("flutter-tools").setup({}) end,
+    requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim',} }
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", opt = true, cmd = { "Telescope" }, config = get_setup("telescope") })

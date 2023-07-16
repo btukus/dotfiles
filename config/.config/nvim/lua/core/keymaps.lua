@@ -24,6 +24,7 @@ map("n", "<leader>sj", "<C-w>s", opts)
 map("n", "<leader>sk", "<C-w>v", opts)
 map("n", "<leader>sh", "<C-w>q", opts)
 map("n", "<leader>sl", "<C-w>o", opts)
+map("n", "<leader>e", "<C-w>=", opts)
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -139,6 +140,9 @@ map("x", "<leader>p", "\"_dP")
 -- TreeSJ
 map("n", "<leader>tt", ":TSJToggle<CR>", opts)
 
+-- Flutter-tools
+map("n", "<leader>fq", ":FlutterRun<CR>", opts)
+map("n", "<leader>fQ", ":FlutterQuit<CR>", opts)
 
 -- LSP
 map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)

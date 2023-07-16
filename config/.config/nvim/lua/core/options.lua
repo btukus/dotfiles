@@ -14,6 +14,7 @@ local options = {
 	number = true,
 	relativenumber = true, -- set numbered lines
 	laststatus = 0,
+  ea = true,
 
 	-- File configuration options
 	backup = false, -- creates a backup file

@@ -2,9 +2,6 @@
 - name: Create .zshenv file
   include_tasks: "zshenv.yml"
 
-- name: Create SSH config file
-  include_tasks: "ssh_config.yml"
-
 - name: Create SSH directories 
   include_tasks: "create_ssh_directories.yml"
 

@@ -8,9 +8,10 @@
     - name: Add nodejs plugin to asdf
       command: asdf plugin-add nodejs
       when: node_check.rc != 0
+      ignore_errors: true
 
     - name: Install nodejs lts with asdf
-      command: asdf install nodejs lts
+      command: asdf install nodejs 18.12.0
       when: node_check.rc != 0
 
     - name: Set nodejs lts as the global version with asdf

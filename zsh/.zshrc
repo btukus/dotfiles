@@ -38,6 +38,13 @@ for t in ${loadFiles[@]}; do
   fi
 done
 
+ssh_keys=(github gitlab)
+for n in ${ssh[@]}; do
+  if [[ -f ~/.ssh/$n/$n ]]; then
+    ssh-add ~/.ssh/$n/$n
+  fi
+done
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 

@@ -3,7 +3,7 @@
   vars_files:
     - "./inventory/macos_variables.yml"
   roles:
-    # - brew
+    - brew
     - zsh
     - antidote
     - stow

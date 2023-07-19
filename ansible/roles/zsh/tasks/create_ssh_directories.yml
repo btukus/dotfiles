@@ -1,5 +1,21 @@
-- name: Create the directory
+- name: Create the SSH directories
   file:
     path: "{{ item.location }}"
     state: directory
   loop: "{{ ssh_origins }}"
+
+- name: Ensure the SSH config directory exists
+  file:
+    path: "~/.ssh"
+    state: directory
+
+- name: Create the SSH config file
+  copy:
+    dest: "~/.ssh/config"
+    content: |
+      {% for origin in ssh_origins %}
+      Host {{ origin.name }}
+        HostName {{ origin.hostname }}
+        User {{ origin.user }}
+        IdentityFile {{ origin.identityfile }}
+      {% endfor %}

@@ -54,6 +54,11 @@ done
 export VISUAL=nvim
 export EDITOR=nvim
 
+# Flutter Development
+export ANDROID_HOME=/usr/local/share/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 autoload -Uz compinit

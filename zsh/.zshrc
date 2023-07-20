@@ -31,7 +31,7 @@ source $ZDOTDIR/antidote/.antidote/antidote.zsh
 antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
 source $ZDOTDIR/antidote/shared_plugins.zsh
 
-loadFiles=(system brew git k8s docker node tmux functions envspecific temp)
+loadFiles=(system brew git k8s docker node tmux functions envspecific flutter)
 for t in ${loadFiles[@]}; do
   if [[ -f $ZDOTDIR/aliases/$t.zsh ]]; then
     source $ZDOTDIR/aliases/$t.zsh

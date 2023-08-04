@@ -11,6 +11,7 @@ lsp.ensure_installed({
   "jdtls",
   "robotframework_ls",
   "kotlin_language_server",
+  "csharp_ls",
   "pyright",
   "cssls",
   "html",

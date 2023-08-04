@@ -57,6 +57,8 @@ export EDITOR=nvim
 
 . $(brew --prefix asdf)/libexec/asdf.sh
 . ~/.asdf/plugins/java/set-java-home.zsh
+. ~/.asdf/plugins/dotnet-core/set-dotnet-home.zsh
+
 
 autoload -Uz compinit
 

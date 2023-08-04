@@ -24,6 +24,8 @@ config/.config/iterm2/
 config/.config/github-copilot/
 config/.config/tool_state
 config/.config/ngrok/
+config/.config/flutter/
+
 
 
 zsh/antidote/.antidote/

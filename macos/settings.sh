@@ -5,3 +5,6 @@ killall Dock
 
 # Finder
 defaults write com.apple.finder QuitMenuItem -bool true
+
+# Remove the CMD + H shortcut for hide
+defaults write -g NSUserKeyEquivalents -dict-add "Hide" '\0'

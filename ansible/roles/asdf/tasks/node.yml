@@ -15,7 +15,7 @@
       when: node_check.rc != 0
 
     - name: Set nodejs lts as the global version with asdf
-      command: asdf global nodejs lts
+      command: asdf global nodejs 18.12.0
       when: node_check.rc != 0
 
     - name: Install neovim with npm
@@ -25,4 +25,3 @@
     - name: Install prettier with npm
       command: npm install -g prettier
       when: node_check.rc != 0
-

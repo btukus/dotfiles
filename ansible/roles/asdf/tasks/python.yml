@@ -18,6 +18,5 @@
       when: python_check.rc != 0
 
     - name: Install pynvim with pip
-      # become: yes
       command: pip3 install pynvim
-
+      when: python_check.rc != 0

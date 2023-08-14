@@ -1,0 +1,20 @@
+- name: Install and configure Node.js development tools
+  block:
+    - name: Check if Java is installed
+      command: java -version
+      register: java_check
+      ignore_errors: true
+
+    - name: Add nodejs plugin to asdf
+      command: asdf plugin-add java
+      when: java_check.rc != 0
+      ignore_errors: true
+
+    - name: Install java with asdf
+      command: asdf install java openjdk-17 
+      when: java_check.rc != 0
+
+    - name: Set java openjdk-17 as the global version with asdf
+      command: asdf global java openjdk-17
+      when: java_check.rc != 0
+

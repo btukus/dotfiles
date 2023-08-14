@@ -25,7 +25,7 @@ config/.config/github-copilot/
 config/.config/tool_state
 config/.config/ngrok/
 config/.config/flutter/
-
+config/.config/.android/
 
 
 zsh/antidote/.antidote/

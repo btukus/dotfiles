@@ -11,7 +11,7 @@ lsp.ensure_installed({
   "jdtls",
   "robotframework_ls",
   "kotlin_language_server",
-  "csharp_ls",
+  -- "csharp_ls",
   "pyright",
   "cssls",
   "html",
@@ -42,6 +42,9 @@ lsp.setup_nvim_cmp({
 
 local cmp = require('cmp')
 local cmp_config = lsp.defaults.cmp_config({
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
   window = {
     completion = cmp.config.window.bordered()
   },

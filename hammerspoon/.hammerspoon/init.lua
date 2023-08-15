@@ -6,4 +6,3 @@ Vim = require('vim_bindings')
 local v = Vim:new()
 -- v:setDebug(true) -- uncomment this if you want some things printed to the hammerspoon console
 v:start()
-

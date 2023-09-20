@@ -56,3 +56,16 @@ function git_develop_branch() {
   done
   echo develop
 }
+
+pat() {
+  # Extract the original URL and new username and text
+  local original_url="$1"
+  local new_text="$2"
+  local new_username="${3:-btukus}"  # Default to "btukus" if no input is provided
+
+  # Replace the username in the URL
+  local modified_url=$(echo "$original_url" | awk -v user="$new_username" -v text="$new_text" -F'//' 'BEGIN{OFS="//"} {split($2,a,"@"); split(a[1],b,":"); sub(b[1],user":"text,a[1]); print $1, a[1]"@"a[2]}')
+
+  # Output the modified URL
+  echo "$modified_url" | pbcopy
+}

@@ -13,3 +13,5 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = master
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*

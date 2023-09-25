@@ -8,7 +8,6 @@ telescope.load_extension("projects")
 telescope.load_extension("file_browser")
 telescope.load_extension("git_worktree")
 telescope.load_extension('lazygit')
-telescope.load_extension('media_files')
 telescope.load_extension('terraform_doc')
 
 telescope.setup({
@@ -22,8 +21,8 @@ telescope.setup({
       "--column",
       "--smart-case",
     },
-    prompt_prefix = "  ",
-    selection_caret = "  ",
+    -- prompt_prefix = " ",
+    -- selection_caret = " ",
     initial_mode = "insert",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -54,12 +53,6 @@ telescope.setup({
       initial_mode = "normal",
       theme = "ivy",
       hijack_netrw = true,
-    },
-    media_files = {
-      -- filetypes whitelist
-      filetypes = { "png", "webp", "jpg", "jpeg", "pdf", "svg" },
-      -- find command (defaults to `fd`)
-      find_cmd = "rg"
     },
   }
 })

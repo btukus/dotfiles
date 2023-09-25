@@ -23,6 +23,7 @@ lsp.ensure_installed({
   "yamlls",
   "dockerls",
   "terraformls",
+  "azure_pipelines_ls",
   "ansiblels",
   "bashls",
   "bicep",

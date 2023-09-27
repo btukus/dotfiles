@@ -46,3 +46,4 @@ alias ffd='find . -d'
 # SSH keys add
 alias gh='ssh-add ~/.ssh/github/github'
 alias glab='ssh-add ~/.ssh/gitlab/gitlab'
+alias devops='ssh-add ~/.ssh/devops/devops'

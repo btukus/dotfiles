@@ -1,19 +1,16 @@
-local status_ok, indent_blankline = pcall(require, "indent_blankline")
+local status_ok, indent_blankline = pcall(require, "ibl")
 if not status_ok then
   return
 end
 
-indent_blankline.setup {
-  show_current_context = true,
-  indent_blankline_char = "▏",
-  indent_blankline_show_trailing_blankline_indent = false,
-  show_first_indent_level = false,
-  indent_blankline_use_treesitter = true,
-  indent_blankline_show_current_context = true,
-  indent_blankline_buftype_exclude = { "terminal", "nofile" },
-  indent_blankline_filetype_exclude = {
-    "help",
-    "packer",
-    "NvimTree",
+indent_blankline.setup({
+  scope = {
+    show_start = false,
   },
-}
+  indent = {
+    char = "▏",
+  },
+  whitespace = {
+    remove_blankline_trail = false,
+  },
+})

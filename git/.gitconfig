@@ -6,10 +6,10 @@
 	name = btukus
 	email = berkhantukus@outlook.com
 [credential]
-	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager-core.exe
+	helper = cache
 [http]
 	sslVerify = false
 [push]
 	autoSetupRemote = true
 [init]
-	defaultBranch = master
+	defaultBranch = main

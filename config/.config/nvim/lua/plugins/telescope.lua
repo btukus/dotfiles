@@ -40,7 +40,7 @@ telescope.setup({
       preview_cutoff = 120,
     },
     path_display = { "smart" },
-    file_ignore_patterns = { "node%_modules/.*", "__pycache__/*", "venv/*" },
+    file_ignore_patterns = { "node%_modules/.*", "__pycache__/*", "venv/*", ".git/*" },
   },
   extensions = {
     fzf = {

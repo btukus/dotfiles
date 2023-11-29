@@ -39,32 +39,29 @@ require('mason-lspconfig').setup({
   },
 })
 
-local cfg = require("yaml-companion").setup({ })
+local cfg = require("yaml-companion").setup({})
 require("lspconfig")["yamlls"].setup(cfg)
 
-lsp.setup_nvim_cmp({
-  sources = {
+local cmp = require('cmp')
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
     { name = "nvim_lsp", group_index = 2 },
     { name = "nvim_lua", group_index = 2 },
     { name = "luasnip",  group_index = 2 },
     { name = "buffer",   group_index = 2 },
     { name = "path",     group_index = 2 },
-  },
-})
-
-local cmp = require('cmp')
-local cmp_config = lsp.defaults.cmp_config({
-  mapping = {
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  },
+  }),
   window = {
     completion = cmp.config.window.bordered()
   },
   experimental = {
     ghost_text = false,
   },
+
 })
-cmp.setup(cmp_config)
 
 
 local function lsp_keymaps(bufnr)
@@ -120,7 +117,5 @@ lsp.configure('tsserver', {
     end
   },
 })
-
-lsp.nvim_workspace()
 
 lsp.setup()

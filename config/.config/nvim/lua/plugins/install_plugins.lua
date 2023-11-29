@@ -45,7 +45,6 @@ return packer.startup(function(use)
   use({ "MunifTanjim/nui.nvim" })
   use({ "folke/noice.nvim", event = "BufWinEnter", config = function() require("noice").setup({}) end })
   use({ 'fgheng/winbar.nvim', event = "BufWinEnter", config = get_setup("winbar") })
-  --[[ use({ "nanozuki/tabby.nvim", event = "BufWinEnter", config = function() require("tabby").setup({}) end}) ]]
   use({ 'romgrk/barbar.nvim', requires = { 'lewis6991/gitsigns.nvim' },
     config = function() require("barbar").setup({}) end })
   use {"shortcuts/no-neck-pain.nvim", tag = "*" }

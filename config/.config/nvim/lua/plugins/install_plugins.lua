@@ -75,8 +75,9 @@ return packer.startup(function(use)
   -- use({ "lukas-reineke/indent-blankline.nvim", config = function () require("ibl").setup() end })
 
   -- Colorschemes
-  use { "ful1e5/onedark.nvim" }
+  use({ "ful1e5/onedark.nvim" })
   use({ "projekt0n/github-nvim-theme" })
+  use({ "martinsione/darkplus.nvim" })
 
   -- Git
   use({ "akinsho/git-conflict.nvim", tag = "*", config = get_setup("git-conflict") })

@@ -9,6 +9,7 @@ telescope.load_extension("file_browser")
 telescope.load_extension("git_worktree")
 telescope.load_extension('lazygit')
 telescope.load_extension('terraform_doc')
+telescope.load_extension("yaml_schema")
 
 telescope.setup({
   defaults = {

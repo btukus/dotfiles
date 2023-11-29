@@ -7,29 +7,40 @@ lsp.preset('recommended')
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippets" } })
 
-lsp.ensure_installed({
-  "jdtls",
-  "robotframework_ls",
-  "kotlin_language_server",
-  -- "csharp_ls",
-  "pyright",
-  "cssls",
-  "html",
-  "tsserver",
-  "angularls",
-  "lua_ls",
-  "bashls",
-  "jsonls",
-  "yamlls",
-  "dockerls",
-  "terraformls",
-  "azure_pipelines_ls",
-  "ansiblels",
-  "bashls",
-  "bicep",
-  "graphql",
-  "vimls",
+require("mason").setup()
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    "jdtls",
+    "robotframework_ls",
+    "kotlin_language_server",
+    -- "csharp_ls",
+    "pyright",
+    "cssls",
+    "html",
+    "tsserver",
+    -- "angularls",
+    "lua_ls",
+    "bashls",
+    "jsonls",
+    "yamlls",
+    "dockerls",
+    "terraformls",
+    "tflint",
+    "azure_pipelines_ls",
+    "ansiblels",
+    "bashls",
+    "bicep",
+    "graphql",
+    "vimls",
+  },
+  automatic_installation = true,
+  handlers = {
+    lsp.default_setup,
+  },
 })
+
+local cfg = require("yaml-companion").setup({ })
+require("lspconfig")["yamlls"].setup(cfg)
 
 lsp.setup_nvim_cmp({
   sources = {

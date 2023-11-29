@@ -6,24 +6,22 @@ end
 telescope.load_extension("fzf")
 telescope.load_extension("projects")
 telescope.load_extension("file_browser")
-telescope.load_extension("git_worktree")
-telescope.load_extension('lazygit')
-telescope.load_extension('terraform_doc')
+-- telescope.load_extension("git_worktree")
 telescope.load_extension("yaml_schema")
 
 telescope.setup({
   defaults = {
     vimgrep_arguments = {
       "rg",
-      "--color=never",
+      -- "--color=never",
       "--no-heading",
       "--with-filename",
       "--line-number",
       "--column",
       "--smart-case",
     },
-    -- prompt_prefix = " ",
-    -- selection_caret = " ",
+    -- prompt_prefix = "  ",
+    -- selection_caret = "  ",
     initial_mode = "insert",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
@@ -51,7 +49,6 @@ telescope.setup({
       case_mode = "smart_case",
     },
     file_browser = {
-      initial_mode = "normal",
       theme = "ivy",
       hijack_netrw = true,
     },

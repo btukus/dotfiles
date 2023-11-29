@@ -40,19 +40,19 @@ return packer.startup(function(use)
   use({ "wbthomason/packer.nvim" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
-  use({ "aserowy/tmux.nvim", event = "BufWinEnter", config = get_setup("tmux") })
+  use({ "aserowy/tmux.nvim", event = "CursorMoved", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "MunifTanjim/nui.nvim" })
-  use({ "folke/noice.nvim", event = "BufWinEnter", config = function() require("noice").setup({}) end })
-  use({ 'fgheng/winbar.nvim', event = "BufWinEnter", config = get_setup("winbar") })
-  use({ 'romgrk/barbar.nvim', requires = { 'lewis6991/gitsigns.nvim' },
-    config = function() require("barbar").setup({}) end })
-  use {"shortcuts/no-neck-pain.nvim", tag = "*" }
+  use({ "MunifTanjim/nui.nvim", event = "VimEnter" })
+  use({ "folke/noice.nvim", event = "VimEnter", config = function() require("noice").setup({}) end })
+  use({ 'fgheng/winbar.nvim', event = "VimEnter", config = get_setup("winbar") })
+  use({ 'romgrk/barbar.nvim', config = function() require("barbar").setup({}) end, event = "VimEnter", --[[  after = "gitsigns.nvim" ]] })
+  use({ "lewis6991/gitsigns.nvim", event = "VimEnter" })
+  use({ "shortcuts/no-neck-pain.nvim", tag = "*", cmd = "NoNeckPain" })
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap"), opt = true, keys = { "s" } })
-  use({ "chaoren/vim-wordmotion" })
-  use({ "karb94/neoscroll.nvim", event = "BufWinEnter", config = function() require("neoscroll").setup({}) end })
+  use({ "chaoren/vim-wordmotion", event = "CursorMoved" })
+  use({ "karb94/neoscroll.nvim", event = "VimEnter", config = function() require("neoscroll").setup({}) end })
 
   -- Window and session management
   use({ "simrat39/symbols-outline.nvim", opt = true, cmd = { "SymbolsOutline" }, config = get_setup("symbols_outline"), })
@@ -61,54 +61,59 @@ return packer.startup(function(use)
   -- Text Editing
   use({ "numToStr/Comment.nvim", opt = true, keys = { "gc", "gcc", "gbc" }, config = get_setup("comment"), })
   use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
-  use({ "windwp/nvim-autopairs", event = "BufWinEnter", config = get_setup("autopairs") })
-  use({ "windwp/nvim-ts-autotag", event = "BufWinEnter" })
-  use({ "kylechui/nvim-surround", event = "BufWinEnter", config = get_setup("nvim-surround") })
+  use({ "windwp/nvim-autopairs", event = "InsertEnter", config = get_setup("autopairs") })
+  use({ "windwp/nvim-ts-autotag", event = "InsertEnter" })
+  use({ "kylechui/nvim-surround", event = "InsertEnter", config = get_setup("nvim-surround") })
   use({ 'Wansmer/treesj', opt = true, cmd = { "TSJToggle" }, config = function() require('treesj').setup({}) end, })
-  use({ "nguyenvukhang/nvim-toggler", config = get_setup("nvim-toggler") })
+  -- use({ "nguyenvukhang/nvim-toggler", config = get_setup("nvim-toggler") })
 
   -- Buffer Plugins
   use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })
   use({ "ethanholz/nvim-lastplace", config = get_setup("lastplace") })
   use({ "lukas-reineke/indent-blankline.nvim", config = get_setup("indentline") })
-  -- use({ "lukas-reineke/indent-blankline.nvim", config = function () require("ibl").setup() end })
 
   -- Colorschemes
-  use({ "ful1e5/onedark.nvim" })
+  -- use({ "ful1e5/onedark.nvim" })
   use({ "projekt0n/github-nvim-theme" })
-  use({ "martinsione/darkplus.nvim" })
+  -- use({ "martinsione/darkplus.nvim" })
 
   -- Git
-  use({ "akinsho/git-conflict.nvim", tag = "*", config = get_setup("git-conflict") })
-  use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
+  use({
+    "akinsho/git-conflict.nvim",
+    tag = "*",
+    cmd = { "GitConflictListQf", "GitConflictChooseOurs", "GitConflictChooseTheirs", },
+    config = get_setup("git-conflict"),
+  })
+  -- use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
-  use({ "kdheepak/lazygit.nvim" })
+  use({ "kdheepak/lazygit.nvim", cmd = { "LazyGit", "LazyGitConfig" }, config = function() require('lazygit.utils').project_root_dir() end, })
 
   -- LSP
-  use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"), requires = {
-    --
-    -- LSP Support
-    { "neovim/nvim-lspconfig" },
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
+  use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"),
+    requires = {
+      --
+      -- LSP Support
+      { "neovim/nvim-lspconfig" },
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
 
-    -- Autocompletion
-    { "hrsh7th/nvim-cmp" },
-    { "hrsh7th/cmp-nvim-lsp" },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-path" },
-    { "saadparwaiz1/cmp_luasnip" },
-    { "hrsh7th/cmp-nvim-lua" },
+      -- Autocompletion
+      { "hrsh7th/nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-nvim-lua" },
 
-    -- Snippets
-    { "L3MON4D3/LuaSnip" },
-    { "rafamadriz/friendly-snippets" },
-    { "someone-stole-my-name/yaml-companion.nvim"}
-    -- configuration
+      -- Snippets
+      { "L3MON4D3/LuaSnip" },
+      { "rafamadriz/friendly-snippets" },
+      { "someone-stole-my-name/yaml-companion.nvim" }
+      -- configuration
 
-  } }
-  use { "zbirenbaum/copilot.lua", event = "BufWinEnter", config = get_setup("copilot") }
-  use { 'akinsho/flutter-tools.nvim', config = function() require("flutter-tools").setup({}) end,
+    } }
+  use { "zbirenbaum/copilot.lua", event = "VimEnter", config = get_setup("copilot") }
+  use { "akinsho/flutter-tools.nvim", cmd = "FlutterRun", config = function() require("flutter-tools").setup({}) end,
     requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } }
 
   -- Telescope
@@ -116,7 +121,6 @@ return packer.startup(function(use)
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
   use({ "ahmedkhalf/project.nvim", config = get_setup("project") })
-  use({ "ANGkeith/telescope-terraform-doc.nvim" })
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })

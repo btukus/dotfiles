@@ -39,8 +39,8 @@ require('mason-lspconfig').setup({
   },
 })
 
-local cfg = require("yaml-companion").setup({})
-require("lspconfig")["yamlls"].setup(cfg)
+-- local cfg = require("yaml-companion").setup({})
+-- require("lspconfig")["yamlls"].setup(cfg)
 
 local cmp = require('cmp')
 cmp.setup({

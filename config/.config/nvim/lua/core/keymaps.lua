@@ -89,12 +89,6 @@ map("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
 map("n", "<leader>fp", ":Telescope projects<CR>", opts)
 map("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
 map("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
-map("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-map("n", "<leader>fa", ":Telescope terraform_doc full_name=hashicorp/azurerm<CR>", opts)
-
-
--- Nvim-Tree
-map("n", "<leader>nn", ":NvimTreeToggle<CR>", opts)
 
 -- Git Conflict
 map("n", "<leader>gl", "GitConflictListQf<CR>", opts)
@@ -136,7 +130,6 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 map("x", "L", ">gv", opts)
 map("x", "H", "<gv", opts)
 map("x", "<leader>p", "\"_dP")
-
 -- TreeSJ
 map("n", "<leader>tt", ":TSJToggle<CR>", opts)
 
@@ -161,3 +154,8 @@ map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
 map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 map('n', '<leader>gj', ':vsplit | lua vim.lsp.buf.definition()<CR>')
 map('n', '<leader>gk', ':belowright split | lua vim.lsp.buf.definition()<CR>')
+
+-- NoNeckPain
+map("n", "<leader>nn", ":NoNeckPain<CR>", opts)
+map("n", "<leader>nl", ":NoNeckPainToggleLeftSide<CR>", opts)
+map("n", "<leader>nr", ":NoNeckPainToggleRightSide<CR>", opts)

@@ -22,7 +22,7 @@ brew "kompose"
 brew "kubernetes-cli"
 brew "lazygit"
 brew "luarocks"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "packer"
 brew "reattach-to-user-namespace"
 brew "ripgrep"

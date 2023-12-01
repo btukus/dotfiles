@@ -47,7 +47,7 @@ return packer.startup(function(use)
   use({ 'fgheng/winbar.nvim', event = "VimEnter", config = get_setup("winbar") })
   use({ 'romgrk/barbar.nvim', config = function() require("barbar").setup({}) end, event = "VimEnter", --[[  after = "gitsigns.nvim" ]] })
   use({ "lewis6991/gitsigns.nvim", event = "VimEnter" })
-  use({ "shortcuts/no-neck-pain.nvim", tag = "*", cmd = "NoNeckPain" })
+  use({ "shortcuts/no-neck-pain.nvim", tag = "*", cmd = {"NoNeckPain", "NoNeckPainToggleRightSide", "NoNeckPainToggleLeftSide"}, config = get_setup("noneckpain") })
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap"), opt = true, keys = { "s" } })

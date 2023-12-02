@@ -14,6 +14,7 @@ alias gaa='git add --all'                                                 # Stag
 
 # Git branch
 alias gb='git branch'                                                     # Show local branches
+alias gbr='git branch -r'                                                  # Show remote branches
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 

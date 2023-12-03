@@ -32,29 +32,14 @@ function gwag() {
   echo $1 | pbcopy;
 }
 
-function git_main_branch() {
-  command git rev-parse --git-dir &>/dev/null || return
-  local ref
-  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}; do
-    if command git show-ref -q --verify $ref; then
-      echo ${ref:t}
-      return
+gr() {
+    root_dir=$(git rev-parse --show-toplevel 2> /dev/null)
+    if [ $? -eq 0 ]; then
+        cd "$root_dir" || return
+        echo "Moved to Git root: $root_dir"
+    else
+        echo "Not inside a Git repository."
     fi
-  done
-  echo master
-}
-
-# Check for develop and similarly named branches
-function git_develop_branch() {
-  command git rev-parse --git-dir &>/dev/null || return
-  local branch
-  for branch in dev devel development; do
-    if command git show-ref -q --verify refs/heads/$branch; then
-      echo $branch
-      return
-    fi
-  done
-  echo develop
 }
 
 pat() {

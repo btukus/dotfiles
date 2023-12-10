@@ -84,7 +84,6 @@ return packer.startup(function(use)
     cmd = { "GitConflictListQf", "GitConflictChooseOurs", "GitConflictChooseTheirs", },
     config = get_setup("git-conflict"),
   })
-  -- use({ "ThePrimeagen/git-worktree.nvim", config = get_setup("git-worktree") })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
   use({ "kdheepak/lazygit.nvim", cmd = { "LazyGit", "LazyGitConfig" }, config = function() require('lazygit.utils').project_root_dir() end, })
 
@@ -121,6 +120,7 @@ return packer.startup(function(use)
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use({ "nvim-telescope/telescope-file-browser.nvim" })
   use({ "ahmedkhalf/project.nvim", config = get_setup("project") })
+  use({ "ThePrimeagen/git-worktree.nvim" })
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", config = get_setup("treesitter") })

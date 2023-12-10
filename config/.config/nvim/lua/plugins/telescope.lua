@@ -6,8 +6,7 @@ end
 telescope.load_extension("fzf")
 telescope.load_extension("projects")
 telescope.load_extension("file_browser")
--- telescope.load_extension("git_worktree")
-telescope.load_extension("yaml_schema")
+telescope.load_extension("git_worktree")
 
 telescope.setup({
   defaults = {
@@ -52,5 +51,5 @@ telescope.setup({
       theme = "ivy",
       hijack_netrw = true,
     },
-  }
+  },
 })

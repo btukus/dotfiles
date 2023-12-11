@@ -40,7 +40,7 @@ return packer.startup(function(use)
   use({ "wbthomason/packer.nvim" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
-  use({ "aserowy/tmux.nvim", event = "CursorMoved", config = get_setup("tmux") })
+  use({ "aserowy/tmux.nvim", event = "VimEnter", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "MunifTanjim/nui.nvim", event = "VimEnter" })
   use({ "folke/noice.nvim", event = "VimEnter", config = function() require("noice").setup({}) end })
@@ -50,7 +50,7 @@ return packer.startup(function(use)
   use({ "shortcuts/no-neck-pain.nvim", tag = "*", cmd = {"NoNeckPain", "NoNeckPainToggleRightSide", "NoNeckPainToggleLeftSide"}, config = get_setup("noneckpain") })
 
   -- Motion
-  use({ "ggandor/leap.nvim", config = get_setup("leap"), opt = true, keys = { "s" } })
+  use({ "ggandor/leap.nvim", config = get_setup("leap"), event = "VimEnter" })
   use({ "chaoren/vim-wordmotion", event = "CursorMoved" })
   use({ "karb94/neoscroll.nvim", event = "VimEnter", config = function() require("neoscroll").setup({}) end })
 

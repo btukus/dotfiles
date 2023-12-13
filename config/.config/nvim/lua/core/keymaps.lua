@@ -64,6 +64,19 @@ map("n", "q:", "<nop>", opts)
 -- Don't yank when x
 map("n", "x", '"_x', opts)
 
+-- go to end of line
+local modes = {'n', 'v', 's', 'o'}
+for _, mode in ipairs(modes) do
+    map(mode, '$', 'g_', opts)
+end
+
+-- Paste over visual selection
+local symbols = { "(", "[", "{", "'", '"', "`" }
+for _, symbol in ipairs(symbols) do
+  map('n', '<leader>p' .. symbol, 'vi' .. symbol .. 'p', opts)
+  map('n', '<leader>P' .. symbol, 'va' .. symbol .. 'p', opts)
+end
+
 -- Auto indentation on empty lines
 function autoIndent(key)
   return function()
@@ -71,10 +84,10 @@ function autoIndent(key)
   end
 end
 
-map("n", "i", autoIndent("i"), { expr = true, noremap = true })
-map("n", "I", autoIndent("I"), { expr = true, noremap = true })
-map("n", "a", autoIndent("a"), { expr = true, noremap = true })
-map("n", "A", autoIndent("A"), { expr = true, noremap = true })
+local keys = {"i", "I", "a", "A"}
+for _, key in ipairs(keys) do
+    map("n", key, autoIndent(key), { expr = true, noremap = true })
+end
 
 ------------------------------- Plugins ------------------------------------
 

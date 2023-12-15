@@ -41,3 +41,9 @@ alias krmr='kubectl delete rs'
 alias kaf='kubectl apply -f'
 
 alias kl='kubectl logs'
+
+
+alias kcc='kubectl config current-context'
+alias kcg='kubectl config get-contexts'
+alias kcs='kubectl config set-context'
+

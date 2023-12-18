@@ -6,6 +6,7 @@ end
 indent_blankline.setup({
   scope = {
     show_start = false,
+    show_end = false,
   },
   indent = {
     char = "▏",
@@ -13,4 +14,5 @@ indent_blankline.setup({
   whitespace = {
     remove_blankline_trail = false,
   },
+
 })

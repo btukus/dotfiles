@@ -14,7 +14,7 @@
     dest: "~/.ssh/config"
     content: |
       {% for origin in ssh_origins %}
-      Host {{ origin.name }}
+      Host {{ origin.name }} {{ origin.hostname }}
         HostName {{ origin.hostname }}
         User {{ origin.user }}
         IdentityFile {{ origin.identityfile }}

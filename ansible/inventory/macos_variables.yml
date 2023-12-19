@@ -7,7 +7,8 @@ ssh_origins:
 - {name: "Github", hostname: "github.com", user: "git" ,host: "github.com", identityfile: "~/.ssh/github/github", location: "~/.ssh/github",}
 - {name: "Gitlab", hostname: "gitlab.com", user: "git" ,host: "gitlab.com", identityfile: "~/.ssh/gitlab/gitlab", location: "~/.ssh/gitlab",}
 - {name: "Bitbucket", hostname: "bitbucket.com", user: "git" ,host: "bitbucket.com", identityfile: "~/.ssh/bitbucket/bitbucket", location: "~/.ssh/bitbucket",}
-- {name: "Azure DevOps", hostname: "dev.azure.com", user: "git" ,host: "dev.azure.com", identityfile: "~/.ssh/devops/devops", location: "~/.ssh/devops",}
+- {name: "DevOps", hostname: "dev.azure.com", user: "git" ,host: "dev.azure.com", identityfile: "~/.ssh/devops/devops", location: "~/.ssh/devops",}
+- {name: "SSHDevOps", hostname: "ssh.dev.azure.com", user: "git" ,host: "ssh.dev.azure.com", identityfile: "~/.ssh/sshdevops/sshdevops", location: "~/.ssh/sshdevops",}
 
 stow_directories:
 - git

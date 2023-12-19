@@ -51,18 +51,8 @@ for n in ${ssh[@]}; do
   fi
 done
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
-
-# . /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-# Set neovim as default editor
-export VISUAL=nvim
-export EDITOR=nvim
-
-
 . $(brew --prefix asdf)/libexec/asdf.sh
-. ~/.asdf/plugins/java/set-java-home.zsh
+# . ~/.asdf/plugins/java/set-java-home.zsh
 
 autoload -Uz compinit
 
@@ -73,5 +63,9 @@ autoload -Uz compinit
     compinit -C
   fi
 } ${ZDOTDIR}/.zcompdump(N.mh+24)
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+
 
 # zprof

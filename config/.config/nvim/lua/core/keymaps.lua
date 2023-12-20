@@ -42,6 +42,9 @@ map("n", "<leader>c", "<cmd>nohlsearch<CR>", opts)
 -- Close buffers
 map("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
+-- Toggle relative numbers
+map("n", "<leader>rn", "<cmd>set relativenumber!<CR>", opts)
+
 -- Insert --
 map("n", "<leader>yy", ":%y+<cr>", opts)
 
@@ -59,7 +62,8 @@ map("x", "<BS>", "%", opts)
 map("n", "q:", "<nop>", opts)
 
 -- Don't copy when pasted
---[[ map("v", "p", '"_dP`]', opts) ]]
+-- map("v", "p", '"_dP`]', opts)
+-- map("x", "p", function() return 'pgv"' .. vim.v.register .. "y" end, { remap = false, expr = true })
 
 -- Don't yank when x
 map("n", "x", '"_x', opts)

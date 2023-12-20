@@ -63,3 +63,5 @@ alias grm='git rm'
 alias gS='git stash'
 
 alias gg='lazygit'
+alias gref='git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch'
+alias grefg='git config --global remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch'

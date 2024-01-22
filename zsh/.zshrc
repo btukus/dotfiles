@@ -52,7 +52,7 @@ for n in ${ssh[@]}; do
 done
 
 . $(brew --prefix asdf)/libexec/asdf.sh
-# . ~/.asdf/plugins/java/set-java-home.zsh
+. ~/.asdf/plugins/java/set-java-home.zsh
 
 autoload -Uz compinit
 

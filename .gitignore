@@ -27,6 +27,7 @@ config/.config/ngrok/
 config/.config/flutter/
 config/.config/.android/
 config/.config/helm/
+config/.config/btop/
 
 
 zsh/antidote/.antidote/

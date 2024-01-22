@@ -32,14 +32,8 @@ function gwag() {
   echo $1 | pbcopy;
 }
 
-gr() {
-    root_dir=$(git rev-parse --show-toplevel 2> /dev/null)
-    if [ $? -eq 0 ]; then
-        cd "$root_dir" || return
-        echo "Moved to Git root: $root_dir"
-    else
-        echo "Not inside a Git repository."
-    fi
+function gu() {
+  source "$HOME/dotfiles/zsh/scripts/update_git_worktrees.zsh"
 }
 
 pat() {

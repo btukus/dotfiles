@@ -2,7 +2,7 @@
 
 # Array of directories containing git worktrees
 directories=(
-  "/Users/btukus/drive/mac/development/conclusion"
+  "${HOME}/drive/mac/development/conclusion"
 )
 
 # Function to check if a directory is a Git worktree

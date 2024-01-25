@@ -183,9 +183,19 @@ function Vim:eventWatcher(evt)
 	-- stop an event from propagating through the event system
 	local stop_event = true
 	local evtChar = evt:getCharacters()
+  local evtModifiers = evt:getFlags()
 	if self.debug then
 		print('in eventWatcher: pressed ' .. evtChar)
 	end
+
+  -- Allow Cmd+Tab and Cmd+Space to pass through
+  if evtModifiers.cmd and (evtChar == '\t' or evtChar == ' ') then
+      return false
+  end
+  if self.debug then
+      print('in eventWatcher: pressed ' .. evtChar)
+  end
+  
 	local insertEvents = 'iIsaAoO'
 	local commandMods = 'rcdy'
 	-- this function mostly handles the state-dependent events

@@ -5,9 +5,12 @@ end
 
 configs.setup({
 	ensure_installed = "all",
-  ignore_install = {"yaml"},
+  ignore_install = {},
 	highlight = {
 		enable = true,
+    disable = {
+      "yaml",
+    },
 	},
 	autopairs = {
 		enable = true,
@@ -15,5 +18,12 @@ configs.setup({
 	autotag = {
 		enable = true,
 	},
-	indent = { enable = true, disable = { "python", "css" } },
+	indent = {
+    enable = true,
+    disable = {
+      "python",
+      "css",
+      "yaml",
+    },
+  },
 })

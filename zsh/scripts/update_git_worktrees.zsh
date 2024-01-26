@@ -3,6 +3,7 @@
 # Array of directories containing git worktrees
 directories=(
   "${HOME}/drive/mac/development/conclusion"
+  "${HOME}/drive/mac/development/eneco"
 )
 
 # Function to check if a directory is a Git worktree

@@ -6,6 +6,8 @@ directories=(
   "${HOME}/drive/mac/development/eneco"
 )
 
+current_dir=$(pwd)
+
 # Function to check if a directory is a Git worktree
 is_git_worktree() {
     local repo_dir=$1
@@ -56,3 +58,4 @@ for dir in $directories; do
     fi
 done
 
+cd $current_dir

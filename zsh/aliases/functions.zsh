@@ -36,6 +36,22 @@ function gu() {
   source "$HOME/dotfiles/zsh/scripts/update_git_worktrees.zsh"
 }
 
+gwd() {
+  current_dir=$(pwd)
+  cd ../
+  git worktree remove -f "$current_dir"
+
+  if git show-ref --verify --quiet refs/heads/main; then
+    cd main
+  elif git show-ref --verify --quiet refs/heads/master; then
+    cd master
+  else
+    echo "Neither 'main' nor 'master' branch found."
+  fi
+}
+
+
+
 pat() {
   # Extract the original URL and the value for the switch
   local original_url="$1"

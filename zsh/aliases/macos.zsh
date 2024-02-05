@@ -10,3 +10,4 @@ alias outlook='open -a "Microsoft Outlook" '
 
 alias pwdc='pwd | pbcopy'
 alias pbc='pbcopy'
+alias treec='tree | pbcopy'

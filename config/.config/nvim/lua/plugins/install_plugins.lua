@@ -42,12 +42,13 @@ return packer.startup(function(use)
   use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
   use({ "aserowy/tmux.nvim", event = "VimEnter", config = get_setup("tmux") })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "MunifTanjim/nui.nvim",  })
+  use({ "MunifTanjim/nui.nvim", })
   use({ "folke/noice.nvim", config = function() require("noice").setup({}) end })
   use({ 'fgheng/winbar.nvim', event = "VimEnter", config = get_setup("winbar") })
   use({ 'romgrk/barbar.nvim', config = function() require("barbar").setup({}) end, })
   use({ "lewis6991/gitsigns.nvim" })
-  use({ "shortcuts/no-neck-pain.nvim", tag = "*", cmd = {"NoNeckPain", "NoNeckPainToggleRightSide", "NoNeckPainToggleLeftSide"}, config = get_setup("noneckpain") })
+  use({ "shortcuts/no-neck-pain.nvim", tag = "*",
+    cmd = { "NoNeckPain", "NoNeckPainToggleRightSide", "NoNeckPainToggleLeftSide" }, config = get_setup("noneckpain") })
 
   -- Motion
   use({ "ggandor/leap.nvim", config = get_setup("leap"), event = "VimEnter" })
@@ -78,14 +79,10 @@ return packer.startup(function(use)
   -- use({ "martinsione/darkplus.nvim" })
 
   -- Git
-  use({
-    "akinsho/git-conflict.nvim",
-    tag = "*",
-    cmd = { "GitConflictListQf", "GitConflictChooseOurs", "GitConflictChooseTheirs", },
-    config = get_setup("git-conflict"),
-  })
+  use({ "akinsho/git-conflict.nvim", tag = "*", config = get_setup("git-conflict") })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
-  use({ "kdheepak/lazygit.nvim", cmd = { "LazyGit", "LazyGitConfig" }, config = function() require('lazygit.utils').project_root_dir() end, })
+  use({ "kdheepak/lazygit.nvim", cmd = { "LazyGit", "LazyGitConfig" },
+    config = function() require('lazygit.utils').project_root_dir() end, })
 
   -- LSP
   use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"),

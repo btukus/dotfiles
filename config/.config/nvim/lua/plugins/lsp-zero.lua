@@ -2,6 +2,7 @@ local cmp_status_ok, lsp = pcall(require, "lsp-zero")
 if not cmp_status_ok then
   return
 end
+
 lsp.preset('recommended')
 
 
@@ -94,7 +95,8 @@ lsp.configure('tsserver', {
 })
 
 
--- Config for cmp
+
+-- LuaSnip setup
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippets" } })
@@ -105,7 +107,12 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+
+
+
+-- Config for cmp
 local cmp = require('cmp')
+
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -148,5 +155,7 @@ cmp.setup({
 
 })
 
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
 
 lsp.setup()

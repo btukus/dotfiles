@@ -40,7 +40,7 @@ return packer.startup(function(use)
   use({ "wbthomason/packer.nvim" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "lewis6991/impatient.nvim", config = function() require('impatient').enable_profile() end })
-  use({ "aserowy/tmux.nvim", event = "VimEnter", config = function() return require("tmux").setup() end })
+  use({ "aserowy/tmux.nvim", event = "CursorMoved", config = function() return require("tmux").setup() end })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "MunifTanjim/nui.nvim", })
   use({ "folke/noice.nvim", config = function() require("noice").setup({}) end })
@@ -56,12 +56,13 @@ return packer.startup(function(use)
 
   -- Motion
   use({ "ggandor/leap.nvim", config = function() require('leap').set_default_keymaps() end })
-  use({ "chaoren/vim-wordmotion", event = "VimEnter" })
+  use({ "chaoren/vim-wordmotion", event = "CursorMoved" })
 
   -- Window and session management
   use({
     "simrat39/symbols-outline.nvim",
-    opt = true, cmd = { "SymbolsOutline" },
+    opt = true,
+    cmd = { "SymbolsOutline" },
     config = function() require("symbols-outline").setup() end
   })
   use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
@@ -69,9 +70,9 @@ return packer.startup(function(use)
   -- Text Editing
   use({ "numToStr/Comment.nvim", opt = true, keys = { "gc", "gcc", "gbc" }, config = get_setup("comment"), })
   use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
-  use({ "windwp/nvim-autopairs", event = "VimEnter", config = get_setup("autopairs") })
-  use({ "windwp/nvim-ts-autotag", event = "VimEnter" })
-  use({ "kylechui/nvim-surround", event = "VimEnter", config = function() require("nvim-surround").setup({}) end })
+  use({ "windwp/nvim-autopairs", event = "InsertEnter", config = function() require("nvim-autopairs").setup {} end })
+  use({ "windwp/nvim-ts-autotag", event = "InsertEnter" })
+  use({ "kylechui/nvim-surround", event = "CursorMoved", config = function() require("nvim-surround").setup({}) end })
   use({ 'Wansmer/treesj', opt = true, cmd = { "TSJToggle" }, config = function() require('treesj').setup({}) end, })
 
   -- Buffer Plugins
@@ -95,6 +96,7 @@ return packer.startup(function(use)
 
   -- LSP
   use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"),
+    event = { 'BufReadPre', 'BufNewFile' },
     requires = {
       --
       -- LSP Support
@@ -117,7 +119,7 @@ return packer.startup(function(use)
       -- configuration
 
     } }
-  use { "zbirenbaum/copilot.lua", event = "VimEnter", config = get_setup("copilot") }
+  use { "zbirenbaum/copilot.lua", event = "CursorMoved", config = get_setup("copilot") }
   use { "akinsho/flutter-tools.nvim", cmd = "FlutterRun", config = function() require("flutter-tools").setup({}) end,
     requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } }
 

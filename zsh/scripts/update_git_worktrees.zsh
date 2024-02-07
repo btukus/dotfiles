@@ -4,6 +4,7 @@
 directories=(
   "${HOME}/drive/mac/development/conclusion"
   "${HOME}/drive/mac/development/eneco"
+  "${HOME}/drive/mac/development/ringshard"
 )
 
 current_dir=$(pwd)

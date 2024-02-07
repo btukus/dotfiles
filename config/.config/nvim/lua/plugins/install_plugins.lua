@@ -39,24 +39,31 @@ return packer.startup(function(use)
   -- Neovim Config
   use({ "wbthomason/packer.nvim" })
   use({ "nvim-lua/plenary.nvim" })
-  use({ "lewis6991/impatient.nvim", config = get_setup("impatient") })
-  use({ "aserowy/tmux.nvim", event = "VimEnter", config = get_setup("tmux") })
+  use({ "lewis6991/impatient.nvim", config = function() require('impatient').enable_profile() end })
+  use({ "aserowy/tmux.nvim", event = "VimEnter", config = function() return require("tmux").setup() end })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "MunifTanjim/nui.nvim", })
   use({ "folke/noice.nvim", config = function() require("noice").setup({}) end })
-  use({ 'fgheng/winbar.nvim', event = "VimEnter", config = get_setup("winbar") })
+  use({ 'fgheng/winbar.nvim', config = function() require("winbar").setup({}) end, })
   use({ 'romgrk/barbar.nvim', config = function() require("barbar").setup({}) end, })
   use({ "lewis6991/gitsigns.nvim" })
-  use({ "shortcuts/no-neck-pain.nvim", tag = "*",
-    cmd = { "NoNeckPain", "NoNeckPainToggleRightSide", "NoNeckPainToggleLeftSide" }, config = get_setup("noneckpain") })
+  use({
+    "shortcuts/no-neck-pain.nvim",
+    tag = "*",
+    cmd = { "NoNeckPain", "NoNeckPainToggleRightSide", "NoNeckPainToggleLeftSide" },
+    config = get_setup("noneckpain")
+  })
 
   -- Motion
-  use({ "ggandor/leap.nvim", config = get_setup("leap"), event = "VimEnter" })
+  use({ "ggandor/leap.nvim", config = function() require('leap').set_default_keymaps() end })
   use({ "chaoren/vim-wordmotion", event = "VimEnter" })
-  -- use({ "karb94/neoscroll.nvim", config = function() require("neoscroll").setup({}) end })
 
   -- Window and session management
-  use({ "simrat39/symbols-outline.nvim", opt = true, cmd = { "SymbolsOutline" }, config = get_setup("symbols_outline"), })
+  use({
+    "simrat39/symbols-outline.nvim",
+    opt = true, cmd = { "SymbolsOutline" },
+    config = function() require("symbols-outline").setup() end
+  })
   use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
 
   -- Text Editing
@@ -64,9 +71,8 @@ return packer.startup(function(use)
   use({ "JoosepAlviste/nvim-ts-context-commentstring", after = "Comment.nvim" })
   use({ "windwp/nvim-autopairs", event = "VimEnter", config = get_setup("autopairs") })
   use({ "windwp/nvim-ts-autotag", event = "VimEnter" })
-  use({ "kylechui/nvim-surround", event = "VimEnter", config = get_setup("nvim-surround") })
+  use({ "kylechui/nvim-surround", event = "VimEnter", config = function() require("nvim-surround").setup({}) end })
   use({ 'Wansmer/treesj', opt = true, cmd = { "TSJToggle" }, config = function() require('treesj').setup({}) end, })
-  -- use({ "nguyenvukhang/nvim-toggler", config = get_setup("nvim-toggler") })
 
   -- Buffer Plugins
   use({ "moll/vim-bbye", opt = true, cmd = { "Bdelete" } })
@@ -81,8 +87,11 @@ return packer.startup(function(use)
   -- Git
   use({ "akinsho/git-conflict.nvim", tag = "*", config = get_setup("git-conflict") })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
-  use({ "kdheepak/lazygit.nvim", cmd = { "LazyGit", "LazyGitConfig" },
-    config = function() require('lazygit.utils').project_root_dir() end, })
+  use({
+    "kdheepak/lazygit.nvim",
+    cmd = { "LazyGit", "LazyGitConfig" },
+    config = function() require('lazygit.utils').project_root_dir() end,
+  })
 
   -- LSP
   use { 'VonHeikemen/lsp-zero.nvim', config = get_setup("lsp-zero"),

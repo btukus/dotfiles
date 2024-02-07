@@ -1,7 +1,0 @@
-{
-    "diagnostics.globals": [
-        "vim",
-        "get_setup",
-        "autoIndent"
-    ]
-}

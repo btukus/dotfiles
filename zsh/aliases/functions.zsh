@@ -25,33 +25,6 @@ ip () {
   fi
 }
 
-# Git
-function gcp() { git add --all; git commit -m $1; git push; }
-function gwag() { 
-  git worktree add --checkout ../$1 && cd ../$1; 
-  echo $1 | pbcopy;
-}
-
-function gu() {
-  source "$HOME/dotfiles/zsh/scripts/update_git_worktrees.zsh"
-}
-
-gwd() {
-  current_dir=$(pwd)
-  cd ../
-  git worktree remove -f "$current_dir"
-
-  if git show-ref --verify --quiet refs/heads/main; then
-    cd main
-  elif git show-ref --verify --quiet refs/heads/master; then
-    cd master
-  else
-    echo "Neither 'main' nor 'master' branch found."
-  fi
-}
-
-
-
 pat() {
   # Extract the original URL and the value for the switch
   local original_url="$1"
@@ -79,3 +52,41 @@ pat() {
   # Output the modified URL
   echo "$modified_url" | pbcopy
 }
+
+#
+# # Git
+# function gcp() { git add --all; git commit -m $1; git push; }
+#
+# function gwam() {
+#   if [ -z "$1" ]; then
+#     git worktree add --checkout main
+#   else
+#     git worktree add --checkout $1
+#   fi
+# }
+#
+# function gwag() { 
+#   root_dir=$(git rev-parse --show-toplevel 2> /dev/null)
+#   cd $root_dir
+#   git worktree add --checkout ../$1 && cd ../$1; 
+#   echo $1 | pbcopy;
+# }
+#
+# function gwd() {
+#   current_worktree=$(git rev-parse --show-toplevel 2> /dev/null)
+#   cd $current_worktree
+#   cd ../
+#   git worktree remove -f "$current_worktree"
+#
+#   if git show-ref --verify --quiet refs/heads/main; then
+#     cd main
+#   elif git show-ref --verify --quiet refs/heads/master; then
+#     cd master
+#   else
+#     echo "Neither 'main' nor 'master' branch found."
+#   fi
+# }
+#
+# function gu() {
+#   source "$HOME/dotfiles/zsh/scripts/update_git_worktrees.zsh"
+# }

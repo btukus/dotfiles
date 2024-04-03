@@ -5,6 +5,8 @@ directories=(
   "${HOME}/drive/mac/development/conclusion"
   "${HOME}/drive/mac/development/eneco"
   "${HOME}/drive/mac/development/ringshard"
+  "${HOME}/drive/mac/development/syntess"
+  "${HOME}/drive/mac/development/sensey"
 )
 
 current_dir=$(pwd)

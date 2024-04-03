@@ -14,12 +14,11 @@ gbare() {
     exit 1
   fi
 
-  # local trimmed_url=$(trim_git_suffix "$repo_url")
-  echo "Trimmed URL: $trimmed_url"
+  local trimmed_url=$(trim_git_suffix "$repo_url")
+  # echo "Trimmed URL: $trimmed_url"
   local repo_name=$(basename "$trimmed_url")
   # echo "Repository name: $repo_name"
 
-  echo "Creating bare repository for: $repo_url"
   git clone --bare "$repo_url" "${repo_name}"
   cd "${repo_name}"
 

@@ -3,7 +3,6 @@
 # Array of directories containing git worktrees
 directories=(
   "${HOME}/drive/mac/development/conclusion"
-  "${HOME}/drive/mac/development/eneco"
   "${HOME}/drive/mac/development/ringshard"
   "${HOME}/drive/mac/development/syntess"
   "${HOME}/drive/mac/development/sensey"

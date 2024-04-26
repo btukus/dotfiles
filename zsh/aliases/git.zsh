@@ -94,8 +94,10 @@ function gwd() {
 
   if git show-ref --verify --quiet refs/heads/main; then
     cd main
+    git pull
   elif git show-ref --verify --quiet refs/heads/master; then
     cd master
+    git pull
   else
     echo "Neither 'main' nor 'master' branch found."
   fi

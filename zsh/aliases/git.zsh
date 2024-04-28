@@ -88,7 +88,7 @@ function gwag() {
 
 function gwd() {
   current_worktree=$(git rev-parse --show-toplevel 2> /dev/null)
-  current_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+  current_branch=$(git branch --show-current)
   cd $current_worktree
   cd ../
   git worktree remove -f "$current_worktree"

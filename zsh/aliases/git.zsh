@@ -88,6 +88,7 @@ function gwag() {
 
 function gwd() {
   current_worktree=$(git rev-parse --show-toplevel 2> /dev/null)
+  current_branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
   cd $current_worktree
   cd ../
   git worktree remove -f "$current_worktree"
@@ -95,9 +96,11 @@ function gwd() {
   if git show-ref --verify --quiet refs/heads/main; then
     cd main
     git pull
+    git branch -D $current_branch
   elif git show-ref --verify --quiet refs/heads/master; then
     cd master
     git pull
+    git branch -D $current_branch
   else
     echo "Neither 'main' nor 'master' branch found."
   fi

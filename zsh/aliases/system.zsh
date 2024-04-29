@@ -1,15 +1,13 @@
 # ls aliases
-alias ls='ls --color=auto'
-alias lv='ls -1 --color=auto'
-# alias la='ls -la --color=auto'
-alias la='ls -l --color=always -A | sort -k 1.1,1.1r -k 9 | awk '\''{print $0}'\'''
-alias lsl='ls -l --color=auto'
+alias la='eza -la --group-directories-first --git'
+alias laa='eza -la --group-directories-first --absolute --git'
+alias lar='eza -la --group-directories-first --recurse --git'
 alias lg='la | grep'
 
 # Directory changes
 alias cdb='cd -'
 alias GD='temp=$(pwd)'
-alias cdt='cd $TEMP'
+alias cdt='cd $temp'
 alias path="sed 's/:/\n/g' <<< "$PATH""
 
 # Navigation aliases

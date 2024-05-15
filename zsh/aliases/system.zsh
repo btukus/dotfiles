@@ -48,3 +48,7 @@ alias devops='ssh-add ~/.ssh/devops/devops'
 alias sshdevops='ssh-add ~/.ssh/sshdevops/sshdevops'
 
 alias cpr='cp -r'
+
+alias ds='clear'
+alias cls='clear'
+alias cl='clear'

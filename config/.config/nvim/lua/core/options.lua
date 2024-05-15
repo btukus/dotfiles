@@ -13,7 +13,7 @@ local options = {
 	numberwidth = 2, -- set number column width to 2 {default 4}
 	number = true,
 	relativenumber = true, -- set numbered lines
-	laststatus = 0,
+	-- laststatus = 0,
   ea = true,
 
 	-- File configuration options

@@ -1,0 +1,16 @@
+aliases:
+  dp: deployments
+  sts: statefulsets
+  ds: daemonsets
+  cm: configmaps
+  sc: secrets
+  sa: serviceaccount
+  svc: service
+  sec: v1/secrets
+  jo: jobs
+  cr: clusterroles
+  crb: clusterrolebindings
+  ro: roles
+  rb: rolebindings
+  np: networkpolicies
+  crd: customresourcedefinitions

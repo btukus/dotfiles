@@ -7,6 +7,8 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 agkozak/zsh-z
 jeffreytse/zsh-vi-mode
 
+ahmetb/kubectx path:completion kind:fpath
+
 # final
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-autosuggestions

@@ -47,6 +47,14 @@ done
 . $(brew --prefix asdf)/libexec/asdf.sh
 . ~/.asdf/plugins/java/set-java-home.zsh
 
+export EDITOR=nvim
+
+# K8s stuff
+source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+KUBE_FUZZY_PREVIEW_ENABLED=true
+
 autoload -Uz compinit
 
 () {

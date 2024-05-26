@@ -14,3 +14,4 @@ aliases:
   rb: rolebindings
   np: networkpolicies
   crd: customresourcedefinitions
+  cl: contexts

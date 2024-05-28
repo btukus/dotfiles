@@ -48,7 +48,7 @@ alias kcg='kubectl config get-contexts'
 alias kcs='kubectl config set-context'
 alias kcu='kubectl config use-context'
 alias kns='kubens'
-alias kx='kubectx'
+alias kcl='kubectx'
 
 alias kfdd='kubectl fuzzy describe deployments -P'
 alias kfdp='kubectl fuzzy describe pods -P'

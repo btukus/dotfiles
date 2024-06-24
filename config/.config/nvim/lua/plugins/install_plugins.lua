@@ -47,6 +47,7 @@ return packer.startup(function(use)
   use({ 'fgheng/winbar.nvim', config = function() require("winbar").setup({}) end, })
   use({ 'romgrk/barbar.nvim', config = function() require("barbar").setup({}) end, })
   use({ "lewis6991/gitsigns.nvim" })
+  use({ "FabijanZulj/blame.nvim", config = function() require("blame").setup() end })
   use({
     "shortcuts/no-neck-pain.nvim",
     tag = "*",
@@ -91,7 +92,7 @@ return packer.startup(function(use)
   use({
     "kdheepak/lazygit.nvim",
     cmd = { "LazyGit", "LazyGitConfig" },
-    config = function() require('lazygit.utils').project_root_dir() end,
+    config = function() require('lazygit') end,
   })
 
   -- LSP

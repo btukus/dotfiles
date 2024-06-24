@@ -28,6 +28,7 @@ config/.config/flutter/
 config/.config/.android/
 config/.config/helm/
 config/.config/btop/
+config/.config/lazydocker/
 
 
 zsh/antidote/.antidote/

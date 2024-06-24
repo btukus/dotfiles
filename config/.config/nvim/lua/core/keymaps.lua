@@ -120,6 +120,9 @@ map("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.gi
 -- Lazygit
 map("n", "<leader>gg", ":LazyGit<CR>", opts)
 
+-- Git blame
+map("n", "<leader>gb", ":BlameToggle<CR>", opts)
+
 -- Harpoon
 map("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
 map("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)

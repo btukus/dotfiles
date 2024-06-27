@@ -42,31 +42,17 @@ return packer.startup(function(use)
   use({ "lewis6991/impatient.nvim", config = function() require('impatient').enable_profile() end })
   use({ "aserowy/tmux.nvim", event = "CursorMoved", config = function() return require("tmux").setup() end })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "MunifTanjim/nui.nvim", })
-  use({ "folke/noice.nvim", config = function() require("noice").setup({}) end })
-  use({ 'fgheng/winbar.nvim', config = function() require("winbar").setup({}) end, })
-  use({ 'romgrk/barbar.nvim', config = function() require("barbar").setup({}) end, })
-  use({ "lewis6991/gitsigns.nvim" })
-  use({ "FabijanZulj/blame.nvim", config = function() require("blame").setup() end })
-  use({
-    "shortcuts/no-neck-pain.nvim",
-    tag = "*",
-    cmd = { "NoNeckPain", "NoNeckPainToggleRightSide", "NoNeckPainToggleLeftSide" },
-    config = get_setup("noneckpain")
-  })
+  use({ "MunifTanjim/nui.nvim", event = "BufReadPre" })
+  use({ "folke/noice.nvim", config = function() require("noice").setup({}) end, event = "BufReadPre" })
+  use({ 'romgrk/barbar.nvim', config = function() require("barbar").setup({}) end, event = "BufReadPre" })
+  use({ "FabijanZulj/blame.nvim", config = function() require("blame").setup() end, cmd = { "BlameToggle" } })
 
   -- Motion
-  use({ "ggandor/leap.nvim", config = function() require('leap').set_default_keymaps() end })
+  use({ "ggandor/leap.nvim", config = function() require('leap').set_default_keymaps() end, keys = { "s", "S" } })
   use({ "chaoren/vim-wordmotion", event = "CursorMoved" })
 
   -- Window and session management
-  use({
-    "simrat39/symbols-outline.nvim",
-    opt = true,
-    cmd = { "SymbolsOutline" },
-    config = function() require("symbols-outline").setup() end
-  })
-  use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
+  -- use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
 
   -- Text Editing
   use({ "numToStr/Comment.nvim", opt = true, keys = { "gc", "gcc", "gbc" }, config = get_setup("comment"), })
@@ -87,7 +73,12 @@ return packer.startup(function(use)
   -- use({ "martinsione/darkplus.nvim" })
 
   -- Git
-  use({ "akinsho/git-conflict.nvim", tag = "*", config = get_setup("git-conflict") })
+  use({
+    "akinsho/git-conflict.nvim",
+    tag = "*",
+    cmd = { "GitConflictChooseOurs", "GitConflictChooseBase", "GitConflictPrev", "GitConflictListQf"},
+    config = get_setup("git-conflict"),
+  })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
   use({
     "kdheepak/lazygit.nvim",
@@ -121,8 +112,8 @@ return packer.startup(function(use)
 
     } }
   use { "zbirenbaum/copilot.lua", event = "CursorMoved", config = get_setup("copilot") }
-  use { "akinsho/flutter-tools.nvim", cmd = "FlutterRun", config = function() require("flutter-tools").setup({}) end,
-    requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } }
+  -- use { "akinsho/flutter-tools.nvim", cmd = "FlutterRun", config = function() require("flutter-tools").setup({}) end,
+  --   requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } }
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", opt = true, cmd = { "Telescope" }, config = get_setup("telescope") })

@@ -70,6 +70,7 @@ return packer.startup(function(use)
   -- Colorschemes
   -- use({ "ful1e5/onedark.nvim" })
   use({ "projekt0n/github-nvim-theme" })
+  -- use({ "shaunsingh/nord.nvim"})
   -- use({ "martinsione/darkplus.nvim" })
 
   -- Git

@@ -39,10 +39,11 @@ alias krmr='kubectl delete replicasets'
 alias krmr='kubectl delete rs'
 
 alias kaf='kubectl apply -f'
-
+alias kdf='kubectl delete -f'
 alias kl='kubectl logs'
 
 
+# Kubectl config
 alias kcc='kubectl config current-context'
 alias kcg='kubectl config get-contexts'
 alias kcs='kubectl config set-context'
@@ -50,8 +51,6 @@ alias kcu='kubectl config use-context'
 alias kns='kubens'
 alias kcl='kubectx'
 
-alias kfdd='kubectl fuzzy describe deployments -P'
-alias kfdp='kubectl fuzzy describe pods -P'
-alias kfl='k fuzzy logs --follow  --tail=50'
-alias kfe='kubectl fuzzy exec -it -- bash'
-alias kfae='kubectl fuzzy exec -A -it -- bash'
+# kustomize
+alias kfix='kustomize edit fix --vars'
+alias kbuild='kustomize build'

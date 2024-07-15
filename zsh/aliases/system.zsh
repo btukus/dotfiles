@@ -25,6 +25,7 @@ alias sl='cd ~/dotfiles/zsh'
 
 # Neovim aliases
 alias f='nvim'
+alias ff='file=$(fzf --preview "bat --style=grid --color=always {}") && [ -n "$file" ] && nvim "$file"'
 alias fs='nvim --startuptime /tmp/nvim-startuptime'
 alias nc='cd ~/dotfiles/config/.config/nvim/'
 alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'

@@ -77,7 +77,7 @@ return packer.startup(function(use)
   use({
     "akinsho/git-conflict.nvim",
     tag = "*",
-    cmd = { "GitConflictChooseOurs", "GitConflictChooseBase", "GitConflictPrev", "GitConflictListQf"},
+    cmd = { "GitConflictChooseOurs", "GitConflictChooseBase", "GitConflictPrev", "GitConflictListQf" },
     config = get_setup("git-conflict"),
   })
   use({ "sindrets/diffview.nvim", opt = true, cmd = { "DiffviewOpen" } })
@@ -113,8 +113,8 @@ return packer.startup(function(use)
 
     } }
   use { "zbirenbaum/copilot.lua", event = "CursorMoved", config = get_setup("copilot") }
-  -- use { "akinsho/flutter-tools.nvim", cmd = "FlutterRun", config = function() require("flutter-tools").setup({}) end,
-  --   requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } }
+  use { "akinsho/flutter-tools.nvim", cmd = "FlutterRun", config = function() require("flutter-tools").setup({}) end,
+    requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } }
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", opt = true, cmd = { "Telescope" }, config = get_setup("telescope") })

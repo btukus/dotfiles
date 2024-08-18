@@ -4,7 +4,6 @@
 directories=(
   "${HOME}/drive/mac/development/conclusion"
   "${HOME}/drive/mac/development/ringshard"
-  "${HOME}/drive/mac/development/syntess"
   "${HOME}/drive/mac/development/sensey"
 )
 

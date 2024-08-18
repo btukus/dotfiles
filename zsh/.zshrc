@@ -50,7 +50,7 @@ done
 
 export EDITOR=nvim
 
-export https_proxy=socks5://localhost:1080
+# export https_proxy=socks5://localhost:1080
 
 
 autoload -Uz compinit

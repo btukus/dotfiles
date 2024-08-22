@@ -14,6 +14,9 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi 
 
+export EDITOR=nvim
+export VISUAL=nvim
+
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux -u new-session -A -s personal
 fi
@@ -48,7 +51,6 @@ done
 . $(brew --prefix asdf)/libexec/asdf.sh
 # . ~/.asdf/plugins/java/set-java-home.zsh
 
-export EDITOR=nvim
 
 # export https_proxy=socks5://localhost:1080
 

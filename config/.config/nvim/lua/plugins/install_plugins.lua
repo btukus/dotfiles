@@ -53,16 +53,7 @@ return packer.startup(function(use)
 
   -- Window and session management
   -- use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
-  use({
-    "utilyre/barbecue.nvim",
-    tag = "*",
-    requires = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons", -- optional dependency
-    },
-    after = "nvim-web-devicons",     -- keep this if you're using NvChad
-    config = function() require("barbecue").setup() end,
-  })
+  use({ "utilyre/barbecue.nvim", tag = "*", requires = { "SmiteshP/nvim-navic", }, config = function() require("barbecue").setup() end, })
 
   -- Text Editing
   use({ "numToStr/Comment.nvim", opt = true, keys = { "gc", "gcc", "gbc" }, config = get_setup("comment"), })

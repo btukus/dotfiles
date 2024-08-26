@@ -26,7 +26,7 @@ require('mason-lspconfig').setup({
     "dockerls",
     "terraformls",
     "tflint",
-    "azure_pipelines_ls",
+    -- "azure_pipelines_ls",
     "ansiblels",
     "bashls",
     "bicep",
@@ -61,7 +61,13 @@ local function lsp_keymaps(bufnr)
 end
 
 lsp.on_attach(function(client, bufnr)
+  -- Set up keymaps for LSP
   lsp_keymaps(bufnr)
+
+  -- Enable formatting only for yamlls
+  if client.name == "yamlls" then
+    client.server_capabilities.documentFormattingProvider = true
+  end
 end)
 
 lsp.configure('tsserver', {
@@ -94,7 +100,23 @@ lsp.configure('tsserver', {
   },
 })
 
-
+lsp.configure("yamlls", {
+  filetypes = { 'yaml', 'yaml.docker-compose', 'yml' },
+  settings = {
+    yaml = {
+      format = {
+        enable = true,
+      },
+      validate = true,
+      schemas = {
+        ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml"] = "/*"
+      },
+      schemaStore = {
+        enable = false,
+      },
+    },
+  },
+})
 
 -- LuaSnip setup
 local luasnip = require("luasnip")
@@ -106,8 +128,6 @@ local has_words_before = function()
   local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
-
-
 
 
 -- Config for cmp

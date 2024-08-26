@@ -29,7 +29,7 @@ config/.config/.android/
 config/.config/helm/
 config/.config/btop/
 config/.config/lazydocker/
-
+config/.config/argocd/
 
 zsh/antidote/.antidote/
 zsh/.zsh_history

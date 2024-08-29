@@ -97,11 +97,6 @@ end
 
 ------------------------------- Plugins ------------------------------------
 
--- Packer
--- map("n", "<leader>ps", ":PackerSync<CR>", opts)
--- map("n", "<leader>pp", ":PackerProfile<CR>", opts)
--- map("n", "<leader>pS", ":PackerStatus<CR>", opts)
-
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
 map("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
@@ -113,14 +108,8 @@ map("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_bu
 map("n", "<leader>gl", ":GitConflictListQf<CR>", opts)
 
 -- Git Diffview
-map("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
-map("n", "<leader>gc", ":DiffviewClose<CR>", opts)
-
--- Git-worktree
--- map("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
-
--- Lazygit
-map("n", "<leader>gg", ":LazyGit<CR>", opts)
+-- map("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
+-- map("n", "<leader>gc", ":DiffviewClose<CR>", opts)
 
 -- Git blame
 map("n", "<leader>gb", ":BlameToggle<CR>", opts)
@@ -176,8 +165,3 @@ map("n", "<leader>fQ", ":FlutterQuit<CR>", opts)
 -- map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 -- map('n', '<leader>gj', ':vsplit | lua vim.lsp.buf.definition()<CR>')
 -- map('n', '<leader>gk', ':belowright split | lua vim.lsp.buf.definition()<CR>')
-
--- NoNeckPain
-map("n", "<leader>nn", ":NoNeckPain<CR>", opts)
-map("n", "<leader>nl", ":NoNeckPainToggleLeftSide<CR>", opts)
-map("n", "<leader>nr", ":NoNeckPainToggleRightSide<CR>", opts)

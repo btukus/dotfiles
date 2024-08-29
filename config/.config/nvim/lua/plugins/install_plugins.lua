@@ -53,7 +53,8 @@ return packer.startup(function(use)
 
   -- Window and session management
   -- use({ "folke/trouble.nvim", opt = true, cmd = { "TroubleToggle" } })
-  use({ "utilyre/barbecue.nvim", tag = "*", requires = { "SmiteshP/nvim-navic", }, config = function() require("barbecue").setup() end, })
+  use({ "utilyre/barbecue.nvim", tag = "*", requires = { "SmiteshP/nvim-navic", }, config = function() require(
+    "barbecue").setup() end, })
 
   -- Text Editing
   use({ "numToStr/Comment.nvim", opt = true, keys = { "gc", "gcc", "gbc" }, config = get_setup("comment"), })
@@ -116,6 +117,12 @@ return packer.startup(function(use)
   use { "zbirenbaum/copilot.lua", event = "CursorMoved", config = get_setup("copilot") }
   use { "akinsho/flutter-tools.nvim", cmd = "FlutterRun", config = function() require("flutter-tools").setup({}) end,
     requires = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim', } }
+  use({
+    "allaman/kustomize.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    ft = "yaml",
+    config = function() require('kustomize').setup({}) end,
+  })
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", opt = true, cmd = { "Telescope" }, config = get_setup("telescope") })

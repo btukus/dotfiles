@@ -105,14 +105,23 @@ lsp.configure("yamlls", {
   settings = {
     yaml = {
       format = {
-        enable = true,
+        enable = true, -- Enables formatting for all YAML files
       },
-      validate = true,
+      validate = true, -- Ensures that linting is active for all YAML files
+      hover = true,    -- Enables hover documentation (useful for schema details)
+      completion = true, -- Enables auto-completion for YAML
       schemas = {
-        ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml"] = "/*"
+        ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.yaml"] = "/openapi/*.yaml", -- Only OpenAPI files
+        ["https://json.schemastore.org/github-workflow"] = ".github/workflows/*", -- GitHub Actions YAML schemas
+        kubernetes = "/*.k8s.yaml", -- Kubernetes-specific YAML files
       },
       schemaStore = {
-        enable = false,
+        enable = true, -- Enable access to pre-configured schemas from schemaStore
+        url = "https://www.schemastore.org/api/json/catalog.json", -- The source for schema catalog
+      },
+      -- Assumes all .yaml and .yml files without a schema match will still be linted
+      schemaDefaults = {
+        default = true,
       },
     },
   },

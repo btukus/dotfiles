@@ -51,6 +51,7 @@ done
 . $(brew --prefix asdf)/libexec/asdf.sh
 # . ~/.asdf/plugins/java/set-java-home.zsh
 
+. "$HOME/.cargo/env" 
 
 # export https_proxy=socks5://localhost:1080
 

@@ -98,9 +98,9 @@ end
 ------------------------------- Plugins ------------------------------------
 
 -- Packer
-map("n", "<leader>ps", ":PackerSync<CR>", opts)
-map("n", "<leader>pp", ":PackerProfile<CR>", opts)
-map("n", "<leader>pS", ":PackerStatus<CR>", opts)
+-- map("n", "<leader>ps", ":PackerSync<CR>", opts)
+-- map("n", "<leader>pp", ":PackerProfile<CR>", opts)
+-- map("n", "<leader>pS", ":PackerStatus<CR>", opts)
 
 -- Telescope
 map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
@@ -110,14 +110,14 @@ map("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
 map("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
 
 -- Git Conflict
-map("n", "<leader>gl", "GitConflictListQf<CR>", opts)
+map("n", "<leader>gl", ":GitConflictListQf<CR>", opts)
 
 -- Git Diffview
 map("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
 map("n", "<leader>gc", ":DiffviewClose<CR>", opts)
 
 -- Git-worktree
-map("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
+-- map("n", "<leader>gt", "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", opts)
 
 -- Lazygit
 map("n", "<leader>gg", ":LazyGit<CR>", opts)
@@ -159,23 +159,23 @@ map("n", "<leader>tt", ":TSJToggle<CR>", opts)
 map("n", "<leader>fq", ":FlutterRun<CR>", opts)
 map("n", "<leader>fQ", ":FlutterQuit<CR>", opts)
 
--- LSP
-map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-map('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
-map('n', 'gL', '<cmd>lua vim.diagnostic.setqflist()<cr>', opts)
-map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-map('n', '<leader>gj', ':vsplit | lua vim.lsp.buf.definition()<CR>')
-map('n', '<leader>gk', ':belowright split | lua vim.lsp.buf.definition()<CR>')
+-- -- LSP
+-- map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+-- map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+-- map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+-- map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+-- map('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+-- map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+-- map('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+-- map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+-- map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+-- map('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+-- map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+-- map('n', 'gL', '<cmd>lua vim.diagnostic.setqflist()<cr>', opts)
+-- map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
+-- map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+-- map('n', '<leader>gj', ':vsplit | lua vim.lsp.buf.definition()<CR>')
+-- map('n', '<leader>gk', ':belowright split | lua vim.lsp.buf.definition()<CR>')
 
 -- NoNeckPain
 map("n", "<leader>nn", ":NoNeckPain<CR>", opts)

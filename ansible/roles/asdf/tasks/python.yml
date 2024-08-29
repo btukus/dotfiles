@@ -1,22 +1,30 @@
+---
 - name: Install and configure Python development tools
   block:
     - name: Check if Python 3.11.0 is installed
       command: python3.11 --version
       register: python_check
       ignore_errors: true
-
     - name: Add python plugin to asdf
       command: asdf plugin-add python
       when: python_check.rc != 0
-
     - name: Install python 3.11.0 with asdf
       command: asdf install python 3.11.0
-      when: python_check.rc != 0
-
+      when: python_check.rc != 0 and python_check.stdout is not search("Python 3.11.0")
     - name: Set python 3.11.0 as the global version with asdf
       command: asdf global python 3.11.0
-      when: python_check.rc != 0
-
+      when: python_check.rc != 0 and python_check.stdout is not search("Python 3.11.0")
+    - name: Check if pynvim is installed
+      command: pip3 show pynvim
+      register: pynvim_check
+      ignore_errors: true
     - name: Install pynvim with pip
       command: pip3 install pynvim
-      when: python_check.rc != 0
+      when: pynvim_check.rc != 0
+    - name: Check if yamlfix is installed
+      command: pip3 show yamlfix
+      register: yamlfix_check
+      ignore_errors: true
+    - name: Install yamlfix with pip
+      command: pip3 install yamlfix
+      when: yamlfix_check.rc != 0

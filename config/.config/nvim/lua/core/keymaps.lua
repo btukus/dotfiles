@@ -62,37 +62,37 @@ map("x", "<BS>", "%", opts)
 map("n", "q:", "<nop>", opts)
 
 -- Don't copy when pasted
-map("v", "p", '"_dP`[v`]=⁠ [v ⁠]', opts)
-map("n", "p", "p`[v`]=⁠ [v ⁠]", opts)
-map("n", "P", "P`[v`]=⁠ [v ⁠]", opts)
+-- map("v", "p", '"_dP`[v`]=⁠ [v ⁠]', opts)
+-- map("n", "p", "p`[v`]=⁠ [v ⁠]", opts)
+-- map("n", "P", "P`[v`]=⁠ [v ⁠]", opts)
 -- map("x", "p", function() return 'pgv"' .. vim.v.register .. "y" end, { remap = false, expr = true })
 
 -- Don't yank when x
 map("n", "x", '"_x', opts)
 
 -- go to end of line
-local modes = {'n', 'v', 's', 'o'}
+local modes = { "n", "v", "s", "o" }
 for _, mode in ipairs(modes) do
-    map(mode, '$', 'g_', opts)
+	map(mode, "$", "g_", opts)
 end
 
 -- Paste over visual selection
 local symbols = { "(", "[", "{", "'", '"', "`" }
 for _, symbol in ipairs(symbols) do
-  map('n', '<leader>p' .. symbol, 'vi' .. symbol .. 'p', opts)
-  map('n', '<leader>P' .. symbol, 'va' .. symbol .. 'p', opts)
+	map("n", "<leader>p" .. symbol, "vi" .. symbol .. "p", opts)
+	map("n", "<leader>P" .. symbol, "va" .. symbol .. "p", opts)
 end
 
 -- Auto indentation on empty lines
 function autoIndent(key)
-  return function()
-    return string.match(vim.api.nvim_get_current_line(), "%g") == nil and '"_cc' or key
-  end
+	return function()
+		return string.match(vim.api.nvim_get_current_line(), "%g") == nil and '"_cc' or key
+	end
 end
 
-local keys = {"i", "I", "a", "A"}
+local keys = { "i", "I", "a", "A" }
 for _, key in ipairs(keys) do
-    map("n", key, autoIndent(key), { expr = true, noremap = true })
+	map("n", key, autoIndent(key), { expr = true, noremap = true })
 end
 
 ------------------------------- Plugins ------------------------------------
@@ -151,7 +151,7 @@ map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 map("x", "L", ">gv", opts)
 map("x", "H", "<gv", opts)
-map("x", "<leader>p", "\"_dP")
+map("x", "<leader>p", '"_dP')
 -- TreeSJ
 map("n", "<leader>tt", ":TSJToggle<CR>", opts)
 

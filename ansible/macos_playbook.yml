@@ -1,11 +1,11 @@
+---
 - hosts: localhost
-
   vars_files:
-    - "./inventory/macos_variables.yml"
+    - ./inventory/macos_variables.yml
   roles:
-    # - brew
+    - brew
     - zsh
-    # - antidote
-    # - stow
-    # - tmux
-    # - asdf
+    - antidote
+    - stow
+    - tmux
+    - asdf

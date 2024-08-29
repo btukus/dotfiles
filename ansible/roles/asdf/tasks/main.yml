@@ -1,9 +1,7 @@
 ---
-- name: Install Node  
-  include_tasks: "node.yml"
-
-- name: Install Python  
-  include_tasks: "python.yml"
-
+- name: Install Node
+  include_tasks: node.yml
+- name: Install Python
+  include_tasks: python.yml
 - name: Install Java
-  include_tasks: "java.yml"
+  include_tasks: java.yml

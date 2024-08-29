@@ -3,5 +3,5 @@ return {
   cmd = "Copilot",
   event = "CursorMoved",
   config = true,
-  enabled = false
+  enabled = true,
 }

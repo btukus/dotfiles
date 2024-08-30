@@ -70,20 +70,6 @@ map("n", "q:", "<nop>", opts)
 -- Don't yank when x
 map("n", "x", '"_x', opts)
 
-local function visual_paste_without_yank()
-	local register = "+"
-
-	if vim.o.clipboard == "unnamed" then
-		register = "*"
-	end
-
-	vim.fn.setreg("x", vim.fn.getreg(register))
-	vim.api.nvim_paste(vim.fn.getreg(register), {}, -1)
-	vim.fn.setreg(register, vim.fn.getreg("x"))
-end
-
-map("v", "p", "<cmd>lua visual_paste_without_yank()<CR>", opts)
-
 -- go to end of line
 local modes = { "n", "v", "s", "o" }
 for _, mode in ipairs(modes) do

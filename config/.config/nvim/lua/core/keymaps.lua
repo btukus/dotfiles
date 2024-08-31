@@ -70,6 +70,13 @@ map("n", "q:", "<nop>", opts)
 -- Don't yank when x
 map("n", "x", '"_x', opts)
 
+-- ThePrimeagen
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
+map("x", "L", ">gv", opts)
+map("x", "H", "<gv", opts)
+map("x", "<leader>p", '"_dP')
+
 -- go to end of line
 local modes = { "n", "v", "s", "o" }
 for _, mode in ipairs(modes) do
@@ -97,34 +104,8 @@ end
 
 ------------------------------- Plugins ------------------------------------
 
--- Telescope
-map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
-map("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
-map("n", "<leader>fp", ":Telescope projects<CR>", opts)
-map("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
-map("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
-
--- Git Conflict
-map("n", "<leader>gl", ":GitConflictListQf<CR>", opts)
-
--- Git Diffview
--- map("n", "<leader>gv", ":DiffviewOpen<CR>", opts)
--- map("n", "<leader>gc", ":DiffviewClose<CR>", opts)
-
--- Git blame
-map("n", "<leader>gb", ":BlameToggle<CR>", opts)
-
--- Harpoon
-map("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts)
-map("n", "<leader>hh", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-map("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts)
-map("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<CR>", opts)
-
 -- TroubleToggle
 map("n", "<leader>dd", ":TroubleToggle<CR>", opts)
-
--- SymbolOutline
-map("n", "<leader>so", ":SymbolsOutline<CR>", opts)
 
 -- Git-conflict
 map("n", "co", "<Plug>(git-conflict-ours)")
@@ -135,12 +116,6 @@ map("n", "c0", "<Plug>(git-conflict-none)")
 map("n", "]x", "<Plug>(git-conflict-prev-conflict)")
 map("n", "[x", "<Plug>(git-conflict-next-conflict)")
 
--- ThePrimeagen
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
-map("x", "L", ">gv", opts)
-map("x", "H", "<gv", opts)
-map("x", "<leader>p", '"_dP')
 -- TreeSJ
 map("n", "<leader>tt", ":TSJToggle<CR>", opts)
 
@@ -165,3 +140,5 @@ map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", opts)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", opts)
 map("n", "<leader>gj", ":vsplit | lua vim.lsp.buf.definition()<CR>")
 map("n", "<leader>gk", ":belowright split | lua vim.lsp.buf.definition()<CR>")
+map("n", "<leader>li", ":LspInfo<CR>", opts)
+map("n", "<leader>lm", ":Mason<CR>", opts)

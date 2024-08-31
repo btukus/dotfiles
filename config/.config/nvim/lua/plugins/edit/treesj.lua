@@ -1,9 +1,9 @@
 return {
-  'Wansmer/treesj',
-  cmd = { "TSJToggle" },  
-  dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
-  -- config = function()
-  --   require('treesj').setup({--[[ your config ]]})
-  -- end,
-  config = true
+	"Wansmer/treesj",
+	cmd = { "TSJToggle" },
+	dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+	config = true,
+	keys = {
+		{ "<leader>tt", "TSJToggle<CR>", desc = "Toggle structs" },
+	},
 }

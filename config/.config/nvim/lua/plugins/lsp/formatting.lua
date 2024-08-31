@@ -5,16 +5,6 @@ return {
 		local conform = require("conform")
 
 		conform.setup({
-			formatters = {
-				yamlfix = {
-					-- Change where to find the command
-					command = "/Users/btukus/.asdf/shims/yamlfix",
-					-- Adds environment args to the yamlfix formatter
-					env = {
-						YAMLFIX_SEQUENCE_STYLE = "block_style",
-					},
-				},
-			},
 			formatters_by_ft = {
 				javascript = { "prettier" },
 				typescript = { "prettier" },

@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"rshkarin/mason-nvim-lint",
 	},
 	config = function()
 		-- import mason
@@ -10,10 +11,9 @@ return {
 
 		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
+		local mason_nvim_lint = require("mason-nvim-lint")
 
-		-- enable mason and configure icons
 		mason.setup({
 			ui = {
 				icons = {
@@ -25,7 +25,6 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			-- list of servers for mason to install
 			ensure_installed = {
 				"jdtls",
 				"kotlin_language_server",
@@ -40,7 +39,6 @@ return {
 				"dockerls",
 				"terraformls",
 				"tflint",
-				-- "azure_pipelines_ls",
 				"ansiblels",
 				"bashls",
 				"bicep",
@@ -57,6 +55,21 @@ return {
 				"black", -- python formatter
 				"pylint",
 				"eslint_d",
+				"yamlfix",
+			},
+		})
+
+		mason_nvim_lint.setup({
+			ensure_installed = {
+				"eslint_d",
+				"markdownlint",
+				"shellcheck",
+				"yamllint",
+				"jsonlint",
+				"luacheck",
+				"pylint",
+				"tflint",
+				"ansible-lint",
 			},
 		})
 	end,

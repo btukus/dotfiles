@@ -6,6 +6,14 @@ return {
 		"nvim-telescope/telescope-file-browser.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
+		"nvim-telescope/telescope-ui-select.nvim",
+	},
+	keys = {
+		{ "<leader>ff", ":Telescope find_files hidden=true<CR>", silent = true },
+		{ "<leader>fd", ":Telescope live_grep<CR>", silent = true },
+		{ "<leader>fp", ":Telescope projects<CR>", silent = true },
+		{ "<leader>fr", ":Telescope file_browser hidden=true<CR> ", silent = true },
+		{ "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", silent = true },
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -66,9 +74,15 @@ return {
 					theme = "ivy",
 					hijack_netrw = true,
 				},
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({
+						-- even more opts
+					}),
+				},
 			},
 		})
 
 		telescope.load_extension("fzf")
+		telescope.load_extension("ui-select")
 	end,
 }

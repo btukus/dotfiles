@@ -30,9 +30,9 @@ export HISTFILESIZE=9999999999
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # source antidote
-# source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 source $ZDOTDIR/antidote/.antidote/antidote.zsh
-# antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
+antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
 source $ZDOTDIR/antidote/shared_plugins.zsh
 
 for file in "$ZDOTDIR"/aliases/*.zsh; do
@@ -50,11 +50,7 @@ done
 
 . $(brew --prefix asdf)/libexec/asdf.sh
 # . ~/.asdf/plugins/java/set-java-home.zsh
-
-. "$HOME/.cargo/env" 
-
-# export https_proxy=socks5://localhost:1080
-
+. "/Users/btukus/.asdf/installs/rust/stable/env" 
 
 autoload -Uz compinit
 

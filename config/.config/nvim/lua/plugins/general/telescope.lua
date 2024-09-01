@@ -3,9 +3,9 @@ return {
 	cmd = { "Telescope" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-file-browser.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
-		"nvim-telescope/telescope-file-browser.nvim",
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -22,9 +22,8 @@ return {
 			end,
 		})
 
-		telescope.load_extension("fzf")
-		telescope.load_extension("projects")
 		telescope.load_extension("file_browser")
+		telescope.load_extension("projects")
 
 		telescope.setup({
 			defaults = {
@@ -70,12 +69,6 @@ return {
 			},
 		})
 
-		local map = vim.keymap.set
-		local opts = { silent = true }
-		map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
-		map("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
-		map("n", "<leader>fp", ":Telescope projects<CR>", opts)
-		map("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
-		map("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
+		telescope.load_extension("fzf")
 	end,
 }

@@ -18,10 +18,11 @@ alias win='cd /mnt/c/Users/BTUKUS/Desktop'
 alias dot='cd ~/dotfiles'
 alias bw='cd ~/dotfiles/brew'
 alias tm='cd ~/dotfiles/config/.config/tmux'
+alias sl='cd ~/dotfiles/zsh'
 
 # Shell aliases
 alias su='source $ZDOTDIR/.zshrc'
-alias sl='cd ~/dotfiles/zsh'
+alias zs='nvim ~/dotfiles/zsh/.zshrc'
 
 # Neovim aliases
 alias f='nvim'
@@ -53,3 +54,4 @@ alias cpr='cp -r'
 alias ds='clear'
 alias cls='clear'
 alias cl='clear'
+

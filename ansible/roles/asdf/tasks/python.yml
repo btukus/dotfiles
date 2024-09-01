@@ -21,10 +21,3 @@
     - name: Install pynvim with pip
       command: pip3 install pynvim
       when: pynvim_check.rc != 0
-    - name: Check if yamlfix is installed
-      command: pip3 show yamlfix
-      register: yamlfix_check
-      ignore_errors: true
-    - name: Install yamlfix with pip
-      command: pip3 install yamlfix
-      when: yamlfix_check.rc != 0

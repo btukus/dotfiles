@@ -9,3 +9,6 @@ killall Finder
 
 # Remove the CMD + H shortcut for hide
 defaults write -g NSUserKeyEquivalents -dict-add "Hide" '\0'
+
+# Allow holddown
+defaults write -g ApplePressAndHoldEnabled -bool false

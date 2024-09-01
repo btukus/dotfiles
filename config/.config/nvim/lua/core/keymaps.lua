@@ -123,6 +123,12 @@ map("n", "<leader>tt", ":TSJToggle<CR>", opts)
 map("n", "<leader>fq", ":FlutterRun<CR>", opts)
 map("n", "<leader>fQ", ":FlutterQuit<CR>", opts)
 
+map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", opts)
+map("n", "<leader>fd", ":Telescope live_grep<CR>", opts)
+map("n", "<leader>fp", ":Telescope projects<CR>", opts)
+map("n", "<leader>fr", ":Telescope file_browser hidden=true<CR> ", opts)
+map("n", "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", opts)
+
 -- LSP
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)

@@ -5,3 +5,5 @@
   include_tasks: python.yml
 - name: Install Java
   include_tasks: java.yml
+- name: Install Rust
+  include_tasks: rust.yml

@@ -1,8 +1,5 @@
-# prompts
-romkatv/powerlevel10k
-
 # deferred plugins
-zdharma-continuum/fast-syntax-highlighting kind:defer
+zdharma-continuum/fast-syntax-highlighting
 
 agkozak/zsh-z
 jeffreytse/zsh-vi-mode

@@ -55,3 +55,8 @@ alias ds='clear'
 alias cls='clear'
 alias cl='clear'
 
+function kubectl() {
+  export KUBECTL_ACTIVE="true"
+  command kubectl "$@"
+  unset KUBECTL_ACTIVE
+}

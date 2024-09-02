@@ -16,3 +16,7 @@ alias azgrouplock='az group lock'
 alias azgroupunlock='az group unlock'
 
 akslogin() { az aks get-credentials --resource-group $1 --name $2 }
+
+kvs() {
+  az keyvault secret set --vault-name "sensey-${1}-kv" --name "$2" --file "temp.json"
+}

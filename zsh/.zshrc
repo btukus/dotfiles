@@ -42,16 +42,16 @@ done
 # . ~/.asdf/plugins/java/set-java-home.zsh
 . "/Users/btukus/.asdf/installs/rust/stable/env" 
 
-# autoload -Uz compinit
-#
-# () {
-#   if [[ $# -gt 0 ]]; then
-#     compinit
-#   else
-#     compinit -C
-#   fi
-# } ${ZDOTDIR}/.zcompdump(N.mh+24)
-#
+autoload -Uz compinit
+
+() {
+  if [[ $# -gt 0 ]]; then
+    compinit
+  else
+    compinit -C
+  fi
+} ${ZDOTDIR}/.zcompdump(N.mh+24)
+
 
 # eval "$(starship init zsh)"
 eval "$(oh-my-posh init zsh --config ~/dotfiles/zsh/nordtron.omp.json)"

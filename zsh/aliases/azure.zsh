@@ -20,3 +20,8 @@ akslogin() { az aks get-credentials --resource-group $1 --name $2 }
 kvs() {
   az keyvault secret set --vault-name "sensey-${1}-kv" --name "$2" --file "temp.json"
 }
+
+kvc() {
+  az keyvault certificate import --vault-name "sensey-${1}-kv" --name "$2" --file "$3" 
+}
+

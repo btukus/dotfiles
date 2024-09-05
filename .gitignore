@@ -32,15 +32,12 @@ config/.config/lazydocker/
 config/.config/argocd/
 
 zsh/antidote/.antidote/
-zsh/.zsh_history
-zsh/.zsh_sessions
-zsh/.zshz*
-zsh/.zcompdump
-zsh/antidote/mac_plugins.zsh
 zsh/antidote/shared_plugins.zsh
-zsh/.zsh_plugins.txt
-zsh/.zsh_plugins.zsh
+zsh/.zsh_sessions/
 zsh/.zcompcache
+zsh/.zcompdump
+zsh/z/
+
 zsh/aliases/envspecific.zsh
 zsh/aliases/conclusion.zsh
 zsh/aliases/temp.zsh

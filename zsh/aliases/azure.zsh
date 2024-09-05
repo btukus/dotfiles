@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias azlogin='az login'
 alias azlogout='az logout'
 alias azlist='az account list'
@@ -24,4 +26,3 @@ kvs() {
 kvc() {
   az keyvault certificate import --vault-name "sensey-${1}-kv" --name "$2" --file "$3" 
 }
-

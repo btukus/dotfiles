@@ -1,26 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
-b () {
-  cmd="" 
+b() {
+  cmd=""
   for i in $(seq $1); do
-    cmd="${cmd}../" 
+    cmd="${cmd}../"
   done
-  
-  cd $cmd;
+
+  cd $cmd
 }
 
-ip () {
+ip() {
   if [ -z "$1" ]; then
-    if command -v ipconfig &> /dev/null; then
-      ipconfig getifaddr en0 | pbcopy;
+    if command -v ipconfig &>/dev/null; then
+      ipconfig getifaddr en0 | pbcopy
     else
-      ifconfig en0 | grep "inet " | awk '{print $2}' | pbcopy;
+      ifconfig en0 | grep "inet " | awk '{print $2}' | pbcopy
     fi
   else
-    if command -v ipconfig &> /dev/null; then
-      ipconfig getifaddr "en$1" | pbcopy;
+    if command -v ipconfig &>/dev/null; then
+      ipconfig getifaddr "en$1" | pbcopy
     else
-      ifconfig "en$1" | grep "inet " | awk '{print $2}' | pbcopy;
+      ifconfig "en$1" | grep "inet " | awk '{print $2}' | pbcopy
     fi
   fi
 }
@@ -29,21 +29,21 @@ pat() {
   # Extract the original URL and the value for the switch
   local original_url="$1"
   local switch_value="$2"
-  local new_username="${3:-btukus}"  # Default to "btukus" if no input is provided
+  local new_username="${3:-btukus}" # Default to "btukus" if no input is provided
 
   # Determine new_text based on the switch_value
   local new_text=""
   case "$switch_value" in
-    1)
-      new_text="${ENECO_1:-default_value}"  # Use the value of KEY or "default_value" if KEY is not set
-      ;;
-    2)
-      new_text="${ENECO_2:-default_value}"
-      ;;
-    *)
-      echo "Invalid switch value. Please provide 1 or 2."
-      return 1
-      ;;
+  1)
+    new_text="${ENECO_1:-default_value}" # Use the value of KEY or "default_value" if KEY is not set
+    ;;
+  2)
+    new_text="${ENECO_2:-default_value}"
+    ;;
+  *)
+    echo "Invalid switch value. Please provide 1 or 2."
+    return 1
+    ;;
   esac
 
   # Replace the username in the URL

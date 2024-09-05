@@ -24,6 +24,7 @@ return {
 			},
 		})
 
+		-- https://github.com/williamboman/mason-lspconfig.nvim
 		mason_lspconfig.setup({
 			ensure_installed = {
 				"jdtls",
@@ -47,6 +48,7 @@ return {
 			},
 		})
 
+		--
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"prettier", -- prettier formatter
@@ -56,6 +58,7 @@ return {
 				"pylint",
 				"eslint_d",
 				"yamlfix",
+				"shfmt",
 			},
 		})
 
@@ -70,6 +73,7 @@ return {
 				"pylint",
 				"tflint",
 				"ansible-lint",
+				"shellcheck",
 			},
 		})
 	end,

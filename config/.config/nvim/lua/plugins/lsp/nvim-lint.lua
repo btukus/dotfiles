@@ -7,6 +7,9 @@ return {
 		-- Set up linters for file types
 		lint.linters_by_ft = {
 			yaml = { "yamllint" },
+			zsh = { "shellcheck" },
+			sh = { "shellcheck" },
+			bash = { "shellcheck" },
 		}
 
 		-- Create autocommand for linting on InsertLeave and BufWritePost

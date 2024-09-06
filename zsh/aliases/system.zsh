@@ -17,7 +17,7 @@ alias win='cd /mnt/c/Users/BTUKUS/Desktop'
 # Dotfiles
 alias dot='cd ~/dotfiles'
 alias bw='cd ~/dotfiles/brew'
-alias tm='cd ~/dotfiles/config/.config/tmux'
+alias td='cd ~/dotfiles/config/.config/tmux'
 alias sl='cd ~/dotfiles/zsh'
 
 # Shell aliases

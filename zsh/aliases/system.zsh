@@ -32,6 +32,10 @@ alias nc='cd ~/dotfiles/config/.config/nvim/'
 alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'
 alias ncp='cd ~/dotfiles/config/.config/nvim/lua/plugins'
 alias lsp='cd ~/dotfiles/config/.config/nvim/lua/plugins/lsp'
+alias ui='cd ~/dotfiles/config/.config/nvim/lua/plugins/ui'
+alias gen='cd ~/dotfiles/config/.config/nvim/lua/plugins/general'
+alias edit='cd ~/dotfiles/config/.config/nvim/lua/plugins/edit'
+alias ops='cd ~/dotfiles/config/.config/nvim/lua/plugins/devops'
 
 # Vim aliases
 alias vim='vim -u ~/.config/vim/vimrc'

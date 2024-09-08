@@ -122,7 +122,11 @@ key = "N"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["swap-window", "-t", "+1", ";", "select-window", "-t", "+1"] }
 
-
+[[keyboard.bindings]]
+key = "f"
+mods = "Command"
+command = { program = "/opt/homebrew/bin/tmux", args = ["copy-mode"] }
+  
 # Switch to window by number
 [[keyboard.bindings]]
 key = "1"

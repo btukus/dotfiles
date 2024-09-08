@@ -6,9 +6,9 @@ export VISUAL=nvim
 
 
 export TERM=xterm-256color
-if [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s personal
-fi
+# if [ -z "$TMUX" ]; then
+#   exec tmux new-session -A -s personal
+# fi
 
 # ZSHZ
 ZSHZ_DATA=$ZDOTDIR/z/.zshz

@@ -6,6 +6,7 @@ term = "xterm-256color"
 [window]
 startup_mode = "Maximized"
 option_as_alt = "Both"
+decorations = "Buttonless"
 
 
 [font]
@@ -104,33 +105,11 @@ key = "I"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["send-keys", "C-l"] }
 
-
 # Session management (switching)
 [[keyboard.bindings]]
 key = "S"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["choose-tree", "-s", "-O", "name", "-ZsK", "#{?#{e|<:#{line},9},#{e|+:1,#{line}},#{?#{e|<:#{line},35},M-#{a:#{e|+:97,#{e|-:#{line},9}}},}}", ";"] }
-
-
-# [[keyboard.bindings]]
-# key = "H"
-# mods = "Super"
-# command = { program = "/opt/homebrew/bin/tmux", args = ["if-shell", "ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'", "send-keys M-h", "resize-pane -L 1"] }
-#
-# [[keyboard.bindings]]
-# key = "J"
-# mods = "Super"
-# command = { program = "/opt/homebrew/bin/tmux", args = ["if-shell", "ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'", "send-keys M-j", "resize-pane -D 1"] }
-#
-# [[keyboard.bindings]]
-# key = "K"
-# mods = "Super"
-# command = { program = "/opt/homebrew/bin/tmux", args = ["if-shell", "ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'", "send-keys M-k", "resize-pane -U 1"] }
-#
-# [[keyboard.bindings]]
-# key = "L"
-# mods = "Super"
-# command = { program = "/opt/homebrew/bin/tmux", args = ["if-shell", "ps -o state= -o comm= -t '#{pane_tty}' | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'", "send-keys M-l", "resize-pane -R 1"] }
 
 # Move windows
 [[keyboard.bindings]]
@@ -142,18 +121,6 @@ command = { program = "/opt/homebrew/bin/tmux", args = ["swap-window", "-t", "-1
 key = "N"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["swap-window", "-t", "+1", ";", "select-window", "-t", "+1"] }
-
-
-# Open floating terminals
-[[keyboard.bindings]]
-key = "J"
-mods = "Super"
-command = { program = "/opt/homebrew/bin/tmux", args = ["if-shell", "-F", "#{==:#{session_name},app}", "{ detach-client }", "{ display-popup -w 95% -h 95% -E -d '#{pane_current_path}' 'tmux attach -t app || tmux new-session -s app -c \"#{pane_current_path}\"' }"] }
-
-[[keyboard.bindings]]
-key = "K"
-mods = "Super"
-command = { program = "/opt/homebrew/bin/tmux", args = ["if-shell", "-F", "#{==:#{session_name},k9s}", "{ detach-client }", "{ display-popup -w 95% -h 95% -E -d '#{pane_current_path}' 'tmux attach -t k9s || tmux new-session -s k9s -c \"#{pane_current_path}\"' }"] }
 
 
 # Switch to window by number

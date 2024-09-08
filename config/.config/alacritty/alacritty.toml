@@ -85,10 +85,10 @@ key = "W"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
 
-[[keyboard.bindings]]
-key = "D"
-mods = "Command"
-command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
+# [[keyboard.bindings]]
+# key = "D"
+# mods = "Command"
+# command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
 
 [[keyboard.bindings]]
 key = "J"

@@ -13,4 +13,4 @@ ssh_origins:
     location: ~/.ssh/devops}
   - {name: SSHDevOps, hostname: ssh.dev.azure.com, user: git, host: ssh.dev.azure.com,
     identityfile: ~/.ssh/sshdevops/sshdevops, location: ~/.ssh/sshdevops}
-stow_directories: [git, config]
+stow_directories: [git, config, asdf]

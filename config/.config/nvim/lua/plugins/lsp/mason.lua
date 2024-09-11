@@ -27,12 +27,11 @@ return {
 		-- https://github.com/williamboman/mason-lspconfig.nvim
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"jdtls",
 				"kotlin_language_server",
 				"pyright",
 				"cssls",
 				"html",
-				"tsserver",
+				"ts_ls",
 				"lua_ls",
 				"bashls",
 				"jsonls",
@@ -45,6 +44,7 @@ return {
 				"bicep",
 				"graphql",
 				"vimls",
+        "jdtls",
 			},
 		})
 

@@ -16,3 +16,7 @@ alias kbuild='kustomize build'
 
 # k9s
 alias ks='k9s'
+
+
+# k8s resources
+alias busy='kubectl apply -f ${HOME}/drive/mac/development/k8s_resources/busybox.yaml'

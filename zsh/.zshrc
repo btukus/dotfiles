@@ -69,7 +69,7 @@ done
 
 # ASDF
 . $(brew --prefix asdf)/libexec/asdf.sh
-# . ~/.asdf/plugins/java/set-java-home.zsh
+. ~/.asdf/plugins/java/set-java-home.zsh
 . "/Users/btukus/.asdf/installs/rust/stable/env" 
 
 eval "$(oh-my-posh init zsh --config ~/dotfiles/zsh/nordtron.omp.json)"

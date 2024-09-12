@@ -39,7 +39,6 @@ zsh/.zcompdump
 zsh/z/
 
 zsh/aliases/envspecific.zsh
-zsh/aliases/conclusion.zsh
 zsh/aliases/temp.zsh
 
 ansible/.tool-versions

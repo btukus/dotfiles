@@ -1,19 +1,20 @@
----
 # Polar Night
-nord0: &nord0 '# 2E3440'  # black
-nord1: &nord1 '# 3B4252'  # lighter black
+nord0: &nord0 '#2E3440'  # black
+nord1: &nord1 '#3B4252'  # lighter black
 
 # Snow Storm
-nord4: &nord4 '# D8DEE9'  # white
+nord4: &nord4 '#D8DEE9'  # white
 
 # Frost
-nord8: &nord8 '# 88C0D0'  # blue
-nord10: &nord10 '# 5E81AC'  # dark blue
+nord8: &nord8 '#88C0D0'  # blue
+nord10: &nord10 '#5E81AC'  # dark blue
 
 # Aurora
-nord11: &nord11 '# BF616A'  # red
-nord13: &nord13 '# EBCB8B'  # yellow
-nord14: &nord14 '# A3BE8C'  # green
+nord11: &nord11 '#BF616A'  # red
+nord13: &nord13 '#EBCB8B'  # yellow
+nord14: &nord14 '#A3BE8C'  # green
+nord15: &nord15 '#FFA500'  # orange
+
 k9s:
   # General K9s styles
   body:
@@ -56,7 +57,7 @@ k9s:
       addColor: *nord14
       pendingColor: *nord13
       errorColor: *nord11
-      highlightcolor: *nord8
+      highlightcolor: *nord15
       killColor: *nord14
       completedColor: *nord10
     # Border title styles.

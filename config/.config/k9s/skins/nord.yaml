@@ -1,3 +1,4 @@
+---
 # Polar Night
 nord0: &nord0 '#2E3440'  # black
 nord1: &nord1 '#3B4252'  # lighter black
@@ -13,14 +14,17 @@ nord10: &nord10 '#5E81AC'  # dark blue
 nord11: &nord11 '#BF616A'  # red
 nord13: &nord13 '#EBCB8B'  # yellow
 nord14: &nord14 '#A3BE8C'  # green
-nord15: &nord15 '#FFA500'  # orange
-
+nord15: &nord15 '#F4BB78'  # orange
 k9s:
   # General K9s styles
   body:
     fgColor: *nord4
     bgColor: *nord0
     logoColor: *nord10
+  prompt:
+    fgColor: *nord4
+    bgColor: *nord0
+    suggestColor: *nord15
   # ClusterInfoView styles.
   info:
     fgColor: *nord8
@@ -36,7 +40,6 @@ k9s:
     labelFgColor: *nord8
     fieldFgColor: *nord11
   frame:
-    # Borders styles.
     border:
       fgColor: *nord10
       focusColor: *nord10
@@ -49,7 +52,7 @@ k9s:
     crumbs:
       fgColor: *nord4
       bgColor: *nord0
-      activeColor: *nord1
+      activeColor: *nord15
     # Resource status and update styles
     status:
       newColor: *nord8

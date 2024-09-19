@@ -1,4 +1,8 @@
+---
 aliases:
+  no: nodes
+  po: pods
+  rs: replicasets
   dp: deployments
   sts: statefulsets
   ds: daemonsets
@@ -15,3 +19,9 @@ aliases:
   np: networkpolicies
   crd: customresourcedefinitions
   cl: contexts
+  pv: persistentvolumes
+  pvc: persistentvolumeclaims
+  cj: cronjobs
+  ep: endpoints
+  ev: events
+  hpa: horizontalpodautoscalers

@@ -88,11 +88,6 @@ mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
 
 [[keyboard.bindings]]
-key = "W"
-mods = "Command"
-command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
-
-[[keyboard.bindings]]
 key = "J"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["split-window", "-v", "-c", "#{pane_current_path}"] }

@@ -22,6 +22,8 @@ italic = { family = "MesloLGL Nerd Font" }
 # Bold Italic font face
 bold_italic = { family = "MesloLGL Nerd Font" }
 
+size = 13.5
+
 [colors.primary]
 background = "#2e3440"
 foreground = "#d8dee9"
@@ -85,10 +87,10 @@ key = "W"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
 
-# [[keyboard.bindings]]
-# key = "D"
-# mods = "Command"
-# command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
+[[keyboard.bindings]]
+key = "W"
+mods = "Command"
+command = { program = "/opt/homebrew/bin/tmux", args = ["kill-pane"] }
 
 [[keyboard.bindings]]
 key = "J"

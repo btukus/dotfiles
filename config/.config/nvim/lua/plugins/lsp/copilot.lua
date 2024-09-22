@@ -13,7 +13,7 @@ return {
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					accept = "<M-v>",
+					accept = "<Tab>",
 				},
 			},
 		})

@@ -23,6 +23,7 @@ alias sl='cd ~/dotfiles/zsh'
 # Shell aliases
 alias su='source $ZDOTDIR/.zshrc'
 alias zs='nvim ~/dotfiles/zsh/.zshrc'
+alias alac='nvim ~/dotfiles/config/.config/alacritty/alacritty.toml'
 
 # Neovim aliases
 alias f='nvim'

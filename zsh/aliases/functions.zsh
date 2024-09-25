@@ -25,30 +25,29 @@ ip() {
   fi
 }
 
-pat() {
-  # Extract the original URL and the value for the switch
-  local original_url="$1"
-  local switch_value="$2"
-  local new_username="${3:-btukus}" # Default to "btukus" if no input is provided
+cpp() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: cpp <file>"
+        return 1
+    fi
 
-  # Determine new_text based on the switch_value
-  local new_text=""
-  case "$switch_value" in
-  1)
-    new_text="${ENECO_1:-default_value}" # Use the value of KEY or "default_value" if KEY is not set
-    ;;
-  2)
-    new_text="${ENECO_2:-default_value}"
-    ;;
-  *)
-    echo "Invalid switch value. Please provide 1 or 2."
-    return 1
-    ;;
-  esac
+    # Get the absolute path of the file
+    local file_path="$(realpath "$1")"
 
-  # Replace the username in the URL
-  local modified_url=$(echo "$original_url" | awk -v user="$new_username" -v text="$new_text" -F'//' 'BEGIN{OFS="//"} {split($2,a,"@"); split(a[1],b,":"); sub(b[1],user":"text,a[1]); print $1, a[1]"@"a[2]}')
+    if [[ ! -f "$file_path" ]]; then
+        echo "File not found: $1"
+        return 1
+    fi
 
-  # Output the modified URL
-  echo "$modified_url" | pbcopy
+    # Copy to clipboard based on OS
+    if [[ "$(uname)" == "Darwin" ]]; then
+        echo -n "$file_path" | pbcopy   # macOS
+    elif [[ "$(uname)" == "Linux" ]]; then
+        echo -n "$file_path" | xclip -selection clipboard   # Linux
+    else
+        echo "Unsupported OS"
+        return 1
+    fi
+
+    echo "File path copied: $file_path"
 }

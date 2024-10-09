@@ -10,16 +10,6 @@ alias GD='temp=$(pwd)'
 alias cdt='cd $temp'
 alias path="sed 's/:/\n/g' <<< "$PATH""
 
-# Navigation aliases
-alias hd='cd ~'
-alias win='cd /mnt/c/Users/BTUKUS/Desktop'
-
-# Dotfiles
-alias dot='cd ~/dotfiles'
-alias bw='cd ~/dotfiles/brew'
-alias td='cd ~/dotfiles/config/.config/tmux'
-alias sl='cd ~/dotfiles/zsh'
-
 # Shell aliases
 alias su='source $ZDOTDIR/.zshrc'
 alias zs='nvim ~/dotfiles/zsh/.zshrc'
@@ -29,14 +19,6 @@ alias alac='nvim ~/dotfiles/config/.config/alacritty/alacritty.toml'
 alias f='nvim'
 alias ff='file=$(fzf --preview "bat --style=grid --color=always {}") && [ -n "$file" ] && nvim "$file"'
 alias fs='nvim --startuptime /tmp/nvim-startuptime'
-# alias nc='cd ~/dotfiles/config/.config/nvim/'
-alias ncc='cd ~/dotfiles/config/.config/nvim/lua/core'
-alias ncp='cd ~/dotfiles/config/.config/nvim/lua/plugins'
-alias lsp='cd ~/dotfiles/config/.config/nvim/lua/plugins/lsp'
-alias ui='cd ~/dotfiles/config/.config/nvim/lua/plugins/ui'
-alias gen='cd ~/dotfiles/config/.config/nvim/lua/plugins/general'
-alias edit='cd ~/dotfiles/config/.config/nvim/lua/plugins/edit'
-alias ops='cd ~/dotfiles/config/.config/nvim/lua/plugins/devops'
 
 # Vim aliases
 alias vim='vim -u ~/.config/vim/vimrc'

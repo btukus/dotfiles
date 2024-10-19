@@ -84,13 +84,11 @@ function gwag() {
   cd $root_dir
   git worktree add --checkout ../$1 && cd ../$1; 
   echo $1 | pbcopy;
+  git push --set-upstream origin $1
 }
 
 function gwage() {
-  root_dir=$(git rev-parse --show-toplevel 2> /dev/null)
-  cd $root_dir
-  git worktree add $1 ../$1 && cd ../$1; 
-  echo $1 | pbcopy;
+  gwag $1
   code .
 }
 

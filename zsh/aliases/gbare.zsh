@@ -25,10 +25,12 @@ gbare() {
       git config --add remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
       git worktree add --checkout main
       cd main
+      git push --set-upstream origin main
     elif git rev-parse --verify --quiet master; then
       git config --add remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
       git worktree add --checkout master
       cd master
+      git push --set-upstream origin main
     else
       echo "Neither main nor master branch found in $repo_dir, skipping."
     fi

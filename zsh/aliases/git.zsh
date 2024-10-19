@@ -116,5 +116,5 @@ function gwd() {
 }
 
 function gu() {
-  source "$HOME/dotfiles/zsh/scripts/update_git_worktrees.zsh"
+  source "$HOME/dotfiles/zsh/scripts/update-git-worktrees.zsh"
 }

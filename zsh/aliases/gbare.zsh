@@ -22,9 +22,11 @@ gbare() {
 
     # Check for main or master branch
     if git rev-parse --verify --quiet main; then
+      git config --add remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
       git worktree add --checkout main
       cd main
     elif git rev-parse --verify --quiet master; then
+      git config --add remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
       git worktree add --checkout master
       cd master
     else

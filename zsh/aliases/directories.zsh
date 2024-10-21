@@ -1,5 +1,7 @@
 alias hd='cd ~'
 
+# System
+alias temp='cd ~/drive/mac/temp'
 # Drive
 alias drive='cd ~/drive'
 alias dev='cd ~/drive/mac/development'
@@ -21,4 +23,3 @@ alias ui='cd ~/dotfiles/config/.config/nvim/lua/plugins/ui'
 alias gen='cd ~/dotfiles/config/.config/nvim/lua/plugins/general'
 alias edit='cd ~/dotfiles/config/.config/nvim/lua/plugins/edit'
 alias ops='cd ~/dotfiles/config/.config/nvim/lua/plugins/devops'
-

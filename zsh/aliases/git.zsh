@@ -67,7 +67,6 @@ alias grefg='git config --global remote.origin.fetch "+refs/heads/*:refs/remotes
 alias grv='git remote -v'
 alias grs='git remote set-url origin'
 
-
 # Git
 function gcp() { git add --all; git commit -m $1; git push; }
 
@@ -100,19 +99,10 @@ function gwag() {
   fi
 }
 
-# function gwag() { 
-#   root_dir=$(git rev-parse --show-toplevel 2> /dev/null)
-#   cd $root_dir
-#   git worktree add --checkout ../$1 && cd ../$1; 
-#   echo $1 | pbcopy;
-#   git push --set-upstream origin $1
-# }
-
 function gwage() {
   gwag $1
   code .
 }
-
 
 function gwd() {
   current_worktree=$(git rev-parse --show-toplevel 2> /dev/null)
@@ -136,4 +126,26 @@ function gwd() {
 
 function gu() {
   source "$HOME/dotfiles/zsh/scripts/update-git-worktrees.zsh"
+}
+
+git_root_cd() {
+  local dir
+  dir=$(git rev-parse --show-toplevel 2> /dev/null)
+  if [ -n "$dir" ]; then
+    cd "$dir" || return 1
+    return 0
+  else
+    echo "Not a git repository"
+    return 1
+  fi
+}
+
+ghd() {
+  git_root_cd
+}
+
+ghdd() {
+  if git_root_cd; then
+    cd ../ || return 1
+  fi
 }

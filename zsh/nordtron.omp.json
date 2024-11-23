@@ -2,79 +2,86 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "foreground": "#88c0d0",
           "properties": {
-            "style": "agnoster_short",
-            "max_depth": 5
+            "cache_duration": "none",
+            "max_depth": 5,
+            "style": "agnoster_short"
           },
           "template": "<#5e81ac> \uf07c  </>{{ .Path }}<#5e81ac></>",
-          "style": "diamond",
+          "foreground": "#88c0d0",
           "type": "path",
-          "mixed_threshold": "4"
+          "style": "diamond"
         },
         {
-          "foreground": "#88c0d0",
           "properties": {
             "branch_icon": "\uf126 ",
+            "cache_duration": "none",
             "fetch_upstream_icon": true
           },
-          "style": "powerline",
           "template": " | {{ .UpstreamIcon }}{{ .HEAD }} ",
-          "type": "git"
+          "foreground": "#88c0d0",
+          "type": "git",
+          "style": "powerline"
         }
       ],
-      "type": "prompt"
+      "newline": true
     },
     {
+      "type": "prompt",
       "alignment": "right",
-      "newline": false,
       "segments": [
         {
-          "foreground": "#b48ead",
-          "style": "diamond",
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": "{{ if .Namespace }} {{ .Namespace }} ::{{ end }} {{ .Context }} ",
-          "type": "kubectl"
+          "foreground": "#b48ead",
+          "type": "kubectl",
+          "style": "diamond"
         },
         {
-          "type": "az",
-          "style": "powerline",
-          "foreground": "#b48ead",
-          "template": "| {{ .Name }} - {{.TenantDisplayName}}  |",
           "properties": {
+            "cache_duration": "none",
             "source": "cli"
           },
-          "when": "shell.has_command('az')"
+          "template": "| {{ .Name }} - {{.TenantDisplayName}} \uebd8 |",
+          "foreground": "#b48ead",
+          "type": "az",
+          "style": "powerline"
         },
         {
-          "foreground": "#b48ead",
-          "style": "diamond",
-          "template": " {{ .CurrentDate | date .Format }}<#007ACC> \ue641 </>",
           "properties": {
+            "cache_duration": "none",
             "time_format": "15:04:05"
           },
-          "type": "time"
+          "template": " {{ .CurrentDate | date .Format }}<#007ACC> \ue641 </>",
+          "foreground": "#b48ead",
+          "type": "time",
+          "style": "diamond"
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "foreground": "#5e81ac",
-          "style": "plain",
+          "properties": {
+            "cache_duration": "none"
+          },
           "template": " \ue602 ",
-          "type": "text"
+          "foreground": "#5e81ac",
+          "type": "text",
+          "style": "plain"
         }
       ],
-      "type": "prompt"
+      "newline": true
     }
   ],
-  "final_space": true,
-  "version": 2
+  "version": 3,
+  "final_space": true
 }

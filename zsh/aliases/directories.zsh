@@ -2,6 +2,9 @@ alias hd='cd ~'
 
 # System
 alias temp='cd ~/drive/mac/temp'
+alias down='cd ~/Downloads'
+alias doc='cd ~/Documents'
+
 # Drive
 alias drive='cd ~/drive'
 alias dev='cd ~/drive/mac/development'

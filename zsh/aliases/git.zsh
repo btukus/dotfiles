@@ -92,7 +92,6 @@ function gwag() {
 
   if [ -z "$remote_branch" ]; then
     git worktree add --checkout ../$branch && cd ../$branch; 
-    echo "here"
   else
     git worktree add --track -b $branch ../$branch origin/$branch && cd ../$branch
     echo "Worktree created and branch name copied to clipboard."

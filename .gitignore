@@ -30,6 +30,7 @@ config/.config/helm/
 config/.config/btop/
 config/.config/lazydocker/
 config/.config/argocd/
+config/.config/NuGet/
 
 zsh/antidote/.antidote/
 zsh/antidote/shared_plugins.zsh

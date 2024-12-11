@@ -6,6 +6,7 @@ alias excel='open -a "Microsoft Excel" '
 alias word='open -a "Microsoft Word" '
 alias powerpoint='open -a "Microsoft PowerPoint" '
 alias outlook='open -a "Microsoft Outlook" '
+alias finder='open .'
 
 
 alias pwdc='pwd | pbcopy'

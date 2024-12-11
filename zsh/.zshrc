@@ -75,3 +75,4 @@ done
 eval "$(oh-my-posh init zsh --config ~/dotfiles/zsh/nordtron.omp.json)"
 
 # zprof
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

@@ -31,6 +31,7 @@ config/.config/btop/
 config/.config/lazydocker/
 config/.config/argocd/
 config/.config/NuGet/
+config/.config/jgit/
 
 zsh/antidote/.antidote/
 zsh/antidote/shared_plugins.zsh

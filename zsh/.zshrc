@@ -52,12 +52,15 @@ source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 # antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
 source $ZDOTDIR/antidote/shared_plugins.zsh
 
-# Aliases
-for file in "$ZDOTDIR"/aliases/*.zsh; do
-  if [[ -f $file ]]; then
+# Function to recursively source all .zsh files in a directory
+local directory="${1:-$ZDOTDIR/aliases}"
+if [[ -d "$directory" ]]; then
+  find "$directory" -type f -name "*.zsh" | while IFS= read -r file; do
     source "$file"
-  fi
-done
+  done
+else
+  echo "Directory $directory does not exist."
+fi
 
 # Source SSH keys
 ssh_keys=(github gitlab bitbucket devops)

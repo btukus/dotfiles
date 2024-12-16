@@ -4,6 +4,8 @@ zdharma-continuum/fast-syntax-highlighting
 agkozak/zsh-z
 jeffreytse/zsh-vi-mode
 
+romkatv/powerlevel10k
+
 ahmetb/kubectx path:completion kind:fpath
 
 # final

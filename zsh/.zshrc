@@ -1,4 +1,9 @@
 # zmodload zsh/zprof
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 eval $(/opt/homebrew/bin/brew shellenv)
 
 export EDITOR=nvim
@@ -75,7 +80,8 @@ done
 . ~/.asdf/plugins/java/set-java-home.zsh
 . "/Users/btukus/.asdf/installs/rust/stable/env" 
 
-eval "$(oh-my-posh init zsh --config ~/dotfiles/zsh/nordtron.omp.json)"
+
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/dotfiles/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.p10k.zsh
 
 # zprof
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

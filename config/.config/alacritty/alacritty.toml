@@ -8,6 +8,7 @@ term = "xterm-256color"
 startup_mode = "Maximized"
 option_as_alt = "Both"
 decorations = "Buttonless"
+padding = { x = 10, y = 10 }
 
 
 [font]

@@ -1,7 +1,7 @@
 alias gg='lazygit'
 
 # Git worktree
-alias gwa='git worktree add --checkout'                                   # Track remote worktree
+# alias gwa='git worktree add --checkout'                                   # Track remote worktree
 alias gwab='git worktree add --checkout -b'                               # Create new local worktree
 alias gwr='git worktree remove -f'                                        # Remove worktree
 

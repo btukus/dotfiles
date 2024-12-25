@@ -15,6 +15,8 @@ alias dcub='docker-compose up --build -d'
 alias dcubl='docker-compose up --build'
 alias dspa='docker system prune --all'
 
+alias fd='nvim Dockerfile'
+
 # Get IP address or hostname of container
 dip() {
   docker inspect "$1" | grep IPAddress;

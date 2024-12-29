@@ -6,7 +6,8 @@ function gu() {
 }
 
 function gwa {
-  git worktree add --checkout origin/$1 $1
-  cd $1;
+  git fetch origin $1 # Fetch the branch from the remote
+  git worktree add $1 $1 || git worktree add $1 -b $1 origin/$1
+  cd $1
   git branch --set-upstream-to=origin/$1 $1
 }

@@ -4,6 +4,7 @@ function gwag() {
     return 1
   fi
 
+  git pull
   root_dir=$(git rev-parse --show-toplevel 2> /dev/null)
   cd $root_dir || { echo "Failed to find the git root directory."; return 1; }
 

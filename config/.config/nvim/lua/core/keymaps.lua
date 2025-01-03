@@ -22,9 +22,11 @@ map("n", "<C-l>", "<C-w>l", opts)
 -- Split window
 map("n", "<leader>sj", "<C-w>s", opts)
 map("n", "<leader>sk", "<C-w>v", opts)
-map("n", "<leader>sh", "<C-w>q", opts)
-map("n", "<leader>sl", "<C-w>o", opts)
 map("n", "<leader>e", "<C-w>=", opts)
+
+-- Move Splits 
+map("n", "<leader>sh", "<C-w>H", opts)
+map("n", "<leader>sl", "<C-w>L", opts)
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -35,6 +37,7 @@ map("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", opts)
 map("n", "<S-h>", ":bprevious<CR>", opts)
+
 
 -- Clear highlights
 map("n", "<leader>c", "<cmd>nohlsearch<CR>", opts)

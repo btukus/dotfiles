@@ -32,6 +32,7 @@ config/.config/lazydocker/
 config/.config/argocd/
 config/.config/NuGet/
 config/.config/jgit/
+config/.config/containers/
 
 zsh/antidote/.antidote/
 zsh/antidote/shared_plugins.zsh

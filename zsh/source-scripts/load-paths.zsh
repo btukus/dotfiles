@@ -7,7 +7,8 @@ eval $(/opt/homebrew/bin/brew shellenv)
 export EDITOR=nvim
 export VISUAL=nvim
 
-export TERM=xterm-256color
+export TERM=alacritty
+export COLORTERM=truecolor
 if [ -z "$TMUX" ]; then
   exec tmux new-session -A -s personal
 fi

@@ -107,23 +107,5 @@ end
 
 ------------------------------- Plugins ------------------------------------
 
--- TroubleToggle
-map("n", "<leader>dd", ":TroubleToggle<CR>", opts)
-
--- Git-conflict
-map("n", "co", "<Plug>(git-conflict-ours)")
-map("n", "<leader>ll", ":GitConflictListQf<CR>")
-map("n", "ct", "<Plug>(git-conflict-theirs)")
-map("n", "cb", "<Plug>(git-conflict-both)")
-map("n", "c0", "<Plug>(git-conflict-none)")
-map("n", "]x", "<Plug>(git-conflict-prev-conflict)")
-map("n", "[x", "<Plug>(git-conflict-next-conflict)")
-
--- TreeSJ
-map("n", "<leader>tt", ":TSJToggle<CR>", opts)
-
--- Flutter-tools
-map("n", "<leader>fq", ":FlutterRun<CR>", opts)
-map("n", "<leader>fQ", ":FlutterQuit<CR>", opts)
-
--- LSP
+--- Git Conflict
+map("n", "<leader>ll", ":GitConflictListQf<CR>", opts)

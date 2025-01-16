@@ -8,6 +8,8 @@ romkatv/powerlevel10k
 
 ahmetb/kubectx path:completion kind:fpath
 
+Aloxaf/fzf-tab
+
 # final
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-autosuggestions

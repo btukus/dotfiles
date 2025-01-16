@@ -4,4 +4,4 @@ rust stable
 kubelogin 0.1.4
 java openjdk-21
 maven 3.9.9
-terraform 1.9.6
+terraform 1.10.4

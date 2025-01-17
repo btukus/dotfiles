@@ -40,6 +40,7 @@ zsh/.zsh_sessions/
 zsh/.zcompcache
 zsh/.zcompdump
 zsh/z/
+zsh/.zsh_history
 
 zsh/aliases/envspecific.zsh
 zsh/aliases/temp.zsh

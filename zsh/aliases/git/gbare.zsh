@@ -42,11 +42,11 @@ gbare() {
   fi
 
   # Check for develop branch
-  if git rev-parse --verify --quiet origin/develop; then
-    git worktree add --checkout develop origin/develop
-    cd develop || return 1
-    git checkout develop
-    git push --set-upstream origin develop
+  if git rev-parse --verify --quiet origin/dev; then
+    git worktree add --checkout dev origin/dev
+    cd dev || return 1
+    git checkout dev
+    git push --set-upstream origin dev
     echo "Worktree created and checked out for develop branch."
   else
     echo "Develop branch not found, skipping."

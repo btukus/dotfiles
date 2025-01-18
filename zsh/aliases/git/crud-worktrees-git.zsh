@@ -33,7 +33,7 @@ function gwd() {
   git worktree remove -f "$root_worktree"
 
   # Define potential base branches
-  for base_branch in develop main master; do
+  for base_branch in dev develop main master; do
     branch_dir="$repo_root/$base_branch"
 
     if [[ -d "$branch_dir" ]]; then

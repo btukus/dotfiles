@@ -1,8 +1,7 @@
-require("core")
-
 if vim.g.vscode then
+  require("vscode-core")
   require("config.vscode")
-  -- require("core.vscode_keymaps")
 else
+  require("core")
   require("config.lazy")
 end

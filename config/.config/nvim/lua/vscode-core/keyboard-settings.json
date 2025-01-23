@@ -1,0 +1,92 @@
+[
+    {
+        "key": "cmd+0",
+        "command": "workbench.action.openLastEditorInGroup"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.openEditorAtIndex2"
+    },
+    {
+        "key": "cmd+3",
+        "command": "workbench.action.openEditorAtIndex3"
+    },
+    {
+        "key": "cmd+4",
+        "command": "workbench.action.openEditorAtIndex4"
+    },
+    {
+        "key": "cmd+5",
+        "command": "workbench.action.openEditorAtIndex5"
+    },
+    {
+        "key": "cmd+6",
+        "command": "workbench.action.openEditorAtIndex6"
+    },
+    {
+        "key": "cmd+7",
+        "command": "workbench.action.openEditorAtIndex7"
+    },
+    {
+        "key": "cmd+8",
+        "command": "workbench.action.openEditorAtIndex8"
+    },
+    {
+        "key": "cmd+9",
+        "command": "workbench.action.openEditorAtIndex9"
+    },
+    {
+        "key": "alt+1",
+        "command": "workbench.action.terminal.focusAtIndex1"
+    },
+    {
+        "key": "alt+2",
+        "command": "workbench.action.terminal.focusAtIndex2"
+    },
+    {
+        "key": "alt+3",
+        "command": "workbench.action.terminal.focusAtIndex3"
+    },
+    {
+        "key": "alt+4",
+        "command": "workbench.action.terminal.focusAtIndex4"
+    },
+    {
+        "key": "alt+5",
+        "command": "workbench.action.terminal.focusAtIndex5"
+    },
+    {
+        "key": "alt+6",
+        "command": "workbench.action.terminal.focusAtIndex6"
+    },
+    {
+        "key": "alt+7",
+        "command": "workbench.action.terminal.focusAtIndex7"
+    },
+    {
+        "key": "alt+8",
+        "command": "workbench.action.terminal.focusAtIndex8"
+    },
+    {
+        "key": "alt+9",
+        "command": "workbench.action.terminal.focusAtIndex9"
+    },
+    {
+        "key": "alt+t",
+        "command": "workbench.action.terminal.new",
+        "when": "neovim.mode != 'insert'"
+    },
+    {
+        "key": "alt+w",
+        "command": "workbench.action.terminal.killActiveTab",
+        "when": "neovim.mode != 'insert'"
+    },
+    {
+        "key": "cmd+e",
+        "command": "workbench.view.explorer"
+    }
+]

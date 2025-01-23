@@ -1,4 +1,9 @@
 {
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden"
+    "editor.lineNumbers": "on",
+    "editor.lineDecorations": "on",
+    "editor.lineDecorationsWidth": 0,
+    "editor.renderLineHighlight": "none",
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.formatOnSave": true
 }

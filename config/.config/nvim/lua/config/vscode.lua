@@ -22,34 +22,9 @@ require("lazy").setup({
 	spec = {
 		-- import your plugins
 		{
-			import = "plugins",
-		},
-		{
-			import = "plugins.devops",
-		},
-		{
-			import = "plugins.edit",
-		},
-		{
-			import = "plugins.general",
-      -- cond = not vim.g.vscode,
-		},
-		{
-			import = "plugins.git",
-      -- cond = not vim.g.vscode,
-		},
-		{
-			import = "plugins.lsp",
-      -- cond = not vim.g.vscode,
-		},
-		{
-			import = "plugins.ui",
-      -- cond = not vim.g.vscode,
+			import = "plugins.vscode",
 		},
 	},
-	-- Configure any other settings here. See the documentation for more details.
-	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "nord" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 })

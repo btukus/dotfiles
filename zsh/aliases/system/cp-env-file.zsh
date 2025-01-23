@@ -1,6 +1,6 @@
 cenv() {
   local parent_dir=$(dirname "$(pwd)")
-  local develop_dir="$parent_dir/develop"
+  local develop_dir="$parent_dir/dev"
 
   # Check if develop directory exists
   if [[ ! -d "$develop_dir" ]]; then

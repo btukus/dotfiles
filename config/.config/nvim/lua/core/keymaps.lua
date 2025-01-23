@@ -64,12 +64,6 @@ map("x", "<BS>", "%", opts)
 -- Don't open command history
 map("n", "q:", "<nop>", opts)
 
--- Don't copy when pasted
--- map("v", "p", '"_dP`[v`]=⁠ [v ⁠]', opts)
--- map("n", "p", "p`[v`]=⁠ [v ⁠]", opts)
--- map("n", "P", "P`[v`]=⁠ [v ⁠]", opts)
--- map("x", "p", function() return 'pgv"' .. vim.v.register .. "y" end, { remap = false, expr = true })
-
 -- Don't yank when x
 map("n", "x", '"_x', opts)
 
@@ -104,8 +98,3 @@ local keys = { "i", "I", "a", "A" }
 for _, key in ipairs(keys) do
 	map("n", key, autoIndent(key), { expr = true, noremap = true })
 end
-
-------------------------------- Plugins ------------------------------------
-
---- Git Conflict
-map("n", "<leader>ll", ":GitConflictListQf<CR>", opts)

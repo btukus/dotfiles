@@ -4,9 +4,11 @@ alias nil='npm install --legacy-peer-deps'
 alias nr='npm run'
 alias ns='npm start'
 alias nt='npm test'
-alias nb='npm run-script build'
+alias nb='npm run build'
 alias nrs='npm run-script'
 
+alias nci='npm ci'
+alias nd='npm run dev'
 
 # Yarn aliases
 alias y='yarn'

@@ -88,5 +88,11 @@
     {
         "key": "cmd+e",
         "command": "workbench.view.explorer"
-    }
+    },
+    {
+        "key": "cmd+shift+j",
+        "command": "workbench.action.toggleMaximizedPanel",
+        // "command": "workbench.action.toggleEditorVisibility"
+        "when": "!terminalFocus"
+    },
 ]

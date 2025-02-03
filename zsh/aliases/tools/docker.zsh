@@ -26,3 +26,11 @@ dip() {
 dni() {
   docker network inspect "$1";
 }
+
+alias kc='docker run -p 8080:8080 \
+  -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
+  -e KC_BOOTSTRAP_ADMIN_PASSWORD=admin \
+  -v ./realm-export-2.json:/opt/keycloak/data/import/realm-export-2.json \
+  quay.io/keycloak/keycloak:26.1.0 \
+  start-dev --import-realm
+'

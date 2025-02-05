@@ -4,7 +4,7 @@ minor = 1
 
 [Common]
 black_char = ":*?\"<>|\\/"
-black_name = "@tmp", "@eaDir", ".SynologyWorkingDirectory", "#recycle", "desktop.ini", ".ds_store", "Icon\r", "thumbs.db", "$Recycle.Bin", "@sharebin", "System Volume Information", "Program Files", "Program Files (x86)", "ProgramData", "#snapshot", "node_modules", ".terraform", "__pycache__", "log", "tmp"
+black_name = "@tmp", "@eaDir", ".SynologyWorkingDirectory", "#recycle", "desktop.ini", ".ds_store", "Icon\r", "thumbs.db", "$Recycle.Bin", "@sharebin", "System Volume Information", "Program Files", "Program Files (x86)", "ProgramData", "#snapshot", "node_modules", ".terraform", "__pycache__", ".next", "log", "tmp"
 max_length = 255
 max_path = 768
 
@@ -14,7 +14,7 @@ black_prefix = "~"
 max_size = 0
 
 [Directory]
-black_name = "@tmp", "@eaDir", ".SynologyWorkingDirectory", "#recycle", "desktop.ini", ".ds_store", "Icon\r", "thumbs.db", "$Recycle.Bin", "@sharebin", "System Volume Information", "Program Files", "Program Files (x86)", "ProgramData", "#snapshot", "node_modules", ".terraform", "__pycache__", "log", "tmp"
+black_name = "@tmp", "@eaDir", ".SynologyWorkingDirectory", "#recycle", "desktop.ini", ".ds_store", "Icon\r", "thumbs.db", "$Recycle.Bin", "@sharebin", "System Volume Information", "Program Files", "Program Files (x86)", "ProgramData", "#snapshot", "node_modules", ".terraform", "__pycache__", ".next", "log", "tmp"
 
 [EA]
 

@@ -13,16 +13,16 @@ padding = { x = 10, y = 10 }
 
 [font]
 # Normal (Regular) font face
-normal = { family = "MesloLGL Nerd Font" }
+normal = { family = "MesloLGS NF" }
 
 # Bold font face
-bold = { family = "MesloLGL Nerd Font" }
+bold = { family = "MesloLGS NF" }
 
 # Italic font face
-italic = { family = "MesloLGL Nerd Font" }
+italic = { family = "MesloLGS NF" }
 
 # Bold Italic font face
-bold_italic = { family = "MesloLGL Nerd Font" }
+bold_italic = { family = "MesloLGS NF" }
 
 size = 13.5
 

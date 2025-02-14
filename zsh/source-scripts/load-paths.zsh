@@ -10,8 +10,6 @@ export VISUAL=nvim
 export TERM=alacritty
 export COLORTERM=truecolor
 
-if [[ "$TERM_PROGRAM" == "Alacritty" ]]; then
-  if [ -z "$TMUX" ]; then
-   exec tmux new-session -A -s personal
-  fi
+if [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s personal
 fi

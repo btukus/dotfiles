@@ -22,11 +22,16 @@ function gwag() {
   fi
 }
 
+function gwc() {
+  gwag "$@"
+  cursor --reuse-window .
+}
+
 function gwd() {
   root_worktree=$(git rev-parse --show-toplevel 2>/dev/null)
   current_branch=$(git branch --show-current)
   repo_root=$(dirname "$root_worktree")
-  
+
   # Move to root of worktree, then go to repo root, delete worktree
   cd $root_worktree
   cd ../

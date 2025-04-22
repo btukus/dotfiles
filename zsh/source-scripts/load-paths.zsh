@@ -9,6 +9,6 @@ if [ "$TERM_PROGRAM" = "Alacritty" ] || [ "$TERM" = "alacritty" ]; then
   export TERM=alacritty
 
   if [ -z "$TMUX" ]; then
-    exec tmux new-session -A -s personal
+    exec tmux new-session -A -s sensey
   fi
 fi

@@ -3,7 +3,7 @@ return {
 	-- cmd = "Copilot",
 	event = "CursorMoved",
 	-- config = true,
-	enabled = true,
+	enabled = false,
 	config = function()
 		require("copilot").setup({
 			panel = {

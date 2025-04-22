@@ -1,5 +1,6 @@
 alias n='npm'
 alias ni='npm install'
+alias nid='npm install && npm run dev'
 alias nil='npm install --legacy-peer-deps'
 alias nr='npm run'
 alias ns='npm start'

@@ -37,8 +37,6 @@ alias gd='git diff'
 
 # Git merge
 alias gm='git merge'
-alias gmm='git merge origin/$(git_main_branch)'
-alias gmom='git merge origin/$(git_develop_branch)'
 alias gma='git merge --abort'
 
 # Git rebase

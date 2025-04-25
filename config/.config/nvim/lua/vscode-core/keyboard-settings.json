@@ -95,4 +95,50 @@
         // "command": "workbench.action.toggleEditorVisibility"
         "when": "!terminalFocus"
     },
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },
+    {
+        "key": "alt+g alt+g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "-workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "alt+g alt+m",
+        "command": "cursor.generateGitCommitMessage"
+    },
+    {
+        "key": "alt+g alt+p",
+        "command": "git.push"
+    },
+    {
+        "key": "alt+g alt+l",
+        "command": "git.pull"
+    },
+    {
+        "key": "shift+cmd+f",
+        "command": "-workbench.action.findInFiles"
+    },
+    {
+        "key": "shift+cmd+f",
+        "command": "workbench.action.replaceInFiles"
+    },
+    {
+        "key": "shift+cmd+h",
+        "command": "-workbench.action.replaceInFiles"
+    },
+    {
+        "key": "cmd+p",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "alt+g alt+c",
+        "command": "git.commit"
+    },
 ]

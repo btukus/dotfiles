@@ -2,6 +2,10 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local vscode = require('vscode')
 
+vim.keymap.set({ "n", "x" }, "<leader>ff", function()
+    vscode.action("workbench.action.quickOpen")
+end)
+
 vim.keymap.set({ "n", "x" }, "<leader>lf", function()
     vscode.action("editor.action.formatDocument")
 end)

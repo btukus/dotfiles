@@ -2,35 +2,35 @@ alias gg='lazygit'
 
 # Git worktree
 # alias gwa='git worktree add --checkout'                                   # Track remote worktree
-alias gwab='git worktree add --checkout -b'                               # Create new local worktree
-alias gwr='git worktree remove -f'                                        # Remove worktree
+alias gwab='git worktree add --checkout -b' # Create new local worktree
+alias gwr='git worktree remove -f'          # Remove worktree
 
 # alias gcbr=
 # Git aliases
 
 # Git add aliases
-alias ga='git add'                                                        # Git stage files
-alias gaa='git add --all'                                                 # Stage all files in the repository
+alias ga='git add'        # Git stage files
+alias gaa='git add --all' # Stage all files in the repository
 
 # Git branch
-alias gb='git branch'                                                     # Show local branches
-alias gbr='git branch -r'                                                  # Show remote branches
+alias gb='git branch'     # Show local branches
+alias gbr='git branch -r' # Show remote branches
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 
-# Git checkout 
-alias gc='git checkout'                                                # Remove changes
+# Git checkout
+alias gc='git checkout' # Remove changes
 alias gcb='git checkout -b'
 
 # Git commit
 alias gcm='git commit -m'
 alias gcam='git commit -a -m'
 
-# Git clone 
+# Git clone
 alias gcr='git clone'
 
 # Git fetch
-alias gf='git fetch' 
+alias gf='git fetch'
 
 # Git diff
 alias gd='git diff'
@@ -48,7 +48,7 @@ alias grbom='git rebase origin/$(git_main_branch)'
 alias gl='git pull'
 alias gp='git push'
 
-# Git reset 
+# Git reset
 alias grh='git reset'
 alias grhh='git reset --hard'
 

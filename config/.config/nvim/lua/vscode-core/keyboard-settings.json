@@ -86,12 +86,13 @@
         "when": "neovim.mode != 'insert'"
     },
     {
-        "key": "cmd+e",
+        "key": "alt+f alt+f",
         "command": "workbench.view.explorer"
     },
     {
         "key": "cmd+shift+j",
         "command": "workbench.action.toggleMaximizedPanel",
+        // "command": "workbench.action.toggleEditorVisibility"
         "when": "!terminalFocus"
     },
     {
@@ -121,14 +122,6 @@
         "command": "git.pull"
     },
     {
-        "key": "shift+cmd+f",
-        "command": "-workbench.action.findInFiles"
-    },
-    {
-        "key": "shift+cmd+f",
-        "command": "workbench.action.replaceInFiles"
-    },
-    {
         "key": "shift+cmd+h",
         "command": "-workbench.action.replaceInFiles"
     },
@@ -139,5 +132,17 @@
     {
         "key": "alt+g alt+c",
         "command": "git.commit"
+    },
+    {
+        "key": "alt+f alt+r",
+        "command": "workbench.action.replaceInFiles"
+    },
+    {
+        "key": "alt+f alt+d",
+        "command": "workbench.action.findInFiles"
+    },
+    {
+        "key": "shift+cmd+f",
+        "command": "-workbench.action.findInFiles"
     },
 ]

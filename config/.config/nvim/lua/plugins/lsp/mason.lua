@@ -72,7 +72,6 @@ return {
 				"luacheck",
 				"pylint",
 				"tflint",
-				"ansible-lint",
 				"shellcheck",
 			},
 		})

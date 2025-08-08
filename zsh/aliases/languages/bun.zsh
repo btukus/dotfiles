@@ -1,3 +1,4 @@
-alias bd="bun dev"
-alias bs="bun start"
-alias bb="bun build"
+alias bi="bun install"
+alias bd="bun run dev"
+alias bs="bun run start"
+alias bb="bun run build"

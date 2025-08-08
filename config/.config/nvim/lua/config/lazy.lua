@@ -46,6 +46,10 @@ require("lazy").setup({
 			import = "plugins.ui",
       -- cond = not vim.g.vscode,
 		},
+		{
+			import = "plugins.languages",
+      -- cond = not vim.g.vscode,
+		},
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.

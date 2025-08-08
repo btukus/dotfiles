@@ -27,7 +27,6 @@ return {
 		-- https://github.com/williamboman/mason-lspconfig.nvim
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"kotlin_language_server",
 				"pyright",
 				"cssls",
 				"html",
@@ -39,12 +38,8 @@ return {
 				"dockerls",
 				"terraformls",
 				"tflint",
-				"ansiblels",
 				"bashls",
-				"bicep",
-				"graphql",
 				"vimls",
-        "jdtls",
 			},
 		})
 

@@ -1,4 +1,4 @@
-alias bi='brew install'
+alias bwi='brew install'
 alias bic='brew install --cask'
 alias br='brew reinstall'
 alias bu='brew uninstall'

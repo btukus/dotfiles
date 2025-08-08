@@ -1,0 +1,82 @@
+{
+  "searches": [
+    {
+      "escape": true,
+      "expansion": "https://dev.azure.com/senseylabs",
+      "keywords": "ad",
+      "spaceReplacer": "",
+      "allowedLocations": "default",
+      "isDefault": false,
+      "name": "Azure DevOps"
+    },
+    {
+      "escape": true,
+      "expansion": "https://portal.azure.com",
+      "keywords": "az",
+      "spaceReplacer": "",
+      "allowedLocations": "default",
+      "isDefault": false,
+      "name": "Azure Portal"
+    },
+    {
+      "escape": true,
+      "expansion": "https://portal.mdfinfra.com",
+      "keywords": "mp",
+      "spaceReplacer": "",
+      "allowedLocations": "default",
+      "isDefault": false,
+      "name": "MDF Prod"
+    },
+    {
+      "escape": true,
+      "expansion": "https://portal-dev.mdfinfra.com",
+      "keywords": "md",
+      "spaceReplacer": "",
+      "allowedLocations": "default",
+      "isDefault": false,
+      "name": "MDF Dev"
+    },
+    {
+      "escape": true,
+      "expansion": "https://portal.fepatex.nl",
+      "keywords": "fp",
+      "spaceReplacer": "",
+      "allowedLocations": "default",
+      "isDefault": false,
+      "name": "Fepatex Prod"
+    },
+    {
+      "escape": true,
+      "expansion": "https://portal-dev.fepatex.nl",
+      "keywords": "fd",
+      "spaceReplacer": "",
+      "allowedLocations": "default",
+      "isDefault": false,
+      "name": "Fepatex Dev"
+    },
+    {
+      "name": "Google images",
+      "keywords": "i, gi",
+      "expansion": "https://www.google.com/search?tbm=isch&q=@@@&tbs=imgo:1"
+    },
+    {
+      "name": "Google maps",
+      "keywords": "gm, gmaps",
+      "expansion": "https://www.google.com/maps?oi=map&q=@@@"
+    },
+    {
+      "name": "IMDB",
+      "keywords": "imdb",
+      "expansion": "https://imdb.com/find?s=all&q=@@@"
+    },
+    {
+      "name": "YouTube",
+      "keywords": "y, yt",
+      "expansion": "https://www.youtube.com/results?search_query=@@@"
+    }
+  ],
+  "settings": {
+    "allowedLocations": "frontOnly"
+  },
+  "version": 3
+}

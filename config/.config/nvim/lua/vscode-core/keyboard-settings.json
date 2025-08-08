@@ -162,5 +162,15 @@
     "key": "ctrl+k",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "cmd+u",
+    "command": "editor.action.marker.prevInFiles",
+    "when": "editorFocus"
+  },
+  {
+    "key": "cmd+i",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorFocus"
   }
 ]

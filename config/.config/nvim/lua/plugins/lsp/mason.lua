@@ -25,23 +25,21 @@ return {
 		})
 
 		-- https://github.com/williamboman/mason-lspconfig.nvim
-		mason_lspconfig.setup({
-			ensure_installed = {
-				"pyright",
-				"cssls",
-				"html",
-				"ts_ls",
-				"lua_ls",
-				"bashls",
-				"jsonls",
-				"yamlls",
-				"dockerls",
-				"terraformls",
-				"tflint",
-				"bashls",
-				"vimls",
-			},
-		})
+    mason_lspconfig.setup({
+      ensure_installed = {
+        "pyright",
+        "cssls",
+        "html",
+        "ts_ls",
+        "lua_ls",
+        "bashls",
+        "jsonls",
+        "yamlls",
+        "dockerls",
+        "terraformls",
+        "vimls",
+      },
+    })
 
 		--
 		mason_tool_installer.setup({

@@ -12,3 +12,5 @@ if [ "$TERM_PROGRAM" = "Alacritty" ] || [ "$TERM" = "alacritty" ]; then
     exec tmux new-session -A -s sensey
   fi
 fi
+
+export PATH="$HOME/.local/bin:$PATH"

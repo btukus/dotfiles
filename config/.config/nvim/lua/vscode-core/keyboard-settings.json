@@ -1,148 +1,166 @@
 [
-    {
-        "key": "cmd+0",
-        "command": "workbench.action.openLastEditorInGroup"
-    },
-    {
-        "key": "cmd+1",
-        "command": "workbench.action.openEditorAtIndex1"
-    },
-    {
-        "key": "cmd+2",
-        "command": "workbench.action.openEditorAtIndex2"
-    },
-    {
-        "key": "cmd+3",
-        "command": "workbench.action.openEditorAtIndex3"
-    },
-    {
-        "key": "cmd+4",
-        "command": "workbench.action.openEditorAtIndex4"
-    },
-    {
-        "key": "cmd+5",
-        "command": "workbench.action.openEditorAtIndex5"
-    },
-    {
-        "key": "cmd+6",
-        "command": "workbench.action.openEditorAtIndex6"
-    },
-    {
-        "key": "cmd+7",
-        "command": "workbench.action.openEditorAtIndex7"
-    },
-    {
-        "key": "cmd+8",
-        "command": "workbench.action.openEditorAtIndex8"
-    },
-    {
-        "key": "cmd+9",
-        "command": "workbench.action.openEditorAtIndex9"
-    },
-    {
-        "key": "alt+1",
-        "command": "workbench.action.terminal.focusAtIndex1"
-    },
-    {
-        "key": "alt+2",
-        "command": "workbench.action.terminal.focusAtIndex2"
-    },
-    {
-        "key": "alt+3",
-        "command": "workbench.action.terminal.focusAtIndex3"
-    },
-    {
-        "key": "alt+4",
-        "command": "workbench.action.terminal.focusAtIndex4"
-    },
-    {
-        "key": "alt+5",
-        "command": "workbench.action.terminal.focusAtIndex5"
-    },
-    {
-        "key": "alt+6",
-        "command": "workbench.action.terminal.focusAtIndex6"
-    },
-    {
-        "key": "alt+7",
-        "command": "workbench.action.terminal.focusAtIndex7"
-    },
-    {
-        "key": "alt+8",
-        "command": "workbench.action.terminal.focusAtIndex8"
-    },
-    {
-        "key": "alt+9",
-        "command": "workbench.action.terminal.focusAtIndex9"
-    },
-    {
-        "key": "alt+t",
-        "command": "workbench.action.terminal.new",
-        "when": "neovim.mode != 'insert'"
-    },
-    {
-        "key": "alt+w",
-        "command": "workbench.action.terminal.killActiveTab",
-        "when": "neovim.mode != 'insert'"
-    },
-    {
-        "key": "alt+f alt+f",
-        "command": "workbench.view.explorer"
-    },
-    {
-        "key": "cmd+shift+j",
-        "command": "workbench.action.toggleMaximizedPanel",
-        // "command": "workbench.action.toggleEditorVisibility"
-        "when": "!terminalFocus"
-    },
-    {
-        "key": "cmd+i",
-        "command": "composerMode.agent"
-    },
-    {
-        "key": "alt+g alt+g",
-        "command": "workbench.view.scm",
-        "when": "workbench.scm.active"
-    },
-    {
-        "key": "ctrl+shift+g",
-        "command": "-workbench.view.scm",
-        "when": "workbench.scm.active"
-    },
-    {
-        "key": "alt+g alt+m",
-        "command": "cursor.generateGitCommitMessage"
-    },
-    {
-        "key": "alt+g alt+p",
-        "command": "git.push"
-    },
-    {
-        "key": "alt+g alt+l",
-        "command": "git.pull"
-    },
-    {
-        "key": "shift+cmd+h",
-        "command": "-workbench.action.replaceInFiles"
-    },
-    {
-        "key": "cmd+p",
-        "command": "workbench.action.quickOpen"
-    },
-    {
-        "key": "alt+g alt+c",
-        "command": "git.commit"
-    },
-    {
-        "key": "alt+f alt+r",
-        "command": "workbench.action.replaceInFiles"
-    },
-    {
-        "key": "alt+f alt+d",
-        "command": "workbench.action.findInFiles"
-    },
-    {
-        "key": "shift+cmd+f",
-        "command": "-workbench.action.findInFiles"
-    },
+  {
+    "key": "cmd+0",
+    "command": "workbench.action.openLastEditorInGroup"
+  },
+  {
+    "key": "cmd+1",
+    "command": "workbench.action.openEditorAtIndex1"
+  },
+  {
+    "key": "cmd+2",
+    "command": "workbench.action.openEditorAtIndex2"
+  },
+  {
+    "key": "cmd+3",
+    "command": "workbench.action.openEditorAtIndex3"
+  },
+  {
+    "key": "cmd+4",
+    "command": "workbench.action.openEditorAtIndex4"
+  },
+  {
+    "key": "cmd+5",
+    "command": "workbench.action.openEditorAtIndex5"
+  },
+  {
+    "key": "cmd+6",
+    "command": "workbench.action.openEditorAtIndex6"
+  },
+  {
+    "key": "cmd+7",
+    "command": "workbench.action.openEditorAtIndex7"
+  },
+  {
+    "key": "cmd+8",
+    "command": "workbench.action.openEditorAtIndex8"
+  },
+  {
+    "key": "cmd+9",
+    "command": "workbench.action.openEditorAtIndex9"
+  },
+  {
+    "key": "alt+1",
+    "command": "workbench.action.terminal.focusAtIndex1"
+  },
+  {
+    "key": "alt+2",
+    "command": "workbench.action.terminal.focusAtIndex2"
+  },
+  {
+    "key": "alt+3",
+    "command": "workbench.action.terminal.focusAtIndex3"
+  },
+  {
+    "key": "alt+4",
+    "command": "workbench.action.terminal.focusAtIndex4"
+  },
+  {
+    "key": "alt+5",
+    "command": "workbench.action.terminal.focusAtIndex5"
+  },
+  {
+    "key": "alt+6",
+    "command": "workbench.action.terminal.focusAtIndex6"
+  },
+  {
+    "key": "alt+7",
+    "command": "workbench.action.terminal.focusAtIndex7"
+  },
+  {
+    "key": "alt+8",
+    "command": "workbench.action.terminal.focusAtIndex8"
+  },
+  {
+    "key": "alt+9",
+    "command": "workbench.action.terminal.focusAtIndex9"
+  },
+  {
+    "key": "alt+t",
+    "command": "workbench.action.terminal.new",
+    "when": "neovim.mode != 'insert'"
+  },
+  {
+    "key": "alt+w",
+    "command": "workbench.action.terminal.killActiveTab",
+    "when": "neovim.mode != 'insert'"
+  },
+  {
+    "key": "cmd+e",
+    "command": "workbench.view.explorer"
+  },
+  {
+    "key": "cmd+shift+j",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "alt+g alt+g",
+    "command": "workbench.view.scm",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "ctrl+shift+g",
+    "command": "-workbench.view.scm",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "alt+g alt+m",
+    "command": "cursor.generateGitCommitMessage"
+  },
+  {
+    "key": "alt+g alt+p",
+    "command": "git.push"
+  },
+  {
+    "key": "alt+g alt+l",
+    "command": "git.pull"
+  },
+  {
+    "key": "shift+cmd+h",
+    "command": "-workbench.action.replaceInFiles"
+  },
+  {
+    "key": "cmd+p",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "alt+g alt+c",
+    "command": "git.commit"
+  },
+  {
+    "key": "alt+f alt+r",
+    "command": "workbench.action.replaceInFiles"
+  },
+  {
+    "key": "alt+f alt+d",
+    "command": "periscope.search"
+  },
+  {
+    "key": "alt+f alt+f",
+    "command": "search-preview.quickOpenWithPreview"
+  },
+  {
+    "key": "shift+cmd+r",
+    "command": "-workbench.action.reloadWindow",
+    "when": "isDevelopment"
+  },
+  {
+    "key": "shift+cmd+r",
+    "command": "workbench.action.reloadWindow"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  }
 ]

@@ -164,13 +164,33 @@
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
   {
-    "key": "cmd+u",
+    "key": "cmd+shift+u",
     "command": "editor.action.marker.prevInFiles",
     "when": "editorFocus"
   },
   {
-    "key": "cmd+i",
+    "key": "cmd+u",
     "command": "editor.action.marker.nextInFiles",
     "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
   }
 ]

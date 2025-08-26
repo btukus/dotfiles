@@ -34,6 +34,7 @@ config/.config/NuGet/
 config/.config/jgit/
 config/.config/containers/
 config/.config/cursor/
+config/.config/swiftpm/
 
 zsh/antidote/.antidote/
 zsh/antidote/shared_plugins.zsh

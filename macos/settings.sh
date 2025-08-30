@@ -12,3 +12,6 @@ defaults write -g NSUserKeyEquivalents -dict-add "Hide" '\0'
 
 # Allow holddown
 defaults write -g ApplePressAndHoldEnabled -bool false
+
+# Makes MX Master 3s lag on Logi Bolt go away
+sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt Hybrid

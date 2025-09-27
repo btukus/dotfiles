@@ -80,5 +80,17 @@
   "java.format.settings.profile": "GoogleStyle",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
+  },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "workbench.view.showQuietly": {
+    "workbench.panel.output": true
   }
 }

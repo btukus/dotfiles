@@ -54,3 +54,17 @@ vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
 
 vim.g.italic_comments = false
+
+--- Set custom icons
+local severity = vim.diagnostic.severity
+
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [severity.ERROR] = " ",
+      [severity.WARN] = " ",
+      [severity.HINT] = "󰠠 ",
+      [severity.INFO] = " ",
+    },
+  },
+})

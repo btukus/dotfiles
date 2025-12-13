@@ -1,8 +1,8 @@
 return {
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      -- list of servers for mason to install
+	{
+		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			-- list of servers for mason to install
 			ensure_installed = {
 				"vtsls",
 				"html",
@@ -13,54 +13,56 @@ return {
 				"pyright",
 				"eslint",
 			},
-    },
-    dependencies = {
-      {
-        "williamboman/mason.nvim",
-        opts = {
-          ui = {
-            icons = {
-              package_installed = "✓",
-              package_pending = "➜",
-              package_uninstalled = "✗",
-            },
-          },
-        },
-      },
-      "neovim/nvim-lspconfig",
-    },
-  },
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = {
-				ensure_installed = {
-					"prettier", -- prettier formatter
-					"stylua", -- lua formatter
-					"pylint",
-					"eslint_d",
-					"yamlfix",
-					"shfmt",
+			automatic_enable = {
+				"lua_ls",
+			},
+		},
+		dependencies = {
+			{
+				"williamboman/mason.nvim",
+				opts = {
+					ui = {
+						icons = {
+							package_installed = "✓",
+							package_pending = "➜",
+							package_uninstalled = "✗",
+						},
+					},
 				},
 			},
-    dependencies = {
-      "williamboman/mason.nvim",
-    },
-  },
-  {
-    "rshkarin/mason-nvim-lint",
-    opts = {
-				ensure_installed = {
-					"eslint_d",
-					"markdownlint",
-					"shellcheck",
-					"yamllint",
-					"jsonlint",
-					"luacheck",
-					"pylint",
-					"tflint",
-					"shellcheck",
-				},
-
-    }
-  }
+			"neovim/nvim-lspconfig",
+		},
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		opts = {
+			ensure_installed = {
+				"prettier", -- prettier formatter
+				"stylua", -- lua formatter
+				"pylint",
+				"eslint_d",
+				"yamlfix",
+				"shfmt",
+			},
+		},
+		dependencies = {
+			"williamboman/mason.nvim",
+		},
+	},
+	{
+		"rshkarin/mason-nvim-lint",
+		opts = {
+			ensure_installed = {
+				"eslint_d",
+				"markdownlint",
+				"shellcheck",
+				"yamllint",
+				"jsonlint",
+				"luacheck",
+				"pylint",
+				"tflint",
+				"shellcheck",
+			},
+		},
+	},
 }

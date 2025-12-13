@@ -25,6 +25,9 @@ require("lazy").setup({
 			import = "plugins",
 		},
 		{
+			import = "plugins.ai",
+		},
+		{
 			import = "plugins.devops",
 		},
 		{

@@ -13,8 +13,10 @@ return {
 				"pyright",
 				"eslint",
 			},
+
 			automatic_enable = {
 				"lua_ls",
+        "vtsls"
 			},
 		},
 		dependencies = {

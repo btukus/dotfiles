@@ -34,6 +34,10 @@ brew bundle --file=brew/Brewfile.macos
 echo "Running Ansible playbook..."
 ansible-playbook ansible/macos_playbook.yml
 
+# 6. Apply macOS settings
+echo "Applying macOS settings..."
+bash macos/settings.sh
+
 echo ""
 echo "=== Setup complete! ==="
 echo "Restart your terminal to apply all changes."

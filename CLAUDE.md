@@ -21,9 +21,6 @@ This installs Xcode CLI tools, Homebrew, all packages, and runs Ansible.
 ## Manual Setup Commands
 
 ```bash
-# Install Homebrew only
-./brew_install.sh
-
 # Install all brew packages
 brew bundle --file=brew/Brewfile.macos
 
@@ -35,6 +32,10 @@ stow -t ~ config  # Links config/.config/* to ~/.config/
 stow -t ~ zsh     # Links zsh files to ~/
 stow -t ~ git     # Links git config to ~/
 ```
+
+## Prerequisites
+
+Install Nerd Font for Powerlevel10k: https://github.com/romkatv/powerlevel10k/blob/master/font.md
 
 ## Architecture
 

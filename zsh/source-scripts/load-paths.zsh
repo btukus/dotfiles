@@ -1,4 +1,16 @@
-eval $(/opt/homebrew/bin/brew shellenv)
+# Homebrew environment (cached for performance)
+BREW_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/brew-shellenv"
+if [[ -f "$BREW_CACHE" ]]; then
+  source "$BREW_CACHE"
+elif [[ -f /opt/homebrew/bin/brew ]]; then
+  mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"
+  /opt/homebrew/bin/brew shellenv > "$BREW_CACHE"
+  source "$BREW_CACHE"
+elif [[ -f /usr/local/bin/brew ]]; then
+  mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"
+  /usr/local/bin/brew shellenv > "$BREW_CACHE"
+  source "$BREW_CACHE"
+fi
 
 export EDITOR=nvim
 export VISUAL=nvim

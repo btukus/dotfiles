@@ -7,21 +7,34 @@ echo "=== macOS Development Environment Setup ==="
 if [ -t 0 ]; then
     sudo -v
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    SUDO_PID=$!
+    trap "kill $SUDO_PID 2>/dev/null" EXIT
 fi
 
 # 1. Install Xcode Command Line Tools (required for git, brew)
 if ! xcode-select -p &>/dev/null; then
     echo "Installing Xcode Command Line Tools..."
     xcode-select --install
-    echo "Press any key after Xcode tools are installed..."
-    read -n 1
+    if [ -t 0 ]; then
+        echo "Press any key after Xcode tools are installed..."
+        read -n 1
+    else
+        echo "Waiting for Xcode tools installation..."
+        until xcode-select -p &>/dev/null; do sleep 5; done
+    fi
 fi
 
 # 2. Install Homebrew
 if ! command -v brew &>/dev/null; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Set up Homebrew environment (works for both Apple Silicon and Intel)
+if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -f /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 # 3. Clone dotfiles (if not already in dotfiles directory)
@@ -38,7 +51,9 @@ brew bundle --file=brew/Brewfile.macos || echo "Warning: Some brew packages fail
 
 # 5. Run Ansible playbook (includes macOS settings)
 echo "Running Ansible playbook..."
-ansible-playbook ansible/macos_playbook.yml
+if ! ansible-playbook ansible/macos_playbook.yml; then
+    echo "Warning: Ansible playbook had errors (continuing...)"
+fi
 
 echo ""
 echo "=== Setup complete! ==="

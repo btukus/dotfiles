@@ -1,7 +1,7 @@
-# Function to recursively source all .zsh files in a directory
+# Source all .zsh files in aliases directory (using zsh globbing for performance)
 local directory="${1:-$ZDOTDIR/aliases}"
 if [[ -d "$directory" ]]; then
-  find "$directory" -type f -name "*.zsh" | while IFS= read -r file; do
+  for file in "$directory"/**/*.zsh(N); do
     source "$file"
   done
 else

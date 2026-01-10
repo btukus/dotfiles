@@ -1,4 +1,4 @@
-# zmodload zsh/zprof
+zmodload zsh/zprof
 
 source "$ZDOTDIR/source-scripts/load-paths.zsh"
 
@@ -16,4 +16,4 @@ source "$ZDOTDIR/source-scripts/asdf.zsh"
 
 source "$ZDOTDIR/.p10k.zsh"
 
-# zprof
+zprof

@@ -5,7 +5,8 @@
 SELF='brew-doctor'
 FQPN=$(realpath "$0")
 AGENT_PLIST="$HOME/Library/LaunchAgents/$SELF.plist"
-LOG_FILE="/tmp/$SELF.log"
+LOG_DIR="$HOME/Library/Logs/dotfiles"
+LOG_FILE="$LOG_DIR/$SELF.log"
 INTERVAL=604800  # Weekly (7 days in seconds)
 
 _notify() {
@@ -15,6 +16,7 @@ _notify() {
 }
 
 _run() {
+    mkdir -p "$LOG_DIR"
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Running brew doctor..." >> "$LOG_FILE"
 
     if ! command -v brew &> /dev/null; then
@@ -39,6 +41,7 @@ _install() {
     _uninstall &>/dev/null
 
     mkdir -p "$HOME/Library/LaunchAgents"
+    mkdir -p "$LOG_DIR"
 
     cat > "$AGENT_PLIST" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -56,9 +59,9 @@ _install() {
         <string>run</string>
     </array>
     <key>StandardErrorPath</key>
-    <string>/tmp/$SELF.stderr</string>
+    <string>$LOG_DIR/$SELF.stderr</string>
     <key>StandardOutPath</key>
-    <string>/tmp/$SELF.stdout</string>
+    <string>$LOG_DIR/$SELF.stdout</string>
     <key>StartInterval</key>
     <integer>$INTERVAL</integer>
     <key>WorkingDirectory</key>

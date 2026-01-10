@@ -17,7 +17,21 @@
       "Bash(git restore:*)",
       "Bash(brew autoupdate --help:*)",
       "Bash(brew commands:*)",
-      "Bash(launchctl list:*)"
+      "Bash(launchctl list:*)",
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(git -C /Users/btukus/dotfiles log --oneline)",
+      "Bash(git -C /Users/btukus/dotfiles remote:*)",
+      "Bash(grep:*)",
+      "Bash(git -C /Users/btukus/dotfiles status --porcelain)",
+      "Bash(git -C /Users/btukus/dotfiles log:*)",
+      "Bash(xargs ls:*)",
+      "Bash(git checkout:*)",
+      "Bash(for f in zsh/**/*.zsh)",
+      "Bash(do zsh -n \"$f\")",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(git reset:*)"
     ]
   }
 }

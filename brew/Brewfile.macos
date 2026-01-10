@@ -20,8 +20,6 @@ brew "bat"
 brew "cocoapods"
 brew "coreutils"
 brew "curl"
-brew "docker", link: false
-brew "docker-compose"
 brew "doppler"
 brew "eza"
 brew "fastlane"

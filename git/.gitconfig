@@ -8,7 +8,7 @@
 [credential]
 	helper = cache
 [http]
-	sslVerify = false
+	sslVerify = true
 [push]
 	autoSetupRemote = true
 [init]

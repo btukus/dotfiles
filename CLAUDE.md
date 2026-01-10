@@ -6,19 +6,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal dotfiles for macOS/Linux development environment. Uses stow for symlink management and Ansible for automated setup.
 
-## Setup Commands
+## Quick Start (Fresh macOS Install)
 
 ```bash
-# Install Homebrew and configure shell
+# One command to set up everything
+curl -fsSL https://raw.githubusercontent.com/btukus/dotfiles/main/install.sh | bash
+
+# Or if already cloned
+cd ~/dotfiles && ./install.sh
+```
+
+This installs Xcode CLI tools, Homebrew, all packages, and runs Ansible.
+
+## Manual Setup Commands
+
+```bash
+# Install Homebrew only
 ./brew_install.sh
 
 # Install all brew packages
-brew bundle --file=brew/Brewfile.macos  # macOS
-brew bundle --file=brew/Brewfile.linux  # Linux
+brew bundle --file=brew/Brewfile.macos
 
-# Run Ansible playbook for full setup
-ansible-playbook ansible/macos_playbook.yml  # macOS
-ansible-playbook ansible/linux_playbook.yml  # Linux
+# Run Ansible playbook
+ansible-playbook ansible/macos_playbook.yml
 
 # Symlink configs with stow (from dotfiles root)
 stow -t ~ config  # Links config/.config/* to ~/.config/

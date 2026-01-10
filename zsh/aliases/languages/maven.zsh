@@ -1,5 +1,0 @@
-alias mci='mvn clean install'
-alias mcp='mvn clean package'
-alias mct='mvn clean test'
-alias mcv='mvn clean verify'
-alias msr='mvn spring-boot:run'

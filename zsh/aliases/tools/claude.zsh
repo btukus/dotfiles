@@ -1,1 +1,0 @@
-alias cc="claude --chrome"

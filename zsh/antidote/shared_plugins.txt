@@ -1,5 +1,7 @@
-# deferred plugins
+# abbreviations and syntax highlighting
+olets/zsh-abbr
 zdharma-continuum/fast-syntax-highlighting
+5A6F65/fast-abbr-highlighting
 
 agkozak/zsh-z
 jeffreytse/zsh-vi-mode

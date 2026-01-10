@@ -36,4 +36,12 @@ if [ "$CURRENT_BT" != "Hybrid" ]; then
     sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt Hybrid
 fi
 
+# Homebrew auto-upgrade (every 24 hours)
+if command -v brew &> /dev/null; then
+    if ! brew autoupdate status 2>/dev/null | grep -q "installed and running"; then
+        echo "Setting up Homebrew auto-upgrade..."
+        brew autoupdate start 86400 --upgrade --cleanup
+    fi
+fi
+
 echo "macOS settings applied."

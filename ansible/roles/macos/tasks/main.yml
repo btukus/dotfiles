@@ -1,0 +1,5 @@
+---
+- name: Apply macOS settings
+  script: ~/dotfiles/macos/settings.sh
+  args:
+    executable: /bin/bash

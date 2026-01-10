@@ -36,13 +36,9 @@ cd "$DOTFILES_DIR"
 echo "Installing brew packages..."
 brew bundle --file=brew/Brewfile.macos || echo "Warning: Some brew packages failed to install (continuing...)"
 
-# 5. Run Ansible playbook
+# 5. Run Ansible playbook (includes macOS settings)
 echo "Running Ansible playbook..."
 ansible-playbook ansible/macos_playbook.yml
-
-# 6. Apply macOS settings
-echo "Applying macOS settings..."
-bash macos/settings.sh
 
 echo ""
 echo "=== Setup complete! ==="

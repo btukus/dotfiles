@@ -46,7 +46,10 @@
       "Bash(git -C /Users/btukus/dotfiles push)",
       "Bash(git -C /Users/btukus/dotfiles show HEAD~1:zsh/aliases/git/aliases-git.zsh)",
       "Bash(git -C /Users/btukus/dotfiles show HEAD~1:zsh/aliases/git/functions.zsh)",
-      "Bash(git -C /Users/btukus/dotfiles diff HEAD~1 --name-only --diff-filter=D)"
+      "Bash(git -C /Users/btukus/dotfiles diff HEAD~1 --name-only --diff-filter=D)",
+      "Bash(while read func)",
+      "Bash(do if grep -q \"abbr $func=\" /Users/btukus/dotfiles/config/.config/zsh-abbr/user-abbreviations)",
+      "Bash(then echo \"CONFLICT: $func\" fi done)"
     ]
   }
 }

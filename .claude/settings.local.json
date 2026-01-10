@@ -7,7 +7,11 @@
       "Bash(test:*)",
       "Bash(ansible-playbook:*)",
       "Bash(asdf --version:*)",
-      "Bash(asdf help:*)"
+      "Bash(asdf help:*)",
+      "Bash(ls:*)",
+      "Bash(chmod:*)",
+      "Bash(bash:*)",
+      "Bash(git push)"
     ]
   }
 }

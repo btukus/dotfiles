@@ -1,0 +1,2 @@
+---
+stow_directories: [git, config, asdf, claude, cursor]

@@ -171,8 +171,3 @@ command = { program = "/opt/homebrew/bin/tmux", args = ["select-window", "-t", "
 key = "9"
 mods = "Command"
 command = { program = "/opt/homebrew/bin/tmux", args = ["select-window", "-t", ":9"] }
-
-[[keyboard.bindings]]
-key = "Return"
-mods = "Shift"
-chars = "\u001b\r"

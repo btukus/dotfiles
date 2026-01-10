@@ -3,6 +3,10 @@ set -e
 
 echo "=== macOS Development Environment Setup ==="
 
+# Ask for sudo upfront and keep it alive
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # 1. Install Xcode Command Line Tools (required for git, brew)
 if ! xcode-select -p &>/dev/null; then
     echo "Installing Xcode Command Line Tools..."

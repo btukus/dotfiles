@@ -48,3 +48,4 @@ zsh/aliases/envspecific.zsh
 zsh/aliases/temp.zsh
 
 ansible/.tool-versions
+.DS_Store

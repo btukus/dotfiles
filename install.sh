@@ -28,7 +28,7 @@ cd "$DOTFILES_DIR"
 
 # 4. Install all brew packages (includes ansible, stow, etc.)
 echo "Installing brew packages..."
-brew bundle --file=brew/Brewfile.macos
+brew bundle --file=brew/Brewfile.macos || echo "Warning: Some brew packages failed to install (continuing...)"
 
 # 5. Run Ansible playbook
 echo "Running Ansible playbook..."

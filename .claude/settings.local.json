@@ -14,7 +14,10 @@
       "Bash(git push)",
       "Bash(./install.sh)",
       "Bash(~/dotfiles/.gitignore)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(brew autoupdate --help:*)",
+      "Bash(brew commands:*)",
+      "Bash(launchctl list:*)"
     ]
   }
 }

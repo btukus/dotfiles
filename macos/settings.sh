@@ -1,21 +1,39 @@
-# Dock
-defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock autohide-time-modifier -float 0
-killall Dock
+#!/bin/bash
+# macOS settings - idempotent (only changes if needed)
 
-# Finder
-defaults write com.apple.finder QuitMenuItem -bool true
-killall Finder
+CHANGED=0
 
-# Remove the CMD + H shortcut for hide
-defaults write -g NSUserKeyEquivalents -dict-add "Hide" '\0'
+# Dock auto-hide
+if [ "$(defaults read com.apple.dock autohide 2>/dev/null)" != "1" ]; then
+    echo "Enabling dock auto-hide..."
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock autohide-time-modifier -float 0
+    CHANGED=1
+fi
 
-# Allow holddown
-defaults write -g ApplePressAndHoldEnabled -bool false
+# Finder quit menu
+if [ "$(defaults read com.apple.finder QuitMenuItem 2>/dev/null)" != "1" ]; then
+    echo "Enabling Finder quit menu..."
+    defaults write com.apple.finder QuitMenuItem -bool true
+    killall Finder
+fi
 
-# Makes MX Master 3s lag on Logi Bolt go away
-sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt Hybrid
+# Restart Dock only if changed
+if [ "$CHANGED" = "1" ]; then
+    killall Dock
+fi
 
-# Macos Tahoe audio fix
-# sudo killall coreaudiod
+# Disable press-and-hold for keys
+if [ "$(defaults read -g ApplePressAndHoldEnabled 2>/dev/null)" != "0" ]; then
+    echo "Disabling press-and-hold for keys..."
+    defaults write -g ApplePressAndHoldEnabled -bool false
+fi
 
+# MX Master 3s Bluetooth fix (requires sudo)
+CURRENT_BT=$(sudo defaults read /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt 2>/dev/null || echo "")
+if [ "$CURRENT_BT" != "Hybrid" ]; then
+    echo "Applying Bluetooth fix for MX Master 3s..."
+    sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt Hybrid
+fi
+
+echo "macOS settings applied."

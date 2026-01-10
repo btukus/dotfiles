@@ -1,4 +1,10 @@
 ---
+- name: Get installed asdf plugins
+  command: asdf plugin list
+  register: installed_plugins
+  ignore_errors: true
+  changed_when: false
+
 - name: Add asdf plugins
   command: asdf plugin add {{ item }}
   loop:
@@ -10,18 +16,35 @@
     - terraform
     - kubelogin
     - bun
+  when: item not in (installed_plugins.stdout_lines | default([]))
   ignore_errors: true
 
 - name: Install all tools from .tool-versions
   command: asdf install
+  register: asdf_install
+  changed_when: "'is already installed' not in asdf_install.stderr"
+
+- name: Check installed npm packages
+  command: npm list -g --depth=0
+  register: npm_packages
+  ignore_errors: true
+  changed_when: false
 
 - name: Install global npm packages
   command: npm install -g {{ item }}
   loop:
     - neovim
     - prettier
+  when: item not in npm_packages.stdout
   ignore_errors: true
+
+- name: Check if pynvim is installed
+  command: pip show pynvim
+  register: pynvim_check
+  ignore_errors: true
+  changed_when: false
 
 - name: Install pynvim for neovim
   command: pip install pynvim
+  when: pynvim_check.rc != 0
   ignore_errors: true

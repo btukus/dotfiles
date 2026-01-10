@@ -3,7 +3,11 @@
     "allow": [
       "Bash(stow:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(test:*)",
+      "Bash(ansible-playbook:*)",
+      "Bash(asdf --version:*)",
+      "Bash(asdf help:*)"
     ]
   }
 }

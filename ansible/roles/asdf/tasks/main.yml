@@ -1,9 +1,27 @@
 ---
-- name: Install Node
-  include_tasks: node.yml
-- name: Install Python
-  include_tasks: python.yml
-- name: Install Java
-  include_tasks: java.yml
-- name: Install Rust
-  include_tasks: rust.yml
+- name: Add asdf plugins
+  command: asdf plugin add {{ item }}
+  loop:
+    - nodejs
+    - python
+    - java
+    - rust
+    - maven
+    - terraform
+    - kubelogin
+    - bun
+  ignore_errors: true
+
+- name: Install all tools from .tool-versions
+  command: asdf install
+
+- name: Install global npm packages
+  command: npm install -g {{ item }}
+  loop:
+    - neovim
+    - prettier
+  ignore_errors: true
+
+- name: Install pynvim for neovim
+  command: pip install pynvim
+  ignore_errors: true

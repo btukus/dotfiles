@@ -11,7 +11,10 @@
       "Bash(ls:*)",
       "Bash(chmod:*)",
       "Bash(bash:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(./install.sh)",
+      "Bash(~/dotfiles/.gitignore)",
+      "Bash(git restore:*)"
     ]
   }
 }

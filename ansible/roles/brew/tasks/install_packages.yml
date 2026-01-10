@@ -1,3 +1,0 @@
-- name: Install Brew Packages from Brewfile
-  shell: brew bundle --file={{ brewfile_location }}
-  ignore_errors: true

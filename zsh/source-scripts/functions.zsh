@@ -55,6 +55,26 @@ brew-export-linux() {
   sed -i "" "/^vscode/d" ~/dotfiles/brew/Brewfile.linux
 }
 
+# Git commit and push
+gcp() {
+  git add --all
+  git commit -m "$1"
+  git push
+}
+
+# Git update worktrees
+gu() {
+  source "$HOME/dotfiles/zsh/scripts/update-git-worktrees.zsh"
+}
+
+# Git worktree add with remote tracking
+gwa() {
+  git fetch origin "$1"
+  git worktree add "$1" "$1" || git worktree add "$1" -b "$1" "origin/$1"
+  cd "$1"
+  git branch --set-upstream-to="origin/$1" "$1"
+}
+
 # Git remote fetch fix
 gref() {
   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"

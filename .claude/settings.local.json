@@ -31,7 +31,22 @@
       "Bash(do zsh -n \"$f\")",
       "Bash(echo:*)",
       "Bash(done)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:zsh-abbr.olets.dev)",
+      "Bash(find:*)",
+      "WebFetch(domain:docs.atuin.sh)",
+      "Bash(git -C /Users/btukus/dotfiles rm:*)",
+      "Bash(zsh:*)",
+      "Bash(brew info:*)",
+      "Bash(brew search:*)",
+      "Bash(git -C /Users/btukus/dotfiles add zsh/ config/.config/zsh-abbr/ brew/Brewfile.macos)",
+      "Bash(git -C /Users/btukus/dotfiles commit -m \"$\\(cat <<''EOF''\nReplace aliases with zsh-abbr abbreviations\n\n- Convert 232 simple aliases to abbreviations\n- Convert 16 complex aliases to functions\n- Add zsh-abbr and fast-abbr-highlighting to antidote\n- Remove old alias files and load-aliases.zsh\n- Create functions.zsh for complex shell functions\n\nBenefits:\n- Abbreviations expand inline, showing full commands\n- Shell history contains full commands \\(shareable\\)\n- Syntax highlighting works via fast-abbr-highlighting\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/btukus/dotfiles push)",
+      "Bash(git -C /Users/btukus/dotfiles show HEAD~1:zsh/aliases/git/aliases-git.zsh)",
+      "Bash(git -C /Users/btukus/dotfiles show HEAD~1:zsh/aliases/git/functions.zsh)",
+      "Bash(git -C /Users/btukus/dotfiles diff HEAD~1 --name-only --diff-filter=D)"
     ]
   }
 }

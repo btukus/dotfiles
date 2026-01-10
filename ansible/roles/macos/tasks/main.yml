@@ -3,3 +3,33 @@
   script: ~/dotfiles/macos/settings.sh
   args:
     executable: /bin/bash
+
+- name: Check if brew-upgrade LaunchAgent is installed
+  shell: launchctl list | grep -q brew-upgrade
+  register: brew_upgrade_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Install brew-upgrade LaunchAgent (daily)
+  command: bash ~/dotfiles/macos/scripts/brew-upgrade.sh install
+  when: brew_upgrade_check.rc != 0
+
+- name: Check if brew-doctor LaunchAgent is installed
+  shell: launchctl list | grep -q brew-doctor
+  register: brew_doctor_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Install brew-doctor LaunchAgent (weekly)
+  command: bash ~/dotfiles/macos/scripts/brew-doctor.sh install
+  when: brew_doctor_check.rc != 0
+
+- name: Check if cache-cleanup LaunchAgent is installed
+  shell: launchctl list | grep -q cache-cleanup
+  register: cache_cleanup_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Install cache-cleanup LaunchAgent (weekly)
+  command: bash ~/dotfiles/macos/scripts/cache-cleanup.sh install
+  when: cache_cleanup_check.rc != 0

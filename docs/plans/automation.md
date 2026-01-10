@@ -1,103 +1,52 @@
-# Brew Upgrade & Maintenance Automation Plan
+# Brew Upgrade & Maintenance Automation
 
 ## Summary
-Set up three automated maintenance tasks:
-1. `brew upgrade` - every 24 hours (via built-in `brew autoupdate`)
+Three automated maintenance tasks via LaunchAgents:
+1. `brew upgrade` - daily (24 hours)
 2. `brew doctor` - weekly health check
 3. Cache cleanup - weekly cleanup of caches and old logs
 
 ---
 
-## Implementation
+## Scripts
 
-### 1. Brew Auto-Upgrade (24 hours)
-**Approach:** Use Homebrew's built-in `brew autoupdate` command.
+All scripts are in `macos/scripts/` and support: `install|uninstall|run|status`
 
-**File to modify:** `macos/settings.sh`
+| Script | Interval | What it does |
+|--------|----------|--------------|
+| `brew-upgrade.sh` | Daily | `brew update && brew upgrade && brew cleanup` |
+| `brew-doctor.sh` | Weekly | Runs `brew doctor`, notifies if issues found |
+| `cache-cleanup.sh` | Weekly | Cleans old caches/logs, runs `brew cleanup` |
 
-Add:
+---
+
+## Installation
+
 ```bash
-# Homebrew auto-upgrade (every 24 hours)
-if command -v brew &> /dev/null; then
-    brew autoupdate start 86400 --upgrade --cleanup
-fi
+# Install all three
+./macos/scripts/brew-upgrade.sh install
+./macos/scripts/brew-doctor.sh install
+./macos/scripts/cache-cleanup.sh install
 ```
 
-### 2. Brew Doctor (Weekly)
-**Approach:** Create a LaunchAgent following the existing `screencapture-nag-remover.sh` pattern.
+## Check Status
 
-**New file:** `macos/scripts/brew-doctor.sh`
+```bash
+./macos/scripts/brew-upgrade.sh status
+./macos/scripts/brew-doctor.sh status
+./macos/scripts/cache-cleanup.sh status
+```
 
-Features:
-- LaunchAgent runs weekly (604800 seconds)
-- Logs output to `/tmp/brew-doctor.log`
-- Sends notification if issues found (using `osascript`)
-- Install/uninstall functions for manual control
+## Logs
 
-### 3. Cache Cleanup (Weekly)
-**Approach:** Create a LaunchAgent for periodic cleanup.
+- `/tmp/brew-upgrade.log`
+- `/tmp/brew-doctor.log`
+- `/tmp/cache-cleanup.log`
 
-**New file:** `macos/scripts/cache-cleanup.sh`
+## Uninstall
 
-Cleans:
-- `~/Library/Caches/*` - Application caches (older than 7 days)
-- `~/Library/Logs/*` - Application logs (older than 30 days)
-- Homebrew cache via `brew cleanup --prune=7`
-
-Features:
-- LaunchAgent runs weekly (604800 seconds)
-- Logs cleanup summary to `/tmp/cache-cleanup.log`
-- Safe: only removes files older than threshold
-- Install/uninstall functions
-
----
-
-## Files to Create/Modify
-
-| File | Action |
-|------|--------|
-| `macos/scripts/` | New directory for automation scripts |
-| `macos/settings.sh` | Add brew autoupdate command |
-| `macos/scripts/brew-doctor.sh` | New - weekly brew doctor with notification |
-| `macos/scripts/cache-cleanup.sh` | New - weekly cache cleanup |
-
----
-
-## Script Structure (brew-doctor.sh and cache-cleanup.sh)
-
-Following the existing `screencapture-nag-remover.sh` pattern:
-- `install()` - Create plist and load LaunchAgent
-- `uninstall()` - Unload and remove LaunchAgent
-- `run()` - Execute the actual task
-- CLI interface: `./script.sh install|uninstall|run`
-
----
-
-## Integration
-
-After creating the scripts, they can be:
-1. Run manually: `./macos/scripts/brew-doctor.sh install`
-2. Added to `macos/settings.sh` for bootstrap
-3. Optionally added to an Ansible role
-
----
-
-## Verification
-
-1. **brew autoupdate:**
-   ```bash
-   brew autoupdate status
-   launchctl list | grep homebrew
-   ```
-
-2. **brew doctor LaunchAgent:**
-   ```bash
-   launchctl list | grep brew-doctor
-   cat /tmp/brew-doctor.log
-   ```
-
-3. **cache cleanup LaunchAgent:**
-   ```bash
-   launchctl list | grep cache-cleanup
-   cat /tmp/cache-cleanup.log
-   ```
+```bash
+./macos/scripts/brew-upgrade.sh uninstall
+./macos/scripts/brew-doctor.sh uninstall
+./macos/scripts/cache-cleanup.sh uninstall
+```

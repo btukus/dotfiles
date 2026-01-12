@@ -166,22 +166,45 @@ gwc() {
 
 # Delete worktree and cleanup
 gwd() {
+  local root_worktree current_branch repo_root branch_dir
+
   root_worktree=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ -z "$root_worktree" ]]; then
+    echo "Not in a git repository"
+    return 1
+  fi
+
   current_branch=$(git branch --show-current)
   repo_root=$(dirname "$root_worktree")
-  cd "$root_worktree"
-  cd ../
-  git worktree remove -f "$root_worktree"
+
+  # Move out of the worktree first
+  cd "$repo_root" || return 1
+
+  # Remove worktree, fallback to manual removal if needed
+  if ! git worktree remove -f "$root_worktree" 2>/dev/null; then
+    echo "git worktree remove failed, forcing directory removal..."
+    rm -rf "$root_worktree"
+    git worktree prune
+  fi
+
+  # Find a base branch to switch to
   for base_branch in dev develop main master; do
     branch_dir="$repo_root/$base_branch"
     if [[ -d "$branch_dir" ]]; then
-      cd "$branch_dir"
+      cd "$branch_dir" || continue
       git pull
-      git branch -D "$current_branch"
-      return
+      git branch -D "$current_branch" 2>/dev/null
+      return 0
     fi
   done
+
   echo "Neither 'develop', 'main', nor 'master' branch found."
+  return 1
+}
+
+# Delete worktree and open cursor
+gwdc() {
+  gwd && cursor --reuse-window .
 }
 
 # Find merge conflict files

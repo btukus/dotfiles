@@ -6,6 +6,10 @@
 
 # Go back N directories
 b() {
+  if [[ -z "$1" || ! "$1" =~ ^[0-9]+$ ]]; then
+    echo "Usage: b <number>"
+    return 1
+  fi
   local cmd=""
   for i in $(seq "$1"); do
     cmd="${cmd}../"
@@ -15,11 +19,16 @@ b() {
 
 # Directory temp storage (save current dir, return with cdt)
 markd() {
-  temp=$(pwd)
+  _MARKD_SAVED_DIR=$(pwd)
+  echo "Marked: $_MARKD_SAVED_DIR"
 }
 
 cdt() {
-  cd "$temp"
+  if [[ -z "$_MARKD_SAVED_DIR" ]]; then
+    echo "No directory marked. Use 'markd' first."
+    return 1
+  fi
+  cd "$_MARKD_SAVED_DIR"
 }
 
 # ============================================================
@@ -27,20 +36,27 @@ cdt() {
 # ============================================================
 
 # Get IP address and copy to clipboard
-ip() {
+myip() {
+  local ip_addr
   if [ -z "$1" ]; then
     if command -v ipconfig &>/dev/null; then
-      ipconfig getifaddr en0 | pbcopy
+      ip_addr=$(ipconfig getifaddr en0)
     else
-      ifconfig en0 | grep "inet " | awk '{print $2}' | pbcopy
+      ip_addr=$(ifconfig en0 | grep "inet " | awk '{print $2}')
     fi
   else
     if command -v ipconfig &>/dev/null; then
-      ipconfig getifaddr "en$1" | pbcopy
+      ip_addr=$(ipconfig getifaddr "en$1")
     else
-      ifconfig "en$1" | grep "inet " | awk '{print $2}' | pbcopy
+      ip_addr=$(ifconfig "en$1" | grep "inet " | awk '{print $2}')
     fi
   fi
+  if [[ -z "$ip_addr" ]]; then
+    echo "Could not get IP address"
+    return 1
+  fi
+  echo -n "$ip_addr" | pbcopy
+  echo "Copied: $ip_addr"
 }
 
 # Copy file path to clipboard
@@ -72,6 +88,10 @@ path() {
 
 # List with grep
 lg() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: lg <pattern>"
+    return 1
+  fi
   eza -la --group-directories-first --git | grep "$1"
 }
 
@@ -92,7 +112,7 @@ pwdc() {
 }
 
 # Reload shell
-su() {
+reload() {
   source "$ZDOTDIR/.zshrc"
 }
 
@@ -101,11 +121,11 @@ su() {
 # ============================================================
 
 nsproxy() {
-  sshpass -p "$CMC_PASSWORD" ssh -f -N -q ns-m-ssh001.tux.m.ns.lan
+  SSHPASS="$CMC_PASSWORD" sshpass -e ssh -f -N -q ns-m-ssh001.tux.m.ns.lan
 }
 
 enproxy() {
-  sshpass -p "$ENECO_PASSWORD" ssh -D 1080 -f -N -q eneco-m-ssh001.tux.m.eneco.lan
+  SSHPASS="$ENECO_PASSWORD" sshpass -e ssh -D 1080 -f -N -q eneco-m-ssh001.tux.m.eneco.lan
 }
 
 nscheck() {
@@ -118,9 +138,17 @@ nscheck() {
 
 # Git commit and push
 gcp() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: gcp <commit message>"
+    return 1
+  fi
   git add --all
-  git commit -m "$1"
-  git push
+  if git commit -m "$1"; then
+    git push
+  else
+    echo "Commit failed, not pushing"
+    return 1
+  fi
 }
 
 # Git update worktrees
@@ -130,31 +158,41 @@ gu() {
 
 # Git worktree add with remote tracking
 gwa() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: gwa <branch>"
+    return 1
+  fi
   git fetch origin "$1"
   git worktree add "$1" "$1" || git worktree add "$1" -b "$1" "origin/$1"
-  cd "$1"
+  cd "$1" || return 1
   git branch --set-upstream-to="origin/$1" "$1"
 }
 
 # Git worktree add (alternative)
 gwag() {
-  if [ -z "$1" ]; then
-    echo "Please provide a branch name."
+  if [[ -z "$1" ]]; then
+    echo "Usage: gwag <branch>"
     return 1
   fi
+
+  local root_dir branch remote_branch
+
   git pull
   root_dir=$(git rev-parse --show-toplevel 2>/dev/null)
   cd "$root_dir" || {
     echo "Failed to find the git root directory."
     return 1
   }
+
   branch=$1
   remote_branch=$(git ls-remote --heads origin "$branch")
-  if [ -z "$remote_branch" ]; then
+
+  if [[ -z "$remote_branch" ]]; then
     git worktree add --checkout "../$branch" && cd "../$branch"
+    echo "Worktree created for new branch: $branch"
   else
     git worktree add --track -b "$branch" "../$branch" "origin/$branch" && cd "../$branch"
-    echo "Worktree created and branch name copied to clipboard."
+    echo "Worktree created tracking origin/$branch"
   fi
 }
 
@@ -248,8 +286,17 @@ gmd() {
 
 # Rebase main and push to dev
 grmd() {
-  git rebase main
-  git push -f origin dev:dev
+  if ! git rebase main; then
+    echo "Rebase failed. Resolve conflicts and run 'git rebase --continue'"
+    return 1
+  fi
+  echo "About to force push to dev. Continue? [y/N]"
+  read -r confirm
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    git push -f origin dev:dev
+  else
+    echo "Push cancelled"
+  fi
 }
 
 # Clone bare repo with worktrees
@@ -299,18 +346,27 @@ gbare() {
 
 # Reset to commit SHA and force push
 greset() {
-  if [ -z "$1" ]; then
-    echo "Please provide a commit SHA"
+  if [[ -z "$1" ]]; then
+    echo "Usage: greset <commit-sha> <branch>"
     return 1
   fi
-  if [ -z "$2" ]; then
-    echo "Please provide branch name"
+  if [[ -z "$2" ]]; then
+    echo "Usage: greset <commit-sha> <branch>"
     return 1
   fi
-  commit=$1
-  branch=$2
-  git reset --hard "$commit"
-  git push origin "$branch" --force
+
+  local commit=$1
+  local branch=$2
+
+  echo "WARNING: This will reset to $commit and force push to $branch"
+  echo "Continue? [y/N]"
+  read -r confirm
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    git reset --hard "$commit"
+    git push origin "$branch" --force
+  else
+    echo "Reset cancelled"
+  fi
 }
 
 # Git remote fetch fix
@@ -393,7 +449,11 @@ kvc() {
 
 # Docker exec into container
 de() {
-  docker exec -it "$1" /bin/bash
+  if [[ -z "$1" ]]; then
+    echo "Usage: de <container>"
+    return 1
+  fi
+  docker exec -it "$1" /bin/bash || docker exec -it "$1" /bin/sh
 }
 
 # Get IP address of container
@@ -476,9 +536,3 @@ brew-export-linux() {
   sed -i "" "/^vscode/d" ~/dotfiles/brew/Brewfile.linux
 }
 
-# ============================================================
-# Simple aliases (not suitable for abbreviations)
-# ============================================================
-
-alias vim='vim -u ~/.config/vim/vimrc'
-alias fs='nvim --startuptime /tmp/nvim-startuptime'

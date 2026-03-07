@@ -82,7 +82,7 @@
   },
   {
     "key": "alt+w",
-    "command": "workbench.action.terminal.killActiveTab",
+    "command": "workbench.action.terminal.kill",
     "when": "neovim.mode != 'insert'"
   },
   {
@@ -90,9 +90,8 @@
     "command": "workbench.view.explorer"
   },
   {
-    "key": "cmd+shift+j",
-    "command": "workbench.action.toggleMaximizedPanel",
-    "when": "!terminalFocus"
+    "key": "cmd+j",
+    "command": "workbench.action.terminal.toggleTerminal"
   },
   {
     "key": "cmd+i",
@@ -192,5 +191,50 @@
     "key": "ctrl+up",
     "command": "selectPrevCodeAction",
     "when": "codeActionMenuVisible"
-  }
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.nextEditorInGroup"
+  },
+  {
+    "key": "cmd+r alt+cmd+right",
+    "command": "-workbench.action.nextEditorInGroup"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "workbench.action.previousEditorInGroup"
+  },
+  {
+    "key": "cmd+r alt+cmd+left",
+    "command": "-workbench.action.previousEditorInGroup"
+  },
+  {
+    "key": "cmd+shift+f",
+    "command": "-workbench.action.findInFiles",
+    "when": "neovim.mode != 'insert'"
+  },
+  {
+    "key": "alt+j",
+    "command": "list.focusDown",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "alt+k",
+    "command": "list.focusUp",
+    "when": "!editorFocus"
+},
+{
+    "key": "alt+cmd+s",
+    "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+    "when": "cursor.agentIdeUnification.enabled == true && !isAuxiliaryWindowFocusedContext"
+},
+{
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+        "text": "\u001b\r"
+    },
+    "when": "terminalFocus"
+}
 ]
+

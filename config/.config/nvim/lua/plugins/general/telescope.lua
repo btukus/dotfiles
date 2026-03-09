@@ -69,6 +69,17 @@ return {
 				},
 				file_browser = {
 					initial_mode = "normal",
+					mappings = {
+						n = {
+							["Y"] = function(prompt_bufnr)
+								local action_state = require("telescope.actions.state")
+								local entry = action_state.get_selected_entry()
+								local path = entry.Path:absolute()
+								vim.fn.setreg("+", path)
+								vim.notify("Copied: " .. path)
+							end,
+						},
+					},
 				},
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown({}),

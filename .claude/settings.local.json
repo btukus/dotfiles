@@ -49,7 +49,13 @@
       "Bash(git -C /Users/btukus/dotfiles diff HEAD~1 --name-only --diff-filter=D)",
       "Bash(while read func)",
       "Bash(do if grep -q \"abbr $func=\" /Users/btukus/dotfiles/config/.config/zsh-abbr/user-abbreviations)",
-      "Bash(then echo \"CONFLICT: $func\" fi done)"
+      "Bash(then echo \"CONFLICT: $func\" fi done)",
+      "Bash(ssh:*)",
+      "Bash(git:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl:*)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs"
     ]
   }
 }

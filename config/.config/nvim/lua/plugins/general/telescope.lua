@@ -30,9 +30,6 @@ return {
 			end,
 		})
 
-		telescope.load_extension("file_browser")
-		telescope.load_extension("projects")
-
 		telescope.setup({
 			defaults = {
 				vimgrep_arguments = {
@@ -70,12 +67,17 @@ return {
 					override_file_sorter = true,
 					case_mode = "smart_case",
 				},
+				file_browser = {
+					initial_mode = "normal",
+				},
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown({}),
 				},
 			},
 		})
 
+		telescope.load_extension("file_browser")
+		telescope.load_extension("projects")
 		telescope.load_extension("fzf")
 		telescope.load_extension("ui-select")
 	end,

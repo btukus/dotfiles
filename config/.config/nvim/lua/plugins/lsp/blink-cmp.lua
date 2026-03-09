@@ -118,16 +118,6 @@ return {
 						return items
 					end,
 				},
-				-- -- Third class citizen mf always talking shit
-				-- copilot = {
-				--   name = "copilot",
-				--   enabled = true,
-				--   module = "blink-cmp-copilot",
-				--   kind = "Copilot",
-				--   min_keyword_length = 6,
-				--   score_offset = -100, -- the higher the number, the higher the priority
-				--   async = true,
-				-- },
 			},
 		})
 

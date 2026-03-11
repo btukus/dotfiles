@@ -11,7 +11,7 @@ return {
 	keys = {
 		{ "<leader>ff", ":Telescope find_files hidden=true<CR>", silent = true },
 		{ "<leader>fd", ":Telescope live_grep<CR>", silent = true },
-		{ "<leader>fp", ":Telescope projects<CR>", silent = true },
+		{ "<leader>fp", ":Telescope projects initial_mode=normal<CR>", silent = true },
 		{ "<leader>fr", ":Telescope file_browser hidden=true<CR> ", silent = true },
 		{ "<leader>ft", ":Telescope file_browser hidden=true path=%:p:h select_buffer=true<CR> ", silent = true },
 	},

@@ -15,19 +15,21 @@
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "github@claude-plugins-official": false,
-    "code-review@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "supabase@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "agent-sdk-dev@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "claude-code-setup@claude-plugins-official": true
+    "pr-review-toolkit@claude-plugins-official": true,
+    "github@claude-plugins-official": false,
+    "code-review@claude-plugins-official": false,
+    "ralph-loop@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": true,
+    "supabase@claude-plugins-official": false,
+    "lua-lsp@claude-plugins-official": false,
+    "feature-dev@claude-plugins-official": false,
+    "agent-sdk-dev@claude-plugins-official": false,
+    "claude-code-setup@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": false,
+    "claude-md-management@claude-plugins-official": false
   },
   "alwaysThinkingEnabled": true
 }

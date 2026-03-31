@@ -59,7 +59,12 @@
       "Bash(tmux source-file:*)",
       "Bash(deno --version)",
       "Read(//Users/btukus/.local/share/nvim/lazy/peek.nvim/**)",
-      "Bash(deno task:*)"
+      "Bash(deno task:*)",
+      "Bash(mv general:*)",
+      "Bash(mv ai/claude-code.lua tools/)",
+      "Bash(rmdir ai:*)",
+      "Bash(mkdir -p lang)",
+      "Bash(mv languages/typescript.lua lang/)"
     ]
   }
 }

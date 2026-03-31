@@ -26,3 +26,5 @@ if [ "$TERM_PROGRAM" = "Alacritty" ] || [ "$TERM" = "alacritty" ]; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
+
+export PATH="$HOME/.asdf/installs/nodejs/24.0.2/bin:$PATH"

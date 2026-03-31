@@ -4,7 +4,6 @@ return {
 		opts = {
 			-- list of servers for mason to install
 			ensure_installed = {
-				"vtsls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -16,7 +15,6 @@ return {
 
 			automatic_enable = {
 				"lua_ls",
-        "vtsls"
 			},
 		},
 		dependencies = {
@@ -55,15 +53,12 @@ return {
 		"rshkarin/mason-nvim-lint",
 		opts = {
 			ensure_installed = {
-				"eslint_d",
 				"markdownlint",
 				"shellcheck",
 				"yamllint",
 				"jsonlint",
 				"luacheck",
-				"pylint",
 				"tflint",
-				"shellcheck",
 			},
 		},
 	},

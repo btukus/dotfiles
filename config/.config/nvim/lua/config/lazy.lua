@@ -20,39 +20,13 @@ vim.loader.enable()
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		-- import your plugins
-		{
-			import = "plugins",
-		},
-		{
-			import = "plugins.ai",
-		},
-		{
-			import = "plugins.devops",
-		},
-		{
-			import = "plugins.edit",
-		},
-		{
-			import = "plugins.general",
-      -- cond = not vim.g.vscode,
-		},
-		{
-			import = "plugins.git",
-      -- cond = not vim.g.vscode,
-		},
-		{
-			import = "plugins.lsp",
-      -- cond = not vim.g.vscode,
-		},
-		{
-			import = "plugins.ui",
-      -- cond = not vim.g.vscode,
-		},
-		{
-			import = "plugins.languages",
-      -- cond = not vim.g.vscode,
-		},
+		{ import = "plugins" },
+		{ import = "plugins.edit" },
+		{ import = "plugins.git" },
+		{ import = "plugins.lang" },
+		{ import = "plugins.lsp" },
+		{ import = "plugins.tools" },
+		{ import = "plugins.ui" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.

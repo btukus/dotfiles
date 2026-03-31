@@ -125,21 +125,11 @@ return {
 		}
 
 		opts.completion = {
-			-- accept = {
-			--   auto_brackets = {
-			--     enabled = true,
-			--     default_brackets = { ";", "" },
-			--     override_brackets_for_filetypes = {
-			--       markdown = { ";", "" },
-			--     },
-			--   },
-			-- },
-			--   keyword = {
-			--     -- 'prefix' will fuzzy match on the text before the cursor
-			--     -- 'full' will fuzzy match on the text before *and* after the cursor
-			--     -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
-			--     range = "full",
-			--   },
+			accept = {
+				auto_brackets = {
+					enabled = true,
+				},
+			},
 			menu = {
 				border = "single",
 			},

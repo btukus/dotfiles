@@ -1,28 +1,46 @@
-tap "buo/cask-upgrade"
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
-brew "azure-cli"
+
+# Core dev tools
+brew "ansible"
+brew "antidote"
+brew "asdf"
 brew "bat"
 brew "coreutils"
+brew "eza"
+brew "fzf"
 brew "gcc"
-brew "git"
-brew "go"
-brew "jq"
-brew "kompose"
-brew "kubernetes-cli"
+brew "lazydocker"
 brew "lazygit"
 brew "luarocks"
-brew "neovim", args: ["HEAD"]
-brew "packer"
+brew "neovim"
 brew "ripgrep"
-brew "rust"
-brew "shellcheck"
-brew "stow"
 brew "stylua"
-brew "terraform"
 brew "tmux"
-brew "wget"
-brew "xsel"
-brew "zsh"
-brew "asdf"
+brew "vim"
+brew "yq"
+
+# Kubernetes
+brew "argocd"
+brew "helm"
+brew "k9s"
+brew "kompose"
+brew "kubernetes-cli"
+brew "kubectx"
+brew "kubent"
+brew "kustomize"
+
+# Cloud / infra
+brew "azure-cli"
+brew "doppler"
+brew "tflint"
+brew "aquasecurity/trivy/trivy"
+
+# Node / JS
+brew "pnpm"
+
+# Security
+brew "sonar-scanner"
+
+# Go tools
+go "golang.org/x/tools/gopls"
+go "honnef.co/go/tools/cmd/staticcheck"

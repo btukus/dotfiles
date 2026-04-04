@@ -1,0 +1,28 @@
+# System-level packages installed via apt
+# Usage: grep -v '^#' aptfile.txt | grep -v '^$' | xargs sudo apt-get install -y
+
+# Build essentials
+build-essential
+cmake
+pkg-config
+
+# Core utilities
+curl
+wget
+git
+stow
+unzip
+zip
+tar
+
+# Networking
+nmap
+telnet
+tcptraceroute
+
+# Development
+shellcheck
+shfmt
+jq
+yamllint
+perl

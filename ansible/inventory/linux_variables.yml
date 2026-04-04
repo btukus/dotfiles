@@ -1,2 +1,3 @@
 ---
-stow_directories: [git, config, asdf, claude, cursor]
+brewfile_location: ~/dotfiles/brew/Brewfile.linux
+stow_directories: [git, config, asdf]

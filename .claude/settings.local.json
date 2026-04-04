@@ -64,7 +64,8 @@
       "Bash(mv ai/claude-code.lua tools/)",
       "Bash(rmdir ai:*)",
       "Bash(mkdir -p lang)",
-      "Bash(mv languages/typescript.lua lang/)"
+      "Bash(mv languages/typescript.lua lang/)",
+      "WebFetch(domain:mynixos.com)"
     ]
   }
 }

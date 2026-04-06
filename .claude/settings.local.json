@@ -65,7 +65,9 @@
       "Bash(rmdir ai:*)",
       "Bash(mkdir -p lang)",
       "Bash(mv languages/typescript.lua lang/)",
-      "WebFetch(domain:mynixos.com)"
+      "WebFetch(domain:mynixos.com)",
+      "Bash(nvim --version)",
+      "Bash(nvim:*)"
     ]
   }
 }

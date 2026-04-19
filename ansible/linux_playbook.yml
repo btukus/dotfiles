@@ -2,6 +2,8 @@
 - hosts: localhost
   vars_files: [./inventory/linux_variables.yml]
   roles:
+    - zsh
+    - antidote
     - stow
     - tmux
     - asdf

@@ -55,6 +55,24 @@ vim.opt.iskeyword:append("-")
 
 vim.g.italic_comments = false
 
+-- Use OSC 52 for system clipboard when over SSH so yanks reach the client.
+if os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION") then
+  local ok, osc52 = pcall(require, "vim.ui.clipboard.osc52")
+  if ok then
+    vim.g.clipboard = {
+      name = "OSC 52",
+      copy = {
+        ["+"] = osc52.copy("+"),
+        ["*"] = osc52.copy("*"),
+      },
+      paste = {
+        ["+"] = osc52.paste("+"),
+        ["*"] = osc52.paste("*"),
+      },
+    }
+  end
+end
+
 --- Set custom icons
 local severity = vim.diagnostic.severity
 

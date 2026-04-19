@@ -2,14 +2,16 @@
 BREW_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/brew-shellenv"
 if [[ -f "$BREW_CACHE" ]]; then
   source "$BREW_CACHE"
-elif [[ -f /opt/homebrew/bin/brew ]]; then
-  mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"
-  /opt/homebrew/bin/brew shellenv > "$BREW_CACHE"
-  source "$BREW_CACHE"
-elif [[ -f /usr/local/bin/brew ]]; then
-  mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"
-  /usr/local/bin/brew shellenv > "$BREW_CACHE"
-  source "$BREW_CACHE"
+else
+  for _brew_bin in /opt/homebrew/bin/brew /home/linuxbrew/.linuxbrew/bin/brew /usr/local/bin/brew; do
+    if [[ -x "$_brew_bin" ]]; then
+      mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}"
+      "$_brew_bin" shellenv > "$BREW_CACHE"
+      source "$BREW_CACHE"
+      break
+    fi
+  done
+  unset _brew_bin
 fi
 
 export EDITOR=nvim

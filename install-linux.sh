@@ -43,6 +43,16 @@ if ! ansible-playbook ansible/linux_playbook.yml; then
     echo "Warning: Ansible playbook had errors (continuing...)"
 fi
 
+# 6. Set zsh as the default login shell
+ZSH_BIN="$(command -v zsh)"
+if [ -n "$ZSH_BIN" ] && [ "$SHELL" != "$ZSH_BIN" ]; then
+    echo "Setting default shell to zsh ($ZSH_BIN)..."
+    if ! grep -qx "$ZSH_BIN" /etc/shells; then
+        echo "$ZSH_BIN" | sudo tee -a /etc/shells >/dev/null
+    fi
+    sudo chsh -s "$ZSH_BIN" "$USER" || echo "Warning: chsh failed (continuing...)"
+fi
+
 echo ""
 echo "=== Setup complete! ==="
 echo "Restart your terminal to apply all changes."

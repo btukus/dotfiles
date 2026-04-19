@@ -8,6 +8,8 @@ source "$ZDOTDIR/source-scripts/load-history-settings.zsh"
 
 source "$ZDOTDIR/source-scripts/antidote.zsh"
 
+source "$ZDOTDIR/source-scripts/clipboard.zsh"
+
 source "$ZDOTDIR/source-scripts/functions.zsh"
 
 source "$ZDOTDIR/source-scripts/load-ssh-keys.zsh"

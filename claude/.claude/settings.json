@@ -1,4 +1,7 @@
 {
+  "permissions": {
+    "defaultMode": "auto"
+  },
   "hooks": {
     "Notification": [
       {
@@ -41,5 +44,8 @@
       }
     }
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "editorMode": "vim",
+  "preferredNotifChannel": "terminal_bell"
 }

@@ -8,6 +8,7 @@ return {
 	-- https://github.com/Saghen/blink.cmp/releases
 	-- version = "v0.13.1",
   build = 'cargo build --release',
+	dependencies = { "saghen/blink.lib" },
 	opts = function(_, opts)
 		-- I noticed that telescope was extremeley slow and taking too long to open,
 		-- assumed related to blink, so disabled blink and in fact it was related

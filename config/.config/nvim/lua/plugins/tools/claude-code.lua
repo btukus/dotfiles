@@ -1,6 +1,6 @@
 return {
-  name = "claude-legion",
-  dir = "/Users/btukus/drive/mac/development/sensey/claude-legion/main",
+  "senseylabs/claude-legion",
+  enabled = true,
   lazy = false,
   config = function()
     require("claude-legion").setup()

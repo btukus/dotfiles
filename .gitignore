@@ -36,6 +36,8 @@ config/.config/containers/
 config/.config/cursor/
 config/.config/swiftpm/
 
+.env*
+
 zsh/antidote/.antidote/
 zsh/antidote/shared_plugins.zsh
 zsh/.zsh_sessions/

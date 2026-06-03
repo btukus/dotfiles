@@ -1,5 +1,8 @@
 # zmodload zsh/zprof
 
+# Load environment variables (API keys, etc.) from .env, auto-exporting them
+[[ -f "$ZDOTDIR/.env" ]] && set -a && source "$ZDOTDIR/.env" && set +a
+
 source "$ZDOTDIR/source-scripts/load-paths.zsh"
 
 source "$ZDOTDIR/source-scripts/load-completions.zsh"

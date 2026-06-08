@@ -11,4 +11,6 @@ ssh_origins:
     identityfile: ~/.ssh/sshdevops/sshdevops, location: ~/.ssh/sshdevops}
   - {name: GithubSensey, hostname: github.com, user: git, host: github.com, identityfile: ~/.ssh/github-sensey/github-sensey,
     location: ~/.ssh/github-sensey}
+  - {name: GithubPlus, hostname: github.com, user: git, host: github.com, identityfile: ~/.ssh/github-plus/github-plus,
+    location: ~/.ssh/github-plus}
 stow_directories: [git, config, asdf, claude, cursor]

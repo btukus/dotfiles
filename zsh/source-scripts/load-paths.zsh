@@ -29,8 +29,6 @@ fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
-export PATH="$HOME/.asdf/installs/nodejs/24.0.2/bin:$PATH"
-
 # Android SDK (for local Expo/React Native builds)
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin"

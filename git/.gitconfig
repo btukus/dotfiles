@@ -1,7 +1,7 @@
 [pager]
 	branch = false
 [core]
-	excludesfile = /home/btukus/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [user]
 	name = btukus
 	email = berkhan.tukus@sensey.io
@@ -13,8 +13,8 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = main
-[url "git@GithubSensey:senseylabs/"]
-	insteadOf = git@github.com:senseylabs/
+[include]
+	path = ~/.config/git/identity-routing
 [credential "https://github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential

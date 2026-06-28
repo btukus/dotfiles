@@ -3,14 +3,14 @@ ansible_shell_executable: /bin/zsh
 brewfile_location: ~/dotfiles/brew/Brewfile.macos
 zdotdir: ~/dotfiles/zsh
 ssh_origins:
-  - {name: Github, hostname: github.com, user: git, host: github.com, identityfile: ~/.ssh/github/github,
-    location: ~/.ssh/github}
-  - {name: DevOps, hostname: dev.azure.com, user: git, host: dev.azure.com, identityfile: ~/.ssh/devops/devops,
-    location: ~/.ssh/devops}
-  - {name: SSHDevOps, hostname: ssh.dev.azure.com, user: git, host: ssh.dev.azure.com,
-    identityfile: ~/.ssh/sshdevops/sshdevops, location: ~/.ssh/sshdevops}
-  - {name: GithubSensey, hostname: github.com, user: git, host: github.com, identityfile: ~/.ssh/github-sensey/github-sensey,
-    location: ~/.ssh/github-sensey}
-  - {name: GithubPlus, hostname: github.com, user: git, host: github.com, identityfile: ~/.ssh/github-plus/github-plus,
-    location: ~/.ssh/github-plus}
+  - {name: Github, hostname: github.com, user: git, identityfile: ~/.ssh/github/github,
+    location: ~/.ssh/github, primary: true}
+  - {name: DevOps, hostname: dev.azure.com, user: git, identityfile: ~/.ssh/devops/devops,
+    location: ~/.ssh/devops, primary: true}
+  - {name: SSHDevOps, hostname: ssh.dev.azure.com, user: git,
+    identityfile: ~/.ssh/sshdevops/sshdevops, location: ~/.ssh/sshdevops, primary: true}
+  - {name: GithubSensey, hostname: github.com, user: git, identityfile: ~/.ssh/github-sensey/github-sensey,
+    location: ~/.ssh/github-sensey, primary: false, orgs: [senseylabs]}
+  - {name: GithubPlus, hostname: github.com, user: git, identityfile: ~/.ssh/github-plus/github-plus,
+    location: ~/.ssh/github-plus, primary: false, orgs: [mgunes-spec]}
 stow_directories: [git, config, asdf, claude, cursor]

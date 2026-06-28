@@ -1,5 +1,12 @@
 # Dotfiles Audit & Optimization - January 2026
 
+> **Note (2026-06-28):** Since this audit, the `zsh/aliases/` directory has been
+> flattened (the recursive `git/`, `kubernetes/`, `languages/`, etc. subdirs are
+> gone — only `tools.zsh` and `envspecific.zsh` remain, sourced by
+> `source-scripts/load-aliases.zsh`), and most aliases were converted to shell
+> functions in `zsh/source-scripts/functions.zsh`. File references below are
+> historical and may no longer exist.
+
 ## Summary
 
 Comprehensive senior engineer audit of the dotfiles repository identified **42 issues** across security, functionality, performance, and organization. This document summarizes all changes made.

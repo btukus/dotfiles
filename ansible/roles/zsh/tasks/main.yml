@@ -6,6 +6,10 @@
   include_tasks: "create_ssh_directories.yml"
   when: ssh_origins is defined and ssh_origins | length > 0
 
+- name: Create git identity routing
+  include_tasks: "create_git_identity_routing.yml"
+  when: ssh_origins is defined and ssh_origins | length > 0
+
 - name: Create SSH keys
   include_tasks: "ssh_keys.yml"
   when: ssh_origins is defined and ssh_origins | length > 0

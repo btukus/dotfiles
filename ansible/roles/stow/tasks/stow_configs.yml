@@ -1,4 +1,5 @@
-- name: Stow Directories 
+- name: Stow Directories
   shell: stow -t ~ -d ~/dotfiles "{{ item }}"
   loop: "{{ stow_directories }}"
+  changed_when: false
 

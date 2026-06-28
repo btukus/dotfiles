@@ -46,16 +46,16 @@ Install Nerd Font for Powerlevel10k: https://github.com/romkatv/powerlevel10k/bl
   - `load-completions.zsh` - Completion configuration
   - `load-history-settings.zsh` - History settings
   - `antidote.zsh` - Plugin manager (loads `zsh/antidote/shared_plugins.txt`)
-  - `load-aliases.zsh` - Recursively sources all `.zsh` files in `zsh/aliases/`
+  - `load-aliases.zsh` - Sources the flat `.zsh` files in `zsh/aliases/`
   - `asdf.zsh` - Version manager integration
   - `.p10k.zsh` - Powerlevel10k theme
 
 ### Aliases Organization (`zsh/aliases/`)
-- `git/` - Git shortcuts and worktree helpers (`gg` for lazygit)
-- `kubernetes/` - kubectl, helm, k8s shortcuts (`k` for kubectl)
-- `tools/` - Docker, Azure, brew, tmux, nvim aliases
-- `languages/` - Language-specific aliases
-- `clients/`, `machines/` - Environment-specific configs
+- Flat directory sourced by `source-scripts/load-aliases.zsh` (no subdirs).
+- `tools.zsh` - Docker, Azure, brew, tmux, nvim and other tool aliases
+- `envspecific.zsh` - Environment/machine-specific configs
+- Most former aliases (git, kubernetes, languages, etc.) are now shell
+  functions in `zsh/source-scripts/functions.zsh` (see its top comment).
 
 ### Key Tools
 - **asdf**: Version management for nodejs, python, rust, java, maven, terraform, bun (see `asdf/.tool-versions`)

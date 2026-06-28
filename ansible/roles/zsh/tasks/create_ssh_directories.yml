@@ -14,8 +14,10 @@
     dest: "~/.ssh/config"
     content: |
       {% for origin in ssh_origins %}
-      Host {{ origin.name }} {{ origin.hostname }}
+      Host {{ origin.name }}{% if origin.primary | default(false) %} {{ origin.hostname }}{% endif %}
+
         HostName {{ origin.hostname }}
         User {{ origin.user }}
         IdentityFile {{ origin.identityfile }}
+        IdentitiesOnly yes
       {% endfor %}

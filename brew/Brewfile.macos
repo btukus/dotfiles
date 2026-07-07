@@ -9,7 +9,7 @@ tap "homebrew/bundle"
 tap "homebrew/services"
 tap "kreuzwerker/taps"
 tap "olets/tap"
-tap "openclaw/tap"
+tap "openclaw/tap", trusted: { casks: ["goplaces"] }
 tap "predatorray/brew"
 tap "senseylabs/tap"
 tap "steipete/tap"
@@ -61,8 +61,6 @@ brew "gh"
 brew "git"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
 # Kubernetes package manager
 brew "helm"
 # HTTP load generator, ApacheBench (ab) replacement
@@ -89,8 +87,6 @@ brew "kubent"
 brew "kubernetes-cli"
 # Template-free customization of Kubernetes YAML manifests
 brew "kustomize"
-# Lazier way to manage everything docker
-brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Postgres C API library
@@ -103,16 +99,8 @@ brew "luarocks"
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
-# General-purpose speech recognition model
-brew "openai-whisper"
-# Development kit for the Java programming language
-brew "openjdk@17"
-# OpenShift command-line interface tools
-brew "openshift-cli"
 # Highly capable, feature-rich programming language
 brew "perl"
-# Fast, disk space efficient package manager
-brew "pnpm"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Command-line shell and scripting language
@@ -121,26 +109,18 @@ brew "powershell", link: false
 brew "reattach-to-user-namespace"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Static analysis and lint tool, for (ba)sh scripts
-brew "shellcheck"
-# Autoformat shell script source code
-brew "shfmt"
 # Launcher to analyze a project with SonarQube
 brew "sonar-scanner"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
-# Multi-modal AI tool to extract and summarize content
-brew "summarize"
 # Easiest, most secure way to use WireGuard and 2FA
 brew "tailscale"
 # Traceroute implementation using TCP packets
 brew "tcptraceroute"
 # User interface to the TELNET protocol
 brew "telnet"
-# Linter for Terraform files
-brew "tflint"
 # Terminal multiplexer
 brew "tmux"
 # Vi 'workalike' with many additional features
@@ -171,26 +151,16 @@ cask "android-commandlinetools"
 cask "android-studio"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-# OpenAI's official browser with ChatGPT built in
-cask "chatgpt-atlas"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# Write, edit, and chat about your code with AI
-cask "cursor"
 # Voice and text chat software
 cask "discord"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
-# Online diagram software
-cask "drawio"
-# Launch builds and start simulators from your menu bar
-cask "expo-orbit"
 cask "font-meslo-for-powerlevel10k"
 cask "font-meslo-lg-nerd-font"
 # Web browser
 cask "google-chrome"
-# Modern Go client + CLI for the Google Places API (New).
-cask "openclaw/tap/goplaces", trusted: true
 # Software for Logitech devices
 cask "logi-options+"
 # Adaptive brightness for external displays
@@ -235,6 +205,4 @@ cask "senseylabs/tap/vantage", trusted: true
 cask "vlc"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-go "golang.org/x/tools/gopls"
-go "honnef.co/go/tools/cmd/staticcheck"
 cargo "jwt-cli"

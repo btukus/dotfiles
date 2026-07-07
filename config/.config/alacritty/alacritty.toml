@@ -4,6 +4,13 @@
 [env]
 term = "xterm-256color"
 
+# Silence the intermittent "NSPasteboard#writeObjects: returned false" WARN.
+# It's a harmless race for the macOS pasteboard with a clipboard manager
+# (Raycast Clipboard History). Copies still succeed; only the occasional
+# lost race logged this warning. Set back to "Warn" to see it again.
+[debug]
+log_level = "Error"
+
 [window]
 startup_mode = "Maximized"
 option_as_alt = "Both"

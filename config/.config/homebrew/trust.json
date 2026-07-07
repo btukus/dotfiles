@@ -1,0 +1,9 @@
+{
+  "trustedcasks": [
+    "openclaw/tap/goplaces",
+    "senseylabs/tap/vantage"
+  ],
+  "trustedformulae": [
+    "senseylabs/tap/kagi-cli"
+  ]
+}

@@ -2,128 +2,239 @@ tap "antoniorodr/memo"
 tap "aquasecurity/trivy"
 tap "azure/kubelogin"
 tap "buo/cask-upgrade"
-tap "dopplerhq/cli"
+tap "dopplerhq/doppler", "https://github.com/DopplerHQ/homebrew-doppler.git"
 tap "esolitos/ipa"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "kreuzwerker/taps"
 tap "olets/tap"
+tap "openclaw/tap"
 tap "predatorray/brew"
 tap "senseylabs/tap"
 tap "steipete/tap"
 tap "supabase/tap"
 tap "vladdoster/formulae"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Automate deployment, configuration, and upgrading
 brew "ansible"
+# Plugin manager for zsh, inspired by antigen and antibody
 brew "antidote"
+# GitOps Continuous Delivery for Kubernetes
 brew "argocd"
+# Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
+# Microsoft Azure CLI 2.0
 brew "azure-cli"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Get/set bluetooth power and discoverable state
 brew "blueutil"
+# Dependency manager for Cocoa projects
 brew "cocoapods"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
+# Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
-brew "docker", link: false
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
 brew "docker-compose"
+# CLI for interacting with Doppler secrets and configuration
+brew "doppler"
+# Modern, maintained replacement for ls
 brew "eza"
+# Easiest way to build and release mobile apps
 brew "fastlane"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU compiler collection
 brew "gcc"
+# Interact with Google Gemini AI models from the command-line
 brew "gemini-cli"
+# GitHub command-line tool
 brew "gh"
+# Distributed revision control system
 brew "git"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Kubernetes package manager
 brew "helm"
+# HTTP load generator, ApacheBench (ab) replacement
 brew "hey"
+# Library to communicate with iOS devices natively
 brew "libimobiledevice"
+# Tool for managing apps on iOS devices
 brew "ideviceinstaller"
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Kubernetes CLI To Manage Your Clusters In Style!
 brew "k9s"
+# Tool to move from `docker-compose` to Kubernetes
 brew "kompose"
+# Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
+# OpenID Connect authentication plugin for kubectl
 brew "kubelogin"
+# Easily check your clusters for use of deprecated APIs
 brew "kubent"
+# Kubernetes command-line interface
 brew "kubernetes-cli"
+# Template-free customization of Kubernetes YAML manifests
 brew "kustomize"
+# Lazier way to manage everything docker
 brew "lazydocker"
+# Simple terminal UI for git commands
 brew "lazygit"
+# Postgres C API library
 brew "libpq"
+# Library to render SVG files using Cairo
+brew "librsvg"
+# Package manager for the Lua programming language
 brew "luarocks"
+# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Port scanning utility for large networks
 brew "nmap"
+# General-purpose speech recognition model
 brew "openai-whisper"
+# Development kit for the Java programming language
+brew "openjdk@17"
+# OpenShift command-line interface tools
 brew "openshift-cli"
+# Highly capable, feature-rich programming language
 brew "perl"
+# Fast, disk space efficient package manager
 brew "pnpm"
+# PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Command-line shell and scripting language
 brew "powershell", link: false
+# Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Autoformat shell script source code
 brew "shfmt"
+# Launcher to analyze a project with SonarQube
 brew "sonar-scanner"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Opinionated Lua code formatter
 brew "stylua"
+# Multi-modal AI tool to extract and summarize content
 brew "summarize"
+# Easiest, most secure way to use WireGuard and 2FA
 brew "tailscale"
+# Traceroute implementation using TCP packets
 brew "tcptraceroute"
+# User interface to the TELNET protocol
 brew "telnet"
+# Linter for Terraform files
 brew "tflint"
+# Terminal multiplexer
 brew "tmux"
+# Vi 'workalike' with many additional features
 brew "vim"
+# Watch files and take action when they change
+brew "watchman"
+# Internet file retriever
 brew "wget"
+# Generate your Xcode project from a spec file and your folder structure
+brew "xcodegen"
+# Command-line program for getting and setting the contents of the X selection
 brew "xsel"
+# Linter for YAML files
 brew "yamllint"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# UNIX shell (command interpreter)
 brew "zsh"
-brew "antoniorodr/memo/memo"
-brew "aquasecurity/trivy/trivy"
-brew "dopplerhq/cli/doppler"
-brew "esolitos/ipa/sshpass"
-brew "kreuzwerker/taps/m1-terraform-provider-helper"
-brew "senseylabs/tap/kagi-cli"
-brew "senseylabs/tap/kaizen-cli"
-brew "steipete/tap/goplaces"
-brew "steipete/tap/remindctl"
-brew "supabase/tap/supabase"
+# Modern Go client + CLI for the Google Places API (New).
+brew "openclaw/tap/goplaces", link: false
+# Kagi CLI — secrets management for Sensey
+brew "senseylabs/tap/kagi-cli", trusted: true
+# GPU-accelerated terminal emulator
 cask "alacritty"
-cask "alt-tab"
+# Command-line tools for building and debugging Android apps
+cask "android-commandlinetools"
+# Tools for building Android applications
 cask "android-studio"
+# Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
+# OpenAI's official browser with ChatGPT built in
 cask "chatgpt-atlas"
+# OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Write, edit, and chat about your code with AI
 cask "cursor"
+# Voice and text chat software
 cask "discord"
+# App to build and share containerised applications and microservices
 cask "docker-desktop"
+# Online diagram software
 cask "drawio"
+# Launch builds and start simulators from your menu bar
 cask "expo-orbit"
 cask "font-meslo-for-powerlevel10k"
 cask "font-meslo-lg-nerd-font"
+# Web browser
 cask "google-chrome"
+# Modern Go client + CLI for the Google Places API (New).
+cask "openclaw/tap/goplaces", trusted: true
+# Software for Logitech devices
 cask "logi-options+"
+# Adaptive brightness for external displays
 cask "lunar"
+# Provides updates to various Microsoft products
 cask "microsoft-auto-update"
+# Multi-platform web browser
 cask "microsoft-edge"
+# Office suite
 cask "microsoft-office"
+# Meet, chat, call, and collaborate in just one place
 cask "microsoft-teams"
+# Administration tool for Native Instruments products
 cask "native-access"
+# Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# App to write, plan, collaborate, and get organised
 cask "notion"
+# Collaboration platform for API development
 cask "postman"
+# Command-line shell and scripting language
 cask "powershell"
+# Control your tools with a few keystrokes
 cask "raycast"
+# Screenshot measurement and annotation tool
 cask "shottr"
+# Video game digital distribution service
 cask "steam"
+# VPN client for secure internet access and private browsing
 cask "surfshark"
+# Sync and backup service to Synology NAS drives
 cask "synology-drive"
+# Tool to manage Synology NAS's across a LAN
 cask "synologyassistant"
+# Mesh VPN based on WireGuard
 cask "tailscale-app"
+# Messaging app with a focus on speed and security
 cask "telegram"
+# Window switcher with Accessibility-powered app cycling (cmd+tab override)
+cask "senseylabs/tap/vantage", trusted: true
+# Multimedia player
 cask "vlc"
+# Native desktop client for WhatsApp
 cask "whatsapp"
 go "golang.org/x/tools/gopls"
 go "honnef.co/go/tools/cmd/staticcheck"
+cargo "jwt-cli"

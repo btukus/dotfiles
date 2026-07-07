@@ -2,6 +2,11 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\""
+  },
   "hooks": {
     "Notification": [
       {
@@ -21,7 +26,7 @@
     "jdtls-lsp@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": false,
     "github@claude-plugins-official": false,
     "code-review@claude-plugins-official": false,
     "ralph-loop@claude-plugins-official": false,
@@ -33,8 +38,9 @@
     "claude-code-setup@claude-plugins-official": false,
     "superpowers@claude-plugins-official": false,
     "claude-md-management@claude-plugins-official": false,
-    "upgrading-expo@expo-plugins": true,
-    "expo@expo-plugins": true
+    "upgrading-expo@expo-plugins": false,
+    "expo@expo-plugins": true,
+    "swift-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "expo-plugins": {
@@ -42,10 +48,19 @@
         "source": "github",
         "repo": "expo/skills"
       }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "juliusbrussee/caveman"
+      },
+      "autoUpdate": true
     }
   },
   "alwaysThinkingEnabled": true,
-  "skipAutoPermissionPrompt": true,
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
   "editorMode": "vim",
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "skipAutoPermissionPrompt": true
 }

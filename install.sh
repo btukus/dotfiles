@@ -150,12 +150,23 @@ main() {
     cd "$dotfiles_dir"
 
     # --- 4. Brew packages (includes ansible, stow, etc.) -----------------------
+    # Retry: a fresh Brewfile pulls ~15 GB across many large casks, so a single
+    # transient fetch failure (ghcr.io rate-limit, network blip) makes the whole
+    # `brew bundle` exit non-zero. It is idempotent and caches successful
+    # downloads, so re-running quickly clears transient errors.
     local had_failures=0
+    local brew_tries=0
     echo "Installing brew packages..."
-    if ! brew bundle --file="$dotfiles_dir/brew/Brewfile.macos" </dev/null; then
-        echo "Warning: some brew packages failed to install (continuing...)" >&2
-        had_failures=1
-    fi
+    until brew bundle --file="$dotfiles_dir/brew/Brewfile.macos" </dev/null; do
+        brew_tries=$((brew_tries + 1))
+        if (( brew_tries >= 3 )); then
+            echo "Warning: brew bundle still failing after 3 attempts (continuing...)" >&2
+            had_failures=1
+            break
+        fi
+        echo "brew bundle failed (attempt ${brew_tries}/3) — retrying in 15s (transient fetch errors are common on a fresh install)..." >&2
+        sleep 15
+    done
 
     # --- 5. Ansible playbook (includes macOS settings) -------------------------
     hash -r  # forget stale command lookups; ansible was just installed

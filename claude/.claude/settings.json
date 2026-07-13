@@ -3,10 +3,6 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
-  "statusLine": {
-    "type": "command",
-    "command": "bash \"$HOME/.claude/statusline.sh\""
-  },
   "hooks": {
     "Notification": [
       {
@@ -19,6 +15,10 @@
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\""
   },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
@@ -62,5 +62,7 @@
   "skipWorkflowUsageWarning": true,
   "editorMode": "vim",
   "preferredNotifChannel": "terminal_bell",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }

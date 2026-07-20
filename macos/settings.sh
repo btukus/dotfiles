@@ -29,47 +29,67 @@ if [ "$(defaults read -g ApplePressAndHoldEnabled 2>/dev/null)" != "0" ]; then
     defaults write -g ApplePressAndHoldEnabled -bool false
 fi
 
-# Keyboard modifier remaps (three-key rotation):
-#   Caps Lock    (0x700000039)  -> Escape       (0x700000029)
-#   Left Control (0x7000000E0)  -> Caps Lock    (0x700000039)
-#   fn/Globe     (0xFF00000003) -> Left Control (0x7000000E0)
-# hidutil is session-only, so a LaunchAgent re-applies it at every login.
-KEYMAP_LABEL="com.user.keyremap"
-KEYMAP_PLIST="$HOME/Library/LaunchAgents/${KEYMAP_LABEL}.plist"
-KEYMAP_MAPPING='{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029},{"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x700000039},{"HIDKeyboardModifierMappingSrc":0xFF00000003,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
+# Keyboard modifier remaps — applied PER KEYBOARD via the NATIVE macOS mechanism
+# (the same per-device preference System Settings > Keyboard > Modifier Keys writes).
+# macOS reads com.apple.keyboard.modifiermapping.<vendor>-<product>-<country> (in the
+# ByHost / -currentHost global domain) whenever a keyboard connects, so this persists
+# across reboots and reapplies on Bluetooth reconnect with NO daemon and NO LaunchAgent.
+#
+# HID usage codes:  Caps Lock 0x700000039 = 30064771129,  Escape 0x700000029 = 30064771113,
+#                   Left Control 0x7000000E0 = 30064771296,  fn/Globe 0xFF00000003 = 1095216660483
+#
+# Built-in MacBook keyboard — key "0-0-0" (Apple internal keyboard reports vendor 0 /
+# product 0 / country 0 on Apple Silicon). Three-key rotation so the bottom-left corner
+# key (fn) becomes Control:
+#   Caps Lock -> Escape,  Left Control -> Caps Lock,  fn/Globe -> Left Control
+#
+# Logitech MX Keys Mini — key "1133-45929-0" (0x46d / 0xb369). Its bottom-left corner is
+# already a real Left Control, and the Logitech fn is firmware-handled (unmappable), so we
+# only turn Caps Lock into Escape and leave Left Control as Control.
+#   Caps Lock -> Escape
 
-# Apply now if the Left Control -> Caps Lock leg (src 30064771296) isn't active
-if ! hidutil property --get UserKeyMapping 2>/dev/null | grep -q "MappingSrc = 30064771296"; then
-    echo "Remapping keys (Caps->Esc, Ctrl->Caps, fn->Ctrl)..."
-    hidutil property --set "$KEYMAP_MAPPING" >/dev/null
-fi
-
-# Install/refresh LaunchAgent for persistence across reboots
-if ! grep -qF "$KEYMAP_MAPPING" "$KEYMAP_PLIST" 2>/dev/null; then
-    echo "Installing keyboard remap LaunchAgent..."
-    mkdir -p "$HOME/Library/LaunchAgents"
+# One-time cleanup of the previous hidutil/LaunchAgent approach (older installs)
+KEYMAP_PLIST="$HOME/Library/LaunchAgents/com.user.keyremap.plist"
+if [ -f "$KEYMAP_PLIST" ]; then
+    echo "Removing old keyboard remap LaunchAgent..."
     launchctl unload "$KEYMAP_PLIST" 2>/dev/null || true
-    cat > "$KEYMAP_PLIST" <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>${KEYMAP_LABEL}</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/usr/bin/hidutil</string>
-        <string>property</string>
-        <string>--set</string>
-        <string>${KEYMAP_MAPPING}</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-</dict>
-</plist>
-EOF
-    launchctl load "$KEYMAP_PLIST" 2>/dev/null || true
+    rm -f "$KEYMAP_PLIST"
+    # Drop the stale session-wide hidutil mapping so it stops overriding the preference
+    hidutil property --set '{"UserKeyMapping":[]}' >/dev/null 2>&1 || true
 fi
+
+INTERNAL_KEY="com.apple.keyboard.modifiermapping.0-0-0"
+MXMINI_KEY="com.apple.keyboard.modifiermapping.1133-45929-0"
+
+# Idempotency: compare the whole stored array (whitespace-stripped) to what we intend to
+# write. `defaults` reads dict keys back alphabetically (Dst before Src), so these canonical
+# strings match its output exactly once our value is in place.
+INTERNAL_WANT='({HIDKeyboardModifierMappingDst=30064771113;HIDKeyboardModifierMappingSrc=30064771129;},{HIDKeyboardModifierMappingDst=30064771129;HIDKeyboardModifierMappingSrc=30064771296;},{HIDKeyboardModifierMappingDst=30064771296;HIDKeyboardModifierMappingSrc=1095216660483;})'
+MXMINI_WANT='({HIDKeyboardModifierMappingDst=30064771113;HIDKeyboardModifierMappingSrc=30064771129;})'
+
+# Built-in keyboard: Caps->Esc, Ctrl->Caps, fn->Ctrl
+if [ "$(defaults -currentHost read -g "$INTERNAL_KEY" 2>/dev/null | tr -d ' \n')" != "$INTERNAL_WANT" ]; then
+    echo "Setting built-in keyboard remap (Caps->Esc, Ctrl->Caps, fn->Ctrl)..."
+    defaults -currentHost write -g "$INTERNAL_KEY" -array \
+        '{HIDKeyboardModifierMappingSrc=30064771129;HIDKeyboardModifierMappingDst=30064771113;}' \
+        '{HIDKeyboardModifierMappingSrc=30064771296;HIDKeyboardModifierMappingDst=30064771129;}' \
+        '{HIDKeyboardModifierMappingSrc=1095216660483;HIDKeyboardModifierMappingDst=30064771296;}'
+fi
+
+# MX Keys Mini: Caps->Esc only (Left Control stays Control)
+if [ "$(defaults -currentHost read -g "$MXMINI_KEY" 2>/dev/null | tr -d ' \n')" != "$MXMINI_WANT" ]; then
+    echo "Setting MX Keys Mini remap (Caps->Esc only)..."
+    defaults -currentHost write -g "$MXMINI_KEY" -array \
+        '{HIDKeyboardModifierMappingSrc=30064771129;HIDKeyboardModifierMappingDst=30064771113;}'
+fi
+
+# The preferences above are the durable, native part. macOS applies them on next login /
+# keyboard reconnect. Apply once to the current session too (session-only, no daemon) so
+# the remap takes effect immediately without logging out. Absent keyboards are skipped.
+hidutil property --matching '{"Product":"Apple Internal Keyboard / Trackpad"}' \
+    --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029},{"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x700000039},{"HIDKeyboardModifierMappingSrc":0xFF00000003,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' >/dev/null 2>&1 || true
+hidutil property --matching '{"VendorID":0x46d,"ProductID":0xb369}' \
+    --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}' >/dev/null 2>&1 || true
 
 # MX Master 3s Bluetooth fix (requires sudo)
 CURRENT_BT=$(sudo defaults read /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt 2>/dev/null || echo "")

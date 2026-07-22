@@ -43,10 +43,14 @@ fi
 # key (fn) becomes Control:
 #   Caps Lock -> Escape,  Left Control -> Caps Lock,  fn/Globe -> Left Control
 #
-# Logitech MX Keys Mini — key "1133-45929-0" (0x46d / 0xb369). Its bottom-left corner is
-# already a real Left Control, and the Logitech fn is firmware-handled (unmappable), so we
-# only turn Caps Lock into Escape and leave Left Control as Control.
+# Every EXTERNAL keyboard — its bottom-left corner is already a real Left Control, and a
+# Logitech fn is firmware-handled (unmappable), so we only turn Caps Lock into Escape and
+# leave Left Control alone:
 #   Caps Lock -> Escape
+# External keyboards are discovered at runtime, so any keyboard works without editing this
+# script. Note that a Logi Bolt / Unifying receiver enumerates as the RECEIVER, not the
+# keyboard (e.g. MX Mechanical Mini shows up as 1133-50504 "USB Receiver"), which is why
+# hardcoding individual keyboard IDs is unreliable.
 
 # One-time cleanup of the previous hidutil/LaunchAgent approach (older installs)
 KEYMAP_PLIST="$HOME/Library/LaunchAgents/com.user.keyremap.plist"
@@ -54,18 +58,17 @@ if [ -f "$KEYMAP_PLIST" ]; then
     echo "Removing old keyboard remap LaunchAgent..."
     launchctl unload "$KEYMAP_PLIST" 2>/dev/null || true
     rm -f "$KEYMAP_PLIST"
-    # Drop the stale session-wide hidutil mapping so it stops overriding the preference
-    hidutil property --set '{"UserKeyMapping":[]}' >/dev/null 2>&1 || true
 fi
-
-INTERNAL_KEY="com.apple.keyboard.modifiermapping.0-0-0"
-MXMINI_KEY="com.apple.keyboard.modifiermapping.1133-45929-0"
 
 # Idempotency: compare the whole stored array (whitespace-stripped) to what we intend to
 # write. `defaults` reads dict keys back alphabetically (Dst before Src), so these canonical
 # strings match its output exactly once our value is in place.
+INTERNAL_KEY="com.apple.keyboard.modifiermapping.0-0-0"
 INTERNAL_WANT='({HIDKeyboardModifierMappingDst=30064771113;HIDKeyboardModifierMappingSrc=30064771129;},{HIDKeyboardModifierMappingDst=30064771129;HIDKeyboardModifierMappingSrc=30064771296;},{HIDKeyboardModifierMappingDst=30064771296;HIDKeyboardModifierMappingSrc=1095216660483;})'
-MXMINI_WANT='({HIDKeyboardModifierMappingDst=30064771113;HIDKeyboardModifierMappingSrc=30064771129;})'
+EXTERNAL_WANT='({HIDKeyboardModifierMappingDst=30064771113;HIDKeyboardModifierMappingSrc=30064771129;})'
+
+CAPS_TO_ESC_HID='{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}'
+INTERNAL_HID='{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029},{"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x700000039},{"HIDKeyboardModifierMappingSrc":0xFF00000003,"HIDKeyboardModifierMappingDst":0x7000000E0}]}'
 
 # Built-in keyboard: Caps->Esc, Ctrl->Caps, fn->Ctrl
 if [ "$(defaults -currentHost read -g "$INTERNAL_KEY" 2>/dev/null | tr -d ' \n')" != "$INTERNAL_WANT" ]; then
@@ -75,21 +78,38 @@ if [ "$(defaults -currentHost read -g "$INTERNAL_KEY" 2>/dev/null | tr -d ' \n')
         '{HIDKeyboardModifierMappingSrc=30064771296;HIDKeyboardModifierMappingDst=30064771129;}' \
         '{HIDKeyboardModifierMappingSrc=1095216660483;HIDKeyboardModifierMappingDst=30064771296;}'
 fi
-
-# MX Keys Mini: Caps->Esc only (Left Control stays Control)
-if [ "$(defaults -currentHost read -g "$MXMINI_KEY" 2>/dev/null | tr -d ' \n')" != "$MXMINI_WANT" ]; then
-    echo "Setting MX Keys Mini remap (Caps->Esc only)..."
-    defaults -currentHost write -g "$MXMINI_KEY" -array \
-        '{HIDKeyboardModifierMappingSrc=30064771129;HIDKeyboardModifierMappingDst=30064771113;}'
-fi
-
-# The preferences above are the durable, native part. macOS applies them on next login /
-# keyboard reconnect. Apply once to the current session too (session-only, no daemon) so
-# the remap takes effect immediately without logging out. Absent keyboards are skipped.
+# Apply to the current session too (session-only, no daemon) so it takes effect without
+# logging out. The preference above is what actually persists.
 hidutil property --matching '{"Product":"Apple Internal Keyboard / Trackpad"}' \
-    --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029},{"HIDKeyboardModifierMappingSrc":0x7000000E0,"HIDKeyboardModifierMappingDst":0x700000039},{"HIDKeyboardModifierMappingSrc":0xFF00000003,"HIDKeyboardModifierMappingDst":0x7000000E0}]}' >/dev/null 2>&1 || true
-hidutil property --matching '{"VendorID":0x46d,"ProductID":0xb369}' \
-    --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x700000029}]}' >/dev/null 2>&1 || true
+    --set "$INTERNAL_HID" >/dev/null 2>&1 || true
+
+# Known external keyboards, kept so a fresh machine is configured even while they're
+# disconnected. Any other currently-connected external keyboard is picked up automatically.
+#   1133-45929  MX Keys Mini (Bluetooth)
+#   1133-50504  Logi Bolt receiver (MX Mechanical Mini and friends)
+EXTERNAL_IDS="1133-45929-0 1133-50504-0"
+CONNECTED=$(hidutil list --matching '{"PrimaryUsagePage":1,"PrimaryUsage":6}' 2>/dev/null \
+    | awk '$1 ~ /^0x[0-9a-fA-F]+$/ && $1 != "0x0" { print $1, $2 }' | sort -u)
+
+while read -r vid pid; do
+    [ -n "$pid" ] || continue
+    EXTERNAL_IDS="$EXTERNAL_IDS $((vid))-$((pid))-0"
+    # Apply to the current session for this connected keyboard
+    hidutil property --matching "{\"VendorID\":$((vid)),\"ProductID\":$((pid))}" \
+        --set "$CAPS_TO_ESC_HID" >/dev/null 2>&1 || true
+done <<EOF
+$CONNECTED
+EOF
+
+# External keyboards: Caps->Esc only (Left Control stays Control)
+for id in $(printf '%s\n' $EXTERNAL_IDS | sort -u); do
+    key="com.apple.keyboard.modifiermapping.$id"
+    if [ "$(defaults -currentHost read -g "$key" 2>/dev/null | tr -d ' \n')" != "$EXTERNAL_WANT" ]; then
+        echo "Setting external keyboard $id remap (Caps->Esc)..."
+        defaults -currentHost write -g "$key" -array \
+            '{HIDKeyboardModifierMappingSrc=30064771129;HIDKeyboardModifierMappingDst=30064771113;}'
+    fi
+done
 
 # MX Master 3s Bluetooth fix (requires sudo)
 CURRENT_BT=$(sudo defaults read /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt 2>/dev/null || echo "")

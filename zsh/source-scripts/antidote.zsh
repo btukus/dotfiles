@@ -7,7 +7,21 @@ for _antidote_prefix in /opt/homebrew /home/linuxbrew/.linuxbrew /usr/local; do
 done
 unset _antidote_prefix
 
-if [[ ! -f $ZDOTDIR/antidote/shared_plugins.zsh ]]; then
-  antidote bundle <$ZDOTDIR/antidote/shared_plugins.txt >$ZDOTDIR/antidote/shared_plugins.zsh
-fi
-source $ZDOTDIR/antidote/shared_plugins.zsh
+# Regenerate the static bundle when it's missing, older than the plugin list, or
+# stale (paths gone -- e.g. after an antidote major upgrade changes the cache layout).
+() {
+  local static=$ZDOTDIR/antidote/shared_plugins.zsh
+  local list=$ZDOTDIR/antidote/shared_plugins.txt
+  local first_line first_path
+
+  if [[ -f $static ]]; then
+    read -r first_line <$static                     # fpath+=( "<dir>" )
+    first_path=${(Q)${(z)first_line}[2]}            # -> "<dir>"
+    if [[ $list -nt $static ]] || [[ ! -d ${(e)first_path} ]]; then
+      rm -f $static
+    fi
+  fi
+
+  [[ -f $static ]] || antidote bundle <$list >$static
+  source $static
+}

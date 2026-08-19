@@ -1,0 +1,23 @@
+# Entware (opkg) packages installed by install-nas.sh on Synology DSM.
+# Usage: grep -v '^#' opkg-packages.txt | grep -v '^$' | xargs sudo /opt/bin/opkg install
+
+# Core dev / shell tooling missing from DSM
+git
+git-http           # HTTPS transport for `git clone https://...`
+ca-certificates    # trust store used by git-http, curl, wget
+zsh
+less
+tmux
+nano
+
+# Nicer coreutils (GNU dircolors, ls, etc. — override BusyBox equivalents when
+# /opt/bin is prepended to PATH)
+coreutils-dircolors
+
+# Build toolchain (make + a C compiler are needed by nvim-treesitter parsers,
+# cargo linking, and various neovim plugins). unzip is needed by asdf-deno's
+# download step (deno ships as a .zip).
+make
+gcc
+binutils
+unzip

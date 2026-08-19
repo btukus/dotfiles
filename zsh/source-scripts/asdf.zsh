@@ -17,3 +17,8 @@ if [[ -z "$RUST_VERSION" ]]; then
 fi
 [[ -n "$RUST_VERSION" && -f "$HOME/.asdf/installs/rust/$RUST_VERSION/env" ]] && \
   . "$HOME/.asdf/installs/rust/$RUST_VERSION/env"
+
+# rustup fallback (used on the NAS where compiling Rust via asdf would take
+# hours; rustup ships prebuilt nightly binaries in minutes). Sourced only when
+# asdf didn't already put a rust env on PATH.
+[[ ! " $PATH " =~ ".cargo/bin" && -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

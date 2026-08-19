@@ -16,8 +16,12 @@
 [include]
 	path = ~/.config/git/identity-routing
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
+# Keep this LAST so per-machine overrides win over everything above
+# (e.g. the NAS drops a config.local that neutralizes the gh helper).
+[include]
+	path = ~/.config/git/config.local

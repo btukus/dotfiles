@@ -1,0 +1,20 @@
+---
+# Homebrew font casks are macOS-only, so fetch the Powerlevel10k-patched
+# Meslo (the "MesloLGS NF" family referenced by alacritty.toml) directly.
+- name: Create user font directory
+  file:
+    path: ~/.local/share/fonts
+    state: directory
+    mode: "0755"
+
+- name: Download MesloLGS NF fonts
+  get_url:
+    url: "https://github.com/romkatv/powerlevel10k-media/raw/master/{{ item | urlencode }}"
+    dest: "~/.local/share/fonts/{{ item }}"
+    mode: "0644"
+  loop:
+    - MesloLGS NF Regular.ttf
+    - MesloLGS NF Bold.ttf
+    - MesloLGS NF Italic.ttf
+    - MesloLGS NF Bold Italic.ttf
+  notify: Rebuild font cache

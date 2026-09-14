@@ -11,6 +11,10 @@ term = "xterm-256color"
 [debug]
 log_level = "Error"
 
+# On Linux, selections otherwise only go to PRIMARY (middle-click paste)
+[selection]
+save_to_clipboard = true
+
 [window]
 startup_mode = "Maximized"
 option_as_alt = "Both"

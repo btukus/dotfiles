@@ -133,6 +133,8 @@ brew "xcodegen"
 brew "xsel"
 # Linter for YAML files
 brew "yamllint"
+# Blocks secrets and personal details from commits to this public repo (.githooks/pre-commit)
+brew "gitleaks"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
 # Terminal multiplexer: panes, tabs, sessions (started by Ghostty and SSH logins)

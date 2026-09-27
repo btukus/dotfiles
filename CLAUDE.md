@@ -112,6 +112,8 @@ works on its own:
   `private` role; `claude/.claude/statusline.sh` stays public
 - `repos.conf` - the `repos` manifest
 Never commit names of employers/clients, internal hosts, IPs, emails or tokens here; put them there.
+A pre-commit hook (`.githooks/pre-commit`, rules in `.gitleaks.toml`, enabled by the stow role via
+`core.hooksPath`) runs gitleaks and blocks secrets, employer/client names, private IPs and emails.
 
 ### macOS Settings
 Run `macos/settings.sh` to configure dock auto-hide, Finder quit menu, and disable press-and-hold.

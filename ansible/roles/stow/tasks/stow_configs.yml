@@ -2,3 +2,9 @@
   shell: stow -t ~ -d ~/dotfiles "{{ item }}"
   loop: "{{ stow_directories }}"
   changed_when: false
+
+# .githooks/pre-commit runs gitleaks (.gitleaks.toml) so secrets and personal/work details
+# can't be committed to this public repo; hooks paths are local git config, so set it here.
+- name: Enable the dotfiles git hooks
+  command: git -C ~/dotfiles config core.hooksPath .githooks
+  changed_when: false

@@ -1,0 +1,29 @@
+# Pre-commit guard for this PUBLIC repo (.githooks/pre-commit runs gitleaks with this config).
+# Personal/work details belong in ~/dotfiles-private instead. Bypass a false positive once with
+# `git commit --no-verify`, or add an allowlist entry below.
+
+[extend]
+useDefault = true   # gitleaks' built-in secret rules (tokens, keys, ...)
+
+[[rules]]
+id = "employer-client-names"
+description = "Employer/client name: keep it in dotfiles-private"
+regex = '''(?i)\b(sensey|kagi|mdfinfra|fepatex|mgunes)'''
+keywords = ["sensey", "kagi", "mdfinfra", "fepatex", "mgunes"]
+  [[rules.allowlists]]
+  regexTarget = "line"
+  regexes = ['''senseylabs/claude-legion''']   # public nvim plugin
+
+[[rules]]
+id = "private-ip-address"
+description = "Private/Tailscale IP address: keep hosts in dotfiles-private"
+regex = '''\b(100\.(6[4-9]|[7-9][0-9]|1[01][0-9]|12[0-7])|192\.168|10\.\d{1,3})\.\d{1,3}\.\d{1,3}\b'''
+keywords = ["100.", "192.168.", "10."]
+
+[[rules]]
+id = "email-address"
+description = "Email address: keep it in dotfiles-private"
+regex = '''[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}'''
+keywords = ["@"]
+  [[rules.allowlists]]
+  regexes = ['''^git@''', '''^noreply@''', '''@example\.(com|org)$''', '''^x@y\.com$''']  # x@y.com: p10k docs

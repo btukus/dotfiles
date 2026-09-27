@@ -1,0 +1,9 @@
+#!/bin/sh
+# Block secrets and personal/work details from this public repo (rules: .gitleaks.toml).
+# Enabled by `git config core.hooksPath .githooks` (the stow Ansible role sets it).
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks is not installed (brew install gitleaks); refusing to commit to this public repo." >&2
+  echo "            Bypass once with: git commit --no-verify" >&2
+  exit 1
+fi
+exec gitleaks git --pre-commit --staged --redact --no-banner --verbose .

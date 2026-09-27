@@ -1,0 +1,47 @@
+tap "homebrew/bundle"
+
+# Core dev tools
+brew "ansible"
+brew "antidote"
+brew "asdf"
+brew "bat"
+brew "coreutils"
+brew "eza"
+brew "fd"
+brew "fzf"
+brew "gcc"
+brew "lazydocker"
+brew "lazygit"
+brew "luarocks"
+brew "neovim"
+brew "ripgrep"
+brew "stylua"
+brew "vim"
+brew "yq"
+brew "zellij"
+
+# Kubernetes
+brew "argocd"
+brew "helm"
+brew "k9s"
+brew "kompose"
+brew "kubernetes-cli"
+brew "kubectx"
+brew "kubent"
+brew "kustomize"
+
+# Cloud / infra
+brew "azure-cli"
+brew "doppler"
+brew "tflint"
+brew "aquasecurity/trivy/trivy"
+
+# Node / JS
+brew "pnpm"
+
+# Security
+brew "sonar-scanner"
+
+# Go tools
+go "golang.org/x/tools/gopls"
+go "honnef.co/go/tools/cmd/staticcheck"

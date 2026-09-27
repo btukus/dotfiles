@@ -1,0 +1,5 @@
+# Claude Code's auto-mode `environment` describes private company infrastructure, and this
+# repo is public: strip the `autoMode` block when committing. The working copy keeps it.
+# Filter config (set by the stow Ansible role): git config filter.strip-automode.clean "jq 'del(.autoMode)'"
+# The block is backed up in ~/dotfiles-private/claude-automode.json.
+claude/.claude/settings.json filter=strip-automode

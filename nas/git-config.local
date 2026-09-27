@@ -1,0 +1,11 @@
+# Symlinked to ~/.config/git/config.local by install-nas.sh and pulled in via
+# the shared .gitconfig's [include] at the bottom. Overrides settings that
+# reference macOS-only paths (e.g. /opt/homebrew/bin/gh) so git doesn't warn
+# on every credential lookup on the NAS.
+
+[credential "https://github.com"]
+	helper =
+	helper = cache --timeout=3600
+[credential "https://gist.github.com"]
+	helper =
+	helper = cache --timeout=3600

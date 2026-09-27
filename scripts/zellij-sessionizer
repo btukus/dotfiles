@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+# zellij-sessionizer (Alt-o, or `tj` from a shell) — pick a repo/worktree under $CODE_ROOT and
+# switch to (or create) a Zellij session for it. Projects come from the `repos` manifest
+# (~/dotfiles-private/repos.conf): normal clones, plus each worktree of bare repos. Without a
+# manifest, scans a few levels deep.
+#
+#   zellij-sessionizer            fzf picker
+#   zellij-sessionizer <project>  jump straight to <project> (path relative to $CODE_ROOT)
+#   zellij-sessionizer --list     print the project list
+emulate -L zsh
+setopt pipefail
+
+CODE_ROOT=${CODE_ROOT:-$HOME/code}
+manifest=$HOME/dotfiles-private/repos.conf
+
+list_projects() {
+  local key layout rel d
+  if [[ -r $manifest ]]; then
+    git config -f $manifest --get-regexp '^repo\..*\.layout$' | while read -r key layout; do
+      key=${key#repo.}; key=${key%.layout}
+      [[ $layout == clone ]] && print -r -- $key          # a bare repo dir isn't a checkout
+    done
+    git config -f $manifest --get-regexp '^repo\..*\.worktree$' | while read -r key _ rel; do
+      key=${key#repo.}; key=${key%.worktree}
+      d=$CODE_ROOT/$key/$rel; d=${d:a}
+      [[ -d $d ]] && print -r -- ${d#$CODE_ROOT/}
+    done
+  else
+    # bounded depth: ** would walk node_modules
+    print -rl -- $CODE_ROOT/{*,*/*,*/*/*}/.git(N:h) | sed "s#^$CODE_ROOT/##"
+  fi
+}
+
+if [[ $1 == --list ]]; then
+  list_projects | sort -u
+  exit
+fi
+
+sel=$1
+if [[ -z $sel ]]; then
+  sel=$(list_projects | sort -u | fzf --prompt='project> ' --height=100% \
+        --preview "git -C '$CODE_ROOT'/{} log --oneline --color=always -12 2>/dev/null") || exit 0
+fi
+dir=$CODE_ROOT/$sel
+[[ -d $dir ]] || { print -u2 "no such project: $dir"; exit 1 }
+
+name=${sel//[\/.:]/_}                                  # keep session names flat and shell-safe
+if [[ -n $ZELLIJ ]]; then
+  # Create it detached (in the project dir) if needed, then move this client over
+  zellij list-sessions --short 2>/dev/null | grep -qxF -- "$name" ||
+    (cd $dir && zellij attach --create-background "$name")
+  zellij action switch-session "$name"
+else
+  cd $dir && exec zellij attach --create "$name"
+fi

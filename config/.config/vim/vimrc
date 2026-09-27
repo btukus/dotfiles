@@ -1,0 +1,43 @@
+set	clipboard=unnamedplus
+set completeopt=menuone,noselect
+set ignorecase
+set splitbelow 
+set splitright 
+set numberwidth=2
+set number
+set relativenumber
+set laststatus=0
+
+	" -- File configuration options
+set nobackup
+set cmdheight=1
+set pumheight=10
+set noshowmode
+set noswapfile
+set nowritebackup
+set undofile
+set signcolumn=yes
+ 
+" Key mapping configuration
+set timeoutlen=750
+set updatetime=300
+ "
+	" -- Space and Tab configuration
+set smartcase
+set smartindent
+set tabstop=2
+set expandtab
+set shiftwidth=2
+ "
+	" -- Overflowing text
+set nowrap
+set scrolloff=8
+set sidescrolloff=8 
+
+if has('syntax')
+  syntax on
+endif
+
+if has('mouse')
+  set mouse=a
+endif

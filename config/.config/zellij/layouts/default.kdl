@@ -1,0 +1,105 @@
+// Default layout: one tmux/nord-style status line at the bottom, drawn by zjstatus
+// (github.com/dj95/zjstatus; first run asks for permissions - focus the bar and press y).
+// Left: mode badge (icon in normal mode, colored label otherwise) and tabs as flat blocks; right: date/time.
+// Overrides the built-in "default" layout, so the swap layouts (Alt-Space) are redefined below.
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="https://github.com/dj95/zjstatus/releases/download/v0.25.0/zjstatus.wasm" {
+                format_left  "{mode}{tabs}"
+                format_right "{datetime}"
+                format_space "#[bg=#3b4252]"
+                format_hide_on_overlength "true"
+                format_precedence "lrc"
+
+                border_enabled "false"
+                hide_frame_for_single_pane "false"
+
+                // Mode badge: terminal icon in normal mode, colored label in every other mode
+                mode_normal       "#[bg=#88c0d0,fg=#2e3440,bold]  #[bg=#3b4252] "
+                mode_tmux         "#[bg=#ebcb8b,fg=#2e3440,bold]  PREFIX #[bg=#3b4252] "
+                mode_locked       "#[bg=#bf616a,fg=#2e3440,bold]  LOCKED #[bg=#3b4252] "
+                mode_scroll       "#[bg=#81a1c1,fg=#2e3440,bold]  SCROLL #[bg=#3b4252] "
+                mode_enter_search "#[bg=#81a1c1,fg=#2e3440,bold]  SEARCH #[bg=#3b4252] "
+                mode_search       "#[bg=#81a1c1,fg=#2e3440,bold]  SEARCH #[bg=#3b4252] "
+                mode_resize       "#[bg=#b48ead,fg=#2e3440,bold]  RESIZE #[bg=#3b4252] "
+                mode_move         "#[bg=#b48ead,fg=#2e3440,bold]  MOVE #[bg=#3b4252] "
+                mode_rename_tab   "#[bg=#a3be8c,fg=#2e3440,bold]  RENAME #[bg=#3b4252] "
+                mode_rename_pane  "#[bg=#a3be8c,fg=#2e3440,bold]  RENAME #[bg=#3b4252] "
+                mode_default_to_mode "tmux"
+
+                // Tabs as flat blocks with a one-cell gap: active = cyan, others = nord2.
+                // Square edges on purpose: Ghostty fills the few pixels under the bar with each cell's
+                // background, which continues a block cleanly but cuts a straight edge under an arrow.
+                tab_normal              "#[bg=#434c5e,fg=#d8dee9] {index} {name} {floating_indicator}#[bg=#3b4252] "
+                tab_normal_fullscreen   "#[bg=#434c5e,fg=#d8dee9] {index} {name} {fullscreen_indicator}#[bg=#3b4252] "
+                tab_active              "#[bg=#88c0d0,fg=#2e3440,bold] {index} {name} {floating_indicator}#[bg=#3b4252] "
+                tab_active_fullscreen   "#[bg=#88c0d0,fg=#2e3440,bold] {index} {name} {fullscreen_indicator}#[bg=#3b4252] "
+                tab_rename              "#[bg=#a3be8c,fg=#2e3440,bold] {index} {name} #[bg=#3b4252] "
+                tab_fullscreen_indicator " "
+                tab_floating_indicator   " "
+
+                // Right: date and time in one cyan segment (zjstatus fills {format} as plain text)
+                datetime          "#[bg=#88c0d0,fg=#2e3440,bold] {format} "
+                datetime_format   " %a %d %b   %H:%M"
+                datetime_timezone "Europe/Amsterdam"
+            }
+        }
+    }
+
+    // Built-in compact swap layouts (zellij setup --dump-swap-layout compact); max_panes counts the bar
+    swap_tiled_layout name="vertical" {
+        tab max_panes=4 {
+            pane split_direction="vertical" {
+                pane
+                pane { children; }
+            }
+        }
+        tab max_panes=7 {
+            pane split_direction="vertical" {
+                pane { children; }
+                pane { pane; pane; pane; pane; }
+            }
+        }
+        tab max_panes=11 {
+            pane split_direction="vertical" {
+                pane { children; }
+                pane { pane; pane; pane; pane; }
+                pane { pane; pane; pane; pane; }
+            }
+        }
+    }
+    swap_tiled_layout name="horizontal" {
+        tab max_panes=3 {
+            pane
+            pane
+        }
+        tab max_panes=7 {
+            pane {
+                pane split_direction="vertical" { children; }
+                pane split_direction="vertical" { pane; pane; pane; pane; }
+            }
+        }
+        tab max_panes=11 {
+            pane {
+                pane split_direction="vertical" { children; }
+                pane split_direction="vertical" { pane; pane; pane; pane; }
+                pane split_direction="vertical" { pane; pane; pane; pane; }
+            }
+        }
+    }
+    swap_tiled_layout name="stacked" {
+        tab min_panes=3 {
+            pane stacked=true { children; }
+        }
+    }
+    swap_tiled_layout name="half-stacked" {
+        tab min_panes=4 {
+            pane split_direction="vertical" {
+                pane
+                pane stacked=true { children; }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+- name: Add SSH keys
+  ansible.builtin.shell: ssh-add {{ item.identityfile }}
+  loop: "{{ ssh_origins }}"
+  register: ssh_add_result
+  failed_when: ssh_add_result.rc is defined and ssh_add_result.rc > 1
+  changed_when: false
+

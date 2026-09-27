@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  vars_files:
+    - ./inventory/linux_variables.yml
+    # Private overrides when ~/dotfiles-private is cloned (first run: not yet, re-run afterwards)
+    - ["{{ lookup('env', 'HOME') }}/dotfiles-private/ansible/linux.yml", "./inventory/empty.yml"]
+  roles:
+    - zsh
+    - antidote
+    - stow
+    - private
+    - asdf
+    - { role: fonts, tags: fonts }

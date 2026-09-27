@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  vars_files:
+    - ./inventory/macos_variables.yml
+    # Private overrides when ~/dotfiles-private is cloned (first run: not yet, re-run afterwards)
+    - ["{{ lookup('env', 'HOME') }}/dotfiles-private/ansible/macos.yml", "./inventory/empty.yml"]
+  roles:
+    - zsh
+    - antidote
+    - stow
+    - private
+    - asdf
+    - macos
+    - repos

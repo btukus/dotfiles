@@ -1,0 +1,5 @@
+---
+- name: Reload repos sync agent
+  shell: |
+    launchctl bootout gui/$(id -u)/{{ repos_sync_label }} 2>/dev/null || true
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/{{ repos_sync_label }}.plist

@@ -1,0 +1,71 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"$HOME/.claude/statusline.sh\""
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": false,
+    "github@claude-plugins-official": false,
+    "code-review@claude-plugins-official": false,
+    "ralph-loop@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": true,
+    "supabase@claude-plugins-official": false,
+    "lua-lsp@claude-plugins-official": false,
+    "feature-dev@claude-plugins-official": false,
+    "agent-sdk-dev@claude-plugins-official": false,
+    "claude-code-setup@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": false,
+    "claude-md-management@claude-plugins-official": false,
+    "upgrading-expo@expo-plugins": false,
+    "expo@expo-plugins": true,
+    "swift-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "expo-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "expo/skills"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "juliusbrussee/caveman"
+      },
+      "autoUpdate": true
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "awaySummaryEnabled": false,
+  "autoUpdatesChannel": "stable",
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "editorMode": "vim",
+  "preferredNotifChannel": "auto",
+  "remoteControlAtStartup": false,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
+}

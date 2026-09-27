@@ -1,0 +1,27 @@
+---
+aliases:
+  no: nodes
+  po: pods
+  rs: replicasets
+  dp: deployments
+  sts: statefulsets
+  ds: daemonsets
+  cm: configmaps
+  sc: secrets
+  sa: serviceaccount
+  svc: service
+  sec: v1/secrets
+  jo: jobs
+  cr: clusterroles
+  crb: clusterrolebindings
+  ro: roles
+  rb: rolebindings
+  np: networkpolicies
+  crd: customresourcedefinitions
+  cl: contexts
+  pv: persistentvolumes
+  pvc: persistentvolumeclaims
+  cj: cronjobs
+  ep: endpoints
+  ev: events
+  hpa: horizontalpodautoscalers

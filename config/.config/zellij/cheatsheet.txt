@@ -1,0 +1,29 @@
+ ZELLIJ KEYS                                   q closes this · Cmd-<key> works for Alt-<key> marked *
+
+ PANES   Ctrl-h/j/k/l        go to pane (crosses into nvim splits)
+         Alt-Shift-h/j/k/l   move pane that way
+         Alt--  / Alt-|      split below / beside              * Cmd-j / Cmd-k
+         Alt-z               zoom pane (fullscreen)
+         Alt-w               close pane                        *
+         Alt-e               float / dock pane
+         Alt-Space           cycle layout (vertical, horizontal, stacked)
+
+ TABS    Alt-t               new tab                           *
+         Alt-1..9            go to tab                         *
+         Alt-p / Alt-n       move tab left / right             *
+         Alt-b               pane -> its own new tab ("break")
+         Alt-< / Alt->       pane -> previous / next tab
+
+ POPUPS  Alt-j               show / hide floating panes (scratch shell)
+         Alt-k               k9s
+
+ SESSION Alt-s               session manager (switch, resurrect, kill)   *
+         Alt-o               project picker (~/code)
+
+ OTHER   Alt-v               scroll/copy mode: j/k, / search, e = open in nvim, q quit   * Cmd-f
+         Alt-i               clear screen                      *
+         F12                 lock: send every key to the app (nested ssh); F12 again
+         Alt-?               this sheet
+
+ PREFIX  Alt-f then …        c new tab · , rename tab · . rename pane · d detach
+                             Ctrl-h/j/k/l resize (then h/j/k/l, Esc) · m move mode · [ scroll

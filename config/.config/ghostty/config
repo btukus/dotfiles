@@ -1,0 +1,66 @@
+# Ghostty. Every window starts Zellij (zsh/source-scripts/zellij-autostart.zsh, zellij/config.kdl).
+# Config is read at startup: reload with Cmd+Shift+, after editing.
+# `ghostty +show-config --default --docs` lists every option.
+
+font-family = MesloLGS NF
+font-size = 13.5
+theme = Nord
+# Where Ghostty's Nord differs from the reference Nord palette: bright black (p10k segments,
+# autosuggestions), selection and cursor text
+palette = 8=#4c566a
+selection-background = #4c566a
+selection-foreground = cell-foreground
+cursor-color = #d8dee9
+cursor-text = #2e3440
+
+maximize = true
+macos-titlebar-style = hidden
+window-padding-x = 10
+# top,bottom: nothing under the Zellij status bar
+window-padding-y = 10,0
+# Stretch edge cells' colors into the padding, so the Zellij status bar runs to the window edges
+window-padding-color = extend-always
+# Left Option = Alt (Zellij/zsh chords); right Option still types special characters (@ € | …)
+macos-option-as-alt = left
+# Trackpad scrolling at Alacritty's speed (Ghostty's default precision multiplier is 1)
+mouse-scroll-multiplier = precision:3,discrete:3
+# Zellij asks before quitting what matters; don't double-confirm every window close
+confirm-close-surface = false
+
+# Install xterm-ghostty terminfo on SSH hosts that lack it, and forward COLORTERM etc.
+shell-integration-features = ssh-terminfo,ssh-env
+
+# macOS Cmd shortcuts, sent to Zellij as its Alt bindings
+# (on Linux, press the Alt keys directly). \x1b<key> is what Alt+<key> sends.
+keybind = cmd+t=text:\x1bt
+keybind = cmd+w=text:\x1bw
+keybind = cmd+j=text:\x1b-
+keybind = cmd+k=text:\x1b|
+keybind = cmd+i=text:\x1bi
+keybind = cmd+s=text:\x1bs
+keybind = cmd+p=text:\x1bp
+keybind = cmd+n=text:\x1bn
+keybind = cmd+f=text:\x1bv
+# Both the physical number keys (digit_N, which Ghostty binds to goto_tab by default) and the
+# typed character, so it works on any keyboard layout
+keybind = cmd+digit_1=text:\x1b1
+keybind = cmd+1=text:\x1b1
+keybind = cmd+digit_2=text:\x1b2
+keybind = cmd+2=text:\x1b2
+keybind = cmd+digit_3=text:\x1b3
+keybind = cmd+3=text:\x1b3
+keybind = cmd+digit_4=text:\x1b4
+keybind = cmd+4=text:\x1b4
+keybind = cmd+digit_5=text:\x1b5
+keybind = cmd+5=text:\x1b5
+keybind = cmd+digit_6=text:\x1b6
+keybind = cmd+6=text:\x1b6
+keybind = cmd+digit_7=text:\x1b7
+keybind = cmd+7=text:\x1b7
+keybind = cmd+digit_8=text:\x1b8
+keybind = cmd+8=text:\x1b8
+keybind = cmd+digit_9=text:\x1b9
+keybind = cmd+9=text:\x1b9
+
+# Newline without submitting (Claude Code, etc.)
+keybind = shift+enter=text:\x1b\r

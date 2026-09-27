@@ -1,0 +1,6 @@
+- name: Create SSH keys
+  ansible.builtin.shell: "ssh-keygen -t rsa -b 4096 -N '' -f {{ item.identityfile }}"
+  args:
+    creates: "{{ item.identityfile }}"
+  loop: "{{ ssh_origins }}"
+

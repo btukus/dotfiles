@@ -1,0 +1,14 @@
+- name: Stow Directories
+  shell: stow -t ~ -d ~/dotfiles "{{ item }}"
+  loop: "{{ stow_directories }}"
+  changed_when: false
+
+
+# .gitattributes strips Claude's private autoMode block from commits of claude/.claude/settings.json;
+# the filter itself lives in the repo's local git config, so set it on every machine.
+- name: Configure the strip-automode git filter
+  shell: |
+    git -C ~/dotfiles config filter.strip-automode.clean "jq 'del(.autoMode)'"
+    git -C ~/dotfiles config filter.strip-automode.smudge cat
+    git -C ~/dotfiles config filter.strip-automode.required true
+  changed_when: false

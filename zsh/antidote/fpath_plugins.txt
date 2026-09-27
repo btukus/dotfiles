@@ -1,0 +1,4 @@
+# Completion directories only. Bundled before compinit runs (see antidote.zsh);
+# everything else lives in shared_plugins.txt, which is bundled after compinit.
+olets/zsh-abbr path:completions kind:fpath
+ahmetb/kubectx path:completion kind:fpath

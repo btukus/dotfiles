@@ -1,0 +1,28 @@
+---
+# Tracks every git repo under ~/code in a manifest kept in a PRIVATE repo, and
+# runs `repos sync` periodically so the manifest never goes stale.
+# On a new machine, after adding the SSH keys to GitHub/Azure DevOps:
+#   repos restore
+
+- name: Ensure code root exists
+  file:
+    path: "{{ code_root }}"
+    state: directory
+
+- name: Link repos CLI into ~/.local/bin
+  file:
+    src: ~/dotfiles/scripts/repos
+    dest: ~/.local/bin/repos
+    state: link
+    force: true
+
+- name: Ensure LaunchAgents directory exists
+  file:
+    path: ~/Library/LaunchAgents
+    state: directory
+
+- name: Install repos sync launch agent
+  template:
+    src: repos-sync.plist.j2
+    dest: ~/Library/LaunchAgents/{{ repos_sync_label }}.plist
+  notify: Reload repos sync agent

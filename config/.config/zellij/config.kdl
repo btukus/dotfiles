@@ -1,0 +1,356 @@
+// Zellij, started by Ghostty windows and SSH logins (zsh/source-scripts/zellij-autostart.zsh).
+// Defaults are cleared so Ctrl-o/p/n/t/s/h/g/q reach nvim and the shell; everything is Alt-based:
+//   Alt-<key>        direct actions (Ghostty's Cmd keys send these on macOS)
+//   Alt-f then <key> the "prefix" table (Zellij calls this mode "Tmux")
+// Config reloads live on save. Default config: `zellij setup --dump-config`.
+
+// hiasr/vim-zellij-navigator: Ctrl-hjkl crosses nvim splits and Zellij panes (nvim side: zellij-nav.nvim)
+keybinds clear-defaults=true {
+    normal {
+        bind "Alt f" { SwitchToMode "Tmux"; }
+        // Nested zellij/tmux over SSH: pass every key through until F12 again
+        bind "F12" { SwitchToMode "Locked"; }
+
+        // Scheme: Ctrl-hjkl = focus, Alt-Shift-hjkl = move the pane that way (like vim's Ctrl-w HJKL),
+        // other Alt keys = act on the pane/tab. Alt-? shows the cheatsheet (zellij/cheatsheet.txt).
+        bind "Alt ?" {
+            Run "zsh" "-c" "less --mouse ~/.config/zellij/cheatsheet.txt" {
+                floating true
+                close_on_exit true
+                name "cheatsheet (q to close)"
+            };
+        }
+
+        bind "Alt H" "Alt Shift h" { MovePane "Left"; }
+        bind "Alt J" "Alt Shift j" { MovePane "Down"; }
+        bind "Alt K" "Alt Shift k" { MovePane "Up"; }
+        bind "Alt L" "Alt Shift l" { MovePane "Right"; }
+
+        bind "Alt -" { NewPane "Down"; }                   // Cmd-j
+        bind "Alt |" { NewPane "Right"; }                  // Cmd-k
+
+        bind "Alt b" { BreakPane; }                        // pane -> its own new tab
+        bind "Alt <" { BreakPaneLeft; }                    // pane -> into the previous tab
+        bind "Alt >" { BreakPaneRight; }                   // pane -> into the next tab
+        bind "Alt z" { ToggleFocusFullscreen; }
+        bind "Alt e" { TogglePaneEmbedOrFloating; }        // float / dock the pane
+        bind "Alt Space" { NextSwapLayout; }               // cycle tab layouts (vertical, stacked, …)
+
+        bind "Alt t" { NewTab; }
+        bind "Alt w" { CloseFocus; }
+        bind "Alt p" { MoveTab "Left"; }
+        bind "Alt n" { MoveTab "Right"; }
+        bind "Alt i" { Write 12; }                         // Ctrl-L, clear screen
+        bind "Alt v" { SwitchToMode "Scroll"; }            // copy/scroll mode (Cmd-f)
+
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
+
+        // Scratch shell popup: toggles the floating layer (opens a shell the first time)
+        bind "Alt j" { ToggleFloatingPanes; }
+        // k9s popup; Alt-j hides/shows it with the other floating panes, q in k9s closes it
+        bind "Alt k" {
+            Run "k9s" {
+                floating true
+                close_on_exit true
+                name "k9s"
+            };
+        }
+
+        // Sessions: switcher (Alt-s) and project picker (Alt-o, repos/worktrees under ~/code)
+        bind "Alt s" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+        }
+        bind "Alt o" {
+            Run "zsh" "-c" "~/dotfiles/scripts/zellij-sessionizer" {
+                floating true
+                close_on_exit true
+                name "projects"
+            };
+        }
+
+        bind "Ctrl h" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "left";
+            };
+        }
+        bind "Ctrl j" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "down";
+            };
+        }
+        bind "Ctrl k" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "up";
+            };
+        }
+        bind "Ctrl l" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "right";
+            };
+        }
+    }
+
+    locked {
+        bind "F12" { SwitchToMode "Normal"; }
+    }
+
+    // The Alt-f "prefix" table
+    tmux {
+        bind "Alt f" { Write 27 102; SwitchToMode "Normal"; }    // Alt-f Alt-f sends a literal Alt-f
+        bind "Alt k" "%" { NewPane "Right"; SwitchToMode "Normal"; }
+        bind "Alt j" "\"" { NewPane "Down"; SwitchToMode "Normal"; }
+        bind "c" { NewTab; SwitchToMode "Normal"; }
+        bind "," { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "." { SwitchToMode "RenamePane"; PaneNameInput 0; }
+        bind "[" { SwitchToMode "Scroll"; }
+        bind "d" { Detach; }
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        bind "w" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
+        bind "Space" { NextSwapLayout; SwitchToMode "Normal"; }
+        bind "h" "Left" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "j" "Down" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "k" "Up" { MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "l" "Right" { MoveFocus "Right"; SwitchToMode "Normal"; }
+        // Resize: Alt-f Ctrl-hjkl, then keep pressing hjkl (tmux's `bind -r`); Esc when done
+        bind "Ctrl h" { Resize "Increase Left"; SwitchToMode "Resize"; }
+        bind "Ctrl j" { Resize "Increase Down"; SwitchToMode "Resize"; }
+        bind "Ctrl k" { Resize "Increase Up"; SwitchToMode "Resize"; }
+        bind "Ctrl l" { Resize "Increase Right"; SwitchToMode "Resize"; }
+        // Rearranging: move mode (hjkl moves the pane, n/Tab rotates it through the layout)
+        bind "m" { SwitchToMode "Move"; }
+        bind "Esc" "Enter" "Ctrl c" { SwitchToMode "Normal"; }
+    }
+
+    resize {
+        bind "h" "Ctrl h" "Left" { Resize "Increase Left"; }
+        bind "j" "Ctrl j" "Down" { Resize "Increase Down"; }
+        bind "k" "Ctrl k" "Up" { Resize "Increase Up"; }
+        bind "l" "Ctrl l" "Right" { Resize "Increase Right"; }
+        bind "H" { Resize "Decrease Left"; }
+        bind "J" { Resize "Decrease Down"; }
+        bind "K" { Resize "Decrease Up"; }
+        bind "L" { Resize "Decrease Right"; }
+        bind "=" "+" { Resize "Increase"; }
+        bind "-" { Resize "Decrease"; }
+    }
+
+    move {
+        bind "h" "Left" { MovePane "Left"; }
+        bind "j" "Down" { MovePane "Down"; }
+        bind "k" "Up" { MovePane "Up"; }
+        bind "l" "Right" { MovePane "Right"; }
+        bind "n" "Tab" { MovePane; }
+    }
+
+    // Copy mode. Mouse selection copies (copy_on_select); `e` opens the scrollback in nvim,
+    // where you can yank with the full editor.
+    scroll {
+        bind "e" { EditScrollback; SwitchToMode "Normal"; }
+        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "j" "Down" { ScrollDown; }
+        bind "k" "Up" { ScrollUp; }
+        bind "Ctrl d" "d" { HalfPageScrollDown; }
+        bind "Ctrl u" "u" { HalfPageScrollUp; }
+        bind "Ctrl f" "PageDown" { PageScrollDown; }
+        bind "Ctrl b" "PageUp" { PageScrollUp; }
+        bind "g" { ScrollToTop; }
+        bind "G" { ScrollToBottom; }
+        bind "[" { ScrollToPreviousPrompt; }
+        bind "]" { ScrollToNextPrompt; }
+        bind "c" { CopyLastCommandOutput; SwitchToMode "Normal"; }
+        bind "q" "Esc" "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
+    }
+
+    search {
+        bind "n" { Search "up"; }
+        bind "N" { Search "down"; }
+        bind "j" "Down" { ScrollDown; }
+        bind "k" "Up" { ScrollUp; }
+        bind "Ctrl d" "d" { HalfPageScrollDown; }
+        bind "Ctrl u" "u" { HalfPageScrollUp; }
+        bind "c" { SearchToggleOption "CaseSensitivity"; }
+        bind "w" { SearchToggleOption "Wrap"; }
+        bind "o" { SearchToggleOption "WholeWord"; }
+        bind "e" { EditScrollback; SwitchToMode "Normal"; }
+        bind "q" "Esc" "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
+    }
+
+    entersearch {
+        bind "Enter" { SwitchToMode "Search"; }
+        bind "Esc" "Ctrl c" { SwitchToMode "Scroll"; }
+    }
+
+    renametab {
+        bind "Enter" { SwitchToMode "Normal"; }
+        bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; }
+    }
+
+    renamepane {
+        bind "Enter" { SwitchToMode "Normal"; }
+        bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; }
+    }
+
+    shared_among "resize" "move" {
+        bind "Esc" "Enter" "Ctrl c" { SwitchToMode "Normal"; }
+    }
+}
+
+// Built-in "nord" with nord-tmux accents: cyan active tab/frames and key hints, nord3 inactive
+// tabs, nord1 bars (the built-in uses green tabs, near-white ribbons and orange/purple hints)
+themes {
+    nord-tmux {
+        text_unselected {
+            base 216 222 233
+            background 59 66 82
+            emphasis_0 136 192 208
+            emphasis_1 129 161 193
+            emphasis_2 163 190 140
+            emphasis_3 180 142 173
+        }
+        text_selected {
+            base 236 239 244
+            background 67 76 94
+            emphasis_0 136 192 208
+            emphasis_1 129 161 193
+            emphasis_2 163 190 140
+            emphasis_3 180 142 173
+        }
+        ribbon_selected {
+            base 59 66 82
+            background 136 192 208
+            emphasis_0 191 97 106
+            emphasis_1 46 52 64
+            emphasis_2 46 52 64
+            emphasis_3 46 52 64
+        }
+        ribbon_unselected {
+            base 216 222 233
+            background 76 86 106
+            emphasis_0 191 97 106
+            emphasis_1 136 192 208
+            emphasis_2 136 192 208
+            emphasis_3 136 192 208
+        }
+        table_title {
+            base 136 192 208
+            background 0
+            emphasis_0 136 192 208
+            emphasis_1 129 161 193
+            emphasis_2 163 190 140
+            emphasis_3 180 142 173
+        }
+        table_cell_selected {
+            base 236 239 244
+            background 67 76 94
+            emphasis_0 136 192 208
+            emphasis_1 129 161 193
+            emphasis_2 163 190 140
+            emphasis_3 180 142 173
+        }
+        table_cell_unselected {
+            base 216 222 233
+            background 59 66 82
+            emphasis_0 136 192 208
+            emphasis_1 129 161 193
+            emphasis_2 163 190 140
+            emphasis_3 180 142 173
+        }
+        list_selected {
+            base 236 239 244
+            background 67 76 94
+            emphasis_0 136 192 208
+            emphasis_1 129 161 193
+            emphasis_2 163 190 140
+            emphasis_3 180 142 173
+        }
+        list_unselected {
+            base 216 222 233
+            background 59 66 82
+            emphasis_0 136 192 208
+            emphasis_1 129 161 193
+            emphasis_2 163 190 140
+            emphasis_3 180 142 173
+        }
+        frame_selected {
+            base 136 192 208
+            background 0
+            emphasis_0 129 161 193
+            emphasis_1 136 192 208
+            emphasis_2 180 142 173
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 235 203 139
+            background 0
+            emphasis_0 235 203 139
+            emphasis_1 235 203 139
+            emphasis_2 235 203 139
+            emphasis_3 235 203 139
+        }
+        exit_code_success {
+            base 163 190 140
+            background 0
+            emphasis_0 136 192 208
+            emphasis_1 59 66 82
+            emphasis_2 180 142 173
+            emphasis_3 129 161 193
+        }
+        exit_code_error {
+            base 191 97 106
+            background 0
+            emphasis_0 235 203 139
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 180 142 173
+            player_2 129 161 193
+            player_3 0
+            player_4 235 203 139
+            player_5 136 192 208
+            player_6 0
+            player_7 191 97 106
+            player_8 0
+            player_9 0
+            player_10 0
+        }
+    }
+}
+theme "nord-tmux"
+default_shell "zsh"
+default_layout "default"      // layouts/default.kdl: zjstatus bar at the bottom (tabs, mode)
+mouse_hover_tips false        // no "Ctrl <MouseScroll> to resize" text in the bar
+pane_frames false
+show_startup_tips false
+show_release_notes false
+
+// Built-in resurrect/continuum: sessions are saved and restored with their panes, cwds and
+// commands (commands wait for Enter before re-running)
+session_serialization true
+serialize_pane_viewport true
+scrollback_lines_to_serialize 10000
+
+scroll_buffer_size 50000
+mouse_mode true
+mouse_hover_effects false     // no redraws while the pointer moves
+scroll_mode_sync false        // scrolling doesn't flip the bar into SCROLL mode
+copy_on_select true
+scrollback_editor "nvim"
+on_force_close "detach"

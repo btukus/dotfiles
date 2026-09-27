@@ -1,0 +1,18 @@
+# Loaded after compinit (see antidote.zsh). Order matters:
+# - zsh-vi-mode first: it resets the vi keymaps when it initialises
+# - fzf-tab after compinit, but before plugins that wrap widgets
+#   (fast-syntax-highlighting, autosuggestions)
+jeffreytse/zsh-vi-mode
+olets/zsh-abbr
+agkozak/zsh-z
+
+romkatv/powerlevel10k path:powerlevel10k.zsh-theme
+
+Aloxaf/fzf-tab
+
+zdharma-continuum/fast-syntax-highlighting
+5A6F65/fast-abbr-highlighting
+
+# final
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions

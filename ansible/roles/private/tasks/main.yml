@@ -1,0 +1,30 @@
+---
+# Private overlay: ~/dotfiles-private holds what shouldn't be in this public repo (identity,
+# work keys/orgs, work Brewfile, work shell functions, hosts). Everything here is optional:
+# without access the public setup works on its own.
+
+# Fails on a brand-new machine until its SSH key is added to GitHub; that is expected,
+# re-run the playbook afterwards (the second run also picks up the private variables).
+- name: Clone private overlay repo
+  command: git clone {{ private_repo }} {{ private_dir }}
+  args:
+    creates: "{{ private_dir }}/.git"
+  ignore_errors: true
+  register: private_clone
+
+- name: Explain how to finish if the private repo could not be cloned
+  debug:
+    msg: >-
+      Could not clone {{ private_repo }} (SSH key not on GitHub yet?).
+      Add ~/.ssh/github/github.pub to GitHub and re-run the playbook.
+  when: private_clone is failed
+
+- name: Check for a private Brewfile
+  stat:
+    path: "{{ private_dir }}/brew/Brewfile"
+  register: private_brewfile
+
+- name: Install private Brewfile packages
+  command: brew bundle --file={{ private_dir }}/brew/Brewfile
+  when: private_brewfile.stat.exists
+  changed_when: false

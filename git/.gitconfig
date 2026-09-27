@@ -1,0 +1,33 @@
+[pager]
+	branch = false
+[core]
+	excludesfile = ~/.gitignore_global
+[user]
+	name = btukus
+[credential]
+	helper = cache
+[http]
+	sslVerify = true
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
+[worktree]
+	# Store worktree links as relative paths, so moving a repo together with its
+	# worktrees (e.g. into ~/code) doesn't break them. Needs git >= 2.48.
+	useRelativePaths = true
+[include]
+	path = ~/.config/git/identity-routing
+# Private overlay: user.email and anything else not for a public repo
+[include]
+	path = ~/dotfiles-private/git/config
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+# Keep this LAST so per-machine overrides win over everything above
+# (e.g. the NAS drops a config.local that neutralizes the gh helper).
+[include]
+	path = ~/.config/git/config.local

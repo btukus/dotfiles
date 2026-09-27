@@ -9,4 +9,4 @@
 # @raycast.icon 🖥️
 # @raycast.packageName Sidecar
 
-/Users/btukus/dotfiles/macos/sidecar/SidecarLauncher connect "iPad Pro"
+"$HOME"/dotfiles/macos/sidecar/SidecarLauncher connect "iPad Pro"

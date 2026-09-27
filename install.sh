@@ -127,13 +127,16 @@ main() {
 
     # --- 3. Dotfiles repo ------------------------------------------------------
     local dotfiles_dir="$HOME/dotfiles"
-    # If executed from a file inside a checkout (local mode), use that checkout
-    # instead of cloning a second copy. BASH_SOURCE is empty under curl | bash.
+    # If executed from a file inside a checkout (local mode), that checkout must be
+    # ~/dotfiles; don't clone a second copy. BASH_SOURCE is empty under curl | bash.
     if [[ -n "${BASH_SOURCE[0]:-}" && -f "${BASH_SOURCE[0]:-}" ]]; then
         local script_dir
         script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-        if [[ -f "$script_dir/brew/Brewfile.macos" ]]; then
-            dotfiles_dir="$script_dir"
+        # Everything (Ansible, stow, zsh, git includes) expects the checkout at ~/dotfiles
+        if [[ -f "$script_dir/brew/Brewfile.macos" && "$script_dir" != "$dotfiles_dir" ]]; then
+            echo "Error: this checkout is at $script_dir, but the setup expects ~/dotfiles." >&2
+            echo "Move it there (mv \"$script_dir\" ~/dotfiles) and re-run ~/dotfiles/install.sh." >&2
+            exit 1
         fi
     fi
     # Accept any valid checkout (a linked worktree/submodule has `.git` as a

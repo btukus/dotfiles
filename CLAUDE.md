@@ -108,7 +108,8 @@ works on its own:
 - `git/config` - `user.email`, included by `git/.gitconfig`
 - `zsh/env.zsh` - sourced by `.zshenv` (`ZELLIJ_MAIN_SESSION`, `CLIP2SERVER_HOST`, `WORKTREE_ROOTS`)
 - `zsh/*.zsh` - sourced at the end of `.zshrc` (work functions, session abbreviations, hosts)
-- `claude-automode.json` - the `autoMode` block that `.gitattributes` strips from `claude/.claude/settings.json`
+- `claude/settings.json` - Claude Code settings (incl. `autoMode`), linked to `~/.claude/settings.json` by the
+  `private` role; `claude/.claude/statusline.sh` stays public
 - `repos.conf` - the `repos` manifest
 Never commit names of employers/clients, internal hosts, IPs, emails or tokens here; put them there.
 

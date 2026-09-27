@@ -31,6 +31,27 @@
     name: zsh
   when: private_clone is changed
 
+# Claude Code settings (permissions, plugins, autoMode with company details) are private;
+# the status line script next to them is public (stowed from dotfiles/claude).
+- name: Check for private Claude settings
+  stat:
+    path: "{{ private_dir }}/claude/settings.json"
+  register: private_claude_settings
+
+- name: Ensure ~/.claude exists
+  file:
+    path: ~/.claude
+    state: directory
+  when: private_claude_settings.stat.exists
+
+- name: Link Claude settings from the private repo
+  file:
+    src: "{{ private_dir | expanduser }}/claude/settings.json"
+    dest: ~/.claude/settings.json
+    state: link
+    force: true
+  when: private_claude_settings.stat.exists
+
 - name: Check for a private Brewfile
   stat:
     path: "{{ private_dir }}/brew/Brewfile"

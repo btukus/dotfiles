@@ -43,6 +43,15 @@ if ! ansible-playbook ansible/linux_playbook.yml; then
     echo "Warning: Ansible playbook had errors (continuing...)"
 fi
 
+# Private overlay (personal/work config): cloned by the playbook once the GitHub key works
+if [[ ! -d "$HOME/dotfiles-private/.git" ]]; then
+    echo ""
+    echo "=== One more step for the private overlay ==="
+    echo "1. Add this SSH key to GitHub (https://github.com/settings/ssh/new):"
+    cat "$HOME/.ssh/github/github.pub" 2>/dev/null || echo "   (~/.ssh/github/github.pub not found; check the Ansible output above)"
+    echo "2. Re-run ./install-linux.sh (skip if you don't have access to btukus/dotfiles-private)"
+fi
+
 # 6. Set zsh as the default login shell
 ZSH_BIN="$(command -v zsh)"
 if [ -n "$ZSH_BIN" ] && [ "$SHELL" != "$ZSH_BIN" ]; then

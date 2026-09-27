@@ -19,6 +19,18 @@
       Add ~/.ssh/github/github.pub to GitHub and re-run the playbook.
   when: private_clone is failed
 
+# The playbooks already load the private vars at start, but not on the run that clones the
+# repo: load them now and redo the SSH setup, so work keys and org routing apply in this run.
+- name: Load private variables right after the first clone
+  include_vars:
+    file: "{{ private_dir }}/ansible/{{ 'macos' if ansible_facts['os_family'] == 'Darwin' else 'linux' }}.yml"
+  when: private_clone is changed
+
+- name: Apply the private SSH origins (keys, ~/.ssh/config, git org routing)
+  include_role:
+    name: zsh
+  when: private_clone is changed
+
 - name: Check for a private Brewfile
   stat:
     path: "{{ private_dir }}/brew/Brewfile"

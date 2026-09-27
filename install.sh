@@ -182,6 +182,17 @@ main() {
     fi
 
     echo ""
+    # Private overlay (personal/work config): cloned by the playbook once the GitHub key works
+    if [[ ! -d "$HOME/dotfiles-private/.git" ]]; then
+        echo "=== One more step for the private overlay ==="
+        echo "1. Add this SSH key to GitHub (https://github.com/settings/ssh/new):"
+        echo ""
+        cat "$HOME/.ssh/github/github.pub" 2>/dev/null || echo "   (~/.ssh/github/github.pub not found; check the Ansible output above)"
+        echo ""
+        echo "2. Re-run: cd ~/dotfiles && ./install.sh"
+        echo "   (skip this if you don't have access to btukus/dotfiles-private; the public setup is complete)"
+        echo ""
+    fi
     if (( had_failures )); then
         echo "=== Setup finished WITH WARNINGS ==="
         echo "Some steps failed above. This script is idempotent — resolve the errors"

@@ -8,6 +8,13 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-~/.local/state}
 export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
 
+# Startup profiling, opt-in: `touch $XDG_CACHE_HOME/zsh/profile` to log per-shell timings to
+# $XDG_CACHE_HOME/zsh/startup.log, `rm` it to stop. Costs one stat when off.
+if [[ -o interactive && -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/profile ]]; then
+  zmodload zsh/datetime
+  typeset -gF ZSH_PROFILE_T0=$EPOCHREALTIME
+fi
+
 # Whether stdin is the terminal, recorded here because p10k's instant prompt points stdin at
 # /dev/null while .zshrc loads, and zellij-autostart (which runs after it) still needs to know.
 [[ -t 0 ]] && ZSH_STDIN_IS_TTY=1

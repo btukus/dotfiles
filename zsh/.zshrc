@@ -44,6 +44,22 @@ source "$ZDOTDIR/.p10k.zsh"
 # Private overlay: work functions, abbreviations, hosts
 for f in ~/dotfiles-private/zsh/*.zsh(N); do [[ ${f:t} == env.zsh ]] || source $f; done
 
+# Startup profiling (see .zshenv): log when .zshrc finished and when the first prompt was
+# actually ready, which is what you feel when a pane opens.
+if (( ${ZSH_PROFILE_T0:-0} )); then
+  typeset -gF ZSH_PROFILE_RC=$(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 ))
+  _zsh_profile_done() {
+    printf '%s  zshrc=%6.1fms  prompt=%6.1fms  pane=%-3s %s\n' \
+      "$(strftime '%H:%M:%S' $EPOCHSECONDS)" $ZSH_PROFILE_RC \
+      $(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 )) "${ZELLIJ_PANE_ID:--}" "$PWD" \
+      >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log
+    add-zsh-hook -d precmd _zsh_profile_done
+    unfunction _zsh_profile_done
+  }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _zsh_profile_done
+fi
+
 # zsh-abbr cache (see plugin-settings.zsh). Last, so the private overlay's session
 # abbreviations are part of the snapshot instead of being re-declared in every shell.
 () {

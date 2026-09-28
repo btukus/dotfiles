@@ -76,7 +76,7 @@ if (( ${ZSH_PROFILE_T0:-0} )); then
     if (( $+builtins[zprof] )); then
       {
         print -r -- "            --- zprof (self time, top 12) ---"
-        zprof | sed -n '4,15p' | sed 's/^/            /'
+        zprof | sed -n '3,16p' | sed 's/^/            /'
       } >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log 2>/dev/null
     fi
     add-zsh-hook -d precmd _zsh_profile_done

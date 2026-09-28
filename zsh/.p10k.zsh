@@ -81,8 +81,12 @@
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
     azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-    gcloud                  # google cloud cli account and project (https://cloud.google.com/)
-    google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    # gcloud/google_app_cred: disabled. _p9k_gcloud_prefetch runs on every prompt whatever
+    # GCLOUD_SHOW_ON_COMMAND says - that only hides the segment - and on a cache miss it shells
+    # out to `gcloud config configurations describe`, starting Python. Measured at 330ms of a
+    # 464ms first prompt (66% of it) in a new pane. Nothing here uses Google Cloud.
+    # gcloud                  # google cloud cli account and project (https://cloud.google.com/)
+    # google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
     toolbox                 # toolbox name (https://github.com/containers/toolbox)
     context                 # user@hostname
     nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)

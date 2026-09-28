@@ -34,12 +34,29 @@ _antidote_load() {
   if [[ ! -f $static ]]; then
     (( $+functions[antidote] )) || _antidote_init
     antidote bundle <$list >$static
+    _antidote_zcompile $static
   fi
   source $static
+}
+
+# Precompile the plugins the bundle sources, so every shell reads bytecode instead of parsing
+# ~1.5MB of zsh. Done once, when the bundle is generated. zsh ignores a .zwc that is older than
+# its source, so after a plugin update this silently falls back to parsing until the next
+# regeneration - correctness never depends on it.
+_antidote_zcompile() {
+  local line file dir f
+  for line in ${(f)"$(<$1)"}; do
+    [[ $line == source\ * ]] || continue
+    file=${(e)${line#source }}
+    dir=${file:h}
+    for f in $dir/*.zsh(N) $dir/*.zsh-theme(N); do
+      [[ -r $f && ( ! -f $f.zwc || $f -nt $f.zwc ) ]] && zcompile -R $f 2>/dev/null
+    done
+  done
 }
 
 # Completion dirs first, then compinit, then the plugins (fzf-tab needs compinit done)
 _antidote_load $ZDOTDIR/antidote/fpath_plugins.txt
 source $ZDOTDIR/source-scripts/load-completions.zsh
 _antidote_load $ZDOTDIR/antidote/shared_plugins.txt
-unfunction _antidote_load _antidote_init
+unfunction _antidote_load _antidote_init _antidote_zcompile

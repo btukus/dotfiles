@@ -1,19 +1,38 @@
 # Completions. Sourced from antidote.zsh, after plugin completion dirs are on
 # fpath and before fzf-tab loads.
 autoload -Uz compinit
+zmodload -F zsh/stat b:zstat
+zmodload zsh/datetime
 typeset -U fpath
 
-# Full compinit at most once a day; otherwise trust the cached dump (-C).
+# Always trust the cached dump (-C): a full compinit rescans the whole fpath and takes ~277ms,
+# which used to land on the first shell of the day and made it visibly slower than the next one.
+# The rescan still happens daily, just in the background, so it only ever benefits the next shell.
 () {
   local zcd=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION
   [[ -d ${zcd:h} ]] || mkdir -p ${zcd:h}
-  if [[ -n $zcd(#qN.mh-24) ]]; then
-    compinit -C -d $zcd
-  else
-    compinit -d $zcd
-    touch $zcd          # compinit skips rewriting an unchanged dump; bump mtime so we don't rescan every start
-  fi
+  compinit -C -d $zcd
   { [[ ! -f $zcd.zwc || $zcd -nt $zcd.zwc ]] && zcompile $zcd } &!
+
+  # Stale? Claim the slot first by bumping the mtime, so shells starting at the same time
+  # don't all fork the same rescan, then rebuild out of the way and swap it in.
+  # Checked with zstat, not a glob qualifier: `[[ -n $zcd(#qN.mh-24) ]]` does no filename
+  # generation inside [[ ]], so it compared a literal string and was always true - the rescan
+  # never ran and the dump never picked up completions from newly installed tools.
+  local -a zcd_mtime
+  zstat -A zcd_mtime +mtime $zcd 2>/dev/null
+  if (( EPOCHSECONDS - ${zcd_mtime[1]:-0} > 86400 )); then
+    touch $zcd
+    {
+      local tmp=$zcd.new.$$
+      if compinit -d $tmp; then
+        zcompile $tmp 2>/dev/null
+        mv -f $tmp $zcd
+        [[ -f $tmp.zwc ]] && mv -f $tmp.zwc $zcd.zwc
+      fi
+      rm -f $tmp $tmp.zwc
+    } &!
+  fi
 }
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'

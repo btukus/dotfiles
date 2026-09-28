@@ -66,8 +66,15 @@ following modules in a deliberate order:
 3. `load-paths.zsh`, `load-options.zsh`, and `load-history-settings.zsh`.
 4. `plugin-settings.zsh`, which defines settings plugins need while loading and
    manages the zsh-abbr cache at `$XDG_CACHE_HOME/zsh-abbr-cache.zsh`.
-5. `antidote.zsh`, then `load-completions.zsh`, then shared plugins.
-6. `keybindings.zsh`, `clipboard.zsh`, `functions.zsh`, `load-aliases.zsh`,
+5. `antidote.zsh`, then `load-completions.zsh`, then shared plugins. antidote itself
+   is sourced only when a bundle has to be regenerated; generating one also `zcompile`s
+   the plugins it sources, so shells read bytecode instead of parsing ~1.5MB of Zsh.
+   Delete `zsh/antidote/*_plugins.zsh` to force a rebuild, e.g. after updating plugins
+   so they are recompiled. `compinit` always uses the cached dump and rebuilds it in
+   the background once a day, so no interactive shell waits for the full rescan.
+6. `keybindings.zsh`, which also sets up vi mode: Zsh's built-in `bindkey -v` rather
+   than a plugin, plus `KEYTIMEOUT`, insert-mode line editing and the beam/block
+   cursor. Then `clipboard.zsh`, `functions.zsh`, `load-aliases.zsh`,
    `load-ssh-keys.zsh`, `asdf.zsh`, and the full `.p10k.zsh` theme
    configuration.
 7. The optional private Zsh overlay, followed by the zsh-abbr cache restore or

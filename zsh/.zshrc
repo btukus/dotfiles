@@ -55,11 +55,11 @@ for f in ~/dotfiles-private/zsh/*.zsh(N); do [[ ${f:t} == env.zsh ]] || source $
   if (( ABBR_CACHE_HIT )); then
     source $ABBR_CACHE
     ABBR_USER_ABBREVIATIONS_FILE=$ABBR_USER_ABBREVIATIONS_FILE_REAL
-    # zsh-abbr re-reads these dumps on some lookups; they were written empty by the decoy load
-    if [[ ${_abbr_tmpdir}regular-user-abbreviations -ot $ABBR_CACHE ]]; then
-      typeset -p ABBR_REGULAR_USER_ABBREVIATIONS >${_abbr_tmpdir}regular-user-abbreviations
-      typeset -p ABBR_GLOBAL_USER_ABBREVIATIONS  >${_abbr_tmpdir}global-user-abbreviations
-    fi
+    # The expansion widget re-reads these dumps on every expansion, and the decoy load just
+    # wrote them empty. Always rewrite them: they are shared between sessions, so leaving them
+    # empty silently stops abbreviations expanding everywhere, not just in this shell.
+    typeset -p ABBR_REGULAR_USER_ABBREVIATIONS >${_abbr_tmpdir}regular-user-abbreviations
+    typeset -p ABBR_GLOBAL_USER_ABBREVIATIONS  >${_abbr_tmpdir}global-user-abbreviations
   else
     typeset -p $sets >$ABBR_CACHE.$$ 2>/dev/null && mv -f $ABBR_CACHE.$$ $ABBR_CACHE
   fi

@@ -12,6 +12,18 @@ selection-background = #4c566a
 selection-foreground = cell-foreground
 cursor-color = #d8dee9
 cursor-text = #2e3440
+# Steady cursor everywhere (Ghostty's default defers to the app / DEC mode 12);
+# DECSCUSR shapes still apply, so zsh-vi-mode's beam/block mode cursors keep working
+cursor-style-blink = false
+
+# Input latency: Ghostty's docs call window-vsync the knob to minimise it, at the cost of
+# tearing (and, on macOS 14.4+, reported kernel panics over DisplayLink / some external
+# displays). Uncomment to trade the one for the other.
+# window-vsync = false
+# No pointer over the text while typing, and no hover previews repainting under the cursor
+# (Zellij's own hover effects are off too, see zellij/config.kdl)
+mouse-hide-while-typing = true
+link-previews = false
 
 maximize = true
 macos-titlebar-style = hidden

@@ -1,5 +1,29 @@
 # Key bindings and fzf shell integration. Sourced after antidote.zsh so these win
-# over plugin defaults (zsh-vi-mode is initialised by then, see plugin-settings.zsh).
+# over plugin defaults.
+
+# Vi mode: zsh's built-in. zsh-vi-mode cost ~42ms of a ~155ms startup and only the motions
+# were being used, so the few things it did beyond `bindkey -v` are reproduced below.
+bindkey -v
+# Esc is a prefix for the arrow/Alt sequences, so zsh waits KEYTIMEOUT for more input before
+# acting on it. The default 0.4s makes leaving insert mode feel laggy; 10ms is imperceptible
+# and still long enough for a terminal's multi-byte sequences, which arrive in one burst.
+KEYTIMEOUT=1
+
+# viins only maps backspace back to where insert mode started; make it edit the whole line
+# like any other shell
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
+bindkey -M viins '^W' backward-kill-word
+bindkey -M viins '^U' backward-kill-line
+
+# Beam cursor in insert mode, block in normal mode (DECSCUSR; Ghostty keeps these, see
+# cursor-style-blink in ghostty/config)
+_vi_cursor() { [[ $KEYMAP == vicmd ]] && print -n $'\e[2 q' || print -n $'\e[6 q' }
+zle -N zle-keymap-select _vi_cursor
+# Back to a beam for every new prompt, whatever mode the last line ended in
+_vi_cursor_beam() { print -n $'\e[6 q' }
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _vi_cursor_beam
 
 # fzf: ^R history, ^T files, Alt-c cd
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'

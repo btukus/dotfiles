@@ -1,8 +1,7 @@
 # Loaded after compinit (see antidote.zsh). Order matters:
-# - zsh-vi-mode first: it resets the vi keymaps when it initialises
 # - fzf-tab after compinit, but before plugins that wrap widgets
 #   (fast-syntax-highlighting, autosuggestions)
-jeffreytse/zsh-vi-mode
+# Vi mode is zsh's built-in (`bindkey -v` in keybindings.zsh), not a plugin.
 olets/zsh-abbr
 agkozak/zsh-z
 

@@ -13,7 +13,7 @@ selection-foreground = cell-foreground
 cursor-color = #d8dee9
 cursor-text = #2e3440
 # Steady cursor everywhere (Ghostty's default defers to the app / DEC mode 12);
-# DECSCUSR shapes still apply, so zsh-vi-mode's beam/block mode cursors keep working
+# DECSCUSR shapes still apply, so the vi beam/block mode cursors keep working (keybindings.zsh)
 cursor-style-blink = false
 
 # Input latency: Ghostty's docs call window-vsync the knob to minimise it, at the cost of

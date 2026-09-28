@@ -1,10 +1,5 @@
 # Plugin settings. Must be sourced before antidote.zsh: plugins read these at load time.
 
-# zsh-vi-mode: initialise while being sourced (not lazily at the first prompt), so
-# keys bound by later plugins and keybindings.zsh aren't overwritten afterwards.
-ZVM_INIT_MODE=sourcing
-ZVM_LAZY_KEYBINDINGS=false
-
 # zsh-z
 ZSHZ_DATA=$ZDOTDIR/z/.zshz
 ZSHZ_TILDE=1

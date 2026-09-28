@@ -52,13 +52,15 @@ Install Nerd Font for Powerlevel10k: https://github.com/romkatv/powerlevel10k/bl
   - `load-paths.zsh` - PATH and editor settings
   - `load-options.zsh` - Interactive `setopt`s
   - `load-history-settings.zsh` - History settings (file: `$XDG_STATE_HOME/zsh/history`)
-  - `plugin-settings.zsh` - Variables plugins read at load time (zsh-vi-mode, abbr, autosuggestions, zsh-z).
+  - `plugin-settings.zsh` - Variables plugins read at load time (abbr, autosuggestions, zsh-z).
     Also decides the zsh-abbr cache: loading ~250 abbreviations one `abbr` call at a time cost
     ~130ms per shell, so they are snapshotted to `$XDG_CACHE_HOME/zsh-abbr-cache.zsh` and restored
     at the end of `.zshrc`. Any change to the abbreviations file or the private overlay rebuilds it
   - `antidote.zsh` - Plugin manager: bundles `zsh/antidote/fpath_plugins.txt` (completion dirs),
     runs `load-completions.zsh` (compinit + fzf-tab styles), then bundles `shared_plugins.txt`
-  - `keybindings.zsh` - fzf widgets and all `bindkey`s (after plugins, so they win)
+  - `keybindings.zsh` - vi mode (zsh's built-in `bindkey -v`, not a plugin: `KEYTIMEOUT`,
+    insert-mode line editing and the beam/block cursor are set up there), fzf widgets and
+    all `bindkey`s (after plugins, so they win)
   - `load-aliases.zsh` - Sources the flat `.zsh` files in `zsh/aliases/`
   - `asdf.zsh` - Version manager integration
   - `.p10k.zsh` - Powerlevel10k theme

@@ -42,13 +42,20 @@ Install Nerd Font for Powerlevel10k: https://github.com/romkatv/powerlevel10k/bl
 ### Zsh Configuration
 - Entry point: `zsh/.zshenv` sets `$ZDOTDIR` to `~/dotfiles/zsh`
 - `zsh/.zshrc` sources modular scripts from `zsh/source-scripts/`:
-  - `zellij-autostart.zsh` - First, before p10k instant prompt: Ghostty -> Zellij session `$ZELLIJ_MAIN_SESSION` (default `main`),
-    SSH -> `main`; plain shell if Zellij is missing or fails. Inside Zellij it also names tabs
+  - `.p10k.zsh` instant prompt runs first, before anything else: until it owns the terminal, keys
+    you type are echoed raw by the tty and left behind as a stale line when the real prompt draws
+  - `zellij-autostart.zsh` - Ghostty -> Zellij session `$ZELLIJ_MAIN_SESSION` (default `main`),
+    SSH -> `main`; plain shell if Zellij is missing or fails. Runs after instant prompt, so it
+    reads the tty-ness recorded by `.zshenv` (`$ZSH_STDIN_IS_TTY`) and hands Zellij `/dev/tty`,
+    because instant prompt points stdin at `/dev/null`. Inside Zellij it also names tabs
     after the running command / current folder
   - `load-paths.zsh` - PATH and editor settings
   - `load-options.zsh` - Interactive `setopt`s
   - `load-history-settings.zsh` - History settings (file: `$XDG_STATE_HOME/zsh/history`)
-  - `plugin-settings.zsh` - Variables plugins read at load time (zsh-vi-mode, abbr, autosuggestions, zsh-z)
+  - `plugin-settings.zsh` - Variables plugins read at load time (zsh-vi-mode, abbr, autosuggestions, zsh-z).
+    Also decides the zsh-abbr cache: loading ~250 abbreviations one `abbr` call at a time cost
+    ~130ms per shell, so they are snapshotted to `$XDG_CACHE_HOME/zsh-abbr-cache.zsh` and restored
+    at the end of `.zshrc`. Any change to the abbreviations file or the private overlay rebuilds it
   - `antidote.zsh` - Plugin manager: bundles `zsh/antidote/fpath_plugins.txt` (completion dirs),
     runs `load-completions.zsh` (compinit + fzf-tab styles), then bundles `shared_plugins.txt`
   - `keybindings.zsh` - fzf widgets and all `bindkey`s (after plugins, so they win)
@@ -63,7 +70,8 @@ Install Nerd Font for Powerlevel10k: https://github.com/romkatv/powerlevel10k/bl
 - Most former aliases (git, kubernetes, languages, etc.) are now shell
   functions in `zsh/functions/NN-<domain>.zsh`, loaded by `source-scripts/functions.zsh`.
 - Abbreviations (zsh-abbr) live in `config/.config/zsh-abbr/user-abbreviations`;
-  `%` in an expansion marks where the cursor lands.
+  `%` in an expansion marks where the cursor lands. They are cached (see `plugin-settings.zsh`);
+  `abbr add`/`erase` rewrite the file, which invalidates the cache on its own.
 
 ### Key Tools
 - **asdf**: Version management for nodejs, python, rust, java, maven, terraform, bun (see `asdf/.tool-versions`)

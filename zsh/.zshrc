@@ -1,10 +1,13 @@
-# Start Zellij first (Ghostty, SSH): must run before instant prompt, which redirects stdin (see the file)
-[[ -o interactive ]] && source "$ZDOTDIR/source-scripts/zellij-autostart.zsh"
-
-# Enable Powerlevel10k instant prompt. Keep close to the top of .zshrc.
+# Powerlevel10k instant prompt. Must be the first thing that runs: until it takes the terminal,
+# anything you type is echoed raw by the tty and then left behind as a stale line when the real
+# prompt draws. It renders ~25ms in, so keep everything else below it - including Zellij, whose
+# `attach` would otherwise hold that window open for its whole startup.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# Start Zellij in place of this shell (Ghostty, SSH)
+[[ -o interactive ]] && source "$ZDOTDIR/source-scripts/zellij-autostart.zsh"
 
 # zmodload zsh/zprof
 
@@ -40,3 +43,24 @@ source "$ZDOTDIR/.p10k.zsh"
 
 # Private overlay: work functions, abbreviations, hosts
 for f in ~/dotfiles-private/zsh/*.zsh(N); do [[ ${f:t} == env.zsh ]] || source $f; done
+
+# zsh-abbr cache (see plugin-settings.zsh). Last, so the private overlay's session
+# abbreviations are part of the snapshot instead of being re-declared in every shell.
+() {
+  (( $+functions[abbr] )) || return
+  local -a sets=(
+    ABBR_REGULAR_USER_ABBREVIATIONS ABBR_GLOBAL_USER_ABBREVIATIONS
+    ABBR_REGULAR_SESSION_ABBREVIATIONS ABBR_GLOBAL_SESSION_ABBREVIATIONS
+  )
+  if (( ABBR_CACHE_HIT )); then
+    source $ABBR_CACHE
+    ABBR_USER_ABBREVIATIONS_FILE=$ABBR_USER_ABBREVIATIONS_FILE_REAL
+    # zsh-abbr re-reads these dumps on some lookups; they were written empty by the decoy load
+    if [[ ${_abbr_tmpdir}regular-user-abbreviations -ot $ABBR_CACHE ]]; then
+      typeset -p ABBR_REGULAR_USER_ABBREVIATIONS >${_abbr_tmpdir}regular-user-abbreviations
+      typeset -p ABBR_GLOBAL_USER_ABBREVIATIONS  >${_abbr_tmpdir}global-user-abbreviations
+    fi
+  else
+    typeset -p $sets >$ABBR_CACHE.$$ 2>/dev/null && mv -f $ABBR_CACHE.$$ $ABBR_CACHE
+  fi
+}

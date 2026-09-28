@@ -62,9 +62,9 @@ if (( ${ZSH_PROFILE_T0:-0} )); then
     done
   }
   _zsh_profile_done() {
-    printf '%s  zshrc=%6.1fms  prompt=%6.1fms  pane=%-3s %s\n' \
+    printf '%s  zshrc=%6.1fms  prompt=%6.1fms  instant=%-3s pane=%-3s %s\n' \
       "$(strftime '%H:%M:%S' $EPOCHSECONDS)" $ZSH_PROFILE_RC \
-      $(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 )) "${ZELLIJ_PANE_ID:--}" "$PWD" \
+      $(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 )) "$ZSH_PROFILE_IP" "${ZELLIJ_PANE_ID:--}" "$PWD" \
       >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log
     # slowest hooks first, anything over 1ms
     local k out=

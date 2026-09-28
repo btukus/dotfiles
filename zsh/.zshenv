@@ -13,6 +13,11 @@ export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
 if [[ -o interactive && -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/profile ]]; then
   zmodload zsh/datetime
   typeset -gF ZSH_PROFILE_T0=$EPOCHREALTIME
+  # Did this shell have an instant-prompt dump to render? Checked here, before p10k can
+  # rewrite or delete it - this is what decides whether a new pane shows a prompt at ~25ms
+  # or stays blank until the real prompt is ready.
+  [[ -r ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh ]] \
+    && typeset -g ZSH_PROFILE_IP=yes || typeset -g ZSH_PROFILE_IP=NO
 fi
 
 # Whether stdin is the terminal, recorded here because p10k's instant prompt points stdin at

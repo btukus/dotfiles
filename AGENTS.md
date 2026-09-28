@@ -85,6 +85,14 @@ The abbreviations source is
 `config/.config/zsh-abbr/user-abbreviations`; `%` marks the cursor position in
 an expansion. Changes to it or its private overlay invalidate the cache.
 
+### Measuring Zsh startup
+
+`touch $XDG_CACHE_HOME/zsh/profile` to log one line per shell to
+`$XDG_CACHE_HOME/zsh/startup.log`, and `rm` it to stop; when off it costs a
+single stat. It records both `zshrc=` and `prompt=`, because `zsh -i -c exit`
+never runs precmd hooks and so misses gitstatus init, the asdf Java hook and the
+prompt render - most of the wait when a pane opens.
+
 ### Zsh organization
 
 - `zsh/aliases/` is a flat directory for the few plain aliases.

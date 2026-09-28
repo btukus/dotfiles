@@ -11,7 +11,16 @@ fi
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :200 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza -1 --color=always --group-directories-first {}'"
 if (( $+commands[fzf] )); then
-  source <(fzf --zsh)
+  # `fzf --zsh` forks fzf on every shell (~10ms). Cache its output like brew shellenv,
+  # regenerating when the binary is newer than the cache.
+  () {
+    local cache=${XDG_CACHE_HOME:-$HOME/.cache}/fzf-init.zsh
+    if [[ ! -f $cache || $commands[fzf] -nt $cache ]]; then
+      mkdir -p ${cache:h}
+      fzf --zsh >$cache.$$ && mv -f $cache.$$ $cache
+    fi
+    source $cache
+  }
   bindkey -M viins '^I' fzf-tab-complete   # keep fzf-tab on Tab (fzf --zsh rebinds it)
   bindkey -M vicmd '^R' redo               # keep vi redo in normal mode (^R in insert mode = fzf history)
 fi

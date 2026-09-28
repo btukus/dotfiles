@@ -24,12 +24,12 @@
 - name: Load private variables right after the first clone
   include_vars:
     file: "{{ private_dir }}/ansible/{{ 'macos' if ansible_facts['os_family'] == 'Darwin' else 'linux' }}.yml"
-  when: private_clone is changed
+  when: private_clone is changed and private_clone is succeeded
 
 - name: Apply the private SSH origins (keys, ~/.ssh/config, git org routing)
   include_role:
     name: zsh
-  when: private_clone is changed
+  when: private_clone is changed and private_clone is succeeded
 
 # Claude Code settings (permissions, plugins, autoMode with company details) are private;
 # the status line script next to them is public (stowed from dotfiles/claude).

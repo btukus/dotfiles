@@ -1,8 +1,9 @@
 #!/bin/zsh
 
+# Sourced by `gu` (05-git.zsh): use return, never exit (it would close the shell).
 # Directories containing git worktrees: colon-separated $WORKTREE_ROOTS (set in the private overlay)
 directories=(${(s.:.)WORKTREE_ROOTS})
-(( $#directories )) || { echo "Set WORKTREE_ROOTS (colon-separated repo dirs) first"; exit 1; }
+(( $#directories )) || { echo "Set WORKTREE_ROOTS (colon-separated repo dirs) first"; return 1; }
 
 current_dir=$(pwd)
 

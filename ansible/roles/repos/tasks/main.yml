@@ -9,6 +9,11 @@
     path: "{{ code_root }}"
     state: directory
 
+- name: Ensure ~/.local/bin exists
+  file:
+    path: ~/.local/bin
+    state: directory
+
 - name: Link repos CLI into ~/.local/bin
   file:
     src: ~/dotfiles/scripts/repos

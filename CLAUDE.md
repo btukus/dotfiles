@@ -123,7 +123,7 @@ All code lives under `~/code` (`$CODE_ROOT`) in any folder layout. `repos` disco
 every repo there (bare `gbare`-style or normal clone), and records path, layout,
 remotes and worktrees in `~/dotfiles-private/repos.conf` — a **private** repo,
 because this one is public. A launchd agent (`com.btukus.repos-sync`, log:
-`~/Library/Logs/repos-sync.log`) runs `repos sync` every 4h and pushes manifest changes.
+`~/Library/Logs/repos-sync.log`) runs `repos sync` at 0/4/8/12/16/20h (missed slots run on wake) and pushes manifest changes.
 - New machine: add SSH keys to GitHub/Azure DevOps, re-run the playbook, then `repos restore`
 - `repos status -f` — what a restore would lose (dirty, unpushed, stashes, .env files, non-git folders)
 - `repos repair` — relink worktrees after moving repos (new worktrees use relative paths via `worktree.useRelativePaths`)

@@ -20,8 +20,14 @@
     <key>REPOS_PRIVATE_DIR</key>
     <string>{{ private_dir | expanduser }}</string>
   </dict>
-  <key>StartInterval</key>
-  <integer>{{ repos_sync_interval }}</integer>
+  <!-- Fixed hours, not StartInterval: launchd runs a missed calendar slot when the Mac
+       wakes, while an interval stalls during sleep (it ran once in ~22h that way) -->
+  <key>StartCalendarInterval</key>
+  <array>
+{% for hour in repos_sync_hours %}
+    <dict><key>Hour</key><integer>{{ hour }}</integer><key>Minute</key><integer>0</integer></dict>
+{% endfor %}
+  </array>
   <key>RunAtLoad</key>
   <true/>
   <key>LowPriorityIO</key>

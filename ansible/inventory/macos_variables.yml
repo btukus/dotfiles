@@ -11,7 +11,7 @@ stow_directories: [git, config, asdf, claude]
 # repos role: ~/dotfiles/scripts/repos + launchd sync of the private manifest
 code_root: ~/code
 repos_sync_label: com.btukus.repos-sync
-repos_sync_interval: 14400
+repos_sync_hours: [0, 4, 8, 12, 16, 20]
 # Private overlay (the `private` role clones it; zsh, git and these playbooks load from it)
 private_repo: git@github.com:btukus/dotfiles-private.git
 private_dir: ~/dotfiles-private

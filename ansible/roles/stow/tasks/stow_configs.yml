@@ -1,3 +1,11 @@
+# The claude package only holds .claude/statusline.sh; if ~/.claude doesn't exist yet, stow
+# would make ~/.claude itself a symlink into this repo, and Claude Code's state (and the
+# private settings link) would land in the public checkout. Create it as a real directory first.
+- name: Ensure ~/.claude is a real directory before stowing
+  file:
+    path: ~/.claude
+    state: directory
+
 - name: Stow Directories
   shell: stow -t ~ -d ~/dotfiles "{{ item }}"
   loop: "{{ stow_directories }}"

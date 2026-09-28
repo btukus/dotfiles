@@ -72,6 +72,13 @@ if (( ${ZSH_PROFILE_T0:-0} )); then
       (( ZSH_PROFILE_HOOKS[$k] > 1 )) && out+=$(printf '%s=%.0fms ' ${k#_zsh_prof__} $ZSH_PROFILE_HOOKS[$k])
     done
     [[ -n $out ]] && print -r -- "            hooks: $out" >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log
+    # Deep profile: what actually burned the time, inside p10k and everywhere else
+    if (( $+builtins[zprof] )); then
+      {
+        print -r -- "            --- zprof (self time, top 12) ---"
+        zprof | sed -n '4,15p' | sed 's/^/            /'
+      } >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log 2>/dev/null
+    fi
     add-zsh-hook -d precmd _zsh_profile_done
     unfunction _zsh_profile_done
   }

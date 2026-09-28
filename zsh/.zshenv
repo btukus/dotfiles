@@ -12,6 +12,8 @@ export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
 # $XDG_CACHE_HOME/zsh/startup.log, `rm` it to stop. Costs one stat when off.
 if [[ -o interactive && -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/profile ]]; then
   zmodload zsh/datetime
+  # Function-level profile too, so a slow first prompt can be attributed inside p10k
+  [[ -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/profile-deep ]] && zmodload zsh/zprof
   typeset -gF ZSH_PROFILE_T0=$EPOCHREALTIME
   # Did this shell have an instant-prompt dump to render? Checked here, before p10k can
   # rewrite or delete it - this is what decides whether a new pane shows a prompt at ~25ms

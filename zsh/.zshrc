@@ -48,11 +48,30 @@ for f in ~/dotfiles-private/zsh/*.zsh(N); do [[ ${f:t} == env.zsh ]] || source $
 # actually ready, which is what you feel when a pane opens.
 if (( ${ZSH_PROFILE_T0:-0} )); then
   typeset -gF ZSH_PROFILE_RC=$(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 ))
+  # Time each precmd hook, so a slow first prompt can be attributed to one of them
+  typeset -gA ZSH_PROFILE_HOOKS=()
+  () {
+    local f
+    for f in $precmd_functions; do
+      (( $+functions[$f] )) || continue
+      functions -c $f _zsh_prof__$f
+      functions[$f]="
+        local __s=\$EPOCHREALTIME
+        _zsh_prof__$f \"\$@\"
+        ZSH_PROFILE_HOOKS[$f]=\$(( \${ZSH_PROFILE_HOOKS[$f]:-0} + (EPOCHREALTIME - __s) * 1000 ))"
+    done
+  }
   _zsh_profile_done() {
     printf '%s  zshrc=%6.1fms  prompt=%6.1fms  pane=%-3s %s\n' \
       "$(strftime '%H:%M:%S' $EPOCHSECONDS)" $ZSH_PROFILE_RC \
       $(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 )) "${ZELLIJ_PANE_ID:--}" "$PWD" \
       >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log
+    # slowest hooks first, anything over 1ms
+    local k out=
+    for k in ${(k)ZSH_PROFILE_HOOKS}; do
+      (( ZSH_PROFILE_HOOKS[$k] > 1 )) && out+=$(printf '%s=%.0fms ' ${k#_zsh_prof__} $ZSH_PROFILE_HOOKS[$k])
+    done
+    [[ -n $out ]] && print -r -- "            hooks: $out" >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log
     add-zsh-hook -d precmd _zsh_profile_done
     unfunction _zsh_profile_done
   }

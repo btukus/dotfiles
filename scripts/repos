@@ -18,7 +18,7 @@
 #
 # Layout inside $CODE_ROOT is free-form: put a repo wherever you like and the
 # next snapshot records its path. Both layouts are tracked per repo:
-#   bare  — `gbare` style: the repo dir is a bare repo, worktrees live inside it
+#   bare  — `gbare` style: the repo dir is a bare repo, worktrees live in its wt/
 #   clone — a normal checkout (plus any extra worktrees)
 #
 # The manifest lives in a PRIVATE repo ($REPOS_PRIVATE_DIR) because these
@@ -250,7 +250,7 @@ cmd_repair() {
     # Candidate worktree dirs: inside the repo dir (bare layout), next to it
     # (clone layout), and wherever git's own records say — re-rooted from any
     # old location onto the repo's current parent when the repo was moved.
-    wts=($repo/*/.git(N.:h) ${repo:h}/*/.git(N.:h) $repo/.claude/worktrees/*/.git(N.:h))
+    wts=($repo/wt/*/.git(N.:h) $repo/*/.git(N.:h) ${repo:h}/*/.git(N.:h) $repo/.claude/worktrees/*/.git(N.:h))
     for line in ${(f)"$(git -C $repo worktree list --porcelain 2>/dev/null)"}; do
       [[ $line == worktree\ * ]] || continue
       wt=${line#worktree }

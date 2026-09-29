@@ -184,6 +184,12 @@ folder layouts. It discovers normal and bare repositories, records their paths,
 layouts, remotes, and worktrees in the private `repos.conf` manifest, and can
 restore them on a new machine.
 
+Worktrees created by `gwa`/`gwag` (`zsh/functions/05-git.zsh`) live in
+`<repo>/wt/<branch>` for the bare `gbare` layout, and in a sibling `../<branch>`
+for a normal clone, which keeps a checkout from nesting inside another checkout.
+`wt` rather than `worktrees`, because a bare repo already uses `worktrees/` for
+git's own per-worktree metadata.
+
 - `repos status -f` reports what a restore could lose, including dirty or
   unpushed work, stashes, `.env` files, and non-Git folders.
 - `repos repair` relinks worktrees after repositories move; worktrees use

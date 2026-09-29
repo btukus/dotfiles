@@ -31,21 +31,57 @@ gu() {
   source "$HOME/dotfiles/zsh/scripts/update-git-worktrees.zsh"
 }
 
-# Add a worktree for <branch> next to the others (creates the branch from [base] or the
-# main branch when it doesn't exist locally or on origin), then cd into it.
-# Bare layout (gbare): <repo>/<branch>; normal clone: sibling dir ../<branch>.
+# Print the directory new worktrees belong in for the current repo:
+#   bare layout (gbare) -> <repo>/wt   (`worktrees` is git's own metadata dir there)
+#   normal clone        -> the repo's parent, i.e. a sibling of the checkout, so
+#                          branches are never nested inside the main working tree
+git_worktree_dir() {
+  emulate -L zsh
+  local common
+  common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || return 1
+  if [[ $(git -C $common rev-parse --is-bare-repository) == true ]]; then
+    print -r -- $common/wt
+  else
+    print -r -- ${common:h:h}
+  fi
+}
+
+# Add a worktree for <branch> (creates the branch from [base] or the main branch
+# when it doesn't exist locally or on origin), then cd into it.
+# Bare layout (gbare): <repo>/wt/<branch>; normal clone: sibling dir ../<branch>.
 gwa() {
   emulate -L zsh
-  local br=${1:?usage: gwa <branch> [base]} base=$2 common root dest
-  common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || { print -u2 'not a git repository'; return 1 }
-  if [[ $(git -C $common rev-parse --is-bare-repository) == true ]]; then root=$common; else root=${common:h:h}; fi
+  local br=${1:?usage: gwa <branch> [base]} base=$2 root dest
+  root=$(git_worktree_dir) || { print -u2 'not a git repository'; return 1 }
   dest=$root/$br
+  mkdir -p $root || return 1
   git fetch -q origin 2>/dev/null || print -u2 "gwa: fetch failed, using local refs"
   if git show-ref -q --verify refs/heads/$br || git show-ref -q --verify refs/remotes/origin/$br; then
     git worktree add $dest $br || return 1
     git show-ref -q --verify refs/remotes/origin/$br && git -C $dest branch -q -u origin/$br
   else
     git worktree add -b $br $dest ${base:-origin/$(git_main_branch)} || return 1
+    git -C $dest branch -q --unset-upstream 2>/dev/null   # new branch: `git push -u` sets its upstream
+  fi
+  cd $dest
+}
+
+# Same as gwa, but pulls the current branch first and forks a brand-new branch
+# from where you are now rather than from the main branch.
+gwag() {
+  emulate -L zsh
+  local br=${1:?usage: gwag <branch>} root dest
+  root=$(git_worktree_dir) || { print -u2 'not a git repository'; return 1 }
+  dest=$root/$br
+  git pull --ff-only || print -u2 "gwag: pull failed, continuing with the refs you have"
+  mkdir -p $root || return 1
+  if git show-ref -q --verify refs/heads/$br; then
+    git worktree add $dest $br || return 1
+    git show-ref -q --verify refs/remotes/origin/$br && git -C $dest branch -q -u origin/$br
+  elif git show-ref -q --verify refs/remotes/origin/$br; then
+    git worktree add --track -b $br $dest origin/$br || return 1
+  else
+    git worktree add -b $br $dest HEAD || return 1
     git -C $dest branch -q --unset-upstream 2>/dev/null   # new branch: `git push -u` sets its upstream
   fi
   cd $dest
@@ -145,11 +181,12 @@ gbare() {
   git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
   git fetch -q origin || return 1
   git remote set-head origin -a >/dev/null
+  mkdir -p wt || return 1
   for br in main master dev develop; do
     git show-ref -q --verify refs/heads/$br || continue
-    git worktree add -q $br $br && git -C $br branch -q -u origin/$br
+    git worktree add -q wt/$br $br && git -C wt/$br branch -q -u origin/$br
   done
-  for br in dev develop main master; do [[ -d $br ]] && { cd $br; return }; done
+  for br in dev develop main master; do [[ -d wt/$br ]] && { cd wt/$br; return }; done
 }
 
 # Hard-reset the current branch to <sha> and force-push it (with lease).

@@ -28,10 +28,10 @@ cdt() {
   cd "$_MARKD_SAVED_DIR" || return 1
 }
 
-# Fuzzy-cd into a directory under $CODE_ROOT (3 levels deep)
+# Fuzzy-cd into a directory under $CODE_ROOT (4 levels deep: <group>/<repo>/wt/<branch>)
 cdc() {
   local d
-  d=$(fd -t d -d 3 . "${CODE_ROOT:-$HOME/code}" | fzf --height 40% --query "$*") && cd "$d"
+  d=$(fd -t d -d 4 . "${CODE_ROOT:-$HOME/code}" | fzf --height 40% --query "$*") && cd "$d"
 }
 
 # Fuzzy-cd into a zsh-z frecent directory

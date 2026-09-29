@@ -13,29 +13,32 @@ is_git_worktree() {
     [[ -d "$repo_dir/worktrees" ]]
 }
 
+# Path of the worktree that has <branch> checked out, if any. Asking git keeps
+# this independent of where the worktrees sit on disk (bare repos: <repo>/wt/).
+worktree_of_branch() {
+    git -C "$1" worktree list --porcelain |
+        awk -v b="branch refs/heads/$2" '/^worktree /{w=substr($0,10)} $0==b{print w; exit}'
+}
+
 # Function to update a git repository
 update_git_repo() {
-    local repo_dir=$1
+    local repo_dir=$1 branch dir
     echo "Entering $repo_dir"
 
     # Check if it's a git worktree
     if is_git_worktree "$repo_dir"; then
-        cd "$repo_dir"
-
-        # Check for main or master branch
-        if git rev-parse --verify --quiet main; then
-            cd main
-            git checkout main --quiet
-            git pull --quiet
-            cd $repo_dir
-        elif git rev-parse --verify --quiet master; then
-            cd master
-            git checkout master --quiet
-            git pull --quiet
-            cd $repo_dir
-        else
-            echo "Neither main nor master branch found in $repo_dir, skipping."
-        fi
+        for branch in main master; do
+            git -C "$repo_dir" show-ref -q --verify "refs/heads/$branch" || continue
+            dir=$(worktree_of_branch "$repo_dir" "$branch")
+            if [[ -z $dir ]]; then
+                echo "No worktree checked out on $branch in $repo_dir, skipping."
+                return
+            fi
+            git -C "$dir" pull --quiet --ff-only ||
+                echo "Pull on $branch failed in $dir"
+            return
+        done
+        echo "Neither main nor master branch found in $repo_dir, skipping."
     else
         echo "Not a git worktree: $repo_dir"
     fi

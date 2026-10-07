@@ -97,11 +97,22 @@ fi
   if (( ABBR_CACHE_HIT )); then
     source $ABBR_CACHE
     ABBR_USER_ABBREVIATIONS_FILE=$ABBR_USER_ABBREVIATIONS_FILE_REAL
-    # The expansion widget re-reads these dumps on every expansion, and the decoy load just
-    # wrote them empty. Always rewrite them: they are shared between sessions, so leaving them
-    # empty silently stops abbreviations expanding everywhere, not just in this shell.
-    typeset -p ABBR_REGULAR_USER_ABBREVIATIONS >${_abbr_tmpdir}regular-user-abbreviations
-    typeset -p ABBR_GLOBAL_USER_ABBREVIATIONS  >${_abbr_tmpdir}global-user-abbreviations
+    # Point the plugin back at its real temp dir (the decoy load wrote its empty dumps to a
+    # throwaway one), derived the way zsh-abbr does it.
+    ABBR_TMPDIR=$ABBR_TMPDIR_REAL
+    [[ -n $ABBR_TMPDIR ]] || unset ABBR_TMPDIR
+    unset ABBR_TMPDIR_REAL
+    _abbr_tmpdir=${${ABBR_TMPDIR:-${${TMPDIR:-/tmp}%/}/zsh-abbr}%/}/
+    [[ ${(%):-%#} == '#' ]] && _abbr_tmpdir=${${ABBR_TMPDIR:-${${TMPDIR:-/tmp}%/}/zsh-abbr-privileged-users}%/}/
+    # The expansion widget re-reads these dumps on every expansion, and they are shared between
+    # sessions: an empty or half-written one silently stops abbreviations expanding everywhere,
+    # not just in this shell. So always refresh them, and only ever by rename.
+    local v d
+    mkdir -p $_abbr_tmpdir
+    for v d in ABBR_REGULAR_USER_ABBREVIATIONS regular ABBR_GLOBAL_USER_ABBREVIATIONS global; do
+      typeset -p $v >${_abbr_tmpdir}$d-user-abbreviations.$$ &&
+        mv -f ${_abbr_tmpdir}$d-user-abbreviations.$$ ${_abbr_tmpdir}$d-user-abbreviations
+    done
   else
     typeset -p $sets >$ABBR_CACHE.$$ 2>/dev/null && mv -f $ABBR_CACHE.$$ $ABBR_CACHE
   fi

@@ -30,6 +30,12 @@ ABBR_USER_ABBREVIATIONS_FILE=${ABBR_USER_ABBREVIATIONS_FILE:-${XDG_CONFIG_HOME:-
   typeset -g ABBR_USER_ABBREVIATIONS_FILE_REAL=$ABBR_USER_ABBREVIATIONS_FILE
   typeset -g ABBR_USER_ABBREVIATIONS_FILE=${ABBR_CACHE:h}/zsh-abbr-empty
   [[ -e $ABBR_USER_ABBREVIATIONS_FILE ]] || { mkdir -p ${ABBR_CACHE:h}; : >$ABBR_USER_ABBREVIATIONS_FILE }
+  # And a throwaway temp dir. The plugin dumps what it loaded (here: nothing) into its temp
+  # dir, which every open shell re-reads on each expansion. In the shared dir that blanked
+  # abbreviations everywhere until this shell reached the end of .zshrc - for good if it never did.
+  local decoy=${ABBR_CACHE:h}/zsh-abbr-decoy
+  [[ $ABBR_TMPDIR == $decoy ]] || typeset -g ABBR_TMPDIR_REAL=$ABBR_TMPDIR
+  typeset -g ABBR_TMPDIR=$decoy
 }
 
 ABBR_QUIET=1

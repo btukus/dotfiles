@@ -18,16 +18,27 @@ _antidote_init() {
 }
 
 # Bundle a plugin list into a static file ($1 with .txt -> .zsh) and source it.
-# Regenerates when the static file is missing, older than the list, or stale
-# (paths gone -- e.g. after an antidote major upgrade changes the cache layout).
+# Regenerates when the static file is missing, older than the list, or stale: any path in it
+# gone or outside $ANTIDOTE_HOME (plugins deleted, ANTIDOTE_HOME moved, or an antidote upgrade
+# changed the layout). Every path is checked, not just the first: the other bundle re-clones
+# its own plugins, so one surviving path says nothing about the rest. ~15 stats, no forks.
 _antidote_load() {
-  local list=$1 static=${1%.txt}.zsh first_line first_path
+  local list=$1 static=${1%.txt}.zsh line word p
 
   if [[ -f $static ]]; then
-    read -r first_line <$static                     # fpath+=( "<dir>" )
-    first_path=${(Q)${(z)first_line}[2]}            # -> "<dir>"
-    if [[ $list -nt $static ]] || [[ ! -d ${(e)first_path} ]]; then
+    if [[ $list -nt $static ]]; then
       rm -f $static
+    else
+      while read -r line; do
+        for word in ${(z)line}; do
+          [[ $word == */* ]] || continue
+          p=${(e)${(Q)word}}
+          if [[ ! -e $p || ( -n $ANTIDOTE_HOME && $p != $ANTIDOTE_HOME/* ) ]]; then
+            rm -f $static
+            break 2
+          fi
+        done
+      done <$static
     fi
   fi
 

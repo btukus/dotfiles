@@ -7,6 +7,9 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-~/.local/state}
 export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
+# Plugin clones, not a cache: antidote's default (~/Library/Caches on macOS) gets purged by the
+# OS and cleaner apps, leaving the static bundles pointing at plugins that no longer exist.
+export ANTIDOTE_HOME=${ANTIDOTE_HOME:-$XDG_DATA_HOME/antidote}
 
 # Startup profiling, opt-in: `touch $XDG_CACHE_HOME/zsh/profile` to log per-shell timings to
 # $XDG_CACHE_HOME/zsh/startup.log, `rm` it to stop. Costs one stat when off.

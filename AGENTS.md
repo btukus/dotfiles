@@ -70,7 +70,9 @@ following modules in a deliberate order:
    is sourced only when a bundle has to be regenerated; generating one also `zcompile`s
    the plugins it sources, so shells read bytecode instead of parsing ~1.5MB of Zsh.
    Delete `zsh/antidote/*_plugins.zsh` to force a rebuild, e.g. after updating plugins
-   so they are recompiled. `compinit` always uses the cached dump and rebuilds it in
+   so they are recompiled. Plugins are cloned to `$ANTIDOTE_HOME` (`$XDG_DATA_HOME/antidote`,
+   set in `.zshenv`), not antidote's default cache dir, which macOS may purge; a bundle
+   rebuilds itself if any path in it is missing. `compinit` always uses the cached dump and rebuilds it in
    the background once a day, so no interactive shell waits for the full rescan.
 6. `keybindings.zsh`, which also sets up vi mode: Zsh's built-in `bindkey -v` rather
    than a plugin, plus `KEYTIMEOUT`, insert-mode line editing and the beam/block

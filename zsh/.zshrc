@@ -41,8 +41,7 @@ source "$ZDOTDIR/.p10k.zsh"
 
 # zprof
 
-# Private overlay: work functions, abbreviations, hosts
-for f in ~/dotfiles-private/zsh/*.zsh(N); do [[ ${f:t} == env.zsh ]] || source $f; done
+source "$ZDOTDIR/source-scripts/private-overlay.zsh"
 
 # Startup profiling (see .zshenv): log when .zshrc finished and when the first prompt was
 # actually ready, which is what you feel when a pane opens.

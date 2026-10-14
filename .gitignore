@@ -65,5 +65,6 @@ config/.config/vercel-plugin/active-session.json
 # Machine/account state written by the apps themselves
 config/.config/gh/hosts.yml
 config/.config/homebrew/trust.json
+config/.config/devstack/
 .claude/settings.local.json
 brew/Brewfile.macos.lock.json

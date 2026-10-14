@@ -15,7 +15,7 @@
          Alt-< / Alt->       pane -> previous / next tab
 
  POPUPS  Alt-j               show / hide floating panes (scratch shell)
-         Alt-k               k9s
+         Alt-k               show / hide k9s (opens it the first time; q quits)
 
  SESSION Alt-s               session manager (switch, resurrect, kill)   *
          Alt-o               project picker (~/code)

@@ -1,0 +1,49 @@
+#!/usr/bin/env zsh
+# zellij-popup-toggle <name> <command...> — show/hide a floating pane that keeps running
+# (Alt-k for k9s). Opens <command> in a large floating pane named <name> the first time; after
+# that it hides the floating layer when the pane is in front and brings it to the front
+# otherwise. The layer is per tab, and so is the popup.
+#
+# A keybinding can only run a command in a pane, so bind this with `in_place true` and
+# `close_on_exit true`: that pane covers the focused one without touching the floating layer.
+# The work happens in a detached job once that pane is gone again, because a covered pane is
+# missing from `list-panes` and the popup may be the very pane that was covered.
+emulate -L zsh
+
+(( $# >= 2 )) || { print -u2 "usage: ${0:t} <name> <command...>"; exit 2 }
+
+if [[ $1 != --detached ]]; then
+  # Moved to its own session before this returns, or the job dies with the pane it started in.
+  ZELLIJ_POPUP_LAUNCHER=${ZELLIJ_PANE_ID:-} perl -MPOSIX -e 'setsid(); fork and exit; exec @ARGV' \
+    $0 --detached "$@" </dev/null &>/dev/null
+  exit 0
+fi
+shift
+local name=$1; shift
+
+panes() { zellij action list-panes --all --json }
+
+# Wait for the launcher pane to close and hand the focus back.
+local -i tries=0
+while (( tries++ < 40 )) && [[ -n $ZELLIJ_POPUP_LAUNCHER ]] &&
+  panes | jq -e --argjson id $ZELLIJ_POPUP_LAUNCHER \
+    'any(.[]; .is_plugin == false and .id == $id)' >/dev/null; do
+  sleep 0.025
+done
+
+local tab pane focused
+tab=$(zellij action current-tab-info --json | jq -r '.tab_id') || exit 1
+panes | jq -r --arg name $name --argjson tab $tab \
+  'first(.[] | select(.is_plugin == false and .is_floating and .tab_id == $tab
+                      and .title == $name and .exited == false)
+         | "\(.id) \(.is_focused)") // empty' | read -r pane focused
+
+if [[ -z $pane ]]; then
+  zellij action new-pane --floating --close-on-exit --name $name \
+    --width 94% --height 92% -x 3% -y 4% -- "$@"
+elif [[ $focused == true ]] && zellij action are-floating-panes-visible; then
+  zellij action hide-floating-panes
+else
+  zellij action show-floating-panes
+  zellij action focus-pane-id terminal_$pane
+fi

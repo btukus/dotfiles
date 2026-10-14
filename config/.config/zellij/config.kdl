@@ -55,12 +55,12 @@ keybinds clear-defaults=true {
 
         // Scratch shell popup: toggles the floating layer (opens a shell the first time)
         bind "Alt j" { ToggleFloatingPanes; }
-        // k9s popup; Alt-j hides/shows it with the other floating panes, q in k9s closes it
+        // k9s popup: opens it, then hides/shows it while it keeps running; q in k9s closes it.
+        // It shares the floating layer with the scratch shell, so Alt-j hides/shows it too.
         bind "Alt k" {
-            Run "k9s" {
-                floating true
+            Run "zsh" "-c" "~/dotfiles/scripts/zellij-popup-toggle k9s k9s" {
+                in_place true
                 close_on_exit true
-                name "k9s"
             };
         }
 

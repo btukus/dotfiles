@@ -127,7 +127,8 @@ Command keys to the relevant Alt chords; on Linux use Alt directly.
 - `Alt-t`: new tab; `Alt-w`: close pane; `Alt-z`: zoom; `Alt-e`: float/dock;
   `Alt-Space`: cycle layout.
 - `Alt-1..9`: go to a tab; `Alt-p`/`Alt-n`: move a tab left/right.
-- `Alt-j`: toggle floating panes; `Alt-k`: open k9s in one.
+- `Alt-j`: toggle floating panes; `Alt-k`: show/hide a k9s popup that keeps running
+  (`scripts/zellij-popup-toggle`).
 - `Alt-o`: project picker; `Alt-s`: session manager; `Alt-v`: scroll/copy mode;
   `Alt-f`: prefix mode; `Alt-?`: cheatsheet.
 - `F12`: pass keys through to nested Zellij (for example over SSH); press it

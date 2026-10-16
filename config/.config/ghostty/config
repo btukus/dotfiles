@@ -74,5 +74,26 @@ keybind = cmd+8=text:\x1b8
 keybind = cmd+digit_9=text:\x1b9
 keybind = cmd+9=text:\x1b9
 
+# Left Option+1..9 switch Zellij sessions. Option+N would arrive as Alt-N, the same as
+# Cmd+N (tabs), so send Alt-F1..F9 for Zellij to bind instead.
+keybind = alt+digit_1=text:\x1b[1;3P
+keybind = alt+1=text:\x1b[1;3P
+keybind = alt+digit_2=text:\x1b[1;3Q
+keybind = alt+2=text:\x1b[1;3Q
+keybind = alt+digit_3=text:\x1b[1;3R
+keybind = alt+3=text:\x1b[1;3R
+keybind = alt+digit_4=text:\x1b[1;3S
+keybind = alt+4=text:\x1b[1;3S
+keybind = alt+digit_5=text:\x1b[15;3~
+keybind = alt+5=text:\x1b[15;3~
+keybind = alt+digit_6=text:\x1b[17;3~
+keybind = alt+6=text:\x1b[17;3~
+keybind = alt+digit_7=text:\x1b[18;3~
+keybind = alt+7=text:\x1b[18;3~
+keybind = alt+digit_8=text:\x1b[19;3~
+keybind = alt+8=text:\x1b[19;3~
+keybind = alt+digit_9=text:\x1b[20;3~
+keybind = alt+9=text:\x1b[20;3~
+
 # Newline without submitting (Claude Code, etc.)
 keybind = shift+enter=text:\x1b\r

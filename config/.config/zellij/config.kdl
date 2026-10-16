@@ -53,6 +53,19 @@ keybinds clear-defaults=true {
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
 
+        // Sessions 1..9 (Opt-1..9): switch to the session named after the number, creating it if
+        // needed; a no-op when already there. Ghostty sends Alt-F1..F9 for left-Opt-1..9, since
+        // Cmd-1..9 already arrive as Alt-1..9 (tabs above).
+        bind "Alt F1" { SwitchSession { name "1"; }; }
+        bind "Alt F2" { SwitchSession { name "2"; }; }
+        bind "Alt F3" { SwitchSession { name "3"; }; }
+        bind "Alt F4" { SwitchSession { name "4"; }; }
+        bind "Alt F5" { SwitchSession { name "5"; }; }
+        bind "Alt F6" { SwitchSession { name "6"; }; }
+        bind "Alt F7" { SwitchSession { name "7"; }; }
+        bind "Alt F8" { SwitchSession { name "8"; }; }
+        bind "Alt F9" { SwitchSession { name "9"; }; }
+
         // Scratch shell popup: toggles the floating layer (opens a shell the first time)
         bind "Alt j" { ToggleFloatingPanes; }
         // k9s popup: opens it, then hides/shows it while it keeps running; q in k9s closes it.

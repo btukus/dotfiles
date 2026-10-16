@@ -19,6 +19,7 @@
 
  SESSION Alt-s               session manager (switch, resurrect, kill)   *
          Alt-o               project picker (~/code)
+         Opt-1..9            go to session 1-9 (Linux: Alt-F1..F9)
 
  OTHER   Alt-v               scroll/copy mode: j/k, / search, e = open in nvim, q quit   * Cmd-f
          Alt-i               clear screen                      *

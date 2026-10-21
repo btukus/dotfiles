@@ -121,6 +121,8 @@ brew "tailscale"
 brew "tcptraceroute"
 # User interface to the TELNET protocol
 brew "telnet"
+# Parser generator CLI, used by nvim-treesitter to build parsers
+brew "tree-sitter-cli"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Watch files and take action when they change

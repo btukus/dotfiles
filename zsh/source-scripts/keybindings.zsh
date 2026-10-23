@@ -62,10 +62,3 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # Ctrl-Space accepts the autosuggestion
 bindkey -M viins '^@' autosuggest-accept
-
-# Enter expands abbreviations in insert mode, and in normal mode too
-# (abbr only looks left of the cursor, and in normal mode the cursor sits on the last char)
-bindkey -M viins '^M' abbr-expand-and-accept
-abbr-expand-and-accept-vicmd() { CURSOR=$#BUFFER; zle abbr-expand-and-accept }
-zle -N abbr-expand-and-accept-vicmd
-bindkey -M vicmd '^M' abbr-expand-and-accept-vicmd

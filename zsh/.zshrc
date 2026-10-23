@@ -84,35 +84,3 @@ if (( ${ZSH_PROFILE_T0:-0} )); then
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd _zsh_profile_done
 fi
-
-# zsh-abbr cache (see plugin-settings.zsh). Last, so the private overlay's session
-# abbreviations are part of the snapshot instead of being re-declared in every shell.
-() {
-  (( $+functions[abbr] )) || return
-  local -a sets=(
-    ABBR_REGULAR_USER_ABBREVIATIONS ABBR_GLOBAL_USER_ABBREVIATIONS
-    ABBR_REGULAR_SESSION_ABBREVIATIONS ABBR_GLOBAL_SESSION_ABBREVIATIONS
-  )
-  if (( ABBR_CACHE_HIT )); then
-    source $ABBR_CACHE
-    ABBR_USER_ABBREVIATIONS_FILE=$ABBR_USER_ABBREVIATIONS_FILE_REAL
-    # Point the plugin back at its real temp dir (the decoy load wrote its empty dumps to a
-    # throwaway one), derived the way zsh-abbr does it.
-    ABBR_TMPDIR=$ABBR_TMPDIR_REAL
-    [[ -n $ABBR_TMPDIR ]] || unset ABBR_TMPDIR
-    unset ABBR_TMPDIR_REAL
-    _abbr_tmpdir=${${ABBR_TMPDIR:-${${TMPDIR:-/tmp}%/}/zsh-abbr}%/}/
-    [[ ${(%):-%#} == '#' ]] && _abbr_tmpdir=${${ABBR_TMPDIR:-${${TMPDIR:-/tmp}%/}/zsh-abbr-privileged-users}%/}/
-    # The expansion widget re-reads these dumps on every expansion, and they are shared between
-    # sessions: an empty or half-written one silently stops abbreviations expanding everywhere,
-    # not just in this shell. So always refresh them, and only ever by rename.
-    local v d
-    mkdir -p $_abbr_tmpdir
-    for v d in ABBR_REGULAR_USER_ABBREVIATIONS regular ABBR_GLOBAL_USER_ABBREVIATIONS global; do
-      typeset -p $v >${_abbr_tmpdir}$d-user-abbreviations.$$ &&
-        mv -f ${_abbr_tmpdir}$d-user-abbreviations.$$ ${_abbr_tmpdir}$d-user-abbreviations
-    done
-  else
-    typeset -p $sets >$ABBR_CACHE.$$ 2>/dev/null && mv -f $ABBR_CACHE.$$ $ABBR_CACHE
-  fi
-}

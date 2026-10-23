@@ -17,4 +17,7 @@ hsv() {
   fi
 }
 
+# Shell into a pod: kx <pod> [-n <namespace>]
+kx() { kubectl exec -it "$@" -- sh }
+
 # `ks` (k9s with context switching) lives in the private overlay (dotfiles-private/zsh)

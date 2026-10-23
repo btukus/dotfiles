@@ -200,8 +200,7 @@ link() {
     if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
         return
     fi
-    # Zero-byte auto-created files (e.g. zsh-abbr writing an empty
-    # user-abbreviations on first launch) are safe to drop rather than back up.
+    # Zero-byte auto-created files are safe to drop rather than back up.
     if [[ -f "$dst" && ! -L "$dst" && ! -s "$dst" ]]; then
         rm -f "$dst"
     fi
@@ -219,8 +218,6 @@ link "$DOTFILES_DIR/git/.gitconfig"                          "$HOME/.gitconfig"
 link "$DOTFILES_DIR/git/.gitignore_global"                   "$HOME/.gitignore_global"
 link "$DOTFILES_DIR/nas/git-config.local"                    "$HOME/.config/git/config.local"
 link "$DOTFILES_DIR/config/.config/zellij"                   "$HOME/.config/zellij"
-link "$DOTFILES_DIR/config/.config/zsh-abbr/user-abbreviations" \
-                                                             "$HOME/.config/zsh-abbr/user-abbreviations"
 [[ -d "$DOTFILES_DIR/config/.config/nvim" ]] && \
     link "$DOTFILES_DIR/config/.config/nvim"                 "$HOME/.config/nvim"
 [[ -d "$DOTFILES_DIR/config/.config/vim" ]] && \

@@ -2,7 +2,6 @@
 # - fzf-tab after compinit, but before plugins that wrap widgets
 #   (fast-syntax-highlighting, autosuggestions)
 # Vi mode is zsh's built-in (`bindkey -v` in keybindings.zsh), not a plugin.
-olets/zsh-abbr
 agkozak/zsh-z
 
 romkatv/powerlevel10k path:powerlevel10k.zsh-theme
@@ -10,7 +9,6 @@ romkatv/powerlevel10k path:powerlevel10k.zsh-theme
 Aloxaf/fzf-tab
 
 zdharma-continuum/fast-syntax-highlighting
-5A6F65/fast-abbr-highlighting
 
 # final
 zsh-users/zsh-history-substring-search

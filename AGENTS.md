@@ -64,8 +64,7 @@ following modules in a deliberate order:
    unavailable. It relies on tty state captured in `.zshenv` because instant
    prompt redirects stdin.
 3. `load-paths.zsh`, `load-options.zsh`, and `load-history-settings.zsh`.
-4. `plugin-settings.zsh`, which defines settings plugins need while loading and
-   manages the zsh-abbr cache at `$XDG_CACHE_HOME/zsh-abbr-cache.zsh`.
+4. `plugin-settings.zsh`, which defines settings plugins need while loading.
 5. `antidote.zsh`, then `load-completions.zsh`, then shared plugins. antidote itself
    is sourced only when a bundle has to be regenerated; generating one also `zcompile`s
    the plugins it sources, so shells read bytecode instead of parsing ~1.5MB of Zsh.
@@ -79,13 +78,13 @@ following modules in a deliberate order:
    cursor. Then `clipboard.zsh`, `functions.zsh`, `load-aliases.zsh`,
    `load-ssh-keys.zsh`, `asdf.zsh`, and the full `.p10k.zsh` theme
    configuration.
-7. The optional private Zsh overlay, followed by the zsh-abbr cache restore or
-   refresh. Keep this last so private session abbreviations participate in the
-   cached snapshot.
+7. The optional private Zsh overlay (`source-scripts/private-overlay.zsh`), last so
+   its aliases and functions can override the public ones.
 
-The abbreviations source is
-`config/.config/zsh-abbr/user-abbreviations`; `%` marks the cursor position in
-an expansion. Changes to it or its private overlay invalidate the cache.
+Command shortcuts are plain aliases in `zsh/aliases/commands.zsh` (zsh-abbr was
+dropped: its expansion re-read shared temp files and kept breaking). One that
+needs its arguments mid-command is a small function in the matching
+`zsh/functions/` file instead.
 
 ### Measuring Zsh startup
 
@@ -97,7 +96,7 @@ prompt render - most of the wait when a pane opens.
 
 ### Zsh organization
 
-- `zsh/aliases/` is a flat directory for the few plain aliases.
+- `zsh/aliases/` is a flat directory of plain aliases; `commands.zsh` holds most.
 - `zsh/functions/NN-<domain>.zsh` holds most command helpers, grouped by
   numeric domain prefix.
 - `zsh/antidote/fpath_plugins.txt` supplies completion directories; shared
@@ -135,7 +134,7 @@ Command keys to the relevant Alt chords; on Linux use Alt directly.
   again to return.
 
 Layout and status-bar changes apply only to newly created sessions. A restarted
-session restores its saved layout. The `zr` abbreviation resets the main session.
+session restores its saved layout. The `zr` alias resets the main session.
 
 ## Privacy and security
 

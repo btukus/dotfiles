@@ -208,3 +208,7 @@ gref() {
   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
   git fetch
 }
+
+# Commit with the arguments as the message, unquoted: gcm fix the thing
+gcm()  { git commit -m "$*" }
+gcam() { git commit -a -m "$*" }

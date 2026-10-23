@@ -36,7 +36,17 @@ keybinds clear-defaults=true {
         bind "Alt e" { TogglePaneEmbedOrFloating; }        // float / dock the pane
         bind "Alt Space" { NextSwapLayout; }               // cycle tab layouts (vertical, stacked, …)
 
-        bind "Alt t" { NewTab; }
+        // New tab in the focused pane's directory. NewTab always opens in the session's start dir,
+        // but a Run pane inherits the focused pane's cwd like NewPane does, so let it open the tab.
+        // It sets up PATH itself: a server started before zellij-autostart did doesn't have brew's.
+        // --layout default: a resurrected session's new_tab_template can pin the session's start dir
+        // as an absolute pane cwd, which overrides --cwd.
+        bind "Alt t" {
+            Run "zsh" "-c" "source $ZDOTDIR/source-scripts/load-paths.zsh; zellij action new-tab --layout default --cwd \"$PWD\"" {
+                in_place true
+                close_on_exit true
+            };
+        }
         bind "Alt w" { CloseFocus; }
         bind "Alt p" { MoveTab "Left"; }
         bind "Alt n" { MoveTab "Right"; }
@@ -127,7 +137,13 @@ keybinds clear-defaults=true {
         bind "Alt f" { Write 27 102; SwitchToMode "Normal"; }    // Alt-f Alt-f sends a literal Alt-f
         bind "Alt k" "%" { NewPane "Right"; SwitchToMode "Normal"; }
         bind "Alt j" "\"" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "c" { NewTab; SwitchToMode "Normal"; }
+        bind "c" {
+            Run "zsh" "-c" "source $ZDOTDIR/source-scripts/load-paths.zsh; zellij action new-tab --layout default --cwd \"$PWD\"" {
+                in_place true
+                close_on_exit true
+            };
+            SwitchToMode "Normal";
+        }
         bind "," { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "." { SwitchToMode "RenamePane"; PaneNameInput 0; }
         bind "[" { SwitchToMode "Scroll"; }

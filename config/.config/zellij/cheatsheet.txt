@@ -8,7 +8,7 @@
          Alt-e               float / dock pane
          Alt-Space           cycle layout (vertical, horizontal, stacked)
 
- TABS    Alt-t               new tab                           *
+ TABS    Alt-t               new tab in this pane's dir        *
          Alt-1..9            go to tab                         *
          Alt-p / Alt-n       move tab left / right             *
          Alt-b               pane -> its own new tab ("break")

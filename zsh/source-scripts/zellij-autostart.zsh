@@ -14,6 +14,9 @@ if [[ -z $ZELLIJ && -n $ZSH_STDIN_IS_TTY ]] && [[ $TERM_PROGRAM == ghostty || -n
       [[ -x $zellij_bin ]] && break
     done
     [[ -x $zellij_bin ]] || return 0
+    # The server and every pane it starts inherit this environment, and Run panes (keybindings)
+    # don't read .zshrc, so give it the full PATH now rather than the bare login one.
+    source $ZDOTDIR/source-scripts/load-paths.zsh
     $zellij_bin attach --create $session </dev/tty && exit
     print -P "%F{yellow}zellij exited with status $?; staying in a plain shell. Retry with: zellij attach -c $session%f"
   } ${${SSH_TTY:+main}:-${ZELLIJ_MAIN_SESSION:-main}}

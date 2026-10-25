@@ -68,3 +68,7 @@ config/.config/homebrew/trust.json
 config/.config/devstack/
 .claude/settings.local.json
 brew/Brewfile.macos.lock.json
+
+# Linked in from the private overlay (dotfiles-private/config, see ansible/roles/private)
+config/.config/glab-cli
+config/.config/vantage

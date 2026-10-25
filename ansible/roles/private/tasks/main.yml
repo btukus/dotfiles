@@ -52,6 +52,24 @@
     force: true
   when: private_claude_settings.stat.exists
 
+# App configs that name private hosts (e.g. glab) live in the private repo's config/; link
+# each into ~/.config, which is this repo's config/.config (those paths are gitignored here).
+- name: Find private app configs
+  find:
+    paths: "{{ private_dir | expanduser }}/config"
+    file_type: directory
+  register: private_configs
+
+- name: Link private app configs into ~/.config
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.config/{{ item.path | basename }}"
+    state: link
+    force: true
+  loop: "{{ private_configs.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
+
 - name: Check for a private Brewfile
   stat:
     path: "{{ private_dir }}/brew/Brewfile"

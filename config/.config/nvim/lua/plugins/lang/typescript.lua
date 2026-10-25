@@ -1,17 +1,12 @@
 return {
   {
     "pmizio/typescript-tools.nvim",
-    event = "LspAttach",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
-      {
-        "saghen/blink.cmp",
-        -- Ensure blink.cmp is loaded before typescript-tools
-        lazy = false,
-        priority = 1000,
-      }
     },
+    opts = {},
   },
 
   {
@@ -69,6 +64,7 @@ return {
 
   {
     "dmmulroy/ts-error-translator.nvim",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
     config = true
   },
 }

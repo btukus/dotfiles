@@ -52,7 +52,7 @@ map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 map("n", "<leader>gj", ":vsplit | lua vim.lsp.buf.definition()<CR>")
 map("n", "<leader>gk", ":belowright split | lua vim.lsp.buf.definition()<CR>")
 
-map("n", "<leader>li", ":LspInfo<CR>", opts)
+map("n", "<leader>li", ":checkhealth vim.lsp<CR>", opts) -- Neovim 0.12 has no :LspInfo
 map("n", "<leader>lm", ":Mason<CR>", opts)
 
 -- go to end of line

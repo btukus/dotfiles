@@ -1,5 +1,6 @@
 return {
 	"mfussenegger/nvim-lint",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		-- Require the lint module at the top to avoid multiple requires
 		local lint = require("lint")
@@ -7,9 +8,9 @@ return {
 		-- Set up linters for file types
 		lint.linters_by_ft = {
 			yaml = { "yamllint" },
-			zsh = { "shellcheck" },
-			sh = { "shellcheck" },
-			bash = { "shellcheck" },
+			markdown = { "markdownlint" },
+			-- shellcheck cannot parse zsh; `zsh -n` checks syntax. sh/bash get shellcheck via bashls.
+			zsh = { "zsh" },
 		}
 
 		-- Create autocommand for linting on InsertLeave and BufWritePost

@@ -14,15 +14,16 @@ return {
 				css = { "prettier" },
 				html = { "prettier" },
 				json = { "prettier" },
+				jsonc = { "prettier" },
 				yaml = { "yamlfix" },
 				markdown = { "prettier" },
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
-				zsh = { "shfmt", args = { "-ln", "bash" } },
+				-- shfmt has no zsh dialect: it fails on or rewrites zsh syntax, so zsh is unformatted.
 				bash = { "shfmt" },
-				sh = { "shfmt", args = { "-ln", "bash" } },
+				sh = { "shfmt" },
 			},
 		})
 

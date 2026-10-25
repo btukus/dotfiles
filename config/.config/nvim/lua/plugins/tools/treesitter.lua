@@ -28,6 +28,7 @@ local parsers = {
 
 	-- Useful extras
 	"bash",
+	"zsh",
 	"markdown",
 	"markdown_inline",
 	"vim",

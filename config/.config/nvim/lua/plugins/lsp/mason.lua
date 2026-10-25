@@ -1,58 +1,46 @@
+-- Mason only installs tools; servers are enabled in lspconfig.lua. mason.nvim itself loads
+-- at startup as its README recommends (setup is light and puts its bin dir on PATH for
+-- servers, conform and nvim-lint); only the registry-reading install check is deferred.
 return {
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"williamboman/mason.nvim",
 		opts = {
-			-- list of servers for mason to install
-			ensure_installed = {
-				"html",
-				"cssls",
-				"tailwindcss",
-				"lua_ls",
-				"prismals",
-				"pyright",
-				"eslint",
-			},
-
-			automatic_enable = {
-				"lua_ls",
-			},
-		},
-		dependencies = {
-			{
-				"williamboman/mason.nvim",
-				opts = {
-					ui = {
-						icons = {
-							package_installed = "✓",
-							package_pending = "➜",
-							package_uninstalled = "✗",
-						},
-					},
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
 				},
 			},
-			"neovim/nvim-lspconfig",
 		},
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		event = "VeryLazy",
+		dependencies = { "williamboman/mason.nvim" },
 		opts = {
+			-- mason package names
 			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"pylint",
+				-- language servers
+				"lua-language-server",
+				"eslint-lsp",
+				"json-lsp",
+				"yaml-language-server",
+				"marksman",
+				"bash-language-server",
+				"html-lsp",
+				"css-lsp",
+				"tailwindcss-language-server",
+				"prisma-language-server",
+				"pyright",
+				-- formatters
+				"prettier",
+				"stylua",
 				"eslint_d",
 				"yamlfix",
 				"shfmt",
-			},
-		},
-		dependencies = {
-			"williamboman/mason.nvim",
-		},
-	},
-	{
-		"rshkarin/mason-nvim-lint",
-		opts = {
-			ensure_installed = {
+				-- linters
+				"pylint",
 				"markdownlint",
 				"shellcheck",
 				"yamllint",
@@ -60,6 +48,9 @@ return {
 				"luacheck",
 				"tflint",
 			},
+			-- The check reads mason's whole registry, so run it at most once a day.
+			debounce_hours = 24,
+			start_delay = 3000,
 		},
 	},
 }

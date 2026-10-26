@@ -24,15 +24,17 @@ fi
 
 # Inside Zellij: name the tab like tmux's automatic-rename - the running command, or the
 # folder at the prompt. Only the tab's focused pane renames it; runs in the background so the
-# prompt never waits on zellij.
+# prompt never waits on zellij. A tab named with `tw <name>` is pinned (a file per tab id under
+# $ZELLIJ_TAB_PINS) and left alone until `tw` without a name unpins it.
 if [[ -n $ZELLIJ && -n $ZELLIJ_PANE_ID ]] && (( $+commands[jq] )); then
+  ZELLIJ_TAB_PINS=$XDG_CACHE_HOME/zsh/zellij-tab-pins/$ZELLIJ_SESSION_NAME
   _zellij_tab_title() {
     local name=$1
     {
       local tab=$(zellij action list-panes --tab --state --json 2>/dev/null |
         jq -r --argjson id $ZELLIJ_PANE_ID \
           '.[] | select(.is_plugin == false and .id == $id and .is_focused and (.is_floating | not)) | .tab_id')
-      [[ -n $tab ]] && zellij action rename-tab-by-id $tab $name
+      [[ -n $tab && ! -e $ZELLIJ_TAB_PINS/$tab ]] && zellij action rename-tab-by-id $tab $name
     } &>/dev/null &!
   }
   _zellij_tab_title_precmd()  { _zellij_tab_title ${${PWD/#$HOME/\~}:t} }

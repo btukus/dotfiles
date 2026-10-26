@@ -40,8 +40,15 @@ zf() {
   d=$(zshz -l 2>&1 | fzf --tac --height 40% --query "$*" | awk '{print $2}') && cd "${d/#\~/$HOME}"
 }
 
-# Rename the Zellij tab (default: current directory name)
+# Rename the Zellij tab and pin the name against auto-renaming; without a name, unpin it and
+# go back to the current directory name (see source-scripts/zellij-autostart.zsh)
 tw() {
+  local tab=$(zellij action current-tab-info --json | jq -r '.tab_id')
+  if [[ -n $1 ]]; then
+    mkdir -p "$ZELLIJ_TAB_PINS" && : >| "$ZELLIJ_TAB_PINS/$tab"
+  else
+    rm -f "$ZELLIJ_TAB_PINS/$tab"
+  fi
   zellij action rename-tab "${1:-${PWD:t}}"
 }
 

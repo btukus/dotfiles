@@ -86,3 +86,23 @@ vim.diagnostic.config({
     },
   },
 })
+
+--- Helm chart templates are Go templates, not YAML: the `helm` filetype gives them the
+--- helm treesitter parser and helm_ls, and keeps yamlls, yamlfix and yamllint off them.
+--- A chart's values files stay YAML but get helm_ls too, for completion of chart values.
+vim.filetype.add({
+  pattern = {
+    [".*/values.*%.ya?ml"] = function(path)
+      if vim.uv.fs_stat(vim.fs.joinpath(vim.fs.dirname(path), "Chart.yaml")) then
+        return "yaml.helm-values"
+      end
+    end,
+    [".*/templates/.*%.ya?ml"] = function(path)
+      if vim.fs.find("Chart.yaml", { upward = true, path = vim.fs.dirname(path) })[1] then
+        return "helm"
+      end
+    end,
+    [".*/templates/.*%.tpl"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})

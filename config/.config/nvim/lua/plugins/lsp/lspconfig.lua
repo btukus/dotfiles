@@ -1,7 +1,7 @@
 -- Language servers use nvim-lspconfig's configs with the native vim.lsp API and start
 -- per filetype. TypeScript/JavaScript is typescript-tools (lang/typescript.lua) and
 -- Java is nvim-java (nvim-java.lua). bashls runs shellcheck itself for sh/bash.
-local servers = { "lua_ls", "eslint", "jsonls", "yamlls", "marksman", "bashls" }
+local servers = { "lua_ls", "eslint", "jsonls", "yamlls", "helm_ls", "marksman", "bashls" }
 
 local yaml_schemas = {
 	azure = "https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json",

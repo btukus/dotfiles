@@ -26,6 +26,7 @@ return {
 				"eslint-lsp",
 				"json-lsp",
 				"yaml-language-server",
+				"helm-ls",
 				"marksman",
 				"bash-language-server",
 				"html-lsp",

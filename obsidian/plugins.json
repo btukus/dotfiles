@@ -1,0 +1,12 @@
+{
+  "sidebar-keyboard-navigation": {
+    "repo": "denvolok/obsidian-sidebar-keyboard-navigation",
+    "version": "1.1.2",
+    "files": ["manifest.json", "main.js", "styles.css"]
+  },
+  "obsidian-vimrc-support": {
+    "repo": "esm7/obsidian-vimrc-support",
+    "version": "0.10.2",
+    "files": ["manifest.json", "main.js"]
+  }
+}

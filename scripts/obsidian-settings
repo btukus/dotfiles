@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""Apply portable Obsidian preferences to a vault (not a Stow package)."""
+
+import argparse
+import json
+import shutil
+import subprocess
+import sys
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
+
+SOURCE = Path(__file__).resolve().parent.parent / "obsidian"
+
+
+def read_json(path, default):
+    return json.loads(path.read_text()) if path.exists() else default
+
+
+def apply(vault):
+    config = vault / ".obsidian"
+    if not vault.is_dir() or not config.is_dir():
+        raise ValueError("Expected an existing vault containing .obsidian")
+
+    # Build the complete update before touching the vault, including downloads.
+    updates = {}
+    for name in ("app.json", "hotkeys.json", "appearance.json", "core-plugins.json"):
+        current = read_json(config / name, {})
+        saved = read_json(SOURCE / name, {})
+        if name == "appearance.json":
+            saved["enabledCssSnippets"] = list(dict.fromkeys(
+                current.get("enabledCssSnippets", []) + saved["enabledCssSnippets"]
+            ))
+        current.update(saved)
+        updates[config / name] = (json.dumps(current, indent=2) + "\n").encode()
+
+    plugins = read_json(SOURCE / "plugins.json", {})
+    enabled = read_json(config / "community-plugins.json", [])
+    for plugin_id, plugin in plugins.items():
+        target = config / "plugins" / plugin_id
+        # Keep installed plugin versions and their settings. Only install missing ones.
+        if not all((target / name).exists() for name in plugin["files"]):
+            base = f"https://github.com/{plugin['repo']}/releases/download/{plugin['version']}"
+            for name in plugin["files"]:
+                result = subprocess.run(
+                    ["curl", "-fsSL", "--connect-timeout", "15", "--max-time", "120",
+                     f"{base}/{name}"], check=True, capture_output=True,
+                )
+                updates[target / name] = result.stdout
+            manifest = json.loads(updates[target / "manifest.json"])
+            if manifest["id"] != plugin_id or manifest["version"] != plugin["version"]:
+                raise ValueError("Downloaded plugin manifest does not match plugins.json")
+        if plugin_id not in enabled:
+            enabled.append(plugin_id)
+    updates[config / "community-plugins.json"] = (json.dumps(enabled, indent=2) + "\n").encode()
+
+    # Respect an existing custom vimrc path and custom mappings; source our settings last.
+    data = read_json(config / "plugins/obsidian-vimrc-support/data.json", {})
+    vimrc = vault / (data.get("vimrcFileName") or ".obsidian.vimrc")
+    if not vimrc.resolve().is_relative_to(vault.resolve()):
+        raise ValueError("The Vimrc Support configuration points outside the vault")
+    source_line = "source .obsidian/dotfiles.vimrc"
+    text = vimrc.read_text() if vimrc.exists() else ""
+    if source_line not in text.splitlines():
+        text = text.rstrip() + ("\n" if text.strip() else "") + source_line + "\n"
+    updates[vimrc] = text.encode()
+    updates[config / "dotfiles.vimrc"] = (SOURCE / ".obsidian.vimrc").read_bytes()
+    for snippet in (SOURCE / "snippets").glob("*.css"):
+        updates[config / "snippets" / snippet.name] = snippet.read_bytes()
+
+    changed = {p: content for p, content in updates.items()
+               if not p.exists() or p.read_bytes() != content}
+    # Backups stay in the vault, never in this public repository.
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    backup = config / "dotfiles-backups" / stamp
+    for path in changed:
+        if path.exists():
+            dest = backup / path.relative_to(vault)
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(path, dest)
+    for path, content in changed.items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        # Atomic replacement also handles Obsidian's own atomic settings writes.
+        with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as tmp:
+            tmp.write(content)
+            temp_path = Path(tmp.name)
+        temp_path.replace(path)
+    print(f"Applied Obsidian settings ({len(changed)} files changed). Restart Obsidian to load them.")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("vault", type=Path, help="Existing vault path; quit Obsidian first")
+    args = parser.parse_args()
+    try:
+        apply(args.vault.expanduser().resolve())
+    except (OSError, ValueError, subprocess.CalledProcessError) as exc:
+        # Avoid dumping curl output or vault contents.
+        print(f"Could not apply Obsidian settings: {type(exc).__name__}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

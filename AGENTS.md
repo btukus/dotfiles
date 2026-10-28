@@ -111,6 +111,8 @@ prompt render - most of the wait when a pane opens.
 - `config/.config/zellij/`: `config.kdl`, layouts, and the interactive
   cheatsheet.
 - `config/.config/k9s/` and `config/.config/lazygit/`: terminal UI settings.
+- `obsidian/`: portable vault preferences and Vim clipboard settings; apply with
+  `scripts/obsidian-settings /path/to/vault` (not Stow; see `obsidian/README.md`).
 
 Ghostty, Zellij, and related terminal applications use the Nord theme.
 

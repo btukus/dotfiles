@@ -3,8 +3,10 @@
 #
 # Sourced right after p10k's instant prompt, so the prompt is already on screen (and the tty
 # quiet) while Zellij starts. Instant prompt points stdin at /dev/null for the rest of .zshrc,
-# so this can't test `-t 0` itself (.zshenv recorded it) and has to hand Zellij the terminal
-# explicitly. PATH isn't set up yet either, so look for the binary in the usual places.
+# and stdout/stderr at a capture file, so this can't test `-t 0` itself (.zshenv recorded it)
+# and has to hand Zellij the terminal explicitly on all three - with stdin alone it runs, reads
+# your keys and draws into that file, leaving a frozen prompt you can't type in.
+# PATH isn't set up yet either, so look for the binary in the usual places.
 # Detaching or quitting Zellij closes the window / SSH connection; if Zellij fails, or isn't
 # installed on this host, you keep a plain shell.
 if [[ -z $ZELLIJ && -n $ZSH_STDIN_IS_TTY ]] && [[ $TERM_PROGRAM == ghostty || -n $SSH_TTY ]]; then
@@ -17,7 +19,7 @@ if [[ -z $ZELLIJ && -n $ZSH_STDIN_IS_TTY ]] && [[ $TERM_PROGRAM == ghostty || -n
     # The server and every pane it starts inherit this environment, and Run panes (keybindings)
     # don't read .zshrc, so give it the full PATH now rather than the bare login one.
     source $ZDOTDIR/source-scripts/load-paths.zsh
-    $zellij_bin attach --create $session </dev/tty && exit
+    $zellij_bin attach --create $session </dev/tty >/dev/tty 2>&1 && exit
     print -P "%F{yellow}zellij exited with status $?; staying in a plain shell. Retry with: zellij attach -c $session%f"
   } ${${SSH_TTY:+main}:-${ZELLIJ_MAIN_SESSION:-main}}
 fi

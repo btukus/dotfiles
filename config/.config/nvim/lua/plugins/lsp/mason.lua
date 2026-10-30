@@ -34,6 +34,8 @@ return {
 				"tailwindcss-language-server",
 				"prisma-language-server",
 				"pyright",
+				"terraform-ls",
+				"tofu-ls",
 				-- formatters
 				"prettier",
 				"stylua",

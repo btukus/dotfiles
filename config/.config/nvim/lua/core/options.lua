@@ -106,3 +106,8 @@ vim.filetype.add({
     ["helmfile.*%.ya?ml"] = "helm",
   },
 })
+
+--- OpenTofu-only `.tofu` files have no built-in filetype. Their syntax is Terraform's, so
+--- they reuse its treesitter parser; lsp/lspconfig.lua sends them to tofu_ls.
+vim.filetype.add({ extension = { tofu = "opentofu" } })
+vim.treesitter.language.register("terraform", "opentofu")

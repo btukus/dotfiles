@@ -1,7 +1,51 @@
 -- Language servers use nvim-lspconfig's configs with the native vim.lsp API and start
 -- per filetype. TypeScript/JavaScript is typescript-tools (lang/typescript.lua) and
 -- Java is nvim-java (nvim-java.lua). bashls runs shellcheck itself for sh/bash.
-local servers = { "lua_ls", "eslint", "jsonls", "yamlls", "helm_ls", "marksman", "bashls" }
+local servers = { "lua_ls", "eslint", "jsonls", "yamlls", "helm_ls", "marksman", "bashls", "terraformls", "tofu_ls" }
+
+-- Whether a file belongs to an OpenTofu project rather than a Terraform one. Looks from
+-- the file's directory up to the repository root for `.tofu` files, a lock file from the
+-- OpenTofu registry, or an OpenTofu version pin (.opentofu-version, .tool-versions, devenv).
+local function uses_tofu(bufnr)
+	local path = vim.api.nvim_buf_get_name(bufnr)
+	if path:match("%.tofu$") then
+		return true
+	end
+	local function contains(file, pattern)
+		local fd = io.open(file, "r")
+		if not fd then
+			return false
+		end
+		local found = fd:read("*a"):find(pattern) ~= nil
+		fd:close()
+		return found
+	end
+	local stop = vim.fs.root(bufnr, ".git")
+	for dir in vim.fs.parents(path) do
+		if
+			vim.fn.glob(dir .. "/*.tofu") ~= ""
+			or vim.uv.fs_stat(dir .. "/.opentofu-version")
+			or contains(dir .. "/.terraform.lock.hcl", "registry.opentofu.org")
+			or contains(dir .. "/.tool-versions", "opentofu")
+			or contains(dir .. "/devenv.nix", "opentofu")
+		then
+			return true
+		end
+		if not stop or dir == stop then
+			break
+		end
+	end
+	return false
+end
+
+-- Start one server per Terraform file: tofu_ls in OpenTofu projects, terraformls elsewhere.
+local function terraform_root(want_tofu)
+	return function(bufnr, on_dir)
+		if uses_tofu(bufnr) == want_tofu then
+			on_dir(vim.fs.root(bufnr, { ".terraform", ".git" }))
+		end
+	end
+end
 
 local yaml_schemas = {
 	azure = "https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json",
@@ -83,6 +127,9 @@ return {
 				client:notify("workspace/didChangeConfiguration", { settings = client.settings })
 			end,
 		})
+
+		vim.lsp.config("terraformls", { root_dir = terraform_root(false) })
+		vim.lsp.config("tofu_ls", { root_dir = terraform_root(true) })
 
 		vim.lsp.enable(servers)
 	end,

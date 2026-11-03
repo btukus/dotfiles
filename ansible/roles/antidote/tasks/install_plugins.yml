@@ -1,5 +1,9 @@
-- name: Generate static plugin files
-  vars:
-    ansible_shell_executable: /bin/zsh
-  ansible.builtin.shell: "antidote bundle <{{ zdotdir }}/antidote/shared_plugins.txt >{{ zdotdir }}/antidote/shared_plugins.zsh"
+- name: Generate and validate static plugin files
+  ansible.builtin.shell: |
+    source "{{ zdotdir }}/.zshenv"
+    source "$ZDOTDIR/source-scripts/load-paths.zsh"
+    source "$ZDOTDIR/source-scripts/plugin-settings.zsh"
+    source "$ZDOTDIR/source-scripts/antidote.zsh"
+  args:
+    executable: /bin/zsh
   changed_when: false

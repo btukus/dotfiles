@@ -2,6 +2,11 @@
 # echo ". ~/dotfiles/zsh/.zshenv" > ~/.zshenv
 
 export ZDOTDIR=${ZDOTDIR:-~/dotfiles/zsh}
+# GUI apps and multiplexer servers can pass a PATH with only Homebrew entries.
+# Restore system tools before /etc/zshrc runs (it calls locale before our .zshrc).
+typeset -gU path
+path+=(/usr/local/bin /usr/bin /bin /usr/sbin /sbin)
+
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}

@@ -2,7 +2,7 @@
 - name: Get installed asdf plugins
   command: asdf plugin list
   register: installed_plugins
-  ignore_errors: true
+  failed_when: installed_plugins.rc not in [0, 1]
   changed_when: false
 
 - name: Add asdf plugins
@@ -16,35 +16,42 @@
     - terraform
     - kubelogin
     - bun
+    - deno
   when: item not in (installed_plugins.stdout_lines | default([]))
-  ignore_errors: true
 
 - name: Install all tools from .tool-versions
   command: asdf install
+  environment:
+    # Let python-build set both compiler and linker flags ahead of Homebrew's
+    # default OpenSSL 4; --with-openssl alone still links the default libraries.
+    PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA: >-
+      {{ 'openssl@3.6' if ansible_facts['os_family'] == 'Darwin' else lookup('env', 'PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA') }}
   register: asdf_install
   changed_when: "'is already installed' not in asdf_install.stderr"
 
 - name: Check installed npm packages
-  command: npm list -g --depth=0
+  command: asdf exec npm list -g --depth=0
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.asdf/shims:{{ lookup('env', 'PATH') }}"
   register: npm_packages
-  ignore_errors: true
+  failed_when: npm_packages.rc not in [0, 1]
   changed_when: false
 
 - name: Install global npm packages
-  command: npm install -g {{ item }}
+  command: asdf exec npm install -g {{ item }}
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.asdf/shims:{{ lookup('env', 'PATH') }}"
   loop:
     - neovim
     - prettier
   when: item not in npm_packages.stdout
-  ignore_errors: true
 
 - name: Check if pynvim is installed
-  command: pip show pynvim
+  command: asdf exec python -m pip show pynvim
   register: pynvim_check
-  ignore_errors: true
+  failed_when: pynvim_check.rc not in [0, 1]
   changed_when: false
 
 - name: Install pynvim for neovim
-  command: pip install pynvim
+  command: asdf exec python -m pip install pynvim
   when: pynvim_check.rc != 0
-  ignore_errors: true

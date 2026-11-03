@@ -1,6 +1,6 @@
 # Deduplicate $path so re-sourcing this file (or re-execing zsh with our /opt
 # entries already present) doesn't stack duplicates.
-typeset -U path
+typeset -gU path
 
 # Entware (Synology / OpenWrt): expose /opt tools before system BusyBox equivalents.
 [[ -d /opt/bin ]]  && path=(/opt/bin  $path)

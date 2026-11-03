@@ -38,15 +38,20 @@ fi
 KEYREMAP="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd)/scripts/keyremap.sh"
 [ -x "$KEYREMAP" ] || KEYREMAP="$HOME/dotfiles/macos/scripts/keyremap.sh"
 if [ -x "$KEYREMAP" ]; then
-    "$KEYREMAP" install
-    "$KEYREMAP" run
+    "$KEYREMAP" install || exit 1
+    "$KEYREMAP" run || exit 1
+else
+    echo "Error: keyboard remap script not found: $KEYREMAP" >&2
+    exit 1
 fi
 
 # MX Master 3s Bluetooth fix (requires sudo)
-CURRENT_BT=$(sudo defaults read /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt 2>/dev/null || echo "")
+CURRENT_BT=$(defaults read /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt 2>/dev/null || echo "")
 if [ "$CURRENT_BT" != "Hybrid" ]; then
     echo "Applying Bluetooth fix for MX Master 3s..."
-    sudo defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt Hybrid
+    if ! sudo -n defaults write /Library/Preferences/com.apple.airport.bt.plist bluetoothCoexMgmt Hybrid; then
+        echo "Warning: Bluetooth fix needs administrator credentials. Run 'sudo -v && bash ~/dotfiles/macos/settings.sh' in your terminal to finish it." >&2
+    fi
 fi
 
 echo "macOS settings applied."

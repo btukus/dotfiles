@@ -9,6 +9,7 @@
     - antidote
     - stow
     - private
-    - asdf
     - macos
     - repos
+    # Runtime downloads/builds can fail independently of the machine settings.
+    - asdf

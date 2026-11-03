@@ -5,8 +5,6 @@ tap "buo/cask-upgrade"
 tap "dopplerhq/doppler", "https://github.com/DopplerHQ/homebrew-doppler.git"
 tap "esolitos/ipa"
 tap "hashicorp/tap"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "kreuzwerker/taps"
 tap "olets/tap"
 tap "predatorray/brew"
@@ -23,8 +21,6 @@ brew "antidote"
 brew "argocd"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
-# Microsoft Azure CLI 2.0
-brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Get/set bluetooth power and discoverable state
@@ -99,6 +95,8 @@ brew "luarocks"
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
+# OpenSSL 3 is required to build the pinned Python 3.11 runtime.
+brew "openssl@3.6"
 # Highly capable, feature-rich programming language
 brew "perl"
 # Paste PNG images from the clipboard into files (used by clip2server)
@@ -106,7 +104,7 @@ brew "pngpaste"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Command-line shell and scripting language
-brew "powershell", link: false
+brew "powershell"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Launcher to analyze a project with SonarQube
@@ -147,6 +145,8 @@ brew "zsh"
 cask "android-commandlinetools"
 # Tools for building Android applications
 cask "android-studio"
+# Microsoft Azure CLI 2.0
+cask "azure-cli"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # OpenAI's coding agent that runs in your terminal
@@ -179,8 +179,6 @@ cask "ngrok"
 cask "notion"
 # Collaboration platform for API development
 cask "postman"
-# Command-line shell and scripting language
-cask "powershell"
 # Control your tools with a few keystrokes
 cask "raycast"
 # Screenshot measurement and annotation tool

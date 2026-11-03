@@ -60,6 +60,28 @@
     file_type: directory
   register: private_configs
 
+# force replaces files and symlinks, but Ansible refuses to replace nonempty
+# directories. Private dotfiles take precedence over app-created config directories.
+- name: Inspect existing private app config destinations
+  stat:
+    path: "~/.config/{{ item.path | basename }}"
+    follow: false
+    get_checksum: false
+    get_mime: false
+  loop: "{{ private_configs.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
+  register: private_config_destinations
+
+- name: Remove directories overridden by private app configs
+  file:
+    path: "{{ item.stat.path }}"
+    state: absent
+  when: item.stat.isdir | default(false)
+  loop: "{{ private_config_destinations.results }}"
+  loop_control:
+    label: "{{ item.item.path | basename }}"
+
 - name: Link private app configs into ~/.config
   file:
     src: "{{ item.path }}"
@@ -76,6 +98,7 @@
   register: private_brewfile
 
 - name: Install private Brewfile packages
+  tags: brew
   command: brew bundle --file={{ private_dir }}/brew/Brewfile
   when: private_brewfile.stat.exists
   changed_when: false

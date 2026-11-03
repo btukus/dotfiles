@@ -4,6 +4,7 @@
 # Safe to run either way:
 #   curl -fsSL https://raw.githubusercontent.com/btukus/dotfiles/main/install.sh | bash
 #   cd ~/dotfiles && ./install.sh
+#   ./install.sh --skip-brew  # reuse installed packages
 #
 # Design notes:
 # - Everything lives inside main(), called on the last line. Under `curl | bash`
@@ -33,7 +34,27 @@ clt_ready() {
     xcode-select -p &>/dev/null && xcrun --find clang &>/dev/null
 }
 
+usage() {
+    cat <<'EOF'
+Usage: ./install.sh [--skip-brew] [-h|--help]
+
+  --skip-brew  Skip Homebrew installation and public/private Brewfile packages.
+               Requires the setup tools (including Ansible and Stow) to be installed.
+  -h, --help   Show this help.
+EOF
+}
+
 main() {
+    local skip_brew=0
+    while (( $# )); do
+        case "$1" in
+            --skip-brew) skip_brew=1 ;;
+            -h|--help) usage; return 0 ;;
+            *) echo "Error: unknown option: $1" >&2; usage >&2; return 1 ;;
+        esac
+        shift
+    done
+
     echo "=== macOS Development Environment Setup ==="
 
     if [[ "$(uname -s)" != "Darwin" ]]; then
@@ -109,20 +130,24 @@ main() {
     # --- 2. Homebrew ---------------------------------------------------------
     # Load shellenv FIRST: brew may be installed but not on PATH in this shell.
     load_brew_env
-    if ! command -v brew &>/dev/null; then
-        echo "Installing Homebrew..."
-        # NONINTERACTIVE=1 skips the "Press RETURN to continue" prompt (the
-        # classic hang in interactive mode); sudo is already cached so the
-        # installer's `sudo -n` calls succeed. </dev/null keeps the installer
-        # and its children away from our stdin.
-        NONINTERACTIVE=1 /bin/bash -c \
-            "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
-            </dev/null
-        load_brew_env
-    fi
-    if ! command -v brew &>/dev/null; then
-        echo "Error: Homebrew installation failed (brew not found after install)." >&2
-        exit 1
+    if (( skip_brew )); then
+        echo "Skipping Homebrew installation (--skip-brew)."
+    else
+        if ! command -v brew &>/dev/null; then
+            echo "Installing Homebrew..."
+            # NONINTERACTIVE=1 skips the "Press RETURN to continue" prompt (the
+            # classic hang in interactive mode); sudo is already cached so the
+            # installer's `sudo -n` calls succeed. </dev/null keeps the installer
+            # and its children away from our stdin.
+            NONINTERACTIVE=1 /bin/bash -c \
+                "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
+                </dev/null
+            load_brew_env
+        fi
+        if ! command -v brew &>/dev/null; then
+            echo "Error: Homebrew installation failed (brew not found after install)." >&2
+            exit 1
+        fi
     fi
 
     # --- 3. Dotfiles repo ------------------------------------------------------
@@ -158,28 +183,36 @@ main() {
     # `brew bundle` exit non-zero. It is idempotent and caches successful
     # downloads, so re-running quickly clears transient errors.
     local had_failures=0
-    local brew_tries=0
-    echo "Installing brew packages..."
-    until brew bundle --file="$dotfiles_dir/brew/Brewfile.macos" </dev/null; do
-        brew_tries=$((brew_tries + 1))
-        if (( brew_tries >= 3 )); then
-            echo "Warning: brew bundle still failing after 3 attempts (continuing...)" >&2
-            had_failures=1
-            break
-        fi
-        echo "brew bundle failed (attempt ${brew_tries}/3) — retrying in 15s (transient fetch errors are common on a fresh install)..." >&2
-        sleep 15
-    done
+    if (( skip_brew )); then
+        echo "Skipping brew packages (--skip-brew)."
+    else
+        local brew_tries=0
+        echo "Installing brew packages..."
+        until brew bundle --file="$dotfiles_dir/brew/Brewfile.macos" </dev/null; do
+            brew_tries=$((brew_tries + 1))
+            if (( brew_tries >= 3 )); then
+                echo "Warning: brew bundle still failing after 3 attempts (continuing...)" >&2
+                had_failures=1
+                break
+            fi
+            echo "brew bundle failed (attempt ${brew_tries}/3) — retrying in 15s (transient fetch errors are common on a fresh install)..." >&2
+            sleep 15
+        done
+    fi
 
     # --- 5. Ansible playbook (includes macOS settings) -------------------------
     hash -r  # forget stale command lookups; ansible was just installed
     if ! command -v ansible-playbook &>/dev/null; then
-        echo "Error: ansible-playbook not found; 'brew bundle' likely failed above." >&2
-        echo "Fix the brew errors and re-run this script (it is idempotent)." >&2
+        echo "Error: ansible-playbook not found." >&2
+        echo "Install Ansible or re-run this script without --skip-brew to install setup tools." >&2
         exit 1
     fi
+    local ansible_args=("$dotfiles_dir/ansible/macos_playbook.yml")
+    if (( skip_brew )); then
+        ansible_args+=(--skip-tags brew)
+    fi
     echo "Running Ansible playbook..."
-    if ! ansible-playbook "$dotfiles_dir/ansible/macos_playbook.yml" </dev/null; then
+    if ! ansible-playbook "${ansible_args[@]}" </dev/null; then
         echo "Warning: Ansible playbook had errors (continuing...)" >&2
         had_failures=1
     fi

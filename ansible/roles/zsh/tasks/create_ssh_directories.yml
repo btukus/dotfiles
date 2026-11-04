@@ -9,12 +9,15 @@
     path: "~/.ssh"
     state: directory
 
+# Give a hostname its sole account automatically; primary selects the default
+# when multiple accounts share a hostname. Keep aliases for existing URLs.
 - name: Create the SSH config file
   copy:
     dest: "~/.ssh/config"
     content: |
       {% for origin in ssh_origins %}
-      Host {{ origin.name }}{% if origin.primary | default(false) %} {{ origin.hostname }}{% endif %}
+      {% set same_host = ssh_origins | selectattr('hostname', 'equalto', origin.hostname) | list %}
+      Host {{ origin.name }}{% if origin.primary | default(false) or same_host | length == 1 %} {{ origin.hostname }}{% endif %}
 
         HostName {{ origin.hostname }}
         User {{ origin.user }}

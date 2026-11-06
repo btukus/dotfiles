@@ -1,6 +1,5 @@
--- Mason only installs tools; servers are enabled in lspconfig.lua. mason.nvim itself loads
--- at startup as its README recommends (setup is light and puts its bin dir on PATH for
--- servers, conform and nvim-lint); only the registry-reading install check is deferred.
+-- Mason sets up PATH at startup; servers are enabled in lspconfig.lua.
+-- The install check stays delayed so it does not block startup.
 return {
 	{
 		"williamboman/mason.nvim",
@@ -16,7 +15,8 @@ return {
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		event = "VeryLazy",
+		-- Its automatic install hook must be registered before VimEnter.
+		lazy = false,
 		dependencies = { "williamboman/mason.nvim" },
 		opts = {
 			-- mason package names

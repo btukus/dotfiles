@@ -157,6 +157,13 @@ continue to work without them. The private Ansible role clones the overlay after
 the GitHub SSH key is configured; re-run the playbook when that prerequisite is
 newly satisfied.
 
+Server SSH identities use optional `ssh_user_keys` entries in private Ansible
+variables (`user`, `location`, `identityfile`, `key_type`). They share the existing
+directory and agent setup; `Match user` selects the key without changing Git
+host routing. Enroll hardware keys manually before provisioning; they use the
+FIDO-capable client directly instead of Apple's agent. Homebrew OpenSSH supplies
+FIDO support on macOS. Non-resident hardware key handles must be backed up too.
+
 A pre-commit hook at `.githooks/pre-commit`, enabled through `core.hooksPath`,
 runs gitleaks using `.gitleaks.toml` to block secrets and private identifiers.
 

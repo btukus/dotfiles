@@ -95,6 +95,8 @@ brew "luarocks"
 brew "neovim"
 # Port scanning utility for large networks
 brew "nmap"
+# SSH client with FIDO security key support (missing from Apple's build)
+brew "openssh"
 # OpenSSL 3 is required to build the pinned Python 3.11 runtime.
 brew "openssl@3.6"
 # Highly capable, feature-rich programming language

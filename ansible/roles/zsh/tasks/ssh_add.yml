@@ -1,6 +1,8 @@
 - name: Add SSH keys
-  ansible.builtin.shell: ssh-add {{ item.identityfile }}
-  loop: "{{ ssh_origins }}"
+  ansible.builtin.command:
+    argv: ['ssh-add', '{{ item.identityfile | expanduser }}']
+  loop: "{{ ssh_origins | default([]) + ssh_user_keys | default([]) }}"
+  when: item.key_type | default('rsa') not in ['ed25519-sk', 'ecdsa-sk']
   register: ssh_add_result
   failed_when: ssh_add_result.rc is defined and ssh_add_result.rc > 1
   changed_when: false

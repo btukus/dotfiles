@@ -1,6 +1,26 @@
 - name: Create SSH keys
-  ansible.builtin.shell: "ssh-keygen -t rsa -b 4096 -N '' -f {{ item.identityfile }}"
-  args:
+  ansible.builtin.command:
+    argv: >-
+      {{ ['ssh-keygen', '-t', item.key_type | default('rsa')]
+         + (['-b', '4096'] if item.key_type | default('rsa') == 'rsa' else [])
+         + ['-N', '', '-f', item.identityfile | expanduser] }}
     creates: "{{ item.identityfile }}"
-  loop: "{{ ssh_origins }}"
+  loop: "{{ ssh_origins | default([]) + ssh_user_keys | default([]) }}"
+  when: item.key_type | default('rsa') not in ['ed25519-sk', 'ecdsa-sk']
+
+- name: Check manually enrolled hardware SSH keys
+  ansible.builtin.stat:
+    path: "{{ item.identityfile }}"
+  loop: "{{ ssh_user_keys | default([]) }}"
+  when: item.key_type | default('rsa') in ['ed25519-sk', 'ecdsa-sk']
+  register: hardware_ssh_keys
+
+- name: Require hardware SSH enrollment before provisioning
+  ansible.builtin.assert:
+    that: item.stat.exists
+    fail_msg: >-
+      Enroll this non-resident key with your security key connected:
+      ssh-keygen -t {{ item.item.key_type }} -N '' -f {{ item.item.identityfile }}
+  loop: "{{ hardware_ssh_keys.results }}"
+  when: not (item.skipped | default(false))
 

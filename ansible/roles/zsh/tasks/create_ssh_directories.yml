@@ -2,20 +2,23 @@
   file:
     path: "{{ item.location }}"
     state: directory
-  loop: "{{ ssh_origins }}"
+    mode: '0700'
+  loop: "{{ ssh_origins | default([]) + ssh_user_keys | default([]) }}"
 
 - name: Ensure the SSH config directory exists
   file:
     path: "~/.ssh"
     state: directory
+    mode: '0700'
 
 # Give a hostname its sole account automatically; primary selects the default
 # when multiple accounts share a hostname. Keep aliases for existing URLs.
 - name: Create the SSH config file
   copy:
     dest: "~/.ssh/config"
+    mode: '0600'
     content: |
-      {% for origin in ssh_origins %}
+      {% for origin in ssh_origins | default([]) %}
       {% set same_host = ssh_origins | selectattr('hostname', 'equalto', origin.hostname) | list %}
       Host {{ origin.name }}{% if origin.primary | default(false) or same_host | length == 1 %} {{ origin.hostname }}{% endif %}
 
@@ -23,4 +26,14 @@
         User {{ origin.user }}
         IdentityFile {{ origin.identityfile }}
         IdentitiesOnly yes
+      {% endfor %}
+      {% for identity in ssh_user_keys | default([]) %}
+
+      Match user {{ identity.user }}
+        IdentityFile {{ identity.identityfile }}
+        IdentitiesOnly yes
+      {% if identity.key_type | default('rsa') in ['ed25519-sk', 'ecdsa-sk'] %}
+        # Use the FIDO-capable client directly, rather than Apple's ssh-agent.
+        IdentityAgent none
+      {% endif %}
       {% endfor %}

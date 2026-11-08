@@ -4,7 +4,7 @@
 
 - name: Create SSH directories
   include_tasks: "create_ssh_directories.yml"
-  when: ssh_origins is defined and ssh_origins | length > 0
+  when: (ssh_origins | default([]) + ssh_user_keys | default([])) | length > 0
 
 - name: Create git identity routing
   include_tasks: "create_git_identity_routing.yml"
@@ -12,8 +12,8 @@
 
 - name: Create SSH keys
   include_tasks: "ssh_keys.yml"
-  when: ssh_origins is defined and ssh_origins | length > 0
+  when: (ssh_origins | default([]) + ssh_user_keys | default([])) | length > 0
 
 - name: Add SSH keys to env
   include_tasks: "ssh_add.yml"
-  when: ssh_origins is defined and ssh_origins | length > 0
+  when: (ssh_origins | default([]) + ssh_user_keys | default([])) | length > 0

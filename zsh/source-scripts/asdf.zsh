@@ -33,8 +33,12 @@ if [[ -z "$RUST_VERSION" ]]; then
   done
   unset _rust_dir
 fi
-[[ -n "$RUST_VERSION" && -f "$HOME/.asdf/installs/rust/$RUST_VERSION/env" ]] && \
-  . "$HOME/.asdf/installs/rust/$RUST_VERSION/env"
+if [[ -n "$RUST_VERSION" && -f "$HOME/.asdf/installs/rust/$RUST_VERSION/env" ]]; then
+  # Direct Cargo calls (including brew bundle) bypass asdf's exec-env hook.
+  export CARGO_HOME="$HOME/.asdf/installs/rust/$RUST_VERSION"
+  export RUSTUP_HOME="$CARGO_HOME"
+  . "$CARGO_HOME/env"
+fi
 
 # rustup fallback (used on the NAS where compiling Rust via asdf would take
 # hours; rustup ships prebuilt nightly binaries in minutes). Sourced only when

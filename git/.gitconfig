@@ -16,12 +16,10 @@
 	# Store worktree links as relative paths, so moving a repo together with its
 	# worktrees (e.g. into ~/code) doesn't break them. Needs git >= 2.48.
 	useRelativePaths = true
-[include]
-	path = ~/.config/git/identity-routing
 # Private overlay: user.email and anything else not for a public repo
 [include]
 	path = ~/dotfiles-private/git/config
-# Per-org user.email from ssh_origins; after the overlay so it overrides the default
+# Per-org user.email and SSH key from ssh_origins; after the overlay so it overrides the default
 [include]
 	path = ~/.config/git/identity-emails
 [credential "https://github.com"]

@@ -8,6 +8,7 @@ ca-certificates    # trust store used by git-http, curl, wget
 zsh
 less
 nano
+tmux               # SSH logins start it (zsh/source-scripts/tmux-autostart.zsh)
 
 # Nicer coreutils (GNU dircolors, ls, etc. — override BusyBox equivalents when
 # /opt/bin is prepended to PATH)

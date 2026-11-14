@@ -1,13 +1,13 @@
 # Powerlevel10k instant prompt. Must be the first thing that runs: until it takes the terminal,
 # anything you type is echoed raw by the tty and then left behind as a stale line when the real
-# prompt draws. It renders ~25ms in, so keep everything else below it - including Zellij, whose
+# prompt draws. It renders ~25ms in, so keep everything else below it - including tmux, whose
 # `attach` would otherwise hold that window open for its whole startup.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Start Zellij in place of this shell (Ghostty, SSH)
-[[ -o interactive ]] && source "$ZDOTDIR/source-scripts/zellij-autostart.zsh"
+# Start tmux in place of this shell (Ghostty, SSH)
+[[ -o interactive ]] && source "$ZDOTDIR/source-scripts/tmux-autostart.zsh"
 
 # zmodload zsh/zprof
 
@@ -63,7 +63,7 @@ if (( ${ZSH_PROFILE_T0:-0} )); then
   _zsh_profile_done() {
     printf '%s  zshrc=%6.1fms  prompt=%6.1fms  instant=%-3s pane=%-3s %s\n' \
       "$(strftime '%H:%M:%S' $EPOCHSECONDS)" $ZSH_PROFILE_RC \
-      $(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 )) "$ZSH_PROFILE_IP" "${ZELLIJ_PANE_ID:--}" "$PWD" \
+      $(( (EPOCHREALTIME - ZSH_PROFILE_T0) * 1000 )) "$ZSH_PROFILE_IP" "${TMUX_PANE:--}" "$PWD" \
       >>${XDG_CACHE_HOME:-$HOME/.cache}/zsh/startup.log
     # slowest hooks first, anything over 1ms
     local k out=

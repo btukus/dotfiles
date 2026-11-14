@@ -31,7 +31,7 @@ if [[ -o interactive && -f ${XDG_CACHE_HOME:-$HOME/.cache}/zsh/profile ]]; then
 fi
 
 # Whether stdin is the terminal, recorded here because p10k's instant prompt points stdin at
-# /dev/null while .zshrc loads, and zellij-autostart (which runs after it) still needs to know.
+# /dev/null while .zshrc loads, and tmux-autostart (which runs after it) still needs to know.
 [[ -t 0 ]] && ZSH_STDIN_IS_TTY=1
 
 # Don't let macOS Terminal write per-session history into $ZDOTDIR/.zsh_sessions

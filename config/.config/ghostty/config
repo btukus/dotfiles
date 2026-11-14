@@ -1,4 +1,4 @@
-# Ghostty. Every window starts Zellij (zsh/source-scripts/zellij-autostart.zsh, zellij/config.kdl).
+# Ghostty. Every window starts tmux (zsh/source-scripts/tmux-autostart.zsh, tmux/tmux.conf).
 # Config is read at startup: reload with Cmd+Shift+, after editing.
 # `ghostty +show-config --default --docs` lists every option.
 
@@ -21,28 +21,27 @@ cursor-style-blink = false
 # displays). Uncomment to trade the one for the other.
 # window-vsync = false
 # No pointer over the text while typing, and no hover previews repainting under the cursor
-# (Zellij's own hover effects are off too, see zellij/config.kdl)
 mouse-hide-while-typing = true
 link-previews = false
 
 maximize = true
 macos-titlebar-style = hidden
 window-padding-x = 10
-# top,bottom: nothing under the Zellij status bar
+# top,bottom: nothing under the tmux status bar
 window-padding-y = 10,0
-# Stretch edge cells' colors into the padding, so the Zellij status bar runs to the window edges
+# Stretch edge cells' colors into the padding, so the tmux status bar runs to the window edges
 window-padding-color = extend-always
-# Left Option = Alt (Zellij/zsh chords); right Option still types special characters (@ € | …)
+# Left Option = Alt (tmux/zsh chords); right Option still types special characters (@ € | …)
 macos-option-as-alt = left
 # Trackpad scrolling at Alacritty's speed (Ghostty's default precision multiplier is 1)
 mouse-scroll-multiplier = precision:3,discrete:3
-# Zellij asks before quitting what matters; don't double-confirm every window close
+# tmux keeps the session when a window closes; don't confirm every window close
 confirm-close-surface = false
 
 # Install xterm-ghostty terminfo on SSH hosts that lack it, and forward COLORTERM etc.
 shell-integration-features = ssh-terminfo,ssh-env
 
-# macOS Cmd shortcuts, sent to Zellij as its Alt bindings
+# macOS Cmd shortcuts, sent to tmux as its Alt bindings
 # (on Linux, press the Alt keys directly). \x1b<key> is what Alt+<key> sends.
 keybind = cmd+t=text:\x1bt
 keybind = cmd+w=text:\x1bw
@@ -74,8 +73,8 @@ keybind = cmd+8=text:\x1b8
 keybind = cmd+digit_9=text:\x1b9
 keybind = cmd+9=text:\x1b9
 
-# Left Option+1..9 switch Zellij sessions. Option+N would arrive as Alt-N, the same as
-# Cmd+N (tabs), so send Alt-F1..F9 for Zellij to bind instead.
+# Left Option+1..9 switch tmux sessions. Option+N would arrive as Alt-N, the same as
+# Cmd+N (tabs), so send Alt-F1..F9 for tmux to bind instead.
 keybind = alt+digit_1=text:\x1b[1;3P
 keybind = alt+1=text:\x1b[1;3P
 keybind = alt+digit_2=text:\x1b[1;3Q

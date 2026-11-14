@@ -4,7 +4,7 @@
 #
 # Turns a stock Synology NAS with Entware pre-installed into a usable interactive
 # shell environment: zsh + antidote + fast-syntax-highlighting + p10k, backed by
-# opkg-installed git/less/nano, a static zellij and the shared dotfiles repo.
+# opkg-installed git/less/nano/tmux and the shared dotfiles repo.
 #
 # Not intended to be a full dev machine: no brew, no ansible, no asdf, no
 # language runtimes. Just the shell UX the NAS needs to be pleasant over SSH.
@@ -131,10 +131,6 @@ fetch_gh_bin junegunn/fzf \
 fetch_gh_bin sharkdp/bat \
     "https://github.com/sharkdp/bat/releases/download/{VER}/bat-{VER}-x86_64-unknown-linux-musl.tar.gz" \
     bat
-# SSH logins start it (zsh/source-scripts/zellij-autostart.zsh)
-fetch_gh_bin zellij-org/zellij \
-    "https://github.com/zellij-org/zellij/releases/download/{VER}/zellij-x86_64-unknown-linux-musl.tar.gz" \
-    zellij
 
 # --- 4c. asdf + language toolchains -----------------------------------------
 # asdf is the shared version manager used across macOS/Linux/NAS. On the NAS
@@ -191,7 +187,7 @@ fi
 
 # --- 5. symlinks -------------------------------------------------------------
 # Explicit symlinks (no `stow`) so it's transparent what points where and easy
-# to unwind. Only NAS-relevant configs: shell, git, zellij, nvim.
+# to unwind. Only NAS-relevant configs: shell, git, tmux, nvim.
 
 link() {
     local src=$1 dst=$2
@@ -217,7 +213,7 @@ link() {
 link "$DOTFILES_DIR/git/.gitconfig"                          "$HOME/.gitconfig"
 link "$DOTFILES_DIR/git/.gitignore_global"                   "$HOME/.gitignore_global"
 link "$DOTFILES_DIR/nas/git-config.local"                    "$HOME/.config/git/config.local"
-link "$DOTFILES_DIR/config/.config/zellij"                   "$HOME/.config/zellij"
+link "$DOTFILES_DIR/config/.config/tmux"                     "$HOME/.config/tmux"
 [[ -d "$DOTFILES_DIR/config/.config/nvim" ]] && \
     link "$DOTFILES_DIR/config/.config/nvim"                 "$HOME/.config/nvim"
 [[ -d "$DOTFILES_DIR/config/.config/vim" ]] && \

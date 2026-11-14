@@ -20,7 +20,7 @@ compdef _dcontainers de dip dbr
 # tj: projects known to the sessionizer
 _tj() {
   local -a projects
-  projects=(${(f)"$("${ZDOTDIR:h}/scripts/zellij-sessionizer" --list 2>/dev/null)"})
+  projects=(${(f)"$("${ZDOTDIR:h}/scripts/tmux-sessionizer" --list 2>/dev/null)"})
   _describe 'project' projects
 }
 compdef _tj tj

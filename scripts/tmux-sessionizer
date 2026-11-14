@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
-# zellij-sessionizer (Alt-o, or `tj` from a shell) — pick a repo/worktree under $CODE_ROOT and
-# switch to (or create) a Zellij session for it. Projects come from the `repos` manifest
+# tmux-sessionizer (Alt-o, or `tj` from a shell) — pick a repo/worktree under $CODE_ROOT and
+# switch to (or create) a tmux session for it. Projects come from the `repos` manifest
 # (~/dotfiles-private/repos.conf): normal clones, plus each worktree of bare repos. Without a
 # manifest, scans a few levels deep.
 #
-#   zellij-sessionizer            fzf picker
-#   zellij-sessionizer <project>  jump straight to <project> (path relative to $CODE_ROOT)
-#   zellij-sessionizer --list     print the project list
+#   tmux-sessionizer            fzf picker
+#   tmux-sessionizer <project>  jump straight to <project> (path relative to $CODE_ROOT)
+#   tmux-sessionizer --list     print the project list
 emulate -L zsh
 setopt pipefail
 
@@ -44,12 +44,11 @@ fi
 dir=$CODE_ROOT/$sel
 [[ -d $dir ]] || { print -u2 "no such project: $dir"; exit 1 }
 
-name=${sel//[\/.:]/_}                                  # keep session names flat and shell-safe
-if [[ -n $ZELLIJ ]]; then
+name=${sel//[\/.:]/_}                                  # keep session names flat and tmux-safe
+if [[ -n $TMUX ]]; then
   # Create it detached (in the project dir) if needed, then move this client over
-  zellij list-sessions --short 2>/dev/null | grep -qxF -- "$name" ||
-    (cd $dir && zellij attach --create-background "$name")
-  zellij action switch-session "$name"
+  tmux has-session -t "=$name" 2>/dev/null || tmux new-session -ds "$name" -c "$dir"
+  tmux switch-client -t "=$name"
 else
-  cd $dir && exec zellij attach --create "$name"
+  exec tmux new-session -A -s "$name" -c "$dir"
 fi

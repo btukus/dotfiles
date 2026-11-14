@@ -140,7 +140,7 @@ brew "gitleaks"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
 # Terminal multiplexer: panes, tabs, sessions (started by Ghostty and SSH logins)
-brew "zellij"
+brew "tmux"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Command-line tools for building and debugging Android apps

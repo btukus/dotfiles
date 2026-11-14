@@ -9,7 +9,7 @@ if [[ $OSTYPE == linux* ]] && (( ! $+commands[pbcopy] )); then
     if [[ -n "$SSH_TTY" || -n "$SSH_CONNECTION" ]]; then
       local b64
       b64=$(printf '%s' "$data" | base64 | tr -d '\n')
-      # Plain OSC 52 also works inside Zellij, which forwards it to the outer terminal
+      # Plain OSC 52 also works inside tmux (set-clipboard on), which forwards it to the outer terminal
       printf '\e]52;c;%s\a' "$b64"
     elif command -v wl-copy &>/dev/null; then
       printf '%s' "$data" | wl-copy

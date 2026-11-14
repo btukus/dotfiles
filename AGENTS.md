@@ -49,7 +49,7 @@ a Nerd Font installed.
   numbered domain files under `zsh/functions/`.
 - When changing the Zsh startup flow, respect the source ordering in
   `zsh/.zshrc`; Powerlevel10k instant prompt must remain at the top.
-- Keep `config/.config/zellij/cheatsheet.txt` aligned with user-visible Zellij
+- Keep `config/.config/tmux/cheatsheet.txt` aligned with user-visible tmux
   keybinding changes.
 
 ## Zsh architecture
@@ -59,9 +59,10 @@ following modules in a deliberate order:
 
 1. `.p10k.zsh` instant prompt first. Do not move it: it avoids input being
    echoed as a stale line before the real prompt renders.
-2. `source-scripts/zellij-autostart.zsh`, which opens the configured main Zellij
-   session for Ghostty or SSH shells and remains a plain shell if Zellij is
-   unavailable. It relies on tty state captured in `.zshenv` because instant
+2. `source-scripts/tmux-autostart.zsh`, which opens the configured main tmux
+   session (`$TMUX_MAIN_SESSION`) for Ghostty or SSH shells and remains a plain shell if tmux is
+   unavailable. A second window on an attached session gets a grouped session, so it has
+   its own current tab. It relies on tty state captured in `.zshenv` because instant
    prompt redirects stdin.
 3. `load-paths.zsh`, `load-options.zsh`, and `load-history-settings.zsh`.
 4. `plugin-settings.zsh`, which defines settings plugins need while loading.
@@ -108,35 +109,35 @@ prompt render - most of the wait when a pane opens.
 
 - `config/.config/nvim/`: LazyVim-based Neovim configuration in Lua.
 - `config/.config/ghostty/config`: Ghostty terminal settings.
-- `config/.config/zellij/`: `config.kdl`, layouts, and the interactive
-  cheatsheet.
+- `config/.config/tmux/`: `tmux.conf` and the interactive cheatsheet. Plugins
+  (TPM, tmux-resurrect, tmux-continuum) are cloned to `~/.local/share/tmux/plugins`
+  on the first start.
 - `config/.config/k9s/` and `config/.config/lazygit/`: terminal UI settings.
 - `obsidian/`: portable vault preferences and Vim clipboard settings; apply with
   `scripts/obsidian-settings /path/to/vault` (not Stow; see `obsidian/README.md`).
 
-Ghostty, Zellij, and related terminal applications use the Nord theme.
+Ghostty, tmux, and related terminal applications use the Nord theme.
 
-## Zellij behavior
+## tmux behavior
 
-Zellij defaults are cleared and bindings are Alt-based. On macOS, Ghostty maps
+Common actions are prefix-less Alt bindings (the prefix is `Alt-f`). On macOS, Ghostty maps
 Command keys to the relevant Alt chords; on Linux use Alt directly.
 
-- `Ctrl-h/j/k/l`: focus panes, including Neovim splits through the navigator
-  plugins.
-- `Alt-Shift-h/j/k/l`: move panes; `Alt--` and `Alt-|`: split below/beside.
+- `Ctrl-h/j/k/l`: focus panes, including Neovim splits through `smart-splits.nvim`.
+- `Alt-Shift-h/j/k/l`: swap a pane with its neighbour; `Alt--` and `Alt-|`: split below/beside.
 - `Alt-b`, `Alt-<`, `Alt->`: move a pane to a new, previous, or next tab.
-- `Alt-t`: new tab; `Alt-w`: close pane; `Alt-z`: zoom; `Alt-e`: float/dock;
+- `Alt-t`: new tab; `Alt-w`: close pane; `Alt-z`: zoom;
   `Alt-Space`: cycle layout.
 - `Alt-1..9`: go to a tab; `Alt-p`/`Alt-n`: move a tab left/right.
-- `Alt-j`: toggle floating panes; `Alt-k`: show/hide a k9s popup that keeps running
-  (`scripts/zellij-popup-toggle`).
-- `Alt-o`: project picker; `Alt-s`: session manager; `Alt-v`: scroll/copy mode;
+- `Alt-j`: show/hide a scratch shell popup; `Alt-k`: show/hide a k9s popup. Both keep
+  running while hidden, as hidden `_scratch`/`_k9s` sessions.
+- `Alt-o`: project picker; `Alt-s`: session switcher; `Alt-v`: copy mode;
   `Alt-f`: prefix mode; `Alt-?`: cheatsheet.
-- `F12`: pass keys through to nested Zellij (for example over SSH); press it
+- `F12`: pass keys through to nested tmux (for example over SSH); press it
   again to return.
 
-Layout and status-bar changes apply only to newly created sessions. A restarted
-session restores its saved layout. The `zr` alias resets the main session.
+`Alt-f r` reloads `tmux.conf` into the running server. tmux-continuum saves sessions every
+15 minutes and restores them when the server starts. The `zr` alias kills the main session.
 
 ## Privacy and security
 

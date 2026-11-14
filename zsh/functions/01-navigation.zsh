@@ -40,19 +40,17 @@ zf() {
   d=$(zshz -l 2>&1 | fzf --tac --height 40% --query "$*" | awk '{print $2}') && cd "${d/#\~/$HOME}"
 }
 
-# Rename the Zellij tab and pin the name against auto-renaming; without a name, unpin it and
-# go back to the current directory name (see source-scripts/zellij-autostart.zsh)
+# Rename the tmux tab, which pins the name against auto-renaming; without a name, go back to
+# naming it after the running command / current directory (automatic-rename, see tmux.conf)
 tw() {
-  local tab=$(zellij action current-tab-info --json | jq -r '.tab_id')
   if [[ -n $1 ]]; then
-    mkdir -p "$ZELLIJ_TAB_PINS" && : >| "$ZELLIJ_TAB_PINS/$tab"
+    tmux rename-window -- "$1"
   else
-    rm -f "$ZELLIJ_TAB_PINS/$tab"
+    tmux set-option -w automatic-rename on
   fi
-  zellij action rename-tab "${1:-${PWD:t}}"
 }
 
-# Jump to a project's Zellij session (fzf picker without an argument); see scripts/zellij-sessionizer
+# Jump to a project's tmux session (fzf picker without an argument); see scripts/tmux-sessionizer
 tj() {
-  "${ZDOTDIR:h}/scripts/zellij-sessionizer" "$@"
+  "${ZDOTDIR:h}/scripts/tmux-sessionizer" "$@"
 }
